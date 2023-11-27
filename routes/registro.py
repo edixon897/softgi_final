@@ -9,7 +9,6 @@ from conexiondb import *
 def registroUsario(): 
     return render_template('registro/registro.html') 
 
-
 @app.route('/registro', methods=['POST']) 
 def registro_usuario(): 
     conn = mysql.connect() 
