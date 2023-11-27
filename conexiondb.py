@@ -22,7 +22,7 @@ def conexion():
         print('Conexion de la base de datos exitosa')
     except Exception as e:
                 print(f"Error al conectar a la base de datos: {str(e)}")
-                
+
 def servicion():                
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'  
     app.config['MAIL_PORT'] = 587  

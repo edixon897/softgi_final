@@ -1,5 +1,6 @@
 import hashlib
-from conexiondb import *
+from flask import Flask, request, render_template, session, flash, redirect, url_for
+from conexiondb import conexion, mysql, app
 
 @app.route('/') 
 def index(): 

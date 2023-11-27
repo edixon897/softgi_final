@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recuperación de contraseña</title>
+    <link rel="stylesheet" href="/static/css/enviocontra.css">
+</head>
+<body>
+    <h1>Hola {{ user.nombre }},</h1>
+    <p>Se ha enviado una solicitud de cambio de contraseña.</p>
+    {% if token_url %}
+        <p>Para restablecer tu contraseña, haz clic en el siguiente enlace: <a href="{{ token_url }}">Restablecer contraseña</a></p>
+    {% else %}
+        <p>El enlace de restablecimiento de contraseña no está disponible en este momento.</p>
+    {% endif %}
+    <p>Si no solicitaste un restablecimiento de contraseña, ignora este correo.</p>
+
+    <p>Gracias.</p>
+</body>
+</html>
