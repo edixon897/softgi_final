@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+<body>
+    <main id="inicio">
+        <section id="opciones">
+            <div id="logo">
+                <figure id="logo">
+                    <img src="../static/img/parabrisas_logo.png" alt="">
+                </figure>
+            </div>
+
+            <div id="nombre">
+                <p id="usuario">Nombre</p>
+            </div>
+
+            <div id="menu">
+                <a href="">
+                    <i class="lni lni-menu"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="buscar">
+            <div id="buscador">
+                <i class="lni lni-search-alt"></i>
+                <input type="text" placeholder="parabrisas, manijas, alarmas, etc...">
+            </div>
+        </section>
+
+        <section id="modulos">
+            <a href="{{url_for('muestra_Productos')}}" class="campo_a">
+                <div id="producto" class="modulos">
+                    <figure><img src="../static/img/modulos/producto.png" alt=""></figure>
+                    <p class="titulo">Productos</p>
+                </div>
+            </a>
+            <a href="{{url_for('muestra_ventas')}}" class="campo_a">
+                <div id="ventas" class="modulos">
+                    <figure><img src="../static/img/modulos/ventas.png" alt=""></figure>
+                    <p class="titulo">Ventas</p>
+                </div>
+            </a>
+            <a href="{{url_for('Cotizacion')}}" class="campo_a">
+                <div id="cotizaciones" class="modulos">
+                    <figure><img src="../static/img/modulos/cotizaciones.png" alt=""></figure>
+                    <p class="titulo">Cotizaciones</p>
+                </div>
+            </a>
+            <a href="{{url_for('muestra_compra_proved')}}" class="campo_a">
+                <div id="compras_proveedores" class="modulos">
+                    <figure><img src="../static/img/modulos/compras_proveedores.png" alt=""></figure>
+                    <p class="titulo">Compras a proveedores</p>
+                </div>
+            </a>
+            <a href="{{url_for('muestraDevoluciones')}}" class="campo_a">
+                <div id="devoluciones" class="modulos">
+                    <figure><img src="../static/img/modulos/devoluciones.png" alt=""></figure>
+                    <p class="titulo">Devoluciones</p>
+                </div>
+            </a>
+            <a href="{{url_for('clientes')}}" class="campo_a">
+                <div id="clientes" class="modulos">
+                    <figure><img src="../static/img/modulos/clientes.png" alt=""></figure>
+                    <p class="titulo">Clientes</p>
+                </div>
+                </a>
+            <a href="muestra_empleados" class="campo_a">
+                <div id="empleados" class="modulos">
+                    <figure><img src="../static/img/modulos/empleados.png" alt=""></figure>
+                    <p class="titulo">Empleados</p>
+                </div>
+            </a>
+            <a href="" class="campo_a">
+                <div id="administracion" class="modulos">
+                    <figure><img src="../static/img/modulos/administracion.png" alt=""></figure>
+                    <p class="titulo">Administración</p>
+                </div>
+            </a>
+        </section>
+    </main>
+</body>
+</html>
