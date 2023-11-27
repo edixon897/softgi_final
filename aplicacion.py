@@ -1,6 +1,6 @@
 from conexiondb import *
 from routes.login import index, login
-from routes.registro import *
+from routes.registro import registroUsario, confirmar_correo
 from routes.recuperaContra import solicitarCambio_contraseña, recuperar_contraseña
 
 
