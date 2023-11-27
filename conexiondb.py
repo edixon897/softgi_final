@@ -13,7 +13,6 @@ app.secret_key = 'hfoy9ew87rwhdfs'
 def conexion():
     try:
         app.config['MYSQL_DATABASE_SECRET_KEY'] = app.secret_key
-
         app.config['MYSQL_DATABASE_USER'] = 'root'
         app.config['MYSQL_DATABASE_PASSWORD'] = ''
         app.config['MYSQL_DATABASE_DB'] = 'softgi2'
