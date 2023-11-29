@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visaulización de clientes</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+
+</head>
+<body>
+    <div>
+        <h1>Clientes</h1>
+    </div>
+    <form action="buscar_cliente" method="post" id="conten_busqueda">
+        <input type="search" placeholder="Buscar" aria-label="Search" name="busqueda" id="busqueda">
+        <button type="submit"><i class="lni lni-search-alt"></i></button>
+    </form>
+
+    <div id="crear-prov">
+        <a class="crear-prov" href="{{url_for('crearClientes')}}">Crear Clientes</a> 
+    </div>
+    <table class="content-table" id="tabla_productos"> 
+        <thead> 
+        <tr> 
+            <th>Documento cliente</th>
+            <th>Nombre cliente</th> 
+            <th>Apellido cliente</th>
+            <th>Fecha de nacimiento</th>                             <!-- Celda cabecera de la columna 3 -->
+            <th>Número contacto</th>
+            <th>Correo electrónico</th>
+            <th>Direccción</th>
+            <th>Ciuadad</th>
+            <th>Tipo persona</th>
+            <th></th>
+            <th></th>
+        </tr> 
+    </thead> 
+    <tbody> 
+        {% for resul in resulta %}
+            <tr>
+                <td>
+                    {{resul[0]}}
+                </td>
+                <td>
+                    {{resul[1]}}
+                </td>
+                <td>
+                    {{resul[2]}}
+                </td>
+                <td>
+                    {{resul[3]}}
+                </td>
+                <td>
+                    {{resul[4]}}
+                </td>
+                <td>
+                    {{resul[5]}}
+                </td>
+                <td>
+                    {{resul[6]}}
+                </td>
+                <td>
+                    {{resul[7]}}
+                </td>
+                <td>
+                    {{resul[8]}}
+                </td>
+
+                <td>
+                    <a class="boton-editar" href="/editarClientes/{{resul[0]}}">Editar</a>
+                </td>               
+                
+
+                <td>
+                    <a  class="boton-eliminar" onclick="return confirm('Seguro que deseas eliminar el cliente?')" href="/borracliente/{{resul[0]}}">Eliminar</a>
+                </td>
+
+            </tr>
+        {% endfor %} 
+    </tbody> 
+    </table>
+        <div id="boton-atras">
+            <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
+        </div>
+</body>
+</html>
