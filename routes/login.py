@@ -19,11 +19,17 @@ def login():
         resultado = cursor.fetchone()
         if resultado is not None:
             session["doc_empleado"] = resultado[0]
-            return render_template('inicio/home.html')
+            return redirect(url_for('home'))
         else:
             flash('Algo está mal en tus credenciales o tu correo no ha sido confirmado.', 'success')
             return redirect(url_for('index'))
     return  redirect(url_for('index'))
 
 
-
+@app.route("/inicio")
+def inicio():
+    if "doc_empleado" in session:                                
+        return render_template('inicio/home.html')    
+    else:
+        flash('Algo esta mal en sus datos digitados')
+        return redirect(url_for('index'))
