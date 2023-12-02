@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Historial de ventas</h1>
+   
+    <table  class="content-table" id="tabla_ventas">
+        <thead >
+            <tr>
+                <th>Numero factura</th>
+                <th> C.C cliente</th>
+                <th>c.c operador</th>
+                <th>Nombre operador</th>
+                <th>Apellido operador</th>
+                <th>Fecha de  venta</th>
+                <th>Forma de pago</th>
+                <th></th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for c in resul %}
+            <tr>
+                {% for i in range(0,7) %}
+                    <td>{{c[i]}}</td>
+                {% endfor %}
+                    <td>
+                        <a href="/muestra_detalles_ventas/{{c[0]}}">Mas detalles</a>
+                    </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="boton-atras">
+        <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
+    </div>
+    <!-- <div id="boton-atras">
+        <button class="boton-atras" onclick="window.location.href='/index'">Regresar al Home</button>
+    </div> -->
+</body>
+</html>
