@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cotizacion</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <style>
+    </style>
+</head>
+
+<body>
+
+<h2>Crear Cotizacion</h2>
+<form action="/buscarCliente" method="post" id="conten_busqueda">
+    <input type="search" placeholder="Buscar" aria-label="Search" name="busqueda" id="busqueda">
+    <button type="submit"><i class="lni lni-search-alt"></i></button>
+</form>
+
+<form action="/crearCotizacion" method="POST">
+    <div id="formularioAdicional">
+        <label for="fechaInicioNuevoCliente">Fecha de Inicio:</label>
+        <input type="date" name="fechaInicioNuevoCliente" required>
+
+        <label for="fechaFinNuevoCliente">Fecha de Fin:</label>
+        <input type="date" name="fechaFinNuevoCliente" required>
+
+        <label for="clienteCotizacion">Selecciona un cliente:</label>
+        <select name="clienteCotizacion" id="clienteCotizacion" required>
+            <option value="" disabled selected>Selecciona un cliente</option>
+            {% for client in resulta %}
+                <option value="{{ client[1] }}">{{ client[1] }} {{ client[2] }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Crear Cotizacion</button>
+    </div>
+</form>
+
+</body>
+</html>
