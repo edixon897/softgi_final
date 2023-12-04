@@ -11,7 +11,7 @@ def productos():
         return render_template('/productos/muestra_productos.html')
     
         
-""" @app.route('/crear_producto', methods=['POST', 'GET'])
+@app.route('/crear_producto', methods=['POST', 'GET'])
 def crearProducto():
     if "nom_empleado" in session: 
         conn = mysql.connect()
@@ -56,58 +56,6 @@ def crearProducto():
         return render_template('/productos/registrar_productos.html', result = categoriaResul, result2 = resultado2)
     else:
         flash('Algo esta mal en los datos digitados')
-        return redirect(url_for('index'))"""
-
-
-@app.route('/crear_producto', methods=['POST', 'GET'])
-def crearProducto():
-    if "nom_empleado" in session: 
-        conn = mysql.connect()
-        cursor = conn.cursor() 
-        sql = "SELECT `nom_categoria` FROM `categorias` WHERE estado_categorias ='ACTIVO'"
-        cursor.execute(sql)                                          
-        categoriaResul = cursor.fetchall()
-
-        sql = f"SELECT doc_proveedor, nom_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
-        cursor.execute(sql)
-        resultado2 = cursor.fetchall()
-
-        if request.method == 'POST':
-            email = session["nom_empleado"]
-            bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE doc_empleado='{email}'"
-            cursor.execute(bsq)
-            resultado = cursor.fetchone() 
-
-            if resultado:
-                documento_registro = resultado[0]
-                nombre_operador = resultado[1]
-                apellido_operador = resultado[2]
-                proveedor = request.form['proveedor']
-               
-                referencia_producto = request.form['referencia_producto']
-                categoria = request.form['categoria']
-                nombreProveedor = request.form['proveedor']  # Seleccionar directamente del formulario
-                
-                nombre_producto = request.form['nombre_producto']
-                precio_compra = request.form['precio_compra']
-                precio_venta = request.form['precio_venta']
-                cantidad_producto = request.form['cantidad_producto']
-                descripcion = request.form['descripcion']
-                stockminimo = request.form['stockminimo']
-                ubicacion = request.form['ubicacion']
-                estante = request.form['estante']
-                tiempoRegistro = datetime.datetime.now()
-                estado = 'ACTIVO'
-
-                Dproductos.crearProductos([referencia_producto, categoria, proveedor, nombreProveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador, estado])
-                return redirect('/muestra_productos')
-            else:
-                flash('No se encontraron resultados para el empleado.')
-                return redirect(url_for('index'))
-        
-        return render_template('/productos/registrar_productos.html', result=categoriaResul, result2=resultado2)
-    else:
-        flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
 
 

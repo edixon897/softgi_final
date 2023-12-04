@@ -14,9 +14,8 @@
         <div id="img-parabri">
             <img src="../../static/img/logo_parabrisas_delvalle_PNG_sinFondo.png" alt="logo-fondo-parabrisas-sin-fondo" id="logo">
         </div>
-            <form action="/crear_producto" method="post, get">
+            <form action="/crear_producto" method="post">
                 <div class="campos">
-                   <!--  <input type="number" name="id_producto" id="idproducto" placeholder="Numero de identificacion del producto" class="campo"> -->
                     <input type="text" name="referencia_producto" id="referencia_producto" placeholder="Referencia de producto" class="campo">
 
                     <select name="categoria" id="categoria">
@@ -32,9 +31,6 @@
                             <option value="{{ provee[0] }}">{{ provee[1] }}</option>
                         {% endfor %}
                     </select>
-                      
-                    <!-- <input type="text" name="proveedor" id="proveedor" placeholder="Documento proveedor" class="campo">
-                    <input type="text" name="nombreProveedor" id="nombreProveedor" placeholder="Nombre proveedor" class="campo"> -->
 
                     <input type="text" name="nombre_producto" id="nombre_producto" placeholder="Nombre producto" class="campo">
                     <input type="number" name="precio_compra" id="precio_compra" placeholder="Precio entrada" class="campo">
