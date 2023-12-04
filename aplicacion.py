@@ -5,6 +5,7 @@ from routes.recuperaContra import solicitarCambio_contraseña, recuperar_contras
 from routes.clientes import clientes
 from routes.productos import Dproductos
 from routes.ventas import Dventas
+from routes.cotizaciones import cotizaciones
 
     
 

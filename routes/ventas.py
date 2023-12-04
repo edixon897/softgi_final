@@ -10,7 +10,7 @@ from models.ventas import Dventas
 
 @app.route("/muestra_ventas")
 def muestra_ventas():
-    if "doc_empleado" in session:
+    if "nom_empleado" in session: 
         sql = "SELECT  `num_factura`, `cliente_factura`, `documento_operador`, `nombre_operador`, `apellido_operador`, `fechahora_venta`, `forma_pago` FROM `ventas` ORDER BY num_factura DESC"
         conn = mysql.connect()
         cursor = conn.cursor()     
@@ -25,15 +25,12 @@ def muestra_ventas():
     
 @app.route("/muestra_detalles_ventas/<num_factura>")
 def muestra_detalles_ventas(num_factura):
-    if "email_empleado" in session:
-        
+    if "nom_empleado" in session: 
         sql = f"SELECT `num_factura_venta`, `producto_factura`, `cantidad_productos_factura`, `total_pagar_factura` FROM `detalleventas` WHERE num_factura_venta = '{num_factura}'"
         conn = mysql.connect()
         cursor = conn.cursor()     #muestra toda la informacion de detalles
         cursor.execute(sql)
         resultado = cursor.fetchall()
-        
-
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('home'))
@@ -43,18 +40,15 @@ def muestra_detalles_ventas(num_factura):
 
 @app.route("/buscador_venta_c", methods = ['POST'])
 def buscador_venta_c():
-    if "email_empleado" in session:
-
+    if "nom_empleado" in session: 
         # recibe la info
         busqueda = request.form['dato_busqueda']
-
         sql = f"SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito`  WHERE estado ='ACTIVO' AND cliente LIKE '%{busqueda}%' OR estado='ACTIVO' AND operador LIKE '%{busqueda}%'"
         conn = mysql.connect()
         cursor = conn.cursor()     #muestra toda la informacion de la busqueda
         cursor.execute(sql)
         resultado = cursor.fetchall()
         return render_template("/ventas_credito/muestra_ventas.html",resul = resultado)
-
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('home'))
@@ -63,15 +57,13 @@ def buscador_venta_c():
 
 @app.route("/muestra_ventas_credito")
 def muestra_ventas_credito():
-    if "email_empleado" in session:
-        
+    if "nom_empleado" in session: 
         sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
         conn = mysql.connect()
         cursor = conn.cursor()     #muestra toda la informacion
         cursor.execute(sql)
         resultado = cursor.fetchall()
         return render_template("/ventas_credito/muestra_ventas.html",resul = resultado)
-
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('home'))
@@ -86,7 +78,7 @@ def muestra_ventas_credito():
 
 @app.route("/confirma_venta", methods = ['POST'])
 def confirma_venta():
-    if "email_empleado" in session:
+    if "nom_empleado" in session: 
 
 #-------------------------------------------- informacion por si hay un error -----------
 
@@ -260,11 +252,7 @@ def confirma_venta():
             mensaje_error = "¡No hay productos seleccionados!"
             # muestra el HTML registrar_venta
             return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
-        
-
-
-        
-
+            
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('home'))
