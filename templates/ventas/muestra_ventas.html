@@ -33,7 +33,11 @@
                     <td>{{c[i]}}</td>
                 {% endfor %}
                     <td>
-                        <a href="muestra_ventas{{c[0]}}">Mas detalles</a>
+                        <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}">Mas detalles</a>
+
+                        <!-- <a href="muestra_detalles_ventas{{c[0]}}">Mas detalles</a> -->
+                        <!-- <a href="{{ url_for('muestra_ventas', c=c[0]) }}">Mas detalles</a> -->
+
                     </td>
             </tr>
             {% endfor %}
@@ -42,8 +46,5 @@
     <div id="boton-atras">
         <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
     </div>
-    <!-- <div id="boton-atras">
-        <button class="boton-atras" onclick="window.location.href='/index'">Regresar al Home</button>
-    </div> -->
 </body>
 </html>
