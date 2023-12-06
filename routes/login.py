@@ -14,11 +14,12 @@ def login():
         connt = mysql.connect()
         cursor = connt.cursor()
         cifrado = hashlib.sha512(password.encode('utf-8')).hexdigest()
-        bsql_emp = f"SELECT * FROM empleados WHERE doc_empleado='{documento}' AND contrasena='{cifrado}' AND estado='activo'"
+        bsql_emp = f"SELECT nom_empleado FROM empleados WHERE doc_empleado='{documento}' AND contrasena='{cifrado}' AND estado='activo'"
         cursor.execute(bsql_emp) 
         resultado = cursor.fetchone()
         if resultado is not None:
-            session["doc_empleado"] = resultado[0]
+            session["nom_empleado"] = resultado[0]
+            print(session)
             return redirect(url_for('inicio'))
         else:
             flash('Algo está mal en tus credenciales o tu correo no ha sido confirmado.', 'success')
@@ -28,7 +29,7 @@ def login():
 
 @app.route("/inicio")
 def inicio():
-    if "doc_empleado" in session:                                
+    if "nom_empleado" in session:                                
         return render_template('inicio/home.html')    
     else:
         flash('Algo esta mal en sus datos digitados')

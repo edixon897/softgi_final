@@ -1,0 +1,259 @@
+import random
+import string
+from flask import Flask, request, render_template, flash, redirect, url_for, session
+from conexiondb import conexion, mysql, app
+import datetime
+from models.ventas import Dventas
+
+
+#-------------------------------------------------------- Historial de ventas ----------------------------------------------------------------
+
+@app.route("/muestra_ventas")
+def muestra_ventas():
+    if "nom_empleado" in session: 
+        sql = "SELECT  `num_factura`, `cliente_factura`, `documento_operador`, `nombre_operador`, `apellido_operador`, `fechahora_venta`, `forma_pago` FROM `ventas` ORDER BY num_factura DESC"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return render_template("/ventas/muestra_ventas.html", resul = resultado)
+    
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+    
+    
+@app.route("/muestra_detalles_ventas/<num_factura>")
+def muestra_detalles_ventas(num_factura):
+    if "nom_empleado" in session: 
+        sql = f"SELECT `num_factura_venta`, `producto_factura`, `cantidad_productos_factura`, `total_pagar_factura` FROM `detalleventas` WHERE num_factura_venta = '{num_factura}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     #muestra toda la informacion de detalles
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return render_template('ventas/detalle_ventas.html', resul = resultado)
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+
+# -------------------------------- Buscador ventas a credito ---------------------
+
+@app.route("/buscador_venta_c", methods = ['POST'])
+def buscador_venta_c():
+    if "nom_empleado" in session: 
+        # recibe la info
+        busqueda = request.form['dato_busqueda']
+        sql = f"SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito`  WHERE estado ='ACTIVO' AND cliente LIKE '%{busqueda}%' OR estado='ACTIVO' AND operador LIKE '%{busqueda}%'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     #muestra toda la informacion de la busqueda
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return render_template("/ventas_credito/muestra_ventas.html",resul = resultado)
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+#-------------------------------------------------------- Historial de ventas a credito ----------------------------------------------------------------
+
+@app.route("/muestra_ventas_credito")
+def muestra_ventas_credito():
+    if "nom_empleado" in session: 
+        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     #muestra toda la informacion
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return render_template("/ventas_credito/muestra_ventas.html",resul = resultado)
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+
+
+
+
+
+#----------------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------- <<<< REALIZA LA VENTA >>> --------------------------------------------------
+
+@app.route("/confirma_venta", methods = ['POST'])
+def confirma_venta():
+    if "nom_empleado" in session: 
+
+#-------------------------------------------- informacion por si hay un error -----------
+
+        # Muestra el documento del operador
+        documento_operador = session["doc_empleado"]
+
+        # consulta los productos del inventario
+        sql = "SELECT `id_producto`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        productos_inven = cursor.fetchall()
+        conn.commit()
+
+        # consulta los productos seleccionados para venta
+        sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        productos_carr = cursor.fetchall()
+        conn.commit()
+
+        # Realiza la suma de el total de todos los productos seleccionados
+        sql = "SELECT SUM(total) FROM carritoventas"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql) 
+        Suma_total = cursor.fetchall()
+        conn.commit()
+
+#--------------------------------------------------------------------
+
+        # valido si hay productos o no
+        sql = f"SELECT `id_producto` FROM carritoventas"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        busqueda = cursor.fetchall()
+        conn.commit()
+
+        # 1 - valido que la venta no este vacia - 
+        if ((len(busqueda)) > 0):
+
+            # recibo la info del FRONT-END
+            doc_operador = request.form['doc_operador']
+            doc_cliente = request.form['doc_cliente']
+            forma_de_pago = request.form['forma_de_pago']
+            tipo_de_venta = request.form['tipo_de_venta']
+
+            # consulto info del operador
+            sql = f"SELECT * FROM `empleados` WHERE doc_empleado = '{doc_operador}'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            info_operador = cursor.fetchall()
+            conn.commit()
+
+            # 2 - valido que el operador exista
+            if ((len(info_operador)) > 0):
+
+                # consulto info cliente
+                sql = f"SELECT * FROM `clientes` WHERE estado_cliente = 'ACTIVO' AND doc_cliente = '{doc_cliente}'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                info_cliente = cursor.fetchall()
+                conn.commit()
+
+                # 3 - valido que el cliente exista
+                if ((len(info_cliente)) > 0):
+
+                    # captura el timpo
+                    tiempo_venta = datetime.datetime.now()
+
+                    # Agrupo el nombre de todos los productos
+                    sql = "SELECT GROUP_CONCAT(nombre_producto SEPARATOR ', ') FROM carritoventas"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    productos_fac = cursor.fetchall()
+                    conn.commit()
+
+                    # 4 ----------- Validacion tipo de venta --------------
+                    if (tipo_de_venta == "venta_normal"):
+
+                        # consulto el nombre y apellido del operador
+                        sql = f"SELECT `nom_empleado`, `ape_empleado` FROM `empleados` WHERE doc_empleado = '{doc_operador}'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        nombre_apell_operador = cursor.fetchall()
+                        conn.commit()
+
+                        # paso de [[]] a []
+                        nom_ape_operador = nombre_apell_operador[0]
+
+                        # generador de codigo 
+                        lower = string.ascii_lowercase       
+                        upper = string.ascii_uppercase 
+                        num = string.digits 
+                        chars = lower + upper + num
+                        codigo = random.sample(chars, 20)
+                        codigo_2 = ""  # variable que guarda el codigo
+                        for c in codigo:
+                            codigo_2+=c
+                        
+                        # Insertacion de datos en tabla ventas
+                        Dventas.crear_venta([doc_cliente, doc_operador, tiempo_venta, forma_de_pago, codigo_2, nom_ape_operador[0], nom_ape_operador[1]])
+
+                        # consulto el num_factura en tabla ventas
+                        sql = f"SELECT `num_factura` FROM `ventas` WHERE codigo_tabla = '{codigo_2}'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        num_factura = cursor.fetchall()
+                        conn.commit()
+
+                        #consulto el numero de productos seleccionados
+                        sql = "SELECT COUNT(*) FROM `carritoventas`"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        cantidad_productos = cursor.fetchall()
+                        conn.commit()
+
+                        # Insertacion en la tabla detalleventas 
+                        Dventas.crearDetalleventa([num_factura[0][0], productos_fac[0][0], cantidad_productos[0][0], Suma_total[0][0], Suma_total[0][0]])
+
+                        #  Elimino toda la info del carritoventas
+                        sql = "DELETE FROM `carritoventas`"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        conn.commit()
+
+                        mensaje_exitoso = "¡Venta realizada!"
+                        return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje_2 = mensaje_exitoso) 
+
+
+
+                    # 4
+                    else:
+
+                        Dventas.crear_venta_credito([doc_cliente, productos_fac[0][0], Suma_total[0][0], Suma_total[0][0], doc_operador, tiempo_venta, ])
+
+                        #  Elimino toda la info del carritoventas
+                        sql = "DELETE FROM `carritoventas`"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        conn.commit()
+
+                        mensaje_exitoso = "¡Venta a credito realizada!"
+                        return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje_2 = mensaje_exitoso)
+
+
+
+
+                # 3
+                else:
+                    mensaje_error = "¡El cliente no existe en la base de datos!"
+                    return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+
+            # 2
+            else:
+                mensaje_error = "¡Identificacion del operador invalida!"
+                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+        #  1 
+        else:
+            # envio mensaje del error
+            mensaje_error = "¡No hay productos seleccionados!"
+            # muestra el HTML registrar_venta
+            return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+            
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))

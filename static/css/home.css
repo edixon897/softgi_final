@@ -60,9 +60,10 @@ main#inicio{
             display: flex;
             justify-content: flex-end;
             flex-basis: 40%;
+            
         }
 
-            div#nombre p#usuario{
+            div#nombre #usuario{
                 color: #595959;
                 font-size: 1.5em;
                 font-weight: 500;
