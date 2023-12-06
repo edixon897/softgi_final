@@ -82,11 +82,12 @@ main#inicio{
         }
     
         #rol > select {
+            border-radius: 5px;
             margin: 0;
             padding: 10px;
             border: solid 1px #aaa;
             background: transparent;
-            width: 28%;
+            width: 50%;
         }
 
 
@@ -133,8 +134,9 @@ main#inicio{
 /*---------------------------------REPONSIVE----------------------------------*/
 
 @media screen and (min-width: 700px){
-    #fecha_nac > input{
-        width: 40%;
+
+    #rol > #select{
+        width: 28%;
     }
 }
 
