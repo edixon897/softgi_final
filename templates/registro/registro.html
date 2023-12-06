@@ -3,46 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>registro de usuario</title>
-    <link rel="stylesheet" href="/static/css/regritro.css">
+    <title>Document</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/regritro.css">
 </head>
 <body>
     <main id="inicio">
-        <div id="padre">
-            <div id="caja_formulario">
-                <form action="/registro" method="post" id="formu_prueba" name="formu_preuba">
-                    <h2>Registrar usuario</h2>
-                    <div class="cont-campos">
-
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="ancho-medio" required>
-                        <input type="text" name="apellido" id="apellido" placeholder="Apellido" class="ancho-medio" required>
-                    </div>
-                        <input type="number" name="documento" id="documento" placeholder="Documento" class="ancho-full" required>
-                        <input type="text" name="direccion" id="direccion" placeholder="Direccion" class="ancho-full"  required>
-                        <input type="text" name="contactoEmpleado" id="contactoEmpleado" placeholder="Numero de Contacto" class="ancho-full" required>
-                        <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" class="ancho-full" required>
-                        <input type="email" name="correo" id="correo" placeholder="Correo electronico" class="ancho-full" required>
-
-                        <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" class="ancho-full" title="La contraseña debe tener entre 8 y 16 caracteres, al menos una minúscula , al menos una mayúscula y al menos un simbolo." 
-                        required>
-                        <input type="password" name="confirmada" id="confirmada" placeholder="Confirmar contraseña" class="ancho-full"title="La contraseña debe tener entre 8 y 16 caracteres, al menos una minúscula , al menos una mayúscula y al menos un simbolo." 
-                        required>
-                        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-                        <div class="cont-campos">
-                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="ancho-medio">
-
-
-                            <div id="contenedor_chulo" class="ancho-medio">
-                                <select id="opt" name="rol" class="custom-select" required>
-                                    <option value="">seleciona rol</option>
-                                    <option value=" administrador">Administrador</option>
-                                    <option value="vendedor">Vendedor</option>
-                                    <option value="almacenista">Almacenista</option>
-                                </select>
-                            </div>
+        <div id="contenedor">
+            <!-- <div id="logo">
+                <figure>
+                    <img src="../img/parabrisas_logo.png" alt="">
+                </figure>
+            </div> -->
+            <div id="info">
+                <form action="" id="campo_registro">
+                    <div id="pag_1" class="campos">
+                        <div id="nombre" class="campo_icono">
+                            <i class="lni lni-user"></i>
+                            <input type="text" placeholder="Nombre (s)">
                         </div>
-
-                    <button type="submit">REGISTRAR</button>
+                        <div id="apellido" class="campo_icono">
+                            <i></i>
+                            <input type="text" placeholder="Apellido (s)">
+                        </div>
+                        <div id="documento" class="campo_icono">
+                            <i class="lni lni-postcard"></i>
+                            <input type="text" placeholder="Cédula">
+                        </div>
+                        <div id="fecha_nac" class="fecha_nac">
+                            <label for="" class="aclaracion">Fecha de nacimiento</label>
+                            <input type="date">
+                        </div>
+                    </div>
+                    <div id="pag_2" class="campos">
+                        <div id="contacto" class="campo_icono">
+                            <i class="lni lni-mobile"></i>
+                            <input type="text" placeholder="Celular">
+                        </div>
+                        <div id="correo" class="campo_icono">
+                            <i class="lni lni-envelope"></i>
+                            <input type="email" placeholder="Correo">
+                        </div>
+                        <div id="Contraseña" class="campo_icono">
+                            <i class="lni lni-key"></i>
+                            <input type="password" placeholder="Contraseña">
+                        </div>
+                    </div>
+                    <div id="pag_3" class="campos">
+                        <div id="ciudad" class="campo_icono">
+                            <i class="lni lni-home"></i>
+                            <input type="text" placeholder="Ciudad">
+                        </div>
+                        <div id="direccion" class="campo_icono">
+                            <i class="lni lni-map-marker"></i>
+                            <input type="text" placeholder="Dirección">
+                        </div>
+                        <div id="rol">
+                            <label for="" class="aclaracion">Rol</label>
+                            <select name="" id="">
+                                <option value="">Administrador</option>
+                                <option value="">Almacenista</option>
+                                <option value="">Vendedor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">REGISTRAR</button>
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         <ul>
@@ -55,16 +80,7 @@
 
                 </form>
             </div>
-            <div id="caja_logo">
-            <!-- figure es la etiqueta semantica de la imagen no debe haber una etiqueta img sin figure -->
-                <figure id="imagen"><img src="../static/img/logo_parabrisas_delvalle_PNG_sinFondo.png" alt="esto es una imagen"></figure>
-                <div class="cont_txt">
-                    <p>Bienvenido al la pagina de</p>
-                    <h1>Registro</h1>
-                </div>
-            </div>
         </div>
-    
     </main>
 </body>
 </html>
