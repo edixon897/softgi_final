@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores</title>
+    <style>
+        /* Estilos para la tabla */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .content-table th, .content-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .content-table th {
+            background-color: #f2f2f2;
+        }
+
+        .content-table tfoot td {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+    <div></div>
+    <h1>Detalle de cotizacion</h1>
+    <br>
+    <table class="content-table" id="tabla_productos">
+        <thead>
+            <tr>
+                <th>Nombre del producto</th>
+                <th>Cantidad de productos</th>
+                <th>Valor por unidad</th>
+                <th>Valor total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dato in datos %}
+                <tr>
+                    <td>{{ dato[0] }}</td>  <!-- Columna 1: Nombre del producto -->
+                    <td>{{ dato[1] }}</td>  <!-- Columna 2: Cantidad de productos -->
+                    <td>{{ dato[2] }}</td>  <!-- Columna 3: Valor por unidad -->
+                    <td>{{ dato[3] }}</td>  <!-- Columna 4: Valor total por producto -->
+                </tr>
+            {% endfor %}
+        </tbody>
+        <!-- Agrega una fila para mostrar el total -->
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>    <!-- Columna 1-2: Espacio en blanco para mantener la estructura -->
+                <td><strong>Total:</strong></td>  <!-- Columna 3: Etiqueta "Total:" -->
+                <td><strong>{{ total_cantidad }}</strong></td>  <!-- Columna 4: Total calculado -->
+            </tr>
+        </tfoot>
+    </table>
+    
+    
+</body>
+</html>

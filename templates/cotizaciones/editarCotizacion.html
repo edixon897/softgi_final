@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario proveedores</title>
+    <link rel="stylesheet" href="../../static/css/proveedore.css">
+</head>
+<body>
+
+    <main id="inicio">
+        <div>
+            <h2>EDITAR COTIZACIONES</h2>
+        </div>
+        
+            <form action="/atualizarCotizacion" method="post" id="formu_proveed">
+                <div class="campos">
+                    <input type="number" name="id" id="id" value="{{resul[0]}}">
+                    <input type="text" name="clienteCotizacion" id="documentoProvedor"  class="campo" value="{{resul[7]}}">
+                    <input type="date" name="fechaInicioCotizacion" id="fechaInicioCotizacion"  class="campo" value="{{resul[5]}}">
+                    <input type="date" name="fechaFinCotizacion" id="fechaFinCotizacion" class="campo" value="{{resul[6]}}">
+
+                </div>
+                <div id="boton-atras">
+                <input type="submit" value="Registrar" class="boton-atras">
+                </div>
+            </form>
+    </main>
+
+</body>
+</html>

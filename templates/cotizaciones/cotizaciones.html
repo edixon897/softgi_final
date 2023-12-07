@@ -4,7 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proveedores</title>
-    <link rel="stylesheet" href="../../static/css/muestra_proveedores.css">
+    <style>
+        /* Estilos para la tabla */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .content-table th, .content-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .content-table th {
+            background-color: #f2f2f2;
+        }
+
+        .content-table tfoot td {
+            font-weight: bold;
+        }
+
+        /* Agregamos estilos adicionales según necesidades */
+        h1 {
+            text-align: center;
+        }
+
+        #crear-prov {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        a.boton-editar,
+        a.boton-eliminar {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 2px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        a.boton-editar {
+            background-color: #4CAF50; /* Color verde */
+        }
+
+        a.boton-eliminar {
+            background-color: #f44336; /* Color rojo */
+        }
+    </style>
 </head>
 <body>
     <div></div>
@@ -12,16 +63,15 @@
     <div id="crear-prov">
     </div>
     <br>
-    <a href="{{url_for('CrearCotizacion')}}">Crear cotizacion</a>
+    <a href="{{url_for('CrearCotizacion')}}">Crear cotización</a>
     <table class="content-table" id="tabla_productos">
-        <thead >
+        <thead>
             <tr>
-                <th>Cedulade de cliente</th>
+                <th>Cédula de cliente</th>
                 <th>Nombre de cliente</th>
-                <th>Nombre del operador</th>
-                <th>Apellido del operador</th>
-                <th>Fecha inicio de cotizacio</th>
-                <th>Fecha fin de cotizacion</th>
+                <th>Fecha inicio de cotización</th>
+                <th>Fecha fin de cotización</th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -29,24 +79,29 @@
         <tbody>
             {% for dato in datos %}
                 <tr>
-                    {% for i in range(0,6) %}
+                    <td>{{ dato[1] }}</td>
+                    <td>{{ dato[2] }}</td>
+                    <td>{{ dato[3] }}</td>
+                    <td>{{ dato[4] }}</td>
 
-                        <td>{{dato[i]}}</td>
 
-                    {% endfor %}
+                    <td>
+                        <a class="boton-editar" href="editarCotizacion/{{ dato[0] }}">Editar</a>
+                    </td>
+                    <td>
+                        <a class="boton-editar" href="detalle/{{ dato[0] }}">Detalle de cotización</a>
+                    </td>
 
-                        <td>
-                            <a class="boton-editar" href=" editarCotizacion/{{dato[0]}}">Editar</a>
-                        </td>
-
-                        <td>
-                            <a class="boton-eliminar"  onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraCotizacion/{{dato[0]}}">Eliminar</a>
-                        </td>
-
+                    <td>
+                        <a class="boton-eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar la cotización y su detalle?')" href="borraCotizacion/{{ dato[0] }}">Eliminar</a>
+                    </td>
                 </tr>
-            {% endfor %} 
+            {% endfor %}
         </tbody>
     </table>
+    <div id="boton-atras">
+        <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
+    </div>
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -56,6 +111,8 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    {% endwith %}   
+    {% endwith %}
 </body>
+</html>
+
 </html>
