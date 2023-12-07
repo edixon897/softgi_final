@@ -60,9 +60,10 @@ main#inicio{
             display: flex;
             justify-content: flex-end;
             flex-basis: 40%;
+            
         }
 
-            div#nombre p#usuario{
+            div#nombre #usuario{
                 color: #595959;
                 font-size: 1.5em;
                 font-weight: 500;
@@ -105,7 +106,8 @@ section#buscar{
 section#modulos{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px; 
+    gap: 20px;
+    padding: 0 20px; 
 }
 
     #modulos figure{
@@ -114,8 +116,8 @@ section#modulos{
     }
 
     #modulos p{
-        font-size: 20px;
-        font-weight: 500;
+        font-size: 1.2em;
+        font-weight: 400;
     } 
     
 
@@ -135,17 +137,18 @@ section#modulos{
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: #f5f5f5; */
 }
 
 .titulo{
     font-family: 'Barlow', sans-serif;
-    color: #828282;
-    margin: 8px;
+    color: #454545;
+    margin: 5px;
 }
 
 .campo_a{
     text-decoration: none;
+    background-color: #f5f5f5;
+    border-radius: 5px;
 }
 
 

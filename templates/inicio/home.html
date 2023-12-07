@@ -17,7 +17,7 @@
             </div>
 
             <div id="nombre">
-                <p id="usuario">Nombre</p>
+                <span id="usuario">Bienvenido/a {{session['nom_empleado']}}</span>
             </div>
 
             <div id="menu">
@@ -35,13 +35,13 @@
         </section>
 
         <section id="modulos">
-            <a href="" class="campo_a">
+            <a href="{{url_for('muestra_Productos')}}" class="campo_a">
                 <div id="producto" class="modulos">
                     <figure><img src="/static/image/modulos/producto.png" alt=""></figure>
                     <p class="titulo">Productos</p>
                 </div>
             </a>
-            <a href="" class="campo_a">
+            <a href="{{url_for('muestra_ventas')}}" class="campo_a">
                 <div id="ventas" class="modulos">
                     <figure><img src="/static/image/modulos/ventas.png" alt=""></figure>
                     <p class="titulo">Ventas</p>

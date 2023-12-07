@@ -19,6 +19,7 @@ def login():
         resultado = cursor.fetchone()
         if resultado is not None:
             session["nom_empleado"] = resultado[0]
+            print(session)
             return redirect(url_for('inicio'))
         else:
             flash('Algo está mal en tus credenciales o tu correo no ha sido confirmado.', 'success')
