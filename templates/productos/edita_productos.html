@@ -4,56 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar productos</title>
-    <link rel="stylesheet" href="../../static/css/edita_productos.css">
+   
 </head>
 <body>
     <main id="inicio">
-        <div id="img-parabri">
-            <img src="../../static/img/logo_parabrisas_delvalle_PNG_sinFondo.png" alt="logo-fondo-parabrisas-sin-fondo" id="logo">
-        </div>
-        <form action="/modificar_producto" method="post" id="formu_productos_modificar">
+        
+        <form action="/modificar_producto" method="post">
             <h2>Editar productos</h2>
-                <div class="cont-campos">
+                <div>
 
-                        <input type="number" name="id_producto" id="idproducto" class="campo" value="{{resul[0]}}">
-                        <input type="text" name="referencia_producto" id="referencia_producto" class="campo" value="{{resul[1]}}">
+                        <label for="referencia_producto">Referencia</label>
+                        <input type="text" name="referencia_producto" id="referencia_producto" placeholder="referencia producto" value="{{resul[0]}}">
 
-                        <select name="categoria" id="categoria" >
-                            <option value="{{resul[12]}}">Categoria</option>
-                            <option value="1">Parabrisas</option>
-                            <option value="2">Manijas</option>
-                            <option value="3">Chapas</option>
-                            <option value="4">Empaques</option>
-                            <option value="5">Elevavidrios</option>
-                        </select>
-                          
-                        <input type="text" name="proveedor" id="proveedor" class="campo" value="{{resul[3]}}">
-                        <input type="text" name="nombreProveedor" id="nombreProveedor" class="campo" value="{{resul[4]}}">
-    
-                        <input type="text" name="nombre_producto" id="nombre_producto" class="campo" value="{{resul[5]}}">
-                        <input type="number" name="precio_compra" id="precio_compra" class="campo" value="{{resul[6]}}">
-    
-                        <input type="number" name="precio_venta" id="precio_venta" class="campo" value="{{resul[7]}}">
-                        <input type="number" name="cantidad_producto" id="cantidad_producto" class="campo" value="{{resul[8]}}">
-    
-                        <input type="text" name="descripcion" id="descripcion"  class="campo" value="{{resul[9]}}">
+                        <label for="categoria">Categoria</label>
+                        <input type="number" name="categoria" id="categoria" placeholder="numero categoria" value="{{resul[1]}}">
 
-                        
-                        <input type="number" name="stockminimo" id="stockminimo"  class="campo" value="{{resul[10]}}">
-    
-                     
-                        <select name="ubicacion" id="ubicacion" value="">
-                            <option value="{{resul[11]}}">Ubicación</option>
-                            <option value="Bodega">Bodega</option>
-                            <option value="Estante">Estante</option>
-                            <option value="Almacen">Almacen</option>
-                        </select>
-                        
-                        <input type="text" name="estante" id="estante" placeholder="En estanteria" class="campo" value="{{resul[12]}}">
+                        <label for="nom_categoria">Nombre categoria</label>
+                        <input type="text" name="nom_categoria" id="nom_categoria" placeholder="nombre categoria" value="{{resul[2]}}">
+
+                        <label for="proveedor">Documento proveedor</label>
+                        <input type="number" name="proveedor" id="proveedor" placeholder="documento proveedor" value="{{resul[3]}}">
+
+                        <label for="nom_proveedor">Nombre proveedor</label>
+                        <input type="text" name="nom_proveedor" id="nom_proveedor" placeholder="nombre proveedor" value="{{resul[4]}}">
+
+                        <label for="nombre_producto">Nombre producto</label>
+                        <input type="text" name="nombre_producto" id="nombre_producto"  value="{{resul[5]}}">
+
+                        <label for="precio_compra">Precio compra</label>
+                        <input type="number" name="precio_compra" id="precio_compra"  value="{{resul[6]}}">
+
+                        <label for="precio_venta">Precio venta</label>
+                        <input type="number" name="precio_venta" id="precio_venta"  value="{{resul[7]}}">
+
+                        <label for="cantidad_producto">Cantidad total</label>
+                        <input type="number" name="cantidad_producto" id="cantidad_producto"  value="{{resul[8]}}">
+
+                        <label for="descripcion">Descripcion</label>
+                        <input type="text" name="descripcion" id="descripcion"   value="{{resul[9]}}">
+
+                        <label for="stockminimo">Cantidad minima</label>
+                        <input type="number" name="stockminimo" id="stockminimo"  value="{{resul[10]}}">
+
+                        <label for="ubicacion">Ubicacion</label>
+                        <input type="text" name="ubicacion" id="ubicacion" value="{{resul[11]}}">
+
+                        <label for="estante">Estante #</label>
+                        <input type="text" name="estante" id="estante" placeholder="En estanteria" class="campo" value="{{resul[10]}}">
                 </div>
 
-                <div id="boton-atras">
-                    <input type="submit" value="Actualizar" class="boton-atras">
+                <div>
+                    <button type="submit" >Guardar</button>
                 </div>
                        
         </form>

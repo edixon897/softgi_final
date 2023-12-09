@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muestra productos</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/muestra_productos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 </head>
@@ -19,7 +18,7 @@
         </form>
 
     <div id="crear-producto">
-        <a class="crear-producto" href="{{url_for('crearProducto')}}">Crear Productos</a>
+        <a class="crear-producto" href="{{url_for('crear_Producto')}}">Crear Productos</a>
     </div>
 
 
@@ -69,10 +68,6 @@
     <div id="boton-atras">
         <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
     </div>
-
-    <!-- <div id="boton-atras">
-        <button class="boton-atras" onclick="window.location.href='/index'">Regresar al Home</button>
-    </div> -->
 
 </body>
 </html>
