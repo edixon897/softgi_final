@@ -8,7 +8,7 @@ from models.cotizaciones import cotizaciones
 @app.route("/Cotizacion")
 def Cotizacion():
     if "nom_empleado" in session: 
-        msql= f"SELECT `cliente_cotizacion`, `nombre_cliente_cotizacion`,  `nombre_operador`, `apellido_operador`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion` FROM `cotizaciones`"
+        msql= f"SELECT `cliente_cotizacion`, `nombre_cliente_cotizacion`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion`, `nombre_operador`, `apellido_operador` FROM `cotizaciones`"
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(msql)

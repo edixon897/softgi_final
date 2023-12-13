@@ -1,41 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&family=Poppins:wght@300;500&display=swap');
-
-* {
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
+/* font-family: 'Barlow', sans-serif;
+font-family: 'Lato', sans-serif; */
+*{
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
 }
 
-body, html {
+body, html{
     margin: 0;
     padding: 0;
 }
 
-#padre{
-    width: 350px; /* Ancho máximo del formulario */
-    margin: 0 auto; /* Centrar el formulario en la página */
-    margin-top: 50px; /*distancia en el contenido de ariba entre el formulario*/
-    background-color:#50a4e4; /* Color de fondo del formulario */
-    padding: 20px; /* Espacio interno del formulario */
-    border-radius: 8px; /* Borde redondeado del formulario */
-    text-align: center;
-    font-size: 20px;
-}
-#padre h3 {
-    color: #FFF;
+body{
+    font-family: 'Barlow', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
 }
 
-button[type="submit"] {
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.7);
-    margin: 0 auto; /* Centrar el boton*/
-    display: block; /* Convertir el botón en un elemento de bloque */
-    width: 90%; /* Ancho completo del botón */
-    padding: 15px; /* Espacio interno del botón */
-    margin-top: 35px; /* Espacio superior del botón */
-    border: none; /* Sin bordes alrededor del botón */
-    border-radius: 15px; /* Borde redondeado del botón */
-    background-color: #33f13d; /* Color de fondo del botón */
-    color: #FFF; /* Color del texto del botón */
-    font-weight: bold; /* Fuente en negrita del texto del botón */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
-    font-size: 18px;
+figure{
+    margin: 0;
+    padding: 0;
 }
+
+figure img{
+    margin: 0;
+    width: 100%;
+}
+
+    #padre{
+        background: transparent;
+        border: solid 1px #aaa;
+        border-radius: 5px; /* Borde redondeado del formulario */
+        color: #454545;
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        margin: 25% auto;
+        padding: 20px; /* Espacio interno del formulario */
+        text-align: center;
+        width: 70vw; /* Ancho máximo del formulario */
+        
+    }
+
+.btn{
+    background-color: #358CB4;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9em;
+    margin: 10px;
+    padding: 8px 5px;
+    width: 60%;
+}
+
