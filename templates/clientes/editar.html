@@ -7,7 +7,7 @@
 </head>
 <body>
     <main id="inicio">
-        <form action="/Actualizar_clie" method="post" id="formu_clientes">
+        <form action="/Actualizar_clie" method="post">
             <h2>Editar clientes</h2>
                 <div class="cont-campos">
                     <input type="number" name="doc_cliente" id="documento" placeholder="Documento" class="campo"  value="{{resul[0]}}">
@@ -35,11 +35,11 @@
                         <option value="juridica">Juridica(representante legal)</option>
                     </select>
                 </div>
-                <div id="boton-atras">
+                <div >
                     <button type="submit" class="boton-atras">Guardar</button>
                 </div>
         </form>
-        <div id="boton-atras">
+        <div >
             <a href="{{url_for('clientes')}}"> Volver a clientes</a>
         </div>
     </main>

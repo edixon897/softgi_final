@@ -3,7 +3,7 @@ import string
 from flask import Flask, request, render_template, flash, redirect, url_for, session
 from conexiondb import conexion, mysql, app
 import datetime
-from models.ventas import Dventas
+from models.ventas import Dventas, Ventas
 
 
 #-------------------------------------------------------- Historial de ventas ----------------------------------------------------------------
@@ -254,6 +254,521 @@ def confirma_venta():
             # muestra el HTML registrar_venta
             return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
             
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+    
+#-------------------------------------------------------- Cancelador ventas a credito ----------------------------------------------------------------
+
+@app.route("/cancela_venta_c/<contador>")
+def cancela_venta_c(contador):
+    if "nom_empleado" in session:
+
+        # funciona al validar q se pago completo el credito 
+        Ventas.venta_cancelada_cred(contador)
+        return redirect("/muestra_ventas_credito")
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+    
+#---------------------------------------- Elimina Todos los productos seleccionados -------------------------------------------
+@app.route("/elimina_todo_seleccionado_p")
+def elimina_todo_seleccionado_p():
+    if "nom_empleado" in session:
+
+        # consulto todos los contadores de carrito_ventas
+        sql = "SELECT `contador` FROM `carritoventas`"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        contadores = cursor.fetchall()
+        conn.commit()
+
+        # 1 - Valido que aigan productos para eliminar
+        if ((len(contadores)) > 0):
+
+            # saco la consulta de [[]] 2 listas a una sola []
+            contador_2 = contadores[0]
+
+            # realizo el FOR que elimine uno por uno
+            for i in range(len(contador_2)):
+
+
+
+                # consulto el id_producto 
+                sql = f"SELECT `id_producto` FROM `carritoventas` WHERE contador = '{contador_2[i]}'" # <---- i es el CONTADOR
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                id_pro = cursor.fetchall()
+                conn.commit()
+                id_producto = id_pro[0][0]
+
+                # consulto el stock disponible que tiene el producto 
+                sql = f"SELECT `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                stock_disponible = cursor.fetchall()
+                conn.commit()
+
+                # consulto la cantidad seleccionada del producto en el carrito ventas
+                sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                cantidad_adquirida = cursor.fetchall()
+                conn.commit()
+
+                # sumo al stock disponible la cantidad que adquirida
+                stock_disponible = (stock_disponible[0][0] + cantidad_adquirida[0][0])
+
+                # inserto el nuevo stock en la base de datos
+                sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                conn.commit()
+
+                # borro el producto seleccionado de la tabla carrito_ventas
+                sql = f"DELETE FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                conn.commit()
+
+            return redirect("/verCrear_ventas")
+
+
+        # 1
+        else:
+
+            # Muestra el documento del operador
+            documento_operador = session["doc_empleado"]
+
+            # consulta los productos del inventario
+            sql = "SELECT `id_producto`, `referencia_producto`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            productos_inven = cursor.fetchall()
+            conn.commit()
+
+            # consulta los productos seleccionados para venta
+            sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            productos_carr = cursor.fetchall()
+            conn.commit()
+
+            mensaje_error = "¡No hay productos seleccionados para eliminar!"
+            return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje = mensaje_error) 
+
+
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+
+#---------------------------------------- Elimina productos 1 por 1 seleccionados -------------------------------------------
+@app.route("/elimina_p_select/<contador>")
+def elimina_p_select(contador):
+    if "nom_empleado" in session:
+
+        # consulto el id_producto 
+        sql = f"SELECT `id_producto` FROM `carritoventas` WHERE contador = '{contador}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        id_pro = cursor.fetchall()
+        conn.commit()
+        id_producto = id_pro[0][0]
+
+        # consulto el stock disponible que tiene el producto 
+        sql = f"SELECT `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        stock_disponible = cursor.fetchall()
+        conn.commit()
+
+        # consulto la cantidad seleccionada del producto en el carrito ventas
+        sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        cantidad_adquirida = cursor.fetchall()
+        conn.commit()
+
+        # sumo al stock disponible la cantidad que adquirida
+        stock_disponible = (stock_disponible[0][0] + cantidad_adquirida[0][0])
+
+        # inserto el nuevo stock en la base de datos
+        sql = f"UPDATE `productos` SET `cantidad_producto`='{stock_disponible}' WHERE id_producto = '{id_producto}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        conn.commit()
+
+        # borro el producto seleccionado de la tabla carrito_ventas
+        sql = f"DELETE FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        conn.commit()
+
+        return redirect("/verCrear_ventas")
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+    
+
+
+#---------------------------------------- Selector de 1 cantidad solo producto para Ventas -------------------------------------------
+@app.route("/selector_una_cantidad/<id_producto>")
+def selector_una_cantidad(id_producto):
+    if "nom_empleado" in session:
+
+        cantidad_adquirida = 1
+
+        # consulto la cantidad disponible del prodcuto
+        sql = f"SELECT `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        stock = cursor.fetchall()
+        conn.commit()
+
+         # 1 - valido si la cantidad digitada es menor a la disponible 
+        if (stock[0][0] > cantidad_adquirida) or (stock[0][0] == 1 and cantidad_adquirida == 1):
+
+            # consulto la informacion del producto
+            sql = f"SELECT `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            info_producto = cursor.fetchall()
+            conn.commit()
+
+            # saco la consulta de [[]] 2 listas a una sola []
+            info_producto_2 = info_producto[0] 
+
+            # actualizo el stock disponible del producto
+            stock_disponible = (info_producto_2[2] - cantidad_adquirida)
+            sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            conn.commit()
+
+            # 2 consulto si la cantidad  adquirida en el carrito ventas
+            sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            cantidad_carrito = cursor.fetchall()
+            conn.commit()
+            
+            # 2 - valido si ya esta seleccionado el producto
+            if ((len(cantidad_carrito)) > 0):
+                
+
+                # sumamos la cantidad ya seleccionado con lo digitado
+                cantidad_total_adqui = (cantidad_carrito[0][0] + cantidad_adquirida)
+
+                # saco el nuevo total a pagar
+                total = (cantidad_total_adqui * info_producto_2[1])
+
+                # actualizo la info del registro de carrito venta
+                sql = f"UPDATE `carritoventas` SET `cantidad_adquirida`='{cantidad_total_adqui}',`total`='{total}' WHERE id_producto = '{id_producto}'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                conn.commit()
+
+                return redirect("/verCrear_ventas")
+
+
+
+            # 2
+            else:
+
+                # inserto los datos en la tabla Carrito ventas
+                sql = f"INSERT INTO `carritoventas`(`id_producto`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total`) VALUES ('{id_producto}','{info_producto_2[0]}','{info_producto_2[1]}','{cantidad_adquirida}','{info_producto_2[1]}')"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                conn.commit()
+
+                return redirect("/verCrear_ventas")
+
+        # 1
+        else:
+
+            # Muestra el documento del operador
+            documento_operador = session["doc_empleado"]
+
+            # consulta los productos del inventario
+            sql = "SELECT `id_producto`, `referencia_producto`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            productos_inven = cursor.fetchall()
+            conn.commit()
+
+            # consulta los productos seleccionados para venta
+            sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            productos_carr = cursor.fetchall()
+            conn.commit()
+
+            # Realiza la suma de el total de todos los productos seleccionados
+            sql = "SELECT SUM(total) FROM carritoventas"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql) 
+            Suma_total = cursor.fetchall()
+            conn.commit()
+
+            mensaje_error = "¡La cantidad solicitada es menor a la disponible!"
+
+            if Suma_total[0][0] is not None:            
+                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+            else:
+                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje = mensaje_error) 
+
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+
+#---------------------------------------- Selector de productos para Ventas -------------------------------------------
+@app.route("/m_selector_cantidad_p/<id_producto>")
+def m_selector_cantidad_p(id_producto):
+    if "nom_empleado" in session:
+
+        sql = f"SELECT `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        info_producto = cursor.fetchall()
+        conn.commit()
+
+        # muestra el html producto_seleccionado donde se digitara la cantidad a comprar del producto
+        return render_template('ventas/producto_seleccionado.html',id_p = id_producto, nom_p = info_producto[0])
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+    
+
+
+# ------------ Recibe la informacion del FRON-END ---------------------
+
+@app.route("/confirma_p_seleccionado", methods = ['POST'])
+def confirma_p_seleccionado():
+    if "nom_empleado" in session:
+        
+        # informacion del FRONT-END
+        id_producto = request.form['id_producto']
+        nombre_producto = request.form['nombre_producto']
+        precio_unidad = request.form['precio_unidad']           
+        stock_disponible = request.form['Stock_disponible']
+        cantidad_digitada = request.form['cantidad_digitada']
+
+        # covierto los valores de texto a numeros 
+        precio_unidad = float(precio_unidad)
+        stock_disponible = int(stock_disponible)
+        cantidad_digitada = int(cantidad_digitada)
+
+        # consulto la cantidad disponible del prodcuto
+        sql = f"SELECT `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        stock = cursor.fetchall()
+        conn.commit()
+
+
+        # 1 - valido si la cantidad digitada es menor a la disponible 
+        if (stock[0][0] > cantidad_digitada) or (stock[0][0] == 1 and cantidad_digitada == 1):
+            
+            sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            cantidad_carrito = cursor.fetchall()
+            conn.commit()
+            
+            # 2 - valido si ya esta seleccionado el producto
+            if ((len(cantidad_carrito)) > 0):
+
+                # Actualizo el stock disponible del producto 
+                stock_disponible = (stock_disponible - cantidad_digitada)
+
+                # Actualizo el stock en la base de datos
+                sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                conn.commit()
+
+                # sumamos la cantidad ya seleccionado con lo digitado
+                cantidad_total_adqui = (cantidad_carrito[0][0] + cantidad_digitada)
+
+                # saco el nuevo total a pagar
+                total = (cantidad_total_adqui * precio_unidad)
+
+                # actualizo la info del registro de carrito venta
+                sql = f"UPDATE `carritoventas` SET `cantidad_adquirida`='{cantidad_total_adqui}',`total`='{total}' WHERE id_producto = '{id_producto}'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                conn.commit()
+
+                return redirect("/verCrear_ventas")
+
+
+            # 2 inserta normal
+            else:
+                # Saco el total a pagar por la catidad digitada
+                total = (precio_unidad * cantidad_digitada)
+
+                # Actualizo el stock disponible del producto 
+                stock_disponible = (stock_disponible - cantidad_digitada)
+
+                # Actualizo el stock en la base de datos
+                sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                conn.commit()
+
+                # inserto los datos en la tabla Carrito ventas
+                sql = f"INSERT INTO `carritoventas`(`id_producto`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total`) VALUES ('{id_producto}','{nombre_producto}','{precio_unidad}','{cantidad_digitada}','{total}')"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql)
+                conn.commit()
+
+                return redirect("/verCrear_ventas")
+        
+        # 1
+        else:
+            sql = f"SELECT `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            info_producto = cursor.fetchall()
+            conn.commit()
+
+            mensaje_error = "¡Cantidad dijitada mayor a la disponible en el stock!"
+        
+            return render_template('ventas/producto_seleccionado.html',id_p = id_producto, nom_p = info_producto[0], mensaje_Error = mensaje_error)
+
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+#---------------------------------------- Buscador de productos en Ventas -------------------------------------------
+@app.route("/Busca_produc_ven", methods = ['POST'])
+def Busca_produc_ven():
+    if "nom_empleado" in session:
+
+        busqueda = request.form['id_nombre']
+
+        # Muestra el documento del operador
+        documento_operador = session["doc_empleado"]
+
+        # consulta los productos del inventario segun la busqueda realizada
+        sql = f"SELECT `id_producto`, `referencia_producto` , `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos`  WHERE estado_producto ='ACTIVO' AND referencia_producto LIKE '%{busqueda}%' OR estado_producto='ACTIVO' AND nombre_producto LIKE '%{busqueda}%'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        productos_inven = cursor.fetchall()
+        conn.commit()
+
+        # consulta los productos seleccionados para venta
+        sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        productos_carr = cursor.fetchall()
+        conn.commit()
+
+        # Realiza la suma de el total de todos los productos seleccionados
+        sql = "SELECT SUM(total) FROM carritoventas"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        Suma_total = cursor.fetchall()
+        conn.commit()
+
+        # le asigno el 0 si la suma es none
+        if Suma_total[0][0] is not None:
+            return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador) 
+        else:
+             return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador) 
+ 
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+
+#--------------------------------------------- Muestra registro de venta----------------------------------------------
+@app.route("/verCrear_ventas")
+def verCrear_ventas():
+    if "nom_empleado" in session:
+
+        rol = session["rol"]
+        if rol == "administrado" or rol == "vendedor":
+
+            # Muestra el documento del operador
+            documento_operador = session["doc_empleado"]
+
+            # consulta los productos del inventario
+            sql = "SELECT `id_producto`, `referencia_producto`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            productos_inven = cursor.fetchall()
+            conn.commit()
+
+            # consulta los productos seleccionados para venta
+            sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            productos_carr = cursor.fetchall()
+            conn.commit()
+
+            # Realiza la suma de el total de todos los productos seleccionados
+            sql = "SELECT SUM(total) FROM carritoventas"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql) 
+            Suma_total = cursor.fetchall()
+            conn.commit()
+
+            # le asigno el 0 si la suma es none
+            if Suma_total[0][0] is not None:
+                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador) 
+            else:
+                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador) 
+        
+        else:
+            return redirect("/inicio")
+
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('home'))
