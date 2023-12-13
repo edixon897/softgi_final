@@ -46,6 +46,8 @@ def crear_Producto():
             nom_proveedor = proveedores[0]
             print(nom_proveedor)
             referencia_producto = request.form['referencia_producto']
+            ref_prod_2 = request.form['ref_prod_2']
+            ref_prod_3 = request.form['ref_prod_3']
             categoria = request.form['categorias']
             nombre_producto = request.form['nombre_producto']
             precio_compra = request.form['precio_compra']
@@ -58,7 +60,7 @@ def crear_Producto():
             tiempoRegistro = datetime.datetime.now()
 
             
-            Dproductos.crearProductos([referencia_producto, categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
+            Dproductos.crearProductos([referencia_producto, ref_prod_2, ref_prod_3, categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
             return redirect(url_for('muestra_Productos'))
             
         conn = mysql.connect()
@@ -79,7 +81,7 @@ def crear_Producto():
 @app.route('/muestra_productos')
 def muestra_Productos():
     if "nom_empleado" in session: 
-        sql = "SELECT  p.referencia_producto, c.nom_categoria, p.proveedor, p.nom_proveedor, p.nombre_producto, p.precio_compra, p.precio_venta, p.cantidad_producto, p.descripcion, p.stockminimo, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
+        sql = "SELECT  p.referencia_producto, p.ref_produ_2, p.ref_produ_3, c.nom_categoria, p.nom_proveedor, p.nombre_producto, p.precio_compra, p.precio_venta, p.cantidad_producto, p.descripcion, p.stockminimo, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql)
@@ -126,11 +128,11 @@ def editar_producto(referencia_producto):
         return redirect(url_for('index'))      
 
 
-@app.route('/modificar_producto', methods=['POST', 'GET'])
-def modificar_producto():
+@app.route('/modificar_Producto', methods=['POST', 'GET'])
+def modificar_Producto():
     print("entrando a modificar")
     if "nom_empleado" in session:
-        doc = session["doc_empleado"]
+        doc = session["nom_empleado"]
         bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE nom_empleado='{doc}'"
         conn = mysql.connect()
         cursor = conn.cursor()
@@ -141,8 +143,8 @@ def modificar_producto():
         nombre_operador = resultado[1]
         apellido_operador = resultado[2]
         referencia_producto = request.form['referencia_producto']
-        categoria = request.form['categorias']
-        nom_proveedor = request.form['nom_proveedor']
+        categoria = request.form['categoria']
+        proveedor = request.form['proveedor']
         nombre_producto = request.form['nombre_producto']
         precio_compra = request.form['precio_compra']
         precio_venta = request.form['precio_venta']
@@ -151,7 +153,7 @@ def modificar_producto():
         stockminimo = request.form['stockminimo']
         ubicacion = request.form['ubicacion']
         estante = request.form['estante']
-        Dproductos.modificar([referencia_producto, categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, documento_registro, nombre_operador, apellido_operador])
+        Dproductos.modificar([referencia_producto, categoria, proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, documento_registro, nombre_operador, apellido_operador])
         return redirect('/muestra_productos')
     else:
         flash('Porfavor inicia sesion para poder acceder')

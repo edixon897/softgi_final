@@ -25,9 +25,11 @@
     <table class="content-table" id="tabla_productos">
         <thead >
             <tr>
-                <th>Referencia</th>
+                <th>Referencia 1</th>
+                <th>Referencia 2</th>
+                <th>Referencia 3</th>
                 <th>Categoria</th>
-                <th>Documento proveedor</th>
+                <!-- <th>Documento proveedor</th> -->
                 <th>Nombre proveedor</th>
                 <th>Nombre producto</th>
                 <th>Precio de venta</th>
@@ -46,7 +48,7 @@
         <tbody>
             {% for c in resul %}
                 <tr>
-                    {% for i in range(0,13) %}
+                    {% for i in range(0,14) %}
 
                         <td>{{c[i]}}</td>
 
