@@ -4,22 +4,26 @@ from conexiondb import conexion, mysql, app
 import datetime
 from models.proveedores import Dproveedores, Proveedores
 
-#-----------------------------------------------------------Crear proveedores---------------------------------------
-@app.route('/proveedoress')
-def proveedoress():
-    if "nom_empleado" in session:
-        return render_template('/provedor/proveedore.html')
-    else:
-        flash('Algo está mal en los datos digitados')
-        return redirect(url_for('home'))
 
+@app.route('/proveedores')
+def proveedores():
+    if "nom_empleado" in session:
+        sql = "SELECT * FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return render_template('/proveedores/muestra_proveedores.html', resulta = resultado)
+    else:
+        flash('Por favor inicia sesion')
+        return redirect(url_for('index'))
 
 
 @app.route('/crearProveedores', methods=['POST'])
 def crearProveedores():
     if "nom_empleado" in session:
-        email = session["email_empleado"]
-        bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE email_empleado='{email}'"
+        doc = session["nom_empleado"]
+        bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE email_empleado='{doc}'"
         print(bsq)
         conn = mysql.connect()
         cursor = conn.cursor()
@@ -37,7 +41,7 @@ def crearProveedores():
         ciudad = request.form['ciudadProveedor']
         tiempo = datetime.datetime.now()
 
-        Proveedores.crear([documento,nombre,numero,correo,direcion,ciudad, tiempo, documento_registro, nombre_operador, apellido_operador])
+        Dproveedores.crear([documento,nombre,numero,correo,direcion,ciudad, tiempo, documento_registro, nombre_operador, apellido_operador])
         return redirect('/muestra_Proveedores')
     else:
         flash('Algo está mal en los datos digitados')

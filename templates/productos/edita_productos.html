@@ -12,45 +12,49 @@
         <form action="/modificar_Producto" method="post">
             <h2>Editar productos</h2>
                 <div>
+                    <label for="referencia_producto">Id</label>
+                    <input type="text" name="id_producto" id="id_producto"  value="{{resul[0]}}">
 
-                        <label for="referencia_producto">Referencia</label>
-                        <input type="text" name="referencia_producto" id="referencia_producto" placeholder="referencia producto" value="{{resul[0]}}">
+                    <label for="referencia_producto">Referencia 1</label>
+                    <input type="text" name="referencia_producto" id="referencia_producto"  value="{{resul[1]}}">
 
-                        <label for="categoria">Categoria</label>
-                        <input type="number" name="categoria" id="categoria" placeholder="numero categoria" value="{{resul[1]}}">
+                    <label for="ref_produ_2">Referencia 2</label>
+                    <input type="text" name="ref_produ_2" id="ref_produ_2"  value="{{resul[2]}}">
+                    
+                    <label for="ref_produ_3">Referencia 3</label>
+                    <input type="text" name="ref_produ_3" id="ref_produ_3"  value="{{resul[3]}}">
 
-                        <label for="nom_categoria">Nombre categoria</label>
-                        <input type="text" name="nom_categoria" id="nom_categoria" placeholder="nombre categoria" value="{{resul[2]}}">
 
-                        <label for="proveedor">Documento proveedor</label>
-                        <input type="number" name="proveedor" id="proveedor" placeholder="documento proveedor" value="{{resul[3]}}">
+                    <label for="nom_categoria">Nombre categoria</label>
+                    <input type="text" name="nom_categoria" id="nom_categoria"  value="{{resul[4]}}">
 
-                        <label for="nom_proveedor">Nombre proveedor</label>
-                        <input type="text" name="nom_proveedor" id="nom_proveedor" placeholder="nombre proveedor" value="{{resul[4]}}">
 
-                        <label for="nombre_producto">Nombre producto</label>
-                        <input type="text" name="nombre_producto" id="nombre_producto"  value="{{resul[5]}}">
+                    <label for="nom_proveedor">Nombre proveedor</label>
+                    <input type="text" name="nom_proveedor" id="nom_proveedor"  value="{{resul[5]}}">
 
-                        <label for="precio_compra">Precio compra</label>
-                        <input type="number" name="precio_compra" id="precio_compra"  value="{{resul[6]}}">
+                    <label for="nombre_producto">Nombre producto</label>
+                    <input type="text" name="nombre_producto" id="nombre_producto"  value="{{resul[6]}}">
 
-                        <label for="precio_venta">Precio venta</label>
-                        <input type="number" name="precio_venta" id="precio_venta"  value="{{resul[7]}}">
+                    <label for="precio_compra">Precio compra</label>
+                    <input type="number" name="precio_compra" id="precio_compra"  value="{{resul[7]}}">
 
-                        <label for="cantidad_producto">Cantidad total</label>
-                        <input type="number" name="cantidad_producto" id="cantidad_producto"  value="{{resul[8]}}">
+                    <label for="precio_venta">Precio venta</label>
+                    <input type="number" name="precio_venta" id="precio_venta"  value="{{resul[8]}}">
 
-                        <label for="descripcion">Descripcion</label>
-                        <input type="text" name="descripcion" id="descripcion"   value="{{resul[9]}}">
+                    <label for="cantidad_producto">Cantidad total</label>
+                    <input type="number" name="cantidad_producto" id="cantidad_producto"  value="{{resul[9]}}">
 
-                        <label for="stockminimo">Cantidad minima</label>
-                        <input type="number" name="stockminimo" id="stockminimo"  value="{{resul[10]}}">
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" name="descripcion" id="descripcion"   value="{{resul[10]}}">
 
-                        <label for="ubicacion">Ubicacion</label>
-                        <input type="text" name="ubicacion" id="ubicacion" value="{{resul[11]}}">
+                    <label for="stockminimo">Cantidad minima</label>
+                    <input type="number" name="stockminimo" id="stockminimo"  value="{{resul[11]}}">
 
-                        <label for="estante">Estante #</label>
-                        <input type="text" name="estante" id="estante" placeholder="En estanteria" class="campo" value="{{resul[10]}}">
+                    <label for="ubicacion">Ubicación</label>
+                    <input type="text" name="ubicacion" id="ubicacion" value="{{resul[12]}}">
+
+                    <label for="estante">Estante #</label>
+                    <input type="number" name="estante" id="estante" value="{{resul[13]}}">
                 </div>
 
                 <div>
