@@ -84,7 +84,7 @@ def muestra_Productos():
         sql = "SELECT p.id_producto, p.referencia_producto, p.ref_produ_2, p.ref_produ_3, c.nom_categoria, p.nom_proveedor, p.nombre_producto, p.precio_compra, p.precio_venta, p.cantidad_producto, p.descripcion, p.stockminimo, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute(sql)
+        cursor.execute(sql) 
         resultado = cursor.fetchall()
         conn.commit()
         if (len(resultado) >= 1):

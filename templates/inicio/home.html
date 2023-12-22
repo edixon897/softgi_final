@@ -6,6 +6,12 @@
     <title>Principal</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/home.css">
+    <style>
+        /* Agrega un estilo para ocultar las filas que no coincidan con la búsqueda */
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <main id="inicio">
@@ -30,7 +36,7 @@
         <section id="buscar">
             <div id="buscador">
                 <i class="lni lni-search-alt"></i>
-                <input type="text" placeholder="parabrisas, manijas, alarmas, etc...">
+                <input type="text" placeholder="parabrisas, manijas, alarmas, etc..." id="searchProduct">
             </div>
         </section>
 
@@ -85,5 +91,7 @@
             </a>
         </section>
     </main>
+
+    <script src="/static/javaScript/bucadorInicio.js"></script>
 </body>
 </html>
