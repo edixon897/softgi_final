@@ -88,7 +88,28 @@ section#contenido{
 
     
 
+div#buscar{
+    margin: 30px 20px;
+}
+    #buscador > i{
+        border-radius: 10%;
+        color: #358CB4;
+        padding: 7px;
+        position: absolute;
+        z-index: 3;
+    }
 
+    #buscador > input{
+        border: solid 1px #828282;
+        border-radius: 5px;
+        font-family: 'Barlow', sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        margin: 0;
+        padding: 0.8em 0.8em 1em 45px;
+        width: 100%;
+        z-index: 2;
+    }
 
 
 

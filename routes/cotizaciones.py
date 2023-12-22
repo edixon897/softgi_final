@@ -8,11 +8,11 @@ from utils.tokens import generador_id
 @app.route("/Cotizacion")
 def Cotizacion():
     if "nom_empleado" in session: 
-<<<<<<< HEAD
+
         msql= f"SELECT `num_cotizacion`, `cliente_cotizacion`, `nombre_cliente_cotizacion`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion` FROM `cotizaciones` WHERE estado= 'ACTIVO'"
-=======
+
         msql= f"SELECT `cliente_cotizacion`, `nombre_cliente_cotizacion`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion`, `nombre_operador`, `apellido_operador` FROM `cotizaciones`"
->>>>>>> a3acfd970071824925936320932c04525bf0c94c
+
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(msql)

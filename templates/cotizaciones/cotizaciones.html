@@ -3,125 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Proveedores</title>
-    <style>
-        /* Estilos para la tabla */
-        .content-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .content-table th, .content-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        .content-table th {
-            background-color: #f2f2f2;
-        }
-
-        .content-table tfoot td {
-            font-weight: bold;
-        }
-
-        /* Agregamos estilos adicionales según necesidades */
-        h1 {
-            text-align: center;
-        }
-
-        #crear-prov {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        a.boton-editar,
-        a.boton-eliminar {
-            display: inline-block;
-            padding: 5px 10px;
-            margin: 2px;
-            text-align: center;
-            text-decoration: none;
-            color: #fff;
-            border-radius: 4px;
-        }
-
-        a.boton-editar {
-            background-color: #4CAF50; /* Color verde */
-        }
-
-        a.boton-eliminar {
-            background-color: #f44336; /* Color rojo */
-        }
-    </style>
-</head>
-<body>
-    <div></div>
-    <h1>Cotizaciones</h1>
-    <div id="crear-prov">
-    </div>
-    <br>
-    <a href="{{url_for('CrearCotizacion')}}">Crear cotización</a>
-    <table class="content-table" id="tabla_productos">
-        <thead>
-            <tr>
-                <th>Cédula de cliente</th>
-                <th>Nombre de cliente</th>
-                <th>Fecha inicio de cotización</th>
-                <th>Fecha fin de cotización</th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dato in datos %}
-                <tr>
-                    <td>{{ dato[1] }}</td>
-                    <td>{{ dato[2] }}</td>
-                    <td>{{ dato[3] }}</td>
-                    <td>{{ dato[4] }}</td>
-
-
-                    <td>
-                        <a class="boton-editar" href="editarCotizacion/{{ dato[0] }}">Editar</a>
-                    </td>
-                    <td>
-                        <a class="boton-editar" href="detalle/{{ dato[0] }}">Detalle de cotización</a>
-                    </td>
-
-                    <td>
-                        <a class="boton-eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar la cotización y su detalle?')" href="borraCotizacion/{{ dato[0] }}">Eliminar</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div id="boton-atras">
-        <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
-    </div>
-
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-<<<<<<< HEAD
-    {% endwith %}
-=======
-    {% endwith %}   
-
-    <div id="boton-atras">
-        <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
-    </div>
->>>>>>> 25b9b77b3da6f280fa9ede9725281fe08fa7840c
-=======
     <title>Cotizaciones</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/muestra_cotizaciones.css">
@@ -135,10 +17,18 @@
                     <p class="aviso_agregar">Agregar cotización</p>
                 </a>
             </div>
-        </section>
 
+            <div id="buscar">
+                <form action="buscar_cliente" method="post" id="buscador">
+                    <i class="lni lni-search-alt"></i>
+                    <input type="text" id="searchProduct" oninput="buscarCotizacion()" placeholder="Buscar cotizacion">
+                </form>
+            </div>
+        </section>
+        
+        
         <section id="contenido">
-            <table>
+            <table id="cotizacionTable">
                 <thead>
                     <tr>
                         <th>C.C. cliente</th>
@@ -176,21 +66,26 @@
             </table>
         </section>
 
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <ul>
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            {% endwith %}   
+        <p id="noResults" style="display: none;">No se encontraron resultados</p>
 
+    
             <div id="boton-atras">
                 <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
             </div>
     </main>
->>>>>>> a3acfd970071824925936320932c04525bf0c94c
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+    {% endwith %}
+<script src="/static/javaScript/buscarCotizacion.js">
+    
+</script>
 </body>
 </html>
 

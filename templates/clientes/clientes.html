@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visaulización de clientes</title>
+    <title>Visualización de clientes</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/muestra_clientes.css">
-
 </head>
+
 <body>
     <main id="inicio">
         <section id="opciones">
@@ -15,83 +16,66 @@
             <div id="crear_cliente">
                 <a href="{{url_for('crearClientes')}}">
                     <p class="aviso_agregar">Crear cliente</p>
-                </a> 
+                </a>
             </div>
             <div id="buscar">
                 <form action="buscar_cliente" method="post" id="buscador">
                     <i class="lni lni-search-alt"></i>
-                    <input type="search" placeholder="José, Santiago, Miguel etc..."  name="busqueda"> 
+                    <input type="search" id="searchClientes" oninput="buscarClientes()" placeholder="José, Santiago, Miguel etc..." name="busqueda">
                 </form>
             </div>
         </section>
 
         <section id="contenido">
-            <table> 
-                <thead> 
-                    <tr> 
+            <table id="TablaClientes">
+                <thead>
+                    <tr>
                         <th>C.C./NIT cliente</th>
-                        <th>Nombre cliente</th> 
+                        <th>Nombre cliente</th>
                         <th>Apellido cliente</th>
-                        <th>Fecha de nacimiento<th>    
+                        <th>Fecha de nacimiento</th>
                         <th>Número contacto</th>
                         <th>Correo electrónico</th>
                         <th>Direccción</th>
-                        <th>Ciuadad</th>
+                        <th>Ciudad</th>
                         <th>Tipo persona</th>
-                    </tr> 
-                </thead> 
-                <tbody> 
+                    </tr>
+                </thead>
+                <tbody>
                     {% for resul in resulta %}
                         <tr>
-                            <td>
-                                {{resul[0]}}
-                            </td>
-                            <td>
-                                {{resul[1]}}
-                            </td>
-                            <td>
-                                {{resul[2]}}
-                            </td>
-                            <td>
-                                {{resul[3]}}
-                            </td>
-                            <td>
-                                {{resul[4]}}
-                            </td>
-                            <td>
-                                {{resul[5]}}
-                            </td>
-                            <td>
-                                {{resul[6]}}
-                            </td>
-                            <td>
-                                {{resul[7]}}
-                            </td>
-                            <td>
-                                {{resul[8]}}
-                            </td>
-
+                            <td>{{resul[0]}}</td>
+                            <td>{{resul[1]}}</td>
+                            <td>{{resul[2]}}</td>
+                            <td>{{resul[3]}}</td>
+                            <td>{{resul[4]}}</td>
+                            <td>{{resul[5]}}</td>
+                            <td>{{resul[6]}}</td>
+                            <td>{{resul[7]}}</td>
+                            <td>{{resul[8]}}</td>
                             <td>
                                 <a class="btns_centro" href="/editarClientes/{{resul[0]}}">
                                     <i class="lni lni-pencil"></i>
                                 </a>
-                            </td>               
-                            
-
+                            </td>
                             <td>
-                                <a  class="btns_centro" onclick="return confirm('Seguro que deseas eliminar el cliente?')" href="/borracliente/{{resul[0]}}">
+                                <a class="btns_centro" onclick="return confirm('Seguro que deseas eliminar el cliente?')" href="/borracliente/{{resul[0]}}">
                                     <i class="lni lni-trash-can"></i>
                                 </a>
                             </td>
-
                         </tr>
-                    {% endfor %} 
-                </tbody> 
+                    {% endfor %}
+                </tbody>
             </table>
         </section>
-            <div id="boton-atras">
-                <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
-            </div>
+        <p id="noResults" style="display: none;">No se encontraron resultados</p>
+        
+        <div id="boton-atras">
+            <a href="{{url_for ('inicio') }}">Volver a página principal</a>
+        </div>
     </main>
+
+    <script src="/static/javaScript/buscarClientes.js"></script>
 </body>
+
 </html>

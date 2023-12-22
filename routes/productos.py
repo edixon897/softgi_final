@@ -81,11 +81,11 @@ def crear_Producto():
 @app.route('/muestra_productos')
 def muestra_Productos():
     if "nom_empleado" in session: 
-<<<<<<< HEAD
+
         sql = "SELECT  p.referencia_producto, p.nombre_producto, p.descripcion, c.nom_categoria, p.cantidad_producto, p.stockminimo, p.nombre_proveedor, p.precio_compra, p.precio_venta, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
-=======
+
         sql = "SELECT  p.referencia_producto, p.ref_produ_2, p.ref_produ_3, c.nom_categoria, p.nom_proveedor, p.nombre_producto, p.precio_compra, p.precio_venta, p.cantidad_producto, p.descripcion, p.stockminimo, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
->>>>>>> 60768b423617065732b35e39bfda5a51750e272f
+
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql) 

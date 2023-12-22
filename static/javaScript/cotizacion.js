@@ -1,5 +1,4 @@
 
-// Función para filtrar o buscar productos en la tabla de productos
 function filterProducts() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById('searchProduct');
@@ -11,27 +10,27 @@ function filterProducts() {
         if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = ''; // Muestra el producto si coincide con la busqueda
+                tr[i].style.display = ''; 
             } else {
-                tr[i].style.display = 'none'; // Ocultar el producto si no coincide
+                tr[i].style.display = 'none'; 
             }
         }
     }
 }
 
-// Función para seleccionar los producto
+
 function selectProduct(productName) {
     var tableBody = document.getElementById('productosSeleccionados').getElementsByTagName('tbody')[0];
 
-    // Busca si el producto ya está en la tabla de productos seleccionados
+
     var existingRow = findRowByProductName(tableBody, productName);
 
     if (existingRow) {
-        // Si ya está seleccionado incrementa la cantidad en 1
+
         var cantidadInput = existingRow.querySelector('.cantidad-input');
         cantidadInput.value = parseInt(cantidadInput.value) + 1;
     } else {
-        // Si no está seleccionado lo agrega a la fila con cantidad 1
+        
         var row = tableBody.insertRow();
 
         var cell1 = row.insertCell(0);
@@ -42,7 +41,7 @@ function selectProduct(productName) {
         cantidadInput.type = 'number';
         cantidadInput.name = 'cantidadPorProducto[]';
         cantidadInput.className = 'cantidad-input';
-        cantidadInput.value = 1; // pone la cantidad inicial en 1
+        cantidadInput.value = 1; 
         cantidadInput.addEventListener('input', updateTotalQuantity);
         cell2.appendChild(cantidadInput);
 
@@ -65,9 +64,9 @@ function selectProduct(productName) {
     updateTotalQuantity();
 }
 
-// Función para ver si el producto el producto ya ha sido selecionado
+
 function findRowByProductName(tableBody, productName) {
-    // mira en fila existente si existe el producto con el mismo nombre
+    
     var rows = tableBody.getElementsByTagName('tr');
     for (var i = 0; i < rows.length; i++) {
         var cell1 = rows[i].getElementsByTagName('td')[0];
