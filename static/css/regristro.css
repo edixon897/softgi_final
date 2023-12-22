@@ -121,14 +121,14 @@ main#inicio{
 }
 
 .btn{
-    background-color: #358CB4;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 0.9em;
-    margin: 10px;
-    padding: 8px 17px;
-    width: 35%;
+background-color: #358CB4;
+border: none;
+border-radius: 5px;
+color: #fff;
+font-size: 0.9em;
+margin: 10px;
+padding: 8px 17px;
+width: 35%;
 }
 
 /*---------------------------------REPONSIVE----------------------------------*/
