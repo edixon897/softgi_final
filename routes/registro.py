@@ -25,6 +25,7 @@ def registro_usuario():
     ciudad = request.form['ciudad']
     direccion = request.form['direccion']
     rol = request.form['rol']
+    print("este es el rol", rol)
 
     if not re.match(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email_empleado):
         return render_template('/registro_usuario.html', flash="Correo electrónico inválido. Intente nuevamente.") 
@@ -42,9 +43,11 @@ def registro_usuario():
             mi_token2 = token_registro() 
             enviar_correo_confirmacion(nom_empleado, email_empleado, mi_token2)
             tiemporegistro = datetime.datetime.now()
-            RegistroDeUsario.registrar([nom_empleado, ape_empleado, doc_empleado, fechaNacimiento, contactoEmpleado, email_empleado, ciudad, direccion, rol, cifrada, tiemporegistro])
+            RegistroDeUsario.registrar([nom_empleado, ape_empleado, doc_empleado, fechaNacimiento, contactoEmpleado, email_empleado, ciudad, direccion, cifrada, rol, tiemporegistro])
             fecha_registro = datetime.datetime.now()
+            print("este es el rol", rol)
             tok = f"INSERT INTO tokens (doc_empleado, nom_empleado, email_empleado, token, confir_user, tiempo_registro) VALUES ('{doc_empleado}', '{nom_empleado}', '{email_empleado}','{mi_token2}', 'no confirmado', '{fecha_registro}' )" # Inserto o registro los datos en la base de datos en la tabla tokens
+            print("este es el rol", rol)
             cursor.execute(tok)
             conn.commit()
             conn.close()
