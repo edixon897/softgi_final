@@ -81,11 +81,7 @@ def crear_Producto():
 """ @app.route('/muestra_productos')
 def muestra_Productos():
     if "nom_empleado" in session: 
-
-        sql = "SELECT  p.referencia_producto, p.nombre_producto, p.descripcion, c.nom_categoria, p.cantidad_producto, p.stockminimo, p.nombre_proveedor, p.precio_compra, p.precio_venta, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
-
-        sql = "SELECT  p.referencia_producto, p.ref_produ_2, p.ref_produ_3, c.nom_categoria, p.nom_proveedor, p.nombre_producto, p.precio_compra, p.precio_venta, p.cantidad_producto, p.descripcion, p.stockminimo, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
-
+        sql = "SELECT p.id_producto, p.referencia_producto, p.ref_produ_2, p.ref_produ_3, c.nom_categoria, p.nom_proveedor, p.nombre_producto, p.precio_compra, p.precio_venta, p.cantidad_producto, p.descripcion, p.stockminimo, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql) 
@@ -107,14 +103,22 @@ def muestra_Productos():
 
 
 
+<<<<<<< HEAD
 @app.route("/modificar_producto/<referencia_producto>")
 def editar_producto(referencia_producto):
+=======
+@app.route("/modificar_producto/<id_producto>")
+def editar_producto(id_producto):
+    print("Entrando a editar un Producto")
+>>>>>>> 0732cb5cb1a1d7ca4c7d74c1dc2276583f6c2346
     if "nom_empleado" in session: 
-        sql = f"SELECT `referencia_producto`, `categoria`, nom_categoria, `proveedor`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante` FROM productos WHERE referencia_producto='{referencia_producto}'"
+        sql = f"SELECT `id_producto`, `referencia_producto`, `ref_produ_2`, `ref_produ_3`, `nom_categoria`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante` FROM productos WHERE id_producto='{id_producto}'"
+
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql)
-        resultado = cursor.fetchall()  
+        resultado = cursor.fetchall()
+        print("EStos son los datos que trae des la BDD", resultado)
         conn.commit()
         return render_template("productos/edita_productos.html", resul= resultado[0])
     else:
@@ -122,7 +126,7 @@ def editar_producto(referencia_producto):
         return redirect(url_for('index'))      
 
 
-@app.route('/modificar_Producto', methods=['POST', 'GET'])
+@app.route('/modificar_Producto', methods=['POST'])
 def modificar_Producto():
     print("entrando a modificar")
     if "nom_empleado" in session:
@@ -132,26 +136,55 @@ def modificar_Producto():
         cursor = conn.cursor()
         cursor.execute(bsq)
         resultado = cursor.fetchone()
-        print("Soy el empleado")
+        print("Soy el empleado", resultado)
         documento_registro = resultado[0]
         nombre_operador = resultado[1]
         apellido_operador = resultado[2]
-        referencia_producto = request.form['referencia_producto']
-        categoria = request.form['categoria']
-        proveedor = request.form['proveedor']
-        nombre_producto = request.form['nombre_producto']
-        precio_compra = request.form['precio_compra']
-        precio_venta = request.form['precio_venta']
-        cantidad_producto = request.form['cantidad_producto']
-        descripcion = request.form['descripcion']
-        stockminimo = request.form['stockminimo']
-        ubicacion = request.form['ubicacion']
-        estante = request.form['estante']
-        Dproductos.modificar([referencia_producto, categoria, proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, documento_registro, nombre_operador, apellido_operador])
-        return redirect('/muestra_productos')
+
+        if request.method == 'POST':
+            # Imprime el contenido completo de request.form
+            print("Contenido del formulario:", request.form)
+
+            try:
+                id_producto = request.form['id_producto']
+                referencia_producto = request.form['referencia_producto']
+                ref_produ_2 = request.form['ref_produ_2']
+                ref_produ_3 = request.form['ref_produ_3']
+                nom_categoria = request.form['nom_categoria']
+                nom_proveedor = request.form['nom_proveedor']
+                nombre_producto = request.form['nombre_producto']
+                precio_compra = request.form['precio_compra']
+                precio_venta = request.form['precio_venta']
+                cantidad_producto = request.form['cantidad_producto']
+                descripcion = request.form['descripcion']
+                stockminimo = request.form['stockminimo']
+                ubicacion = request.form['ubicacion']
+                estante = request.form['estante']
+
+                datos_modificar = [id_producto, referencia_producto, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, documento_registro, nombre_operador, apellido_operador]
+
+                # Imprime los datos que estás pasando a Dproductos.modificar
+                print("Datos a modificar:", datos_modificar)
+
+                # Modificar Dproductos.modificar para devolver algo si es necesario
+                resultado_modificacion = Dproductos.modificar(datos_modificar)
+
+                # Imprime el resultado de Dproductos.modificar
+                print("Resultado de la modificación:", resultado_modificacion)
+
+                return redirect('/muestra_productos')
+
+            except KeyError as e:
+                print("Error KeyError:", e)
+                flash('Error al procesar el formulario. Por favor, inténtalo de nuevo.')
+                return redirect(url_for('index'))
+        return render_template('muestra_productos.html')
+
+        # Resto del código...
     else:
-        flash('Porfavor inicia sesion para poder acceder')
+        flash('Por favor, inicia sesión para poder acceder')
         return redirect(url_for('index'))
+
  
 
 @app.route('/borra_produc/<idprod>')

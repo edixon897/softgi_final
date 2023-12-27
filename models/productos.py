@@ -40,19 +40,20 @@ class Productos:
 
 
     def modificar(self,productos):
-        sql=f"UPDATE productos SET  referencia_producto='{productos[0]}', categoria='{productos[1]}', proveedor='{productos[2]}', nombre_producto='{productos[3]}', precio_compra='{productos[4]}', precio_venta='{productos[5]}', cantidad_producto='{productos[6]}', descripcion='{productos[7]}', stockminimo='{productos[8]}', ubicacion='{productos[9]}', estante='{productos[10]}' WHERE referencia_producto='{productos[0]}'"
+        sql=f"UPDATE productos SET id_producto='{productos[0]}', referencia_producto='{productos[1]}', ref_produ_2='{productos[2]}', ref_produ_3='{productos[3]}', nom_categoria='{productos[4]}', nom_proveedor='{productos[5]}', nombre_producto='{productos[6]}', precio_compra='{productos[7]}', precio_venta='{productos[8]}', cantidad_producto='{productos[9]}', descripcion='{productos[10]}', stockminimo='{productos[11]}', ubicacion='{productos[12]}', estante='{productos[13]}',documento_operador='{productos[14]}', nombre_operador='{productos[15]}', apellido_operador='{productos[16]}' WHERE id_producto='{productos[0]}'"
         self.cursor.execute(sql)
         self.conexion.commit()
+    
 
     
-    def borrar_producto(self, referencia_producto):
-        if not self.producto_existe_en_db(referencia_producto):
-            return False  
-
-        sql = f"UPDATE productos SET estado_producto='INACTIVO' WHERE referencia_producto = '{referencia_producto}'"
+    def borrar_producto(self, id_producto):
+        
+        sql = f"UPDATE productos SET estado_producto='INACTIVO' WHERE id_producto = '{id_producto}'"
+        print("aca voy",sql)
 
         try:
             self.cursor.execute(sql)
+            print("aca voy",sql)
             self.conexion.commit()
             return True  # Borrado exitoso
         except Exception as e:

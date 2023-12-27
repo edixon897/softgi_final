@@ -11,24 +11,28 @@ from service.envio_correo import enviar_correo_confirmacion
 def registroUsario(): 
     return render_template('registro/registro.html') 
 
+
 @app.route('/registro', methods=['POST']) 
 def registro_usuario(): 
     conn = mysql.connect() 
     cursor = conn.cursor() 
-    doc_empleado = request.form['documento'] 
     nom_empleado = request.form['nombre']
     ape_empleado = request.form['apellido']
-    direccion = request.form['direccion']
-    contactoEmpleado = request.form['contactoEmpleado']
-    ciudad = request.form['ciudad']
-    fechaNacimiento = request.form['fechaNacimiento']
+    doc_empleado = request.form['documento'] 
+    fechaNacimiento = request.form['nacimiento']
+    contactoEmpleado = request.form['contacto']
     email_empleado = request.form['correo']
+    ciudad = request.form['ciudad']
+    direccion = request.form['direccion']
+    print(request.form)
     rol = request.form['rol']
+    print("este es el rol", rol)
+
     if not re.match(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email_empleado):
         return render_template('/registro_usuario.html', flash="Correo electrónico inválido. Intente nuevamente.") 
     clave1 = request.form['contrasena'] 
-    clave2 = request.form['confirmada']
-    if clave1 == clave2: 
+    
+    if clave1 == clave1: 
         cifrada = hashlib.sha512(clave1.encode("utf-8")).hexdigest()
         consul = f"SELECT * FROM empleados WHERE doc_empleado='{doc_empleado}' OR email_empleado='{email_empleado}'"
         cursor.execute(consul)
@@ -40,9 +44,11 @@ def registro_usuario():
             mi_token2 = token_registro() 
             enviar_correo_confirmacion(nom_empleado, email_empleado, mi_token2)
             tiemporegistro = datetime.datetime.now()
-            RegistroDeUsario.registrar([doc_empleado, nom_empleado, ape_empleado, fechaNacimiento, contactoEmpleado, email_empleado, direccion, ciudad, cifrada, rol, tiemporegistro])
+            RegistroDeUsario.registrar([nom_empleado, ape_empleado, doc_empleado, fechaNacimiento, contactoEmpleado, email_empleado, ciudad, direccion, cifrada, rol, tiemporegistro])
             fecha_registro = datetime.datetime.now()
+            print("este es el rol", rol)
             tok = f"INSERT INTO tokens (doc_empleado, nom_empleado, email_empleado, token, confir_user, tiempo_registro) VALUES ('{doc_empleado}', '{nom_empleado}', '{email_empleado}','{mi_token2}', 'no confirmado', '{fecha_registro}' )" # Inserto o registro los datos en la base de datos en la tabla tokens
+            print("este es el rol", rol)
             cursor.execute(tok)
             conn.commit()
             conn.close()

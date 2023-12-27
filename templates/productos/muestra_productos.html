@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muestra productos</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+<<<<<<< HEAD
 
     <link rel="stylesheet" href="../../static/css/muestra_productos.css">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+=======
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+>>>>>>> 0732cb5cb1a1d7ca4c7d74c1dc2276583f6c2346
 
 </head>
 <body>
@@ -52,7 +56,10 @@
                         <tr>
                             {% for i in range(0,11) %}
 
-                                <td>{{c[i]}}</td>
+        <form action="Busca_productos" method="post" id="conten_busqueda">
+            <input type="search" placeholder="Buscar" aria-label="Search" name="dato_busqueda" id="buscador">
+            <button title="este es el boton de busqueda" type="submit"><i class="lni lni-search-alt"></i></button>
+        </form>
 
                             {% endfor %}
                                 <td class="btns_centro">
@@ -78,6 +85,7 @@
             </a>
         </div>
     </main>
+<<<<<<< HEAD
 <!-- 
     <div id="crear-producto">
         <a class="crear-producto" href="{{url_for('crear_Producto')}}">Crear Productos</a>
@@ -132,5 +140,7 @@
         <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
     </div> -->
     <script src="/static/javaScript/buscarProducto.js"></script>
+=======
+>>>>>>> 0732cb5cb1a1d7ca4c7d74c1dc2276583f6c2346
 </body>
 </html>
