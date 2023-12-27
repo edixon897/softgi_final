@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <table>
+        <div>
+            <h1>CATEGORIAS</h1>
+        </div>
+        <div class="crear-categoria">
+            <a class="crear-categoria" href="">Crear categorias</a>
+        </div>
+        <thead>
+            <tr>
+                <th>Id Categoría</th>
+                <th>Nombre</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <tbody> 
+            {% for resul in resulta %}
+                <tr>
+                    <td>
+                        {{resul[0]}}
+                    </td>
+                    <td>
+                        {{resul[1]}}
+                    </td>
+                    
+    
+                    <td>
+                        <a class="boton-editar" href="/editarCategorias/{{resul[0]}}">Editar</a>
+                    </td>               
+                    
+    
+                    <td>
+                        <a  class="boton-eliminar" onclick="return confirm('Seguro que deseas eliminar el categoria?')" href="/borracategoria/{{resul[0]}}">Eliminar</a>
+                    </td>
+    
+                </tr>
+            {% endfor %} 
+        </tbody> 
+    </table>
+        <div id="boton-atras">
+            <button class="boton-atras" onclick="window.location.href='/index'">Regresar al home</button>
+        </div>
+</body>
+</html>

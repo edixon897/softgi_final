@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muestra productos</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="../../static/css/muestra_productos.css">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
-=======
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
->>>>>>> 60768b423617065732b35e39bfda5a51750e272f
+
 
 </head>
 <body>
@@ -18,20 +18,20 @@
         <section id="opciones">
             <h2>Productos</h2>
             <div id="agregar_producto">
-                <a href="{{url_for('crearProducto')}}">
+                <a href="{{url_for('crear_Producto')}}">
                     <p class="aviso_agregar">Agregar producto</p>
                 </a>
             </div>
             <div id="buscar">
-                <form action="Busca_productos" method="post" id="buscador">
+                <div  id="buscador">
                     <i class="lni lni-search-alt"></i>
-                    <input type="search" placeholder="parabrisas, manijas, alarmas, etc..." name="dato_busqueda">
-                </form>
+                    <input type="search" id="searchProductos" oninput="buscarProductos()" placeholder="parabrisas, manijas, alarmas, etc..."  name="busqueda">
+                </div>
             </div> 
         </section>
 
         <section id="contenido">
-            <table>
+            <table id="tablaProducto">
                 <thead>
                     <tr>
                         <th>Referencia</th>
@@ -48,13 +48,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for c in resul %}
+                    {% for c in resulta %}
                         <tr>
                             {% for i in range(0,11) %}
 
                                 <td>{{c[i]}}</td>
 
-<<<<<<< HEAD
                             {% endfor %}
                                 <td class="btns_centro">
                                     <a href="/modificar_producto/{{c[0]}}" >
@@ -72,13 +71,14 @@
                 </tbody>
             </table>
         </section>
+        <p id="noResults" style="display: none;">No se encontraron resultados</p>
         <div id="regresar">
             <a href="{{url_for ('inicio') }}" class="campo_a">
                 <p class="color_p">Volver a pagina principal</p>
             </a>
         </div>
     </main>
-=======
+<!-- 
     <div id="crear-producto">
         <a class="crear-producto" href="{{url_for('crear_Producto')}}">Crear Productos</a>
     </div>
@@ -91,7 +91,6 @@
                 <th>Referencia 2</th>
                 <th>Referencia 3</th>
                 <th>Categoria</th>
-                <!-- <th>Documento proveedor</th> -->
                 <th>Nombre proveedor</th>
                 <th>Nombre producto</th>
                 <th>Precio de venta</th>
@@ -131,8 +130,7 @@
 
     <div id="boton-atras">
         <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
-    </div>
-
->>>>>>> 60768b423617065732b35e39bfda5a51750e272f
+    </div> -->
+    <script src="/static/javaScript/buscarProducto.js"></script>
 </body>
 </html>

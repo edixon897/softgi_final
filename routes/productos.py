@@ -10,7 +10,7 @@ from models.productos import Dproductos
 @app.route('/productos')
 def productos():
         if "nom_empleado" in session: 
-            sql = "SELECT * FROM productos WHERE estado_producto ='ACTIVO'"
+            sql = "SELECT `referencia_producto`, `nombre_producto`, `descripcion`, `categoria`, `cantidad_producto`, `stockminimo`, `proveedor`,  `precio_compra`, `precio_venta`, `ubicacion` FROM productos WHERE estado_producto ='ACTIVO'"
             conn = mysql.connect()                    
             cursor = conn.cursor()
             cursor.execute(sql)                                          
@@ -78,7 +78,7 @@ def crear_Producto():
         return render_template('/productos/registrar_productos.html', proveedores=proveedores_activos, categorias=categorias_activas)
                         
 
-@app.route('/muestra_productos')
+""" @app.route('/muestra_productos')
 def muestra_Productos():
     if "nom_empleado" in session: 
 
@@ -99,26 +99,16 @@ def muestra_Productos():
     else:
         flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
- 
+"""
 
 
 
-@app.route('/Busca_productos', methods=['POST'])
-def busca_productos():
-    dato_busqueda = request.form['dato_busqueda']
-    sql = f"SELECT `id_producto`, `referencia_producto`, `categoria`, `proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante`, `estado_producto`, `nombre_proveedor` FROM `productos` WHERE estado_producto='activo' AND id_producto LIKE '%{dato_busqueda}%' OR estado_producto='activo' AND nombre_producto LIKE '%{dato_busqueda}%' OR estado_producto='activo' AND categoria LIKE '%{dato_busqueda}%' OR estado_producto='activo' AND 'descripcion' LIKE '%{dato_busqueda}'"
-    conn = mysql.connect()
-    cursor = conn.cursor()
-    cursor.execute(sql)             # puede buscar por doc_empleado,nom_empleado y ape_empleado
-    resultado = cursor.fetchall()  
-    conn.commit()
-    return render_template("/productos/muestra_productos.html", resul=resultado)
+
 
 
 
 @app.route("/modificar_producto/<referencia_producto>")
 def editar_producto(referencia_producto):
-    print("Entrando a editar un Producto")
     if "nom_empleado" in session: 
         sql = f"SELECT `referencia_producto`, `categoria`, nom_categoria, `proveedor`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante` FROM productos WHERE referencia_producto='{referencia_producto}'"
         conn = mysql.connect()
