@@ -24,6 +24,7 @@ def registro_usuario():
     email_empleado = request.form['correo']
     ciudad = request.form['ciudad']
     direccion = request.form['direccion']
+    print(request.form)
     rol = request.form['rol']
     print("este es el rol", rol)
 
