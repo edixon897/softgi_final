@@ -45,7 +45,7 @@ def crear_Producto():
             
             nom_proveedor = proveedores[0]
             print(nom_proveedor)
-            referencia_producto = request.form['referencia_producto']
+            ref_prod_1 = request.form['ref_prod_1']
             ref_prod_2 = request.form['ref_prod_2']
             ref_prod_3 = request.form['ref_prod_3']
             categoria = request.form['categorias']
@@ -60,7 +60,7 @@ def crear_Producto():
             tiempoRegistro = datetime.datetime.now()
 
             
-            Dproductos.crearProductos([referencia_producto, ref_prod_2, ref_prod_3, categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
+            Dproductos.crearProductos([ref_prod_1, ref_prod_2, ref_prod_3, categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
             return redirect(url_for('muestra_Productos'))
             
         conn = mysql.connect()
@@ -81,11 +81,13 @@ def crear_Producto():
 @app.route('/muestra_productos')
 def muestra_Productos():
     if "nom_empleado" in session: 
-        sql = "SELECT p.id_producto, p.referencia_producto, p.ref_produ_2, p.ref_produ_3, c.nom_categoria, p.nom_proveedor, p.nombre_producto, p.precio_compra, p.precio_venta, p.cantidad_producto, p.descripcion, p.stockminimo, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
+        sql = f"SELECT ref_prod_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
+        
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute(sql) 
+        cursor.execute(sql)
         resultado = cursor.fetchall()
+        print("resultado", resultado)
         conn.commit()
         if (len(resultado) >= 1):
             return render_template("/productos/muestra_productos.html", resul=resultado)   # si hay resultados se muestran.
