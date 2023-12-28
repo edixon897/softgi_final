@@ -81,24 +81,33 @@ def muestra_Productos():
     else:
         flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
+    
 
-
-
-
-
+@app.route('/buscar_producto', methods=['GET', 'POST'])
+def buscar():
+    if "nom_empleado" in session:
+        busqueda = request.form['buscar']
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT * FROM productos WHERE estado_producto='ACTIVO' AND (nombre_producto LIKE '%{busqueda}%' OR ref_produ_1 LIKE '%{busqueda}%' OR ref_produ_2 LIKE '%{busqueda}%' OR ref_produ_3 LIKE '%{busqueda}%'  OR descripcion LIKE '%{busqueda}%')")
+        resultados = cursor.fetchall()
+        conn.close()
+        return render_template('productos/muestra_productos', result = resultados)
+    else:
+        flash('Por favor inicia sesion')
+        return redirect(url_for('index'))
 
 
 @app.route("/modificar_producto/<id_producto>")
 def editar_producto(id_producto):
     print("Entrando a editar un Producto")
     if "nom_empleado" in session: 
-        sql = f"SELECT `id_producto`, `referencia_producto`, `ref_produ_2`, `ref_produ_3`, `nom_categoria`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante` FROM productos WHERE id_producto='{id_producto}'"
-
+        sql = f"SELECT id_producto, ref_prod_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante FROM productos WHERE id_producto='{id_producto}'"
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql)
         resultado = cursor.fetchall()
-        print("EStos son los datos que trae des la BDD", resultado)
+        print("Estos son los datos que trae de la BDD", resultado)
         conn.commit()
         return render_template("productos/edita_productos.html", resul= resultado[0])
     else:
