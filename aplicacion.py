@@ -8,6 +8,7 @@ from routes.ventas import Dventas
 from routes.cotizaciones import cotizaciones
 from routes.proveedores import Dproveedores
 from routes.abonos import Dabonos
+from routes.categoria import categorias
 
 
     

@@ -8,43 +8,47 @@
 </head>
 <body>
     <h1>Historial de ventas</h1>
-   
-    <table  class="content-table" id="tabla_ventas">
-        <thead >
-            <tr>
-                <th>Numero factura</th>
-                <th> C.C cliente</th>
-                <th>c.c operador</th>
-                <th>Nombre operador</th>
-                <th>Apellido operador</th>
-                <th>Fecha de  venta</th>
-                <th>Forma de pago</th>
-                <th></th>
-                <th></th>
-                <th></th>
+    <input type="search" id="searchVentas" oninput="buscarVentas()" placeholder="Buscar ventas">
+    
+        <table  id="tablaVentas">
+            <thead >
+                <tr>
+                    <th>Numero factura</th>
+                    <th> C.C cliente</th>
+                    <th>c.c operador</th>
+                    <th>Nombre operador</th>
+                    <th>Apellido operador</th>
+                    <th>Fecha de  venta</th>
+                    <th>Forma de pago</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
 
-            </tr>
-        </thead>
+                </tr>
+            </thead>
 
-        <tbody>
-            {% for c in resul %}
-            <tr>
-                {% for i in range(0,7) %}
-                    <td>{{c[i]}}</td>
+            <tbody>
+                {% for c in resul %}
+                <tr>
+                    {% for i in range(0,7) %}
+                        <td>{{c[i]}}</td>
+                    {% endfor %}
+                        <td>
+                            <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}">Mas detalles</a>
+
+                            <!-- <a href="muestra_detalles_ventas{{c[0]}}">Mas detalles</a> -->
+                            <!-- <a href="{{ url_for('muestra_ventas', c=c[0]) }}">Mas detalles</a> -->
+
+                        </td>
+                </tr>
                 {% endfor %}
-                    <td>
-                        <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}">Mas detalles</a>
-
-                        <!-- <a href="muestra_detalles_ventas{{c[0]}}">Mas detalles</a> -->
-                        <!-- <a href="{{ url_for('muestra_ventas', c=c[0]) }}">Mas detalles</a> -->
-
-                    </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    <p id="noResults" style="display: none;">No se encontraron resultados</p>
     <div id="boton-atras">
         <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
     </div>
+
+    <script src="/static/javaScript/buscadorVentas.js"></script>
 </body>
 </html>
