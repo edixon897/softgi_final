@@ -6,6 +6,7 @@
     <title>Muestra productos</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/muestra_productos.css">
 
 </head>
 <body>
@@ -17,12 +18,12 @@
                     <p class="aviso_agregar">Agregar producto</p>
                 </a>
             </div>
-            <!-- <div id="buscar">
+            <div id="buscar">
                 <form action="Busca_productos" method="post" id="buscador">
                     <i class="lni lni-search-alt"></i>
                     <input type="search" placeholder="parabrisas, manijas, alarmas, etc..." name="dato_busqueda">
                 </form>
-            </div>  -->
+            </div>
         </section>
 
         <section id="contenido">
@@ -42,24 +43,26 @@
                         <th>Precio de venta</th>
                         <th>Ubicación</th>
                         <th>Estante</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for resul in resultado %}
+                    {% for result in resul %}
                         <tr>
-                            <td>{{resul[0]}}</td>
-                            <td>{{resul[1]}}</td>
-                            <td>{{resul[2]}}</td>
-                            <td>{{resul[3]}}</td>
-                            <td>{{resul[4]}}</td>
-                            <td>{{resul[5]}}</td>
-                            <td>{{resul[6]}}</td>
-                            <td>{{resul[7]}}</td>
-                            <td>{{resul[8]}}</td>
-                            <td>{{resul[9]}}</td>
-                            <td>{{resul[10]}}</td>
-                            <td>{{resul[11]}}</td>
-                            <td>{{resul[12]}}</td>
+                            <td>{{result[0]}}</td>
+                            <td>{{result[1]}}</td>
+                            <td>{{result[2]}}</td>
+                            <td>{{result[3]}}</td>
+                            <td>{{result[4]}}</td>
+                            <td>{{result[5]}}</td>
+                            <td>{{result[6]}}</td>
+                            <td>{{result[7]}}</td>
+                            <td>{{result[8]}}</td>
+                            <td>{{result[9]}}</td>
+                            <td>{{result[10]}}</td>
+                            <td>{{result[11]}}</td>
+                            <td>{{result[12]}}</td>
                             <td class="btns_centro">
                                 <a href="/modificar_producto/{{resul[0]}}" >
                                     <i class="lni lni-pencil"></i>
@@ -67,7 +70,7 @@
                             </td>
 
                             <td class="btns_centro">
-                                <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borra_produc/{{c[0]}}">
+                                <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borra_produc/{{resul[0]}}">
                                     <i class="lni lni-trash-can"></i>
                                 </a>
                             </td>

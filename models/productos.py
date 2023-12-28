@@ -28,8 +28,8 @@ class Productos:
             return False
         
 
-    def buscar_productos(self, referencia_producto):
-        sql = f"SELECT nombre_producto, referencia, cantidad producto FROM productos WHERE referencia_producto = '{referencia_producto}'"
+    def buscar_productos(self, ref_prod_1):
+        sql = f"SELECT nombre_producto, ref_prod_1, ref_prod_2, ref_prod_3,  cantidad_producto,  descripcion, FROM productos WHERE ref_prod_1 = '{ref_prod_1}'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         self.conexion.commit()

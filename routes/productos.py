@@ -5,23 +5,6 @@ import datetime
 from models.productos import Dproductos
 
 
-
-
-""" @app.route('/productos')
-def productos():
-        if "nom_empleado" in session: 
-            sql = "SELECT `ref_prod_1`, `ref_prod_2`, `ref_prod_3`, `nombre_producto`, `descripcion`, `categoria`, `cantidad_producto`, `stockminimo`, `proveedor`,  `precio_compra`, `precio_venta`, `ubicacion` FROM productos WHERE estado_producto ='ACTIVO'"
-            conn = mysql.connect()                    
-            cursor = conn.cursor()
-            cursor.execute(sql)                                          
-            resultado = cursor.fetchall()
-            return render_template('/productos/muestra_productos.html', resulta = resultado)
-        else:
-            flash('Porfavor inicia sesion para poder acceder')
-            return redirect(url_for('index')) """
-        
-
-
 @app.route('/crear_Producto', methods=['GET', 'POST'])
 def crear_Producto():
     print("Entrando a crear_Producto")
@@ -90,7 +73,8 @@ def muestra_Productos():
         print("resultado", resultado)
         conn.commit()
         if (len(resultado) >= 1):
-            return render_template("/productos/muestra_productos.html", resul=resultado)   # si hay resultados se muestran.
+            return render_template("/productos/muestra_productos.html", resul=resultado) 
+          # si hay resultados se muestran.
         else:
             resultado2 = "No hay productos registrados"
             return render_template("/productos/muestra_productos.html", resul2=resultado2)  # sino se muestra el mensaje de resultado2.
