@@ -7,10 +7,10 @@ from models.productos import Dproductos
 
 
 
-@app.route('/productos')
+""" @app.route('/productos')
 def productos():
         if "nom_empleado" in session: 
-            sql = "SELECT `referencia_producto`, `nombre_producto`, `descripcion`, `categoria`, `cantidad_producto`, `stockminimo`, `proveedor`,  `precio_compra`, `precio_venta`, `ubicacion` FROM productos WHERE estado_producto ='ACTIVO'"
+            sql = "SELECT `ref_prod_1`, `ref_prod_2`, `ref_prod_3`, `nombre_producto`, `descripcion`, `categoria`, `cantidad_producto`, `stockminimo`, `proveedor`,  `precio_compra`, `precio_venta`, `ubicacion` FROM productos WHERE estado_producto ='ACTIVO'"
             conn = mysql.connect()                    
             cursor = conn.cursor()
             cursor.execute(sql)                                          
@@ -18,7 +18,7 @@ def productos():
             return render_template('/productos/muestra_productos.html', resulta = resultado)
         else:
             flash('Porfavor inicia sesion para poder acceder')
-            return redirect(url_for('index'))
+            return redirect(url_for('index')) """
         
 
 
@@ -78,7 +78,7 @@ def crear_Producto():
         return render_template('/productos/registrar_productos.html', proveedores=proveedores_activos, categorias=categorias_activas)
                         
 
-""" @app.route('/muestra_productos')
+@app.route('/muestra_productos')
 def muestra_Productos():
     if "nom_empleado" in session: 
         sql = f"SELECT ref_prod_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
@@ -97,7 +97,6 @@ def muestra_Productos():
     else:
         flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
-"""
 
 
 
@@ -105,14 +104,9 @@ def muestra_Productos():
 
 
 
-<<<<<<< HEAD
-@app.route("/modificar_producto/<referencia_producto>")
-def editar_producto(referencia_producto):
-=======
 @app.route("/modificar_producto/<id_producto>")
 def editar_producto(id_producto):
     print("Entrando a editar un Producto")
->>>>>>> 0732cb5cb1a1d7ca4c7d74c1dc2276583f6c2346
     if "nom_empleado" in session: 
         sql = f"SELECT `id_producto`, `referencia_producto`, `ref_produ_2`, `ref_produ_3`, `nom_categoria`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante` FROM productos WHERE id_producto='{id_producto}'"
 
