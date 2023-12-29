@@ -104,9 +104,10 @@ def buscar():
         return redirect(url_for('index'))
 
 
-""" @app.route("/modificar_producto/<id_producto>")
+@app.route("/modificar_producto/<id_producto>")
 def editar_producto(id_producto):
     print("Entrando a editar un Producto")
+>>>>>>> 443024534800441168a905e46b6c313cd7e90d98
     if "nom_empleado" in session: 
         sql = f"SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante FROM productos WHERE id_producto='{id_producto}'"
         conn = mysql.connect()

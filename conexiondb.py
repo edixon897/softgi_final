@@ -16,7 +16,7 @@ def conexion():
         app.config['MYSQL_DATABASE_SECRET_KEY'] = app.secret_key
         app.config['MYSQL_DATABASE_USER'] = 'root'
         app.config['MYSQL_DATABASE_PASSWORD'] = ''
-        app.config['MYSQL_DATABASE_DB'] = 'softgi2'
+        app.config['MYSQL_DATABASE_DB'] = 'softgi'
         app.config['MYSQL_DATABASE_HOST'] = 'localhost'
         app.config['MYSQL_DATABASE_PORT'] = 3306
         app.config['MYSQL_DATABASE_CHARSET'] = 'utf8mb4'
@@ -24,12 +24,15 @@ def conexion():
     except Exception as e:
                 print(f"Error al conectar a la base de datos: {str(e)}")
 
-def servicion():                
-    app.config['MAIL_SERVER'] = 'smtp.gmail.com'  
-    app.config['MAIL_PORT'] = 587  
-    app.config['MAIL_USE_TLS'] = True 
-    app.config['MAIL_USERNAME'] = 'jenasoft05@gmail.com'  
-    app.config['MAIL_PASSWORD'] = 'laobfjwveaolryrt' 
+def servicion():
+    try:                
+        app.config['MAIL_SERVER'] = 'smtp.gmail.com'  
+        app.config['MAIL_PORT'] = 587  
+        app.config['MAIL_USE_TLS'] = True 
+        app.config['MAIL_USERNAME'] = 'jenasoft05@gmail.com'  
+        app.config['MAIL_PASSWORD'] = 'laobfjwveaolryrt' 
+    except Exception as e:
+                print(f"Error al intentar conectarse al servicio de envio de correo: {str(e)}")
 
 servicion()
 mail = Mail(app)
