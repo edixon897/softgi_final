@@ -103,14 +103,13 @@ def muestra_Productos():
 
 
 
-<<<<<<< HEAD
-@app.route("/modificar_producto/<referencia_producto>")
-def editar_producto(referencia_producto):
-=======
+
+
+
 @app.route("/modificar_producto/<id_producto>")
 def editar_producto(id_producto):
     print("Entrando a editar un Producto")
->>>>>>> 0732cb5cb1a1d7ca4c7d74c1dc2276583f6c2346
+
     if "nom_empleado" in session: 
         sql = f"SELECT `id_producto`, `referencia_producto`, `ref_produ_2`, `ref_produ_3`, `nom_categoria`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante` FROM productos WHERE id_producto='{id_producto}'"
 

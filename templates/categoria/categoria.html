@@ -12,7 +12,7 @@
             <h1>CATEGORIAS</h1>
         </div>
         <div class="crear-categoria">
-            <a class="crear-categoria" href="">Crear categorias</a>
+            <a class="crear-categoria" href="{{url_for('crearCategoria')}}">Crear categorias</a>
         </div>
         <thead>
             <tr>
@@ -26,9 +26,6 @@
         <tbody> 
             {% for resul in resulta %}
                 <tr>
-                    <td>
-                        {{resul[0]}}
-                    </td>
                     <td>
                         {{resul[1]}}
                     </td>
