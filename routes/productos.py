@@ -5,23 +5,6 @@ import datetime
 from models.productos import Dproductos
 
 
-
-
-@app.route('/productos')
-def productos():
-        if "nom_empleado" in session: 
-            sql = "SELECT `referencia_producto`, `nombre_producto`, `descripcion`, `categoria`, `cantidad_producto`, `stockminimo`, `proveedor`,  `precio_compra`, `precio_venta`, `ubicacion` FROM productos WHERE estado_producto ='ACTIVO'"
-            conn = mysql.connect()                    
-            cursor = conn.cursor()
-            cursor.execute(sql)                                          
-            resultado = cursor.fetchall()
-            return render_template('/productos/muestra_productos.html', resulta = resultado)
-        else:
-            flash('Porfavor inicia sesion para poder acceder')
-            return redirect(url_for('index'))
-        
-
-
 @app.route('/crear_Producto', methods=['GET', 'POST'])
 def crear_Producto():
     print("Entrando a crear_Producto")
@@ -45,7 +28,7 @@ def crear_Producto():
             
             nom_proveedor = proveedores[0]
             print(nom_proveedor)
-            referencia_producto = request.form['referencia_producto']
+            ref_prod_1 = request.form['ref_prod_1']
             ref_prod_2 = request.form['ref_prod_2']
             ref_prod_3 = request.form['ref_prod_3']
             categoria = request.form['categorias']
@@ -60,7 +43,7 @@ def crear_Producto():
             tiempoRegistro = datetime.datetime.now()
 
             
-            Dproductos.crearProductos([referencia_producto, ref_prod_2, ref_prod_3, categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
+            Dproductos.crearProductos([ref_prod_1, ref_prod_2, ref_prod_3, categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
             return redirect(url_for('muestra_Productos'))
             
         conn = mysql.connect()
@@ -78,26 +61,44 @@ def crear_Producto():
         return render_template('/productos/registrar_productos.html', proveedores=proveedores_activos, categorias=categorias_activas)
                         
 
-""" @app.route('/muestra_productos')
+@app.route('/muestra_productos')
 def muestra_Productos():
     if "nom_empleado" in session: 
-        sql = "SELECT p.id_producto, p.referencia_producto, p.ref_produ_2, p.ref_produ_3, c.nom_categoria, p.nom_proveedor, p.nombre_producto, p.precio_compra, p.precio_venta, p.cantidad_producto, p.descripcion, p.stockminimo, p.ubicacion, p.estante FROM productos p JOIN categorias c ON p.categoria = c.id_categoria WHERE p.estado_producto ='ACTIVO';" # se realiza un join para la consulta, con la unión de la tabla categoría para obtener el nombre de la categoría en lugar de su ID.
+        sql = f"SELECT ref_prod_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
+        
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute(sql) 
+        cursor.execute(sql)
         resultado = cursor.fetchall()
+        print("resultado", resultado)
         conn.commit()
         if (len(resultado) >= 1):
-            return render_template("/productos/muestra_productos.html", resul=resultado)   # si hay resultados se muestran.
+            return render_template("/productos/muestra_productos.html", resul=resultado) 
+          # si hay resultados se muestran.
         else:
             resultado2 = "No hay productos registrados"
             return render_template("/productos/muestra_productos.html", resul2=resultado2)  # sino se muestra el mensaje de resultado2.
     else:
         flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
-"""
+    
+
+@app.route('/buscar_producto', methods=['GET', 'POST'])
+def buscar():
+    if "nom_empleado" in session:
+        busqueda = request.form['buscar']
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT * FROM productos WHERE estado_producto='ACTIVO' AND (nombre_producto LIKE '%{busqueda}%' OR ref_produ_1 LIKE '%{busqueda}%' OR ref_produ_2 LIKE '%{busqueda}%' OR ref_produ_3 LIKE '%{busqueda}%'  OR descripcion LIKE '%{busqueda}%')")
+        resultados = cursor.fetchall()
+        conn.close()
+        return render_template('productos/muestra_productos', result = resultados)
+    else:
+        flash('Por favor inicia sesion')
+        return redirect(url_for('index'))
 
 
+<<<<<<< HEAD
 
 
 
@@ -110,14 +111,18 @@ def muestra_Productos():
 def editar_producto(id_producto):
     print("Entrando a editar un Producto")
 
+=======
+@app.route("/modificar_producto/<id_producto>")
+def editar_producto(id_producto):
+    print("Entrando a editar un Producto")
+>>>>>>> 443024534800441168a905e46b6c313cd7e90d98
     if "nom_empleado" in session: 
-        sql = f"SELECT `id_producto`, `referencia_producto`, `ref_produ_2`, `ref_produ_3`, `nom_categoria`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante` FROM productos WHERE id_producto='{id_producto}'"
-
+        sql = f"SELECT id_producto, ref_prod_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante FROM productos WHERE id_producto='{id_producto}'"
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql)
         resultado = cursor.fetchall()
-        print("EStos son los datos que trae des la BDD", resultado)
+        print("Estos son los datos que trae de la BDD", resultado)
         conn.commit()
         return render_template("productos/edita_productos.html", resul= resultado[0])
     else:

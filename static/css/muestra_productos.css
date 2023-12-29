@@ -108,6 +108,20 @@ section#contenido{
             text-align: left;
         }
 
+div#regresar{
+    background-color: #57a8ce;
+    border: none;
+    border-radius: 3px;  
+    font-size: 1em;
+    margin: 18px;
+    padding: 3px;
+    width: 18%;
+}
+    #regresar > a{
+        text-decoration: none;
+        text-align: center;
+    }
+
 
 
 
@@ -128,5 +142,12 @@ section#contenido{
 .btns_centro{
     text-align: center;
 }
+
+.color_p{
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
 
 
