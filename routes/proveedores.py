@@ -13,7 +13,7 @@ def proveedores():
         cursor = conn.cursor()
         cursor.execute(sql)
         resultado = cursor.fetchall()
-        return render_template('/proveedores/muestra_proveedores.html', resulta = resultado)
+        return render_template('/proveedores/muestra_Proveedores.html', resulta = resultado)
     else:
         flash('Por favor inicia sesion')
         return redirect(url_for('index'))

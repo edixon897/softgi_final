@@ -183,12 +183,26 @@ def modificar_Producto():
 
  
 
-@app.route('/borra_produc/<idprod>')
-def borra_produc(idprod):
+""" @app.route('/borra_produc/<id_producto>')
+def borra_produc(id_producto):
+    print(id_producto)
     if "nom_empleado" in session: 
-        Dproductos.borrar_producto(idprod)        # Eliminar productos
+        Dproductos.borrar_producto(id_producto)        # Eliminar productos
         return redirect("/muestra_productos")   
     else:
         flash('Algo esta mal en los datos digitados')
-        return redirect(url_for('home'))
+        return redirect(url_for('index')) """
+
+@app.route('/borra_produc/<string:id_producto>', methods=['GET', 'POST'])
+def borra_produc(id_producto):
+    print(id_producto)
+    print("aca voy")
+    if "nom_empleado" in session: 
+        Dproductos.borrar_producto(id_producto)  
+        print("aca voy", id_producto)    
+        return redirect('/muestra_productos')   
+    else:
+        flash('Algo está mal en los datos digitados')
+        return redirect(url_for('index'))
+
     
