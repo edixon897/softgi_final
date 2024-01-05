@@ -64,7 +64,7 @@ def crear_Producto():
 @app.route('/muestra_productos')
 def muestra_Productos():
     if "nom_empleado" in session: 
-        sql = f"SELECT ref_prod_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
+        sql = f"SELECT ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
         
         conn = mysql.connect()
         cursor = conn.cursor()
@@ -74,7 +74,7 @@ def muestra_Productos():
         conn.commit()
         if (len(resultado) >= 1):
             return render_template("/productos/muestra_productos.html", resul=resultado) 
-          # si hay resultados se muestran.
+        # si hay resultados se muestran.
         else:
             resultado2 = "No hay productos registrados"
             return render_template("/productos/muestra_productos.html", resul2=resultado2)  # sino se muestra el mensaje de resultado2.
@@ -98,24 +98,10 @@ def buscar():
         return redirect(url_for('index'))
 
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
 @app.route("/modificar_producto/<id_producto>")
 def editar_producto(id_producto):
     print("Entrando a editar un Producto")
 
-=======
-@app.route("/modificar_producto/<id_producto>")
-def editar_producto(id_producto):
-    print("Entrando a editar un Producto")
->>>>>>> 443024534800441168a905e46b6c313cd7e90d98
     if "nom_empleado" in session: 
         sql = f"SELECT id_producto, ref_prod_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante FROM productos WHERE id_producto='{id_producto}'"
         conn = mysql.connect()
