@@ -28,10 +28,16 @@ def crear_Producto():
             
             nom_proveedor = proveedores[0]
             print(nom_proveedor)
-            ref_prod_1 = request.form['ref_prod_1']
-            ref_prod_2 = request.form['ref_prod_2']
-            ref_prod_3 = request.form['ref_prod_3']
-            categoria = request.form['categorias']
+            categorias_activas = request.form['categorias']
+            sql =f"SELECT nom_categoria FROM categorias WHERE id_categoria= '{categorias_activas}' AND estado_categorias = 'ACTIVO'"
+            cursor.execute(sql)
+            categorias = cursor.fetchall()
+
+            nom_categoria = categorias[0]
+            ref_produ_1 = request.form['ref_produ_1']
+            ref_produ_2 = request.form['ref_prod_2']
+            ref_produ_3 = request.form['ref_prod_3']
+        
             nombre_producto = request.form['nombre_producto']
             precio_compra = request.form['precio_compra']
             precio_venta = request.form['precio_venta']
@@ -43,7 +49,7 @@ def crear_Producto():
             tiempoRegistro = datetime.datetime.now()
 
             
-            Dproductos.crearProductos([ref_prod_1, ref_prod_2, ref_prod_3, categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
+            Dproductos.crearProductos([ref_produ_1, ref_produ_2, ref_produ_3, categorias_activas, nom_categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
             return redirect(url_for('muestra_Productos'))
             
         conn = mysql.connect()
@@ -103,7 +109,7 @@ def editar_producto(id_producto):
     print("Entrando a editar un Producto")
 
     if "nom_empleado" in session: 
-        sql = f"SELECT id_producto, ref_prod_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante FROM productos WHERE id_producto='{id_producto}'"
+        sql = f"SELECT *  WHERE id_producto='{id_producto}'"
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql)
@@ -113,7 +119,7 @@ def editar_producto(id_producto):
         return render_template("productos/edita_productos.html", resul= resultado[0])
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('index'))      
+        return redirect(url_for('index'))
 
 
 @app.route('/modificar_Producto', methods=['POST'])
@@ -137,7 +143,7 @@ def modificar_Producto():
 
             try:
                 id_producto = request.form['id_producto']
-                referencia_producto = request.form['referencia_producto']
+                ref_produ_1 = request.form['ref_produ_1']
                 ref_produ_2 = request.form['ref_produ_2']
                 ref_produ_3 = request.form['ref_produ_3']
                 nom_categoria = request.form['nom_categoria']
@@ -151,7 +157,7 @@ def modificar_Producto():
                 ubicacion = request.form['ubicacion']
                 estante = request.form['estante']
 
-                datos_modificar = [id_producto, referencia_producto, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, documento_registro, nombre_operador, apellido_operador]
+                datos_modificar = [id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, documento_registro, nombre_operador, apellido_operador]
 
                 # Imprime los datos que estás pasando a Dproductos.modificar
                 print("Datos a modificar:", datos_modificar)
@@ -177,12 +183,26 @@ def modificar_Producto():
 
  
 
-@app.route('/borra_produc/<idprod>')
-def borra_produc(idprod):
+""" @app.route('/borra_produc/<id_producto>')
+def borra_produc(id_producto):
+    print(id_producto)
     if "nom_empleado" in session: 
-        Dproductos.borrar_producto(idprod)        # Eliminar productos
+        Dproductos.borrar_producto(id_producto)        # Eliminar productos
         return redirect("/muestra_productos")   
     else:
         flash('Algo esta mal en los datos digitados')
-        return redirect(url_for('home'))
+        return redirect(url_for('index')) """
+
+@app.route('/borra_produc/<string:id_producto>', methods=['GET', 'POST'])
+def borra_produc(id_producto):
+    print(id_producto)
+    print("aca voy")
+    if "nom_empleado" in session: 
+        Dproductos.borrar_producto(id_producto)  
+        print("aca voy", id_producto)    
+        return redirect('/muestra_productos')   
+    else:
+        flash('Algo está mal en los datos digitados')
+        return redirect(url_for('index'))
+
     

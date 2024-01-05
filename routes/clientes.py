@@ -76,7 +76,7 @@ def edit_cliente(documento):
 @app.route("/Actualizar_clie", methods=['POST','GET'])
 def Actualizar_clie():
     if "nom_empleado" in session:
-        doc = session["doc_empleado"]
+        doc = session["nom_empleado"]
         bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE nom_empleado='{doc}'"
         conn = mysql.connect()
         cursor = conn.cursor()

@@ -9,6 +9,7 @@ from routes.cotizaciones import cotizaciones
 from routes.proveedores import proveedores
 from routes.abonos import Dabonos
 from routes.categoria import categorias
+from routes.compra_proveedores import Dcompra_proveedores
 
 
     
