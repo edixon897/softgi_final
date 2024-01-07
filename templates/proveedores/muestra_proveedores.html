@@ -9,13 +9,10 @@
 <body>
     
     <h1>Proveedores</h1>
-    <a class="crear-prov" href="{{url_for('buscarProvedores')}}">Buscar Proveedores</a>
     <div id="crear-prov">
-    <a class="crear-prov" href="{{url_for('proveedores')}}">Crear Proveedores</a>
+    <a class="crear-prov" href="{{url_for('crear_Proveedores')}}">Crear Proveedores</a>
     </div>
-    <div>
-        <a class="crear-prov1" href="{{url_for('muestra_compra_proved')}}">Compras</a>
-    </div>
+    
     <br>
 
     <table class="content-table" id="tabla_productos">
@@ -40,11 +37,11 @@
                     {% endfor %}
 
                         <td>
-                            <a class="boton-editar" href="/muestra_info_prov/{{c[0]}}">Editar</a>
+                            <a class="boton-editar" href="/actializarProveedor/{{c[0]}}">Editar</a>
                         </td>
 
                         <td>
-                            <a class="boton-eliminar"  onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraprovee/{{c[0]}}">Eliminar</a>
+                            <a class="boton-eliminar"  onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraProveedor/{{c[0]}}">Eliminar</a>
                         </td>
 
                 </tr>
