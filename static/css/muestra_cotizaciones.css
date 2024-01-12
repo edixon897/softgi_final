@@ -86,6 +86,21 @@ section#contenido{
             text-align: left;
         }
 
+/* div#boton-atras {
+
+} */
+    div#boton-atras a#enlace_volver {
+        background-color: #57A8CE;
+        color: #fff;
+        margin: 18px;
+        padding: 3px;
+        text-decoration: none;
+        text-align: center;
+        padding: 3px;
+        border-radius: 3px;  
+        font-size: 1em;
+    }
+
     
 
 div#buscar{

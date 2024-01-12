@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proveedores</title>
     <title>Cotizaciones</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/muestra_cotizaciones.css">
@@ -72,7 +71,7 @@
 
     
             <div id="boton-atras">
-                <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
+                <a href="{{url_for ('inicio') }}" id="enlace_volver">Volver a pagina principal</a>
             </div>
     </main>
     {% with messages = get_flashed_messages() %}
