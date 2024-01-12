@@ -130,12 +130,29 @@ main#inicio {
 
 
         div#conten_buttons {
-            width: 15%;
+            width: 35%;
             height: 16%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+            button#boton_registrar {
+                background-color: #358CB4;
+                border: none;
+                color: #fff;
+                width: 45%;
+                height: 40%;
+                border-radius: 8px;
+                font-size: 1.0em;
+            }
+            a#enlace_regresar {
+                padding: 1.7% 18%;
+                background-color: rgb(255, 255, 255);
+                border: 1px solid #57A8CE;
+                border-radius: 8px;
+                text-decoration: none;
+                color: #57A8CE;
+            }
 
     
 
@@ -148,6 +165,7 @@ main#inicio {
     padding-left: 4%;
     padding-right: 4%;
     font-size: 1.0em;
+    outline: none;
 }
 
 
@@ -158,13 +176,24 @@ main#inicio {
 }
 @media screen and (max-width: 500px) {
     section#lado_info_personal {
-        border-right: 0px solid #BBBBBB;
+        border-right: 0px solid #ffffff;
         width: 100%;
     }
 }
 @media screen and (max-width: 500px) {
     section#lado_info_contacto {
-        border-right: 0px solid #BBBBBB;
+        border-left: 0px solid #ffffff;
         width: 100%;
+    }
+}
+@media screen and (max-width: 500px) {
+    div#conten_buttons {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    a#enlace_regresar {
+        padding: 2% 18%;
     }
 }
