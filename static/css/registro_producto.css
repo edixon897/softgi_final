@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
-/* font-family: 'Barlow', sans-serif;
-font-family: 'Lato', sans-serif; */
+
+
 *{
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
@@ -17,60 +17,349 @@ body{
     font-weight: 300;
 }
 
+figure{
+    margin: 0;
+    padding: 0;
+}
+
 figure img{
     margin: 0;
     width: 100%;
 }
-
-main#inicio{
+h2 {
     margin: 0;
-    min-height: 100vh;
-    overflow: hidden;
+}
+p {
+    margin: 0;
+}
+
+/* PARATRIZACION */
+
+main#inicio {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    section#conten_titulo_1 {
+        width: 100%;
+        height: 10%;
+/*         background-color: aqua; */
+        display: flex;
+        align-items: center;
+    }
+        div#conten_titulo_lado_1 {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+            div#conten_titulo_lado_1 h2 {
+                color: #454545;
+                font-size: 1.5em;
+                font-weight: 500;
+                margin-left: 3%;
+            }
+        div#conten_titulo_lado_2 {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+            /* barra de progreso  */
+            div#barra_progreso_1 {
+                border-top: 1px solid #358CB4;
+                border-left: 1px solid #358CB4;
+                border-bottom: 1px solid #358CB4;
+                background-color: #358CB4;
+                border-top-left-radius: 8px;
+                border-bottom-left-radius: 8px;
+                width: 20%;
+                height: 20%;
+            }
+            div#barra_progreso_2 {
+                border-top: 1px solid #358CB4;
+                border-bottom: 1px solid #358CB4;
+                
+                width: 20%;
+                height: 20%;
+            }
+            div#barra_progreso_3 {
+                border-top: 1px solid #358CB4;
+                border-bottom: 1px solid #358CB4;
+                border-right: 1px solid #358CB4 ;
+                border-bottom-right-radius: 8px;
+                border-top-right-radius: 8px;
+                width: 20%;
+                height: 20%;
+            }/* -------------------- */
+
+
+
+    /* parte completa formulario */
+    form#conten_formulario_2 {
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        /* sesion formulario 1 */
+        div.conten_FORM {
+            width: 100%;
+            height: 84%;
+            display: flex;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+            section.lado_info_personal {
+               /*  background-color: lawngreen; */
+                width: 50%;
+                height: 100%;
+                border-right: 1px solid #BBBBBB;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+                div#conten_titulo_div {
+                    /* background-color: blue; */
+                    width: 80%;
+                    height: 10%;
+                    display: flex;
+                    align-items: center;
+                    color: #57A8CE;
+                    font-weight: 500;
+                }
+                div.conten_inputs_1 {
+                    width: 80%;
+                    height: 80%;               
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-evenly;
+                }
+
+                
+            section.lado_info_contacto {
+                /* background-color: #454545; */
+                width: 50%;
+                height: 100%;
+                border-left: 1px solid #BBBBBB;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+                div.conten_titulo_div_2 {
+                    width: 80%;
+                    height: 10%;
+                    display: flex;
+                    align-items: center;
+                    color: #57A8CE;
+                    font-weight: 500;
+                }
+                div.content_inputs_2 {
+                    width: 80%;
+                    height: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-evenly;
+                }
+
+            /* sesion formulario 2 */
+            section#sesion_formulari_2 {
+                display: flex;
+                overflow: hidden;
+                background-color: white;
+                position: absolute;
+                z-index: 2;
+                width: 100%;
+                height: 100%;
+                right: -100%;
+            }
+
+            /* sesion formulario 3 */
+            section#sesion_formulari_3 {
+                display: flex;
+                overflow: hidden;
+                background-color: white;
+                position: absolute;
+                z-index: 3;
+                width: 100%;
+                height: 100%;
+                right: -100%;
+            }
+
+
+
+
+
+        div#conten_buttons {
+            width: 35%;
+            height: 16%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+            position: relative;
+            overflow: hidden;
+        }
+            div.conten_buttons_2 {
+                width: 45%;
+                height: 30%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+            .boton_registrar {
+                background-color: #358CB4;
+                border: none;
+                color: #fff;
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+                font-size: 1.0em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+                .boton_registrar:hover {
+                    cursor: pointer;
+                }
+            a.stylo_btn_regresar {
+                width: 100%;
+                height: 100%;
+                background-color: rgb(255, 255, 255);
+                border: 1px solid #57A8CE;
+                border-radius: 8px;
+                text-decoration: none;
+                color: #57A8CE;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+        /* sesion botones formulario 2 */
+        section#sesion_boton_2{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            right: -200%;
+            background-color: white;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        section#sesion_boton_3{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            right: -200%;
+            background-color: white;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+    
+
+/* CLASES */
+
+
+
+.campo_2 {
     position: relative;
     width: 100%;
+    height: 18%;
+}
+    .campo_2 .input_campo {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        font-size: 1.0em;
+        outline: none;
+        padding-left: 4%;
+        padding-right: 4%;
+        border: 1px solid #BBBBBB;
+
+    }
+    .campo_2 label {
+        position: absolute;
+        left: 4%;
+        top: 8;
+        font-size:0.9em;
+        transform: translateY(-50%);
+        color: #BBBBBB;
+        pointer-events: none;
+        font-weight: 400;
+        background-color: #fff;
+    }
+
+p.icono_listo i {
+    color: #BBBBBB;
+    font-size: 5.4em;
 }
 
-#btn-registro{
-    background-color: #358CB4;
-    border: none;
-    border-radius: 5px;
-    margin: 12px;
-    padding: 8px;
+
+
+
+
+@media screen and (max-width: 500px) {
+    .conten_FORM {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 500px) {
+    section.lado_info_personal {
+        border-right: 0px solid #ffffff;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 500px) {
+    section.lado_info_contacto {
+        border-left: 0px solid #ffffff;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 500px) {
+    div#conten_buttons {
+        width: 90%;
+    }
 }
 
-#btn-atras {
-    background-color: #57a8ce;
-    border: none;
-    border-radius: 5px;
-    margin: 12px;
-    padding: 8px;
+@media screen and (max-width: 500px) {
+    a#enlace_regresar {
+        padding: 2% 18%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    div#conten_titulo_lado_1 h2 {
+        font-size: 1.0em;
+    }
 }
 
 
-/* -------------------------CLASES----------------- */
 
-.campos{
-    margin: 12px;
-    position: relative;
-    width: 80%;
-
+@media screen and (max-width: 500px) {
+    #sesion_formulari_2 {
+        flex-direction: column;
+    }
 }
-.campo_icono > i{
-    border-radius: 10%;
-    color: #358CB4;
-    left: 7px;
-    padding: 10px;
-    position: absolute;
-    transform: translateY(40%);
-    z-index: 3;
-}
-
-/*---------------------------------REPONSIVE----------------------------------*/
-
-@media screen and (min-width: 700px){
-
-    #rol > #select{
-        width: 28%;
+@media screen and (max-width: 500px) {
+    #sesion_formulari_3 {
+        flex-direction: column;
     }
 }

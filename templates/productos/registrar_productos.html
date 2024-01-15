@@ -9,7 +9,355 @@
     
 </head>
 <body>
-    <div>
+
+    <main id="inicio">
+
+        <section id="conten_titulo_1">
+
+            <div id="conten_titulo_lado_1">
+                <h2>Registra Productos</h2>
+            </div>
+            <div id="conten_titulo_lado_2">
+                <div id="barra_progreso_1">
+
+                </div>
+                <div id="barra_progreso_2">
+
+                </div>
+                <div id="barra_progreso_3">
+                    
+                </div>
+            </div>
+
+            
+
+        </section>
+
+        <form action="/crear_Producto" method="post" id="conten_formulario_2">
+
+            <div class="conten_FORM">
+                
+
+                <section class="lado_info_personal">
+
+                    <div id="conten_titulo_div">
+                        <p>Referencias</p>
+                    </div>
+
+
+                    <div class="conten_inputs_1">
+                        
+
+
+                        <div class="campo_2">
+                            <input type="text" name="ref_produ_1" id="ref_produ_1" class="input_campo">
+                            <label id="ref_produ_1" for="nombre">Referencia 1</label>
+                        </div>
+
+                        <div class="campo_2">
+                            <input type="text" name="ref_prod_2" id="ref_prod_2"  class="input_campo">
+                            <label id="ref_prod_2" for="Apellidos">Referencia 2</label>
+                        </div>
+
+                        <div class="campo_2">
+                            <input type="text" name="ref_prod_3" id="ref_prod_3"  class="input_campo" >
+                            <label id="ref_prod_3" for="fecha">Referencia 3</label>
+                        </div>
+
+                    </div>
+                    
+                </section>
+
+                <section class="lado_info_contacto">
+
+                    <div class="conten_titulo_div_2">
+                        <p>Clasificacion</p>
+                    </div>
+
+                    <div class="content_inputs_2">
+
+                        <div class="campo_2">
+                            <select id="proveedor" name="proveedor" class="input_campo">
+                                <option value="" disabled selected>Selecciona un proveedor</option>
+                                {% for proveedor in proveedores %}
+                                <option value="{{ proveedor[0] }}">{{ proveedor[1] }}</option>
+                                {% endfor %}
+                            </select>
+                            <label  for="proveedor">Proveedor</label>
+                        </div>
+
+                        <div class="campo_2">
+                            <select id="categorias" name="categorias" class="input_campo">
+                                <option value="" disabled selected>Selecciona una categoria</option>
+                                {% for categoria in categorias %}
+                                    <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
+                                {% endfor %}
+                            </select>
+                            <label  for="categorias">categoria</label>
+                        </div>
+
+                        
+                    </div>
+
+                </section>
+
+
+
+
+
+
+
+                <!-- sesion 2 del formulario -->
+                <section id="sesion_formulari_2">
+
+                    <section class="lado_info_personal">
+
+                        <div id="conten_titulo_div">
+                            <p>Detalles producto</p>
+                        </div>
+    
+    
+                        <div class="conten_inputs_1">
+                            
+    
+    
+                            <div class="campo_2">
+                                <input type="text" name="nombre_producto" id="nombre_producto" class="input_campo" >
+                                <label for="nombre_producto">Nombre producto</label>
+                            </div>
+    
+                            <div class="campo_2">
+                                <input type="number" name="precio_compra" id="precio_compra"  class="input_campo" >
+                                <label  for="precio_compra">Precio compra</label>
+                            </div>
+    
+                            <div class="campo_2">
+                                <input type="number" name="precio_venta" id="precio_venta"  class="input_campo"         >
+                                <label  for="fecha">Precio venta</label>
+                            </div>
+    
+                            <div class="campo_2">
+                                <input type="text" name="descripcion" id="descripcion"  class="input_campo"         >
+                                <label  for="descripcion">Descripcion</label>
+                            </div>
+    
+                        </div>
+                        
+                    </section>
+
+                    <section class="lado_info_contacto">
+
+                        <div class="conten_titulo_div_2">
+                            <p>Existencia</p>
+                        </div>
+    
+                        <div class="content_inputs_2">
+    
+                            <div class="campo_2">
+                                <input type="number" name="cantidad_producto" id="cantidad_producto"  class="input_campo" >
+                                <label cantidad_producto for="cantidad_producto">Cantidad producto</label>
+                            </div>
+    
+                            <div class="campo_2">
+                                <input type="number" name="stockminimo" id="stockminimo"  class="input_campo">
+                                <label  for="stockminimo">Cantidad minima</label>
+                            </div>
+    
+    
+                            
+                        </div>
+    
+                    </section>
+    
+  
+                </section>
+
+
+
+
+
+
+                                <!-- sesion 2 del formulario -->
+                <section id="sesion_formulari_2">
+
+                    <section class="lado_info_personal">
+
+                        <div id="conten_titulo_div">
+                            <p>Detalles producto</p>
+                        </div>
+    
+    
+                        <div class="conten_inputs_1">
+                            
+    
+    
+                            <div class="campo_2">
+                                <input type="text" name="nombre_producto" id="nombre_producto" class="input_campo" >
+                                <label for="nombre_producto">Nombre producto</label>
+                            </div>
+    
+                            <div class="campo_2">
+                                <input type="number" name="precio_compra" id="precio_compra"  class="input_campo" >
+                                <label  for="precio_compra">Precio compra</label>
+                            </div>
+    
+                            <div class="campo_2">
+                                <input type="number" name="precio_venta" id="precio_venta"  class="input_campo"         >
+                                <label  for="fecha">Precio venta</label>
+                            </div>
+    
+                            <div class="campo_2">
+                                <input type="text" name="descripcion" id="descripcion"  class="input_campo"         >
+                                <label  for="descripcion">Descripcion</label>
+                            </div>
+    
+                        </div>
+                        
+                    </section>
+
+                    <section class="lado_info_contacto">
+
+                        <div class="conten_titulo_div_2">
+                            <p>Existencia</p>
+                        </div>
+    
+                        <div class="content_inputs_2">
+    
+                            <div class="campo_2">
+                                <input type="number" name="cantidad_producto" id="cantidad_producto"  class="input_campo" >
+                                <label cantidad_producto for="cantidad_producto">Cantidad producto</label>
+                            </div>
+    
+                            <div class="campo_2">
+                                <input type="number" name="stockminimo" id="stockminimo"  class="input_campo">
+                                <label  for="stockminimo">Cantidad minima</label>
+                            </div>
+    
+    
+                            
+                        </div>
+    
+                    </section>
+
+                </section>
+
+
+
+
+
+                <!-- sesion 3 del formulario -->
+                <section id="sesion_formulari_3">
+
+                    <section class="lado_info_personal">
+
+                        <div id="conten_titulo_div">
+                            <p>Ubicacion</p>
+                        </div>
+    
+    
+                        <div class="conten_inputs_1">
+                            
+    
+    
+                            <div class="campo_2">
+                                <select id="ubicacion" name="ubicacion" class="input_campo">
+                                    <option selected>Seleccione una ubicacion</option>
+                                    <option value="Bodega">Bodega</option>
+                                    <option value="Estante">Estante</option>
+                                    <option value="Almacen">Almacen</option>
+                                </select>
+                                <label  for="ubicacion">Ubicacion</label>
+                            </div>
+    
+                            <div class="campo_2">
+                                <input type="text" name="estante" id="estante"  class="input_campo" >
+                                <label  for="estante">Estante</label>
+                            </div>
+    
+    
+                        </div>
+                        
+                    </section>
+
+                    <section class="lado_info_contacto">
+
+                        <div class="conten_titulo_div_2">
+                            <p></p>
+                        </div>
+    
+                        <div class="content_inputs_2">
+    
+                            <p class="icono_listo"><i class="lni lni-checkmark"></i></p>
+                            
+                        </div>
+    
+                    </section>
+    
+  
+                        
+
+                </section>
+
+            </div>
+            <div id="conten_buttons">
+
+                <div class="conten_buttons_2">
+                    <a id="enlace_regresar" class="stylo_btn_regresar" href="/muestra_productos">Regresar</a><!-- <i class="lni lni-arrow-left"></i> -->
+                </div>
+                <div class="conten_buttons_2">
+                    <a id="btn-continuar_1" class="boton_registrar"><i class="lni lni-arrow-right"></i></a>
+                </div>
+                
+                
+                
+                <!-- <a href="" id="enlace_regresar">Volver</a>
+                <button type="submit" id="boton_registrar">Guardar</button> -->
+
+                <section id="sesion_boton_2">
+                    
+                    <div class="conten_buttons_2">
+                        <a id="btn-volver_1" class="stylo_btn_regresar"><i class="lni lni-arrow-left"></i></a>
+                    </div>
+
+                    <div class="conten_buttons_2">
+                        <a id="btn-continuar_2" class="boton_registrar"><i class="lni lni-arrow-right"></i></a>
+                    </div>
+                    
+                    
+                </section>
+
+                <section id="sesion_boton_3">
+                    <div class="conten_buttons_2">
+                        <a id="btn-volver_2" class="stylo_btn_regresar"><i class="lni lni-arrow-left"></i></a>
+                    </div>
+                    <div class="conten_buttons_2">
+                        <button class="boton_registrar">Registrar</button>
+                    </div>
+
+                    
+                </section>
+
+            </div>
+
+
+        </form>
+
+    </main>
+
+
+    <script src="../../static/javaScript/sesiones_formulario_registro_productos.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<!--     <div>
         <h2>Productos</h2>
     </div>
     <main id="inicio">
@@ -90,7 +438,7 @@
             <div class="campos">
                 <button class="boton-atras" onclick="window.location.href='/muestra_productos'" id="btn-atras">Regresar</button>
             </div>
-    </main>
+    </main> -->
         
 </body>
 </html>
