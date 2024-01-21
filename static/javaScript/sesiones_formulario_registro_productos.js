@@ -1,4 +1,8 @@
 
+
+/* -------------------- Desplazamiento del formulario -------------------------- */
+
+
 let boton_continuar_1 = document.getElementById('btn-continuar_1');
 
 boton_continuar_1.addEventListener("click", function () {
@@ -42,7 +46,6 @@ boton_continuar_2.addEventListener("click", function() {
 })
 
 
-
 let boton_volver_2 = document.getElementById('btn-volver_2');
 
 boton_volver_2.addEventListener("click", function() {
@@ -55,3 +58,54 @@ boton_volver_2.addEventListener("click", function() {
     barra_progreso_3.style.background = "white"
     
 });
+
+
+
+
+
+
+
+/*  animaciones envio formulario */
+
+function animacion_envio() {
+
+    let form = document.querySelector('form');
+
+    /* let proveedor = document.getElementById('proveedor').value; */
+    let nombre_producto = document.getElementById('nombre_producto').value;
+    let precio_venta = document.getElementById('precio_venta').value;
+    let cantidad_producto = document.getElementById('cantidad_producto').value;
+    let ubicacion = document.getElementById('ubicacion').value;
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault()
+    });
+
+
+    if ((nombre_producto.length > 0) && (precio_venta.length > 0 ) && (cantidad_producto.length > 0) && (ubicacion.length > 0)) {
+
+        Swal.fire({
+            icon: "success",
+            text: "Registrando producto",
+            width: "42%",
+            height: "20%",
+            timer: 1000,
+            showConfirmButton: false
+        });
+
+        setTimeout(function() {
+            form.submit()
+        }, 1100)
+
+    }else{
+
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Faltan campos por completar",
+            width: "50%",
+            height: "20%",
+            showConfirmButton: true
+        });
+    }
+};
