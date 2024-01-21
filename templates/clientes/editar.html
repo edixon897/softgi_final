@@ -104,9 +104,12 @@
 
             </div>
             <div id="conten_buttons">
-                
-                <a href="{{url_for('clientes')}}" id="enlace_regresar">Volver</a>
-                <button type="submit" id="boton_registrar">Guardar</button>
+                <div class="conten_buttons_2">
+                    <a href="{{url_for('clientes')}}" id="enlace_regresar">Volver</a>
+                </div>
+                <div class="conten_buttons_2">
+                    <button type="submit" id="boton_registrar" onclick="animacion_envio()" >Guardar</button>
+                </div>
             </div>
 
 
@@ -118,6 +121,7 @@
 
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/color_campo_edita_clientes.js"></script>
 
 

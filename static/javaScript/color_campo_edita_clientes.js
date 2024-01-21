@@ -1,3 +1,7 @@
+
+/*      Cambia el color de los inputs    */
+
+
 function campo_lleno1() {
     var documento = document.getElementById("documento");
     var valor = documento.value;
@@ -119,4 +123,46 @@ function campo_lleno9() {
     } else {
         ciudad.style.border = "1px solid #358CB4";
     }
+}
+
+
+
+/*  animaciones envio formulario */
+
+function animacion_envio() {
+
+    let form = document.querySelector('form');
+
+    let input_principal = document.getElementById('documento').value;
+
+    form.addEventListener("submit", function(event) {
+        event.defaultPrevented()
+    });
+
+    if (input_principal.length > 0) {
+        Swal.fire({
+            icon: "success",
+            text: "Guardando cambios",
+            width: "42%",
+            height: "20%",
+            timer: 1000,
+            showConfirmButton: false
+        });
+
+        setTimeout( function() {
+            form.submit()
+        } ,1100)
+
+    } else {
+        
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Campo principal vacio",
+            width: "50%",
+            height: "20%",
+            showConfirmButton: true
+        });
+    }
+
 }
