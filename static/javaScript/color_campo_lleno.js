@@ -104,3 +104,28 @@ function campo_lleno9() {
         ciudad.style.border = "1px solid black";
     }
 }
+
+
+
+
+/* Muestra mensaje de error */
+function verifica_input() {
+    var input_error = document.getElementById("input_error");
+    var valorInput = input_error.value;
+
+    if (valorInput == 1) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "El usuario ya existe",
+            width: "50%",
+            height: "20%",
+            showConfirmButton: true
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Llama a la función handleInput para realizar la verificación inicial
+    verifica_input();
+});

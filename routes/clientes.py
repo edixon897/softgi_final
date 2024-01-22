@@ -51,9 +51,13 @@ def crear_cliente():
             Dclientes.crear_cliente([doc_cliente, nom_cliente, ape_cliente, fecha_nacimiento_cliente, contacto_cliente, email_cliente, direccion_cliente, ciudad_cliente, tipo_persona, tiempo, documento_registro, nombre_operador, apellido_operador])
             return redirect('/clientes')
         else:
-            mensaje="Cliente ya existe"
+            """ mensaje="Cliente ya existe"
             cliente =[doc_cliente, nom_cliente, ape_cliente, contacto_cliente, email_cliente, direccion_cliente, ciudad_cliente, tipo_persona]
-            return render_template('clientes/clientes.html', mensaje=mensaje, cliente=cliente)
+            return render_template('clientes/clientes.html', mensaje=mensaje, cliente=cliente) """
+            mensaje = 1
+            return render_template('clientes/registrar.html', mensaje=mensaje)
+
+
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
