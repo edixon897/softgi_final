@@ -129,3 +129,45 @@ document.addEventListener("DOMContentLoaded", function() {
     // Llama a la función handleInput para realizar la verificación inicial
     verifica_input();
 });
+
+
+
+/* Muestra animacion envio formulario */
+function animacion_envio() {
+
+    let form = document.querySelector("form");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault()
+    });
+
+    let documento = document.getElementById("documento").value;
+    let nombre = document.getElementById("nombre").value;
+    let apellido = document.getElementById("apellido").value;
+    let fecha = document.getElementById("fecha").value;
+
+    if ((documento.length > 0) && (nombre.length > 0) && (apellido.length > 0) && (fecha.length > 0)) {
+        Swal.fire({
+            icon: "success",
+            text: "Registrando cliente",
+            width: "42%",
+            height: "20%",
+            timer: 1000,
+            showConfirmButton: false
+        });
+
+        setTimeout(function(){
+            form.submit()
+        },1100);
+
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Faltan campos por completar",
+            width: "50%",
+            height: "20%",
+            showConfirmButton: true
+        }); 
+    };
+}
