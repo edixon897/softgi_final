@@ -53,11 +53,44 @@ main#inicio {
         align-items: center;
         
     }
+    div#conten_titulo_lado_1 {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
         section#conten_titulo_1 h2 {
             color: #454545;
             font-size: 1.5em;
             font-weight: 500;
         }
+    div#conten_titulo_lado_2 {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+                /* barra de progreso  */
+                div#barra_progreso_1 {
+                    border-top: 1px solid #358CB4;
+                    border-left: 1px solid #358CB4;
+                    border-bottom: 1px solid #358CB4;
+                    background-color: #358CB4;
+                    border-top-left-radius: 8px;
+                    border-bottom-left-radius: 8px;
+                    width: 20%;
+                    height: 20%;
+                }
+                div#barra_progreso_3 {
+                    border-top: 1px solid #358CB4;
+                    border-bottom: 1px solid #358CB4;
+                    border-right: 1px solid #358CB4 ;
+                    border-bottom-right-radius: 8px;
+                    border-top-right-radius: 8px;
+                    width: 20%;
+                    height: 20%;
+                }/* -------------------- */
 
     form#conten_formulario_2 {
         width: 100%;
@@ -72,9 +105,12 @@ main#inicio {
             width: 100%;
             height: 84%;
             display: flex;
-            
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-            section#lado_info_personal {
+
+            section.lado_info_personal {
                /*  background-color: lawngreen; */
                 width: 50%;
                 height: 100%;
@@ -83,7 +119,7 @@ main#inicio {
                 flex-direction: column;
                 align-items: center;
             }
-                div#conten_titulo_div {
+                div.conten_titulo_div {
                     /* background-color: blue; */
                     width: 80%;
                     height: 10%;
@@ -92,7 +128,7 @@ main#inicio {
                     color: #57A8CE;
                     font-weight: 500;
                 }
-                div#conten_inputs_1 {
+                div.conten_inputs_1 {
                     width: 80%;
                     height: 80%;               
                     display: flex;
@@ -102,7 +138,7 @@ main#inicio {
                 }
 
                 
-            section#lado_info_contacto {
+            section.lado_info_contacto {
                 /* background-color: #454545; */
                 width: 50%;
                 height: 100%;
@@ -110,8 +146,9 @@ main#inicio {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                
             }
-                div#conten_titulo_div_2 {
+                div.conten_titulo_div_2 {
                     width: 80%;
                     height: 10%;
                     display: flex;
@@ -119,7 +156,7 @@ main#inicio {
                     color: #57A8CE;
                     font-weight: 500;
                 }
-                div#content_inputs_2 {
+                div.content_inputs_2 {
                     width: 80%;
                     height: 80%;
                     display: flex;
@@ -128,13 +165,26 @@ main#inicio {
                     justify-content: space-evenly;
                 }
 
+        div#conten_FORM_2 {
+            display: flex;
+            position: absolute;
+            background-color: #ffffff;
+            width: 100%;
+            height: 100%;
+            left: 100%;
+            z-index: 2;
+        }
+
 
         div#conten_buttons {
             width: 35%;
             height: 16%;
             display: flex;
+            position: relative;
             justify-content: space-between;
             align-items: center;
+            overflow: hidden;
+            z-index: 1;
         }
             div.conten_buttons_2 {
                 width: 45%;
@@ -143,7 +193,7 @@ main#inicio {
                 justify-content: center;
                 align-items: center;
             }
-                button#boton_registrar {
+                .boton_registrar {
                     background-color: #358CB4;
                     border: none;
                     color: #fff;
@@ -155,11 +205,11 @@ main#inicio {
                     align-items: center;
                     justify-content: center;
                 }
-                    button#boton_registrar:hover {
+                    .boton_registrar:hover {
                         cursor: pointer;
                     }
 
-                a#enlace_regresar {
+                a.enlace_regresar {
                     width: 100%;
                     height: 100%;
                     background-color: rgb(255, 255, 255);
@@ -171,6 +221,18 @@ main#inicio {
                     align-items: center;
                     justify-content: center;
                 }
+
+        div#sesion_buttons_2 {
+            position: absolute;
+            background-color: #ffffff;
+            width: 100%;
+            height: 100%;
+            left: 200%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
     
 
@@ -187,19 +249,62 @@ main#inicio {
 }
 
 
+
+.campo_2 {
+    position: relative;
+    width: 100%;
+    height: 18%;
+}
+    .campo_2 .input_campo {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        font-size: 1.0em;
+        outline: none;
+        padding-left: 4%;
+        padding-right: 4%;
+        border: 1px solid #BBBBBB;
+    }
+    .campo_2 label {
+        position: absolute;
+        left: 4%;
+        top: 8;
+        font-size:0.9em;
+        transform: translateY(-50%);
+        color: #BBBBBB;
+        pointer-events: none;
+        font-weight: 400;
+        background-color: #fff;
+    }
+
+    p.icono_listo i {
+        color: #BBBBBB;
+        font-size: 5.4em;
+    }
+
+
+
+
 @media screen and (max-width: 500px) {
     #conten_FORM {
         flex-direction: column;
     }
 }
+
 @media screen and (max-width: 500px) {
-    section#lado_info_personal {
+    #conten_FORM_2 {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    section.lado_info_personal {
         border-right: 0px solid #ffffff;
         width: 100%;
     }
 }
 @media screen and (max-width: 500px) {
-    section#lado_info_contacto {
+    section.lado_info_contacto {
         border-left: 0px solid #ffffff;
         width: 100%;
     }
@@ -211,7 +316,13 @@ main#inicio {
 }
 
 @media screen and (max-width: 500px) {
-    a#enlace_regresar {
+    a.enlace_regresar {
         padding: 2% 18%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    div#conten_titulo_lado_1 h2 {
+        font-size: 1.0em;
     }
 }

@@ -1,3 +1,6 @@
+
+/* Cambia color campo lleno */
+
 function campo_lleno1() {
     var documento = document.getElementById("documento");
     var valor = documento.value;
@@ -126,7 +129,7 @@ function verifica_input() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Llama a la función handleInput para realizar la verificación inicial
+    // Llama a la función para realizar la verificación inicial
     verifica_input();
 });
 
@@ -170,4 +173,27 @@ function animacion_envio() {
             showConfirmButton: true
         }); 
     };
+}
+
+
+/* Manejo de sesiones formulario */
+
+function desplaza_form() {
+    let conten_FORM_2 = document.getElementById("conten_FORM_2");
+    let sesion_buttons_2 = document.getElementById("sesion_buttons_2");
+    let barra_progreso_2 = document.getElementById("barra_progreso_3");
+
+    conten_FORM_2.style.left = "0%";
+    sesion_buttons_2.style.left = "0%";
+    barra_progreso_2.style.background = "#358CB4"
+}
+
+function desplaza_form_regreso() {
+    let conten_FORM_2 = document.getElementById("conten_FORM_2");
+    let sesion_buttons_2 = document.getElementById("sesion_buttons_2");
+    let barra_progreso_2 = document.getElementById("barra_progreso_3");
+
+    conten_FORM_2.style.left = "100%";
+    sesion_buttons_2.style.left = "200%";
+    barra_progreso_2.style.background = "white"
 }

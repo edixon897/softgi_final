@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de clientes</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/registra_clientes.css">
     
 </head>
@@ -12,7 +13,18 @@
 
         <section id="conten_titulo_1">
 
-            <h2>Registrar cliente</h2>
+
+            <div id="conten_titulo_lado_1">
+                <h2>Registrar cliente</h2>
+            </div>
+            <div id="conten_titulo_lado_2">
+                <div id="barra_progreso_1">
+
+                </div>
+                <div id="barra_progreso_3">
+                    
+                </div>
+            </div>
 
         </section>
 
@@ -22,50 +34,68 @@
 
             
 
-                <section id="lado_info_personal">
+                <section class="lado_info_personal">
 
-                    <div id="conten_titulo_div">
+                    <div class="conten_titulo_div">
                         <p>Info personal</p>
                     </div>
 
 
-                    <div id="conten_inputs_1">
-
+                    <div class="conten_inputs_1">
+                        
                         <input type="hidden" value="{{mensaje}}" id="input_error" oninput="verifica_input()" readonly>
 
-                        <input type="number" name="doc_cliente" id="documento" placeholder="Documento" class="campo" oninput="campo_lleno1()">
-                            
-                        <input type="text" name="nom_cliente" id="nombre" placeholder="Nombres" class="campo" oninput="campo_lleno2()">
 
-                        <input type="text" name="ape_cliente" id="apellido" placeholder="Apellidos" class="campo" oninput="campo_lleno3()">
 
-                        <input type="date" name="fecha_nacimiento_cliente" id="fecha" placeholder="Fecha de nacimiento" class="campo" oninput="campo_lleno4()">
+                        <div class="campo_2">
+                            <input type="number" name="doc_cliente" id="documento" class="input_campo" oninput="campo_lleno1()">
+                            <label for="documento">Documento</label>
+                        </div>
+                        
+                        <div class="campo_2">
+                            <input type="text" name="nom_cliente" id="nombre"  class="input_campo" oninput="campo_lleno2()">
+                            <label for="nombre">Nombres</label>
+                        </div>
+                       
 
-                        <select id="opt" name="tipopersona" class="campo" oninput="campo_lleno5()">
-                            <option value="">seleciona tipo de persona</option>
-                            <option value="natural">Natural</option>
-                            <option value="juridica">Juridica(representante legal)</option>
-                        </select>
+                        <div class="campo_2">
+                            <input type="text" name="ape_cliente" id="apellido" class="input_campo" oninput="campo_lleno3()">
+                            <label for="apellido">Apellidos</label>
+                        </div>
+                        
+
+                        
+
+                        
 
                     </div>
                     
                 </section>
 
-                <section id="lado_info_contacto">
+                <section class="lado_info_contacto">
 
-                    <div id="conten_titulo_div_2">
-                        <p>contacto</p>
+                    <div class="conten_titulo_div_2">
+                        <p>Info personal</p>
                     </div>
 
-                    <div id="content_inputs_2">
+                    <div class="content_inputs_2">
 
-                        <input type="number" name="contacto_cliente" id="contacto" placeholder="Numero de contacto" class="campo" oninput="campo_lleno6()">
+                        <div class="campo_2">
+                            <input type="date" name="fecha_nacimiento_cliente" id="fecha" class="input_campo" oninput="campo_lleno4()">
+                            <label for="fecha">Fecha de nacimiento</label>
+                        </div>
+                        
 
-                        <input type="email" name="email_cliente" id="correo" placeholder="email" class="campo" oninput="campo_lleno7()">
+                        <div class="campo_2">
+                            <select id="opt" name="tipopersona" class="input_campo" oninput="campo_lleno5()">
+                                <option value="">seleciona tipo de persona</option>
+                                <option value="natural">Natural</option>
+                                <option value="juridica">Juridica(representante legal)</option>
+                            </select>
+                            <label for=""></label>
+                        </div>
+                        
 
-                        <input type="text" name="direccion_cliente" id="direccion" placeholder="Dirección" class="campo" oninput="campo_lleno8()">
-
-                        <input type="text" name="ciudad_cliente" id="ciudad" placeholder="ciudad" class="campo"  oninput="campo_lleno9()">
 
                     </div>
 
@@ -73,13 +103,92 @@
                 </section>
 
 
+
+
+
+
+
+
+                <div id="conten_FORM_2">
+
+
+
+                    
+                    <section class="lado_info_personal">
+
+                        <div class="conten_titulo_div">
+                            <p>contacto y ubicacion</p>
+                        </div>
+    
+    
+                        <div class="conten_inputs_1">
+    
+                            <div class="campo_2">
+                                <input type="number" name="contacto_cliente" id="contacto" placeholder="" class="input_campo" oninput="campo_lleno6()">
+                                <label for="contacto">Telefono</label>
+                            </div>
+                            
+    
+                            <div class="campo_2">
+                                <input type="email" name="email_cliente" id="correo" placeholder="" class="input_campo" oninput="campo_lleno7()">
+                                <label for="correo">Email</label>
+                            </div>
+                            
+    
+                            <div class="campo_2">
+                                <input type="text" name="direccion_cliente" id="direccion" placeholder="" class="input_campo" oninput="campo_lleno8()">
+                                <label for="dirección">Dirección</label>
+                            </div>
+                            
+                            <div class="campo_2">
+                                <input type="text" name="ciudad_cliente" id="ciudad" placeholder="ciudad" class="input_campo"  oninput="campo_lleno9()">
+                                <label for="ciudad">Ciudad</label>
+                            </div>
+                            
+    
+                        </div>
+                        
+                    </section>
+    
+                    <section class="lado_info_contacto">
+    
+                        <div class="conten_titulo_div_2">
+                            <p></p>
+                        </div>
+    
+                        <div class="content_inputs_2">
+    
+                            <p class="icono_listo"><i class="lni lni-user"></i></p>
+    
+                        </div>
+    
+    
+                    </section>
+
+                </div>
+
+
             </div>
+
+
+
             <div id="conten_buttons">
                 <div class="conten_buttons_2">
-                    <a href="{{url_for('clientes')}}" id="enlace_regresar">Volver</a>
+                    <a href="{{url_for('clientes')}}" class="enlace_regresar">Volver</a>
                 </div>
                 <div class="conten_buttons_2">
-                    <button type="submit" id="boton_registrar" onclick="animacion_envio()">registrar</button>
+                    <a onclick="desplaza_form()" class="boton_registrar"><i class="lni lni-arrow-right"></i></a>
+                </div>
+
+
+
+                <div id="sesion_buttons_2">
+                    <div class="conten_buttons_2">
+                        <a onclick="desplaza_form_regreso()" class="enlace_regresar"><i class="lni lni-arrow-left"></i></a>
+                    </div>
+                    <div class="conten_buttons_2">
+                        <button type="submit" class="boton_registrar" onclick="animacion_envio()">registrar</button>
+                    </div>
                 </div>
                 
                 
