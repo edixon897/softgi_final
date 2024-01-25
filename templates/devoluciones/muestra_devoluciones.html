@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muestra devoluciónes</title>
+    <link rel="stylesheet" href="../../static/css/muestra_devoluciones.css">
+</head>
+<body>
+
+    <h1>Devoluciónes</h1>
+    <div id="muestra-devoluciones">
+        <a class="boton-editar"  href="{{url_for('crear_devolucion')}}">Registrar devolución</a>
+    </div>
+
+
+    <table class="content-tabla" id="tabla-devoluciones">
+        <thead>
+            <tr>
+                <th>Id devolución</th>
+                <th>Numero factura</th>
+                <th>Documento operador</th>
+                <th>Nombre empleado</th>
+                <th>Apellido empleado</th>
+                <th>Nombre del cliente</th>
+                <th>Fecha de la devolución</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dato in datos %}
+                <tr>
+                    {% for i in range(0,7) %}
+
+                        <td>{{dato[i]}}</td>
+
+                    {% endfor %}
+                        <td></td>
+                        <td>
+                            <a class="boton-editar" href="/modificar_devolucion/{{dato[0]}}" >Editar</a>
+                        </td>
+
+                        <td>
+                            <a class="boton-eliminar" onclick="return confirm('Seguro que deseas eliminar esta devolución?')" href="/borra_devoluc/{{dato[0]}}">Eliminar</a>
+                        </td>
+
+                </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+
+    <div id="regresar">
+        <a href="{{url_for ('inicio') }}" class="campo_a">
+            <p class="color_p">Volver a pagina principal</p>
+        </a>
+    </div>
+
+</body>
+</html>
+    
+</body>
+</html>

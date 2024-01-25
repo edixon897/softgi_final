@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de las devoluciones</title>
+    <link rel="stylesheet" href="../../static/css/muestra_devoluciones.css">
+</head>
+<body>
+    <h1>Detalle de las devoluciones</h1>
+    <div id="mostrar-detalle">
+        <a class="crear-prov" href="{{url_for('detalleDevolcuiones')}}">Crear detalle de cotizacion</a>
+    </div>
+    <br>
+
+    <table class="content-table" id="tabla_productos">
+        <thead>
+            <tr>
+                <th>Numero de detalle</th>
+                <th>Numero de devolución</th>
+                <th>Producto en devolución</th>
+                <th>Cantidad de productos</th>
+                <th>Valor del producto</th>
+                <th>Motivo de la devolución</th>
+                <th>Valor total</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dato in datos %}
+            <tr>
+                {% for i in range(0,5) %}
+
+                <td>{{dato[i]}}</td>
+
+                {% endfor %}
+
+                <td>
+                    <a class="boton-editar" href="editarDetalleDevolucion/{{dato[0]}}">Editar</a>
+                </td>
+
+                <td>
+                    <a class="boton-eliminar" onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraDetalleCotizacion/{{dato[0]}}">Eliminar</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="boton-atras">
+        <button class="boton-atras" onclick="window.location.href='/index'">Regresar al Home</button>
+    </div>
+</body>
+</html>
+</body>
+</html>
