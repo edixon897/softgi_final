@@ -103,7 +103,7 @@ def cancelar_compra_proveed(num_compra):
 def edita_compras_provee(num_compra):
     if "nom_empleado" in session:
 
-        sql = f"SELECT num_compra, producto_compra, cantidad_producto_compra, valorunidad_prodcompra FROM detallecomprasproveedores WHERE num_compra = '{num_compra}' "
+        sql = f"SELECT detallenum_compra, producto_compra, cantidad_producto_compra, valorunidad_prodcompra FROM detallecomprasproveedores WHERE detallenum_compra = '{num_compra}' "
         conn = mysql.connect()
         cursor = conn.cursor()                  
         cursor.execute(sql)
