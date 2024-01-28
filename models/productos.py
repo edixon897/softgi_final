@@ -38,11 +38,16 @@ class Productos:
         else:
             return True
 
-
-    def modificar(self,productos):
-        sql=f"UPDATE productos SET id_producto='{productos[0]}', ref_produ_1='{productos[1]}', ref_produ_2='{productos[2]}', ref_produ_3='{productos[3]}', nom_categoria='{productos[4]}', nom_proveedor='{productos[5]}', nombre_producto='{productos[6]}', precio_compra='{productos[7]}', precio_venta='{productos[8]}', cantidad_producto='{productos[9]}', descripcion='{productos[10]}', stockminimo='{productos[11]}', ubicacion='{productos[12]}', estante='{productos[13]}',documento_operador='{productos[14]}', nombre_operador='{productos[15]}', apellido_operador='{productos[16]}', estado_producto='{productos[17]}' WHERE id_producto='{productos[0]}'"
-        self.cursor.execute(sql)
+    
+    def modificar(self, productos):
+        sql = "UPDATE productos SET id_producto=%s, ref_produ_1=%s, ref_produ_2=%s, ref_produ_3=%s, nom_categoria=%s, nom_proveedor=%s, nombre_producto=%s, precio_compra=%s, precio_venta=%s, cantidad_producto=%s, descripcion=%s, stockminimo=%s, ubicacion=%s, estante=%s WHERE id_producto=%s"
+        self.cursor.execute(sql, (
+            productos[0], productos[1], productos[2], productos[3], productos[4],
+            productos[5], productos[6], productos[7], productos[8], productos[9],
+            productos[10], productos[11], productos[12], productos[13], productos[0]
+        ))
         self.conexion.commit()
+
     
 
     

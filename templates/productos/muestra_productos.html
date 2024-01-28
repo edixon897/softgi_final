@@ -30,18 +30,18 @@
             <table>
                 <thead>
                     <tr id="tabla-productos">
-                        <th>Codigo numerico</th>
+                        <th>Id Producto</th>
                         <th>Referencia 1</th>
                         <th>Referencia 2</th>
                         <th>Referencia 3</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Categoria</th>
+                        <th>Nom Categoria</th>
+                        <th>Nom Proveedor</th>
+                        <th>Nom producto</th>
+                        <th>Precio comp</th>
+                        <th>Precio venta</th>
                         <th>Cantidad</th>
-                        <th>Stock mínimo</th>
-                        <th>Proveedor</th>
-                        <th>Costo</th>
-                        <th>Precio de venta</th>
+                        <th>Descripcion</th>
+                        <th>Stock</th>
                         <th>Ubicación</th>
                         <th>Estante</th>
                         <th></th>
@@ -66,13 +66,13 @@
                             <td>{{result[12]}}</td>
                             <td>{{result[13]}}</td>
                             <td class="btns_centro">
-                                <a href="/modificar_producto/{{resul[0]}}" >
+                                <a href="/modificar_Producto/{{result[0]}}" >
                                     <i class="lni lni-pencil"></i>
                                 </a>
                             </td>
 
                             <td class="btns_centro">
-                                <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borra_produc/{{resul[0]}}">
+                                <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borra_produc/{{result[0]}}">
                                     <i class="lni lni-trash-can"></i>
                                 </a>
                             </td>

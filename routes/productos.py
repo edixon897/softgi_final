@@ -70,7 +70,7 @@ def crear_Producto():
 @app.route('/muestra_productos')
 def muestra_Productos():
     if "nom_empleado" in session: 
-        sql = f"SELECT ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
+        sql = f"SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
         
         conn = mysql.connect()
         cursor = conn.cursor()
@@ -104,33 +104,33 @@ def buscar():
         return redirect(url_for('index'))
 
 
-@app.route("/modificar_producto/<id_producto>")
+@app.route("/modificar_Producto/<int:id_producto>")
 def editar_producto(id_producto):
-    print("Entrando a editar un Producto")
-
     if "nom_empleado" in session: 
-        sql = f"SELECT *  WHERE id_producto='{id_producto}'"
+        sql = "SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante FROM productos WHERE id_producto=%s"
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute(sql)
+        cursor.execute(sql, (id_producto,))
         resultado = cursor.fetchall()
-        print("Estos son los datos que trae de la BDD", resultado)
+        print("Este es el resultado:", resultado)
         conn.commit()
-        return render_template("productos/edita_productos.html", resul= resultado[0])
-    else:
-        flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('index'))
 
+        if resultado:
+            return render_template("productos/edita_productos.html", resul=resultado[0])
+        else:
+            flash('No se encontró el producto')
+    
+    return redirect(url_for('index'))
 
 @app.route('/modificar_Producto', methods=['POST'])
 def modificar_Producto():
     print("entrando a modificar")
     if "nom_empleado" in session:
         doc = session["nom_empleado"]
-        bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE nom_empleado='{doc}'"
+        sql = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE nom_empleado='{doc}'"
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute(bsq)
+        cursor.execute(sql)
         resultado = cursor.fetchone()
         print("Soy el empleado", resultado)
         documento_registro = resultado[0]
@@ -176,22 +176,10 @@ def modificar_Producto():
                 return redirect(url_for('index'))
         return render_template('muestra_productos.html')
 
-        # Resto del código...
     else:
         flash('Por favor, inicia sesión para poder acceder')
         return redirect(url_for('index'))
 
- 
-
-""" @app.route('/borra_produc/<id_producto>')
-def borra_produc(id_producto):
-    print(id_producto)
-    if "nom_empleado" in session: 
-        Dproductos.borrar_producto(id_producto)        # Eliminar productos
-        return redirect("/muestra_productos")   
-    else:
-        flash('Algo esta mal en los datos digitados')
-        return redirect(url_for('index')) """
 
 @app.route('/borra_produc/<string:id_producto>', methods=['GET', 'POST'])
 def borra_produc(id_producto):
