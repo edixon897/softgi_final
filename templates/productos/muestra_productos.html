@@ -13,10 +13,19 @@
     <main id="inicio">
         <section id="opciones">
             <h2>Productos</h2>
-            <div id="agregar_producto">
-                <a href="{{url_for('crear_Producto')}}">
-                    <p class="aviso_agregar">Agregar producto</p>
-                </a>
+            <div id="conten_opciones">
+
+                <div class="opciones">
+                    <a class="color_opciones"  href="{{url_for('crear_Producto')}}">
+                        Agregar producto
+                    </a>
+                </div>
+                <div class="opciones">
+                    <a class="color_opciones" href="{{url_for('categorias')}}">
+                        Categorias
+                    </a>
+                </div>
+
             </div>
             <div id="buscar">
                 <form action="Busca_productos" method="post" id="buscador">

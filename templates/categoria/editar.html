@@ -4,10 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar categorias</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/editar_categorias.css">
 </head>
 <body>
+
     <main id="inicio">
+
+        <section id="conten_titulo_1">
+
+            <h2>Edita categoria</h2>
+
+        </section>
+
+        <form action="/editar_categoria" method="post" id="conten_formulario_2">
+
+            <div id="conten_FORM">
+
+            
+
+                <section id="lado_info_personal">
+
+                    
+
+                    <div id="conten_titulo_div">
+                        <p>Nombre de la categoria</p>
+                    </div>
+
+
+                    <div id="conten_inputs_1">
+                        
+                        <input type="hidden" name="id_categoria" id="id_categoria" value="{{resul[0]}}">
+
+                        <div class="campo_2">
+                            <input type="text" name="nom_categoria" id="nombre" class="input_campo" value="{{resul[1]}}" >
+                            <label id="label_nombre" for="nombre">Categoria</label>
+                        </div>
+
+                    </div>
+                    
+                </section>
+
+                <section id="lado_info_contacto">
+
+                    <div id="conten_titulo_div_2">
+                        <p> </p>
+                    </div>
+
+                    <div id="content_inputs_2">
+
+
+                        <p class="icono_listo"><i class="lni lni-pencil-alt"></i></p>
+                        
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+            <div id="conten_buttons">
+                <div class="conten_buttons_2">
+                    <a href="/categorias" id="enlace_regresar">Volver</a>
+                </div>
+                <div class="conten_buttons_2">
+                    <button type="submit" id="boton_registrar" onclick="animacion_envio()" >Guardar</button>
+                </div>
+            </div>
+
+
+        </form>
+
+
+
+
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../static/javaScript/animacion_envio_edita_categoria.js"></script>
+
+
+
+
+
+
+
+
+
+<!--     <main id="inicio">
         <form action="/editar_categoria" method="post" id="formu_categorias">
             <h2>Editar clientes</h2>
                 <div class="cont-campos">
@@ -22,6 +108,6 @@
         <div id="boton-atras">
             <button class="boton-atras" onclick="window.location.href='/categorias'">Regresar</button>
         </div>
-    </main>
+    </main> -->
 </body>
 </html>
