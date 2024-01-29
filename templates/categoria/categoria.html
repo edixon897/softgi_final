@@ -59,63 +59,10 @@
             </table>
         </section>
         <div id="regresar">
-            <a href="{{url_for ('muestra_productos') }}" class="campo_a">
+            <a href="{{url_for ('muestra_Productos') }}" class="campo_a">
                 <p class="color_p">Volver a pagina productos</p>
             </a>
         </div>
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--     <table>
-        <div>
-            <h1>CATEGORIAS</h1>
-        </div>
-        <div class="crear-categoria">
-            <a class="crear-categoria" href="{{url_for('crearCategoria')}}">Crear categorias</a>
-        </div>
-        <thead>
-            <tr>
-                <th>Id Categoría</th>
-                <th>Nombre</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        <tbody> 
-            {% for resul in resulta %}
-                <tr>
-                    <td>
-                        {{resul[1]}}
-                    </td>
-                    
-    
-                    <td>
-                        <a class="boton-editar" href="/editarCategorias/{{resul[0]}}">Editar</a>
-                    </td>               
-                    
-    
-                    <td>
-                        <a  class="boton-eliminar" onclick="return confirm('Seguro que deseas eliminar el categoria?')" href="/borracategoria/{{resul[0]}}">Eliminar</a>
-                    </td>
-    
-                </tr>
-            {% endfor %} 
-        </tbody> 
-    </table>
-        <div id="boton-atras">
-            <button class="boton-atras" onclick="window.location.href='/index'">Regresar al home</button>
-        </div> -->
 </body>
 </html>

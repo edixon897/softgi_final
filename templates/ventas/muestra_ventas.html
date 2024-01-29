@@ -4,51 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../static/css/muestra_ventas.css">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Historial de ventas</h1>
-    <input type="search" id="searchVentas" oninput="buscarVentas()" placeholder="Buscar ventas">
-    
-        <table  id="tablaVentas">
-            <thead >
-                <tr>
-                    <th>Numero factura</th>
-                    <th> C.C cliente</th>
-                    <th>c.c operador</th>
-                    <th>Nombre operador</th>
-                    <th>Apellido operador</th>
-                    <th>Fecha de  venta</th>
-                    <th>Forma de pago</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+    <main id="inicio">
+        <section id="opciones">
+            <h2>HISTORIAL DE VENTAS</h2>
+            <input type="search" id="searchVentas" oninput="buscarVentas()" placeholder="Buscar ventas">
+        </section>
+        <section id="contenido">
+            <table>
+                <thead >
+                    <tr id="tabla-productos">
+                        <th>Numero factura</th>
+                        <th> C.C cliente</th>
+                        <th>c.c operador</th>
+                        <th>Nombre operador</th>
+                        <th>Apellido operador</th>
+                        <th>Fecha de  venta</th>
+                        <th>Forma de pago</th>
+                        <th>Ver detalle venta</th>
+                        <!-- <th></th>
+                        <th></th> -->
 
-                </tr>
-            </thead>
+                    </tr>
+                </thead>
 
-            <tbody>
-                {% for c in resul %}
-                <tr>
-                    {% for i in range(0,7) %}
-                        <td>{{c[i]}}</td>
+                <tbody>
+                    {% for c in resul %}
+                    <tr>
+                        {% for i in range(0,7) %}
+                            <td>{{c[i]}}</td>
+                        {% endfor %}
+                            <td class="btns_centro">
+                                <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}">Mas detalles</a>
+
+                                <!-- <a href="muestra_detalles_ventas{{c[0]}}">Mas detalles</a> -->
+                                <!-- <a href="{{ url_for('muestra_ventas', c=c[0]) }}">Mas detalles</a> -->
+
+                            </td>
+                    </tr>
                     {% endfor %}
-                        <td>
-                            <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}">Mas detalles</a>
+                </tbody>
+            </table>
+        </section>
+        <p id="noResults" style="display: none;">No se encontraron resultados</p>
+        <div id="regresar">
+            <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
+        </div>
 
-                            <!-- <a href="muestra_detalles_ventas{{c[0]}}">Mas detalles</a> -->
-                            <!-- <a href="{{ url_for('muestra_ventas', c=c[0]) }}">Mas detalles</a> -->
-
-                        </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    <p id="noResults" style="display: none;">No se encontraron resultados</p>
-    <div id="boton-atras">
-        <a href="{{url_for ('inicio') }}">Volver a pagina principal</a>
-    </div>
-
-    <script src="/static/javaScript/buscadorVentas.js"></script>
+        <script src="/static/javaScript/buscadorVentas.js"></script>
+    </main>
 </body>
 </html>
