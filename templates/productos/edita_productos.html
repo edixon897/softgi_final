@@ -72,14 +72,25 @@
 
                     <div class="content_inputs_2">
 
+
                         <div class="campo_2">
-                            <input id="nom_proveedor" name="nom_proveedor" class="input_campo" value="{{resul[5]}}" oninput="cambia_color_4()">
-                            <label  id="label_4" for="nom_proveedor">Proveedor</label>
+                            <select id="nom_proveedor" name="nom_proveedor" class="input_campo"  oninput="cambia_color_4()">
+                                <option value="{{resul[5]}}">{{resul[5]}}</option>
+                            {% for c in prove %}
+                                <option value="{{c[0]}}">{{c[0]}}</option>
+                            {% endfor %}
+                            </select>
+                            <label id="label_4"  for="nom_proveedor">Proveedor</label>
                         </div>
 
                         <div class="campo_2">
-                            <input id="nom_categoria" name="nom_categoria" class="input_campo" value="{{resul[4]}}" oninput="cambia_color_5()">
-                            <label  id="label_5" for="categorias">categoria</label>
+                            <select id="nom_categoria" name="nom_categoria" class="input_campo" oninput="cambia_color_5()">
+                                <option value="{{resul[4]}}">{{resul[4]}}</option>
+                            {% for c in cate %}
+                                <option value="{{c[0]}}">{{c[0]}}</option>
+                            {% endfor %}
+                            </select>
+                            <label id="label_5"  for="nom_categoria">categoria</label>
                         </div>
 
                     </div>
