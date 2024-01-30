@@ -3,7 +3,7 @@ function buscarProductos() {
 
     input = document.getElementById("searchProductos");
     filter = input.value.toUpperCase();
-    table = document.getElementById("tabla-productos");
+    table = document.getElementById("Tabla_product");
     tr = table.getElementsByTagName("tr");
     noResults = document.getElementById("noResults");
 

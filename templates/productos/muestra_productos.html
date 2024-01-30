@@ -30,13 +30,13 @@
             <div id="buscar">
                 <form action="Busca_productos" method="post" id="buscador">
                     <i class="lni lni-search-alt"></i>
-                    <input type="search" placeholder="parabrisas, manijas, alarmas, etc..." name="buscar">
+                    <input id="searchProductos" type="search" oninput="buscarProductos()" placeholder="parabrisas, manijas, alarmas, etc..." name="buscar">
                 </form>
             </div>
         </section>
 
         <section id="contenido">
-            <table>
+            <table id="Tabla_product">
                 <thead>
                     <tr id="tabla-productos">
                         <th>Id Producto</th>
@@ -90,11 +90,19 @@
                 </tbody>
             </table>
         </section>
+
+        <p id="noResults" style="display: none;">No se encontraron resultados</p>
+
+
         <div id="regresar">
             <a href="{{url_for ('inicio') }}" class="campo_a">
                 <p class="color_p">Volver a pagina principal</p>
             </a>
         </div>
     </main>
+    <script src="../../static/javaScript/buscarProducto.js"></script>
+
+
+
 </body>
 </html>
