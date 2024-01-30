@@ -4,34 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de venta</title>
+    <link rel="stylesheet" href="../../static/css/detalle_ventas.css">
 </head>
 <body>
-    <div>
-        <a href="{{url_for ('muestra_ventas') }}">Regresar</a>
-    </div>
-
-    <br>
-
-    <table  class="content-table" id="tabla_productos">
-        <thead >
-            <tr>
-                <th>Numero factura</th>
-                <th>Productos </th>
-                <th>Cantidad Total</th>
-                <th>Total pagado</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for c in resul %}
-            <tr>
-                {% for i in range(0,4) %}
-                    <td>{{c[i]}}</td>
+    <section id="opciones">
+        <div id="regresar_ventas">
+            <a href="{{url_for ('muestra_ventas') }}">Regresar</a>
+        </div>
+    </section>
+    <section id="contenido">
+        <table  class="content-table" id="tabla_productos">
+            <thead >
+                <tr>
+                    <th>Numero factura</th>
+                    <th>Productos </th>
+                    <th>Cantidad Total</th>
+                    <th>Total pagado</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for c in resul %}
+                <tr>
+                    {% for i in range(0,4) %}
+                        <td>{{c[i]}}</td>
+                    {% endfor %}
+                </tr>
                 {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </section>
+    
     
 </body>
 </html>

@@ -27,7 +27,79 @@ figure img{
     width: 100%;
 }
 
+main#inicio{
+    margin: 0;
+    min-height: 100vh;
+    padding: 0;
+    position: relative;
+    width: 100%;
+} 
 
+h2{
+    color: #454545;
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 20px;
+    padding: 0;
+}
+
+div#buscar{
+    margin: 30px 20px;
+}
+    #buscador > i{
+        border-radius: 10%;
+        color: #358CB4;
+        padding: 7px;
+        position: absolute;
+        z-index: 3;
+    }
+
+    #buscador > input{
+        border: solid 1px #828282;
+        border-radius: 5px;
+        font-family: 'Barlow', sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        margin: 0;
+        padding: 0.8em 0.8em 1em 45px;
+        width: 100%;
+        z-index: 2;
+    }
+
+    section#contenido{
+        margin: 20px;
+    }
+    
+        table{
+            border-collapse: collapse;
+            width: 100%;
+    
+        }
+    
+            th, td{
+                border: solid 1px #828282;
+                font-size: 15px;
+                padding: 5px; 
+            }
+    
+            th{
+                color: #358CB4;
+                font-weight: 500;
+                text-align: center;
+            }
+    
+            td{
+                text-align: left;
+            }
+
+
+
+/* ------------------Clases------------------- */
+
+.lni{
+    font-size: 2em;
+    color: #358CB4;
+}
 
 main#inicio{
     margin: 0;
