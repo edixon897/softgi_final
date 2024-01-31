@@ -28,7 +28,10 @@
                 <th>Direccion</th>
                 <th>ciudad</th>
                 <th>Rol</th>
-                <!-- <th>fecha de registro</th> -->
+                <th>fecha de registro</th>
+                <th>Nombre operador</th>
+                <th>Apellido operador</th>
+                <th></th>
                 <th></th>
                 <th></th>
 
@@ -36,23 +39,34 @@
         </thead>
 
         <tbody>
-            {% for c in resul %}
-            <tr>
-                {% for i in range(0,9) %}
-                    <td>{{c[i]}}</td>
-                {% endfor %}
+            {% for resul in resulta %}
+                <tr>
+                    
+                    <td>{{resul[0]}}</td>
+                    <td>{{resul[1]}}</td>
+                    <td>{{resul[2]}}</td>
+                    <td>{{resul[3]}}</td>
+                    <td>{{resul[4]}}</td>
+                    <td>{{resul[5]}}</td>
+                    <td>{{resul[6]}}</td>
+                    <td>{{resul[7]}}</td>
+                    <td>{{resul[8]}}</td>
+                    <td>{{resul[9]}}</td>
+                    <td>{{resul[10]}}</td>
+                    <td>{{resul[11]}}</td>
+                
                     <td>
-                        <a class="boton-editar" href="edita_empleados/{{c[0]}}">Editar</a>
+                        <a class="boton-editar" href="/editar_empleado/{{resul[0]}}">Editar</a>
                     </td>
                     <td>
-                        <a class="boton-eliminar"  onclick="return confirm('Seguro que deseas eliminar el usuario administrador?')" href="elimina_empleados/{{c[0]}}"><i class="lni lni-cross-circle"></i>Eliminar</a>
+                        <a class="boton-eliminar"  onclick="return confirm('Seguro que deseas eliminar el usuario ?')" href="/borrarEmpleado/{{resul[0]}}"><i class="lni lni-cross-circle"></i>Eliminar</a>
                     </td>
-            </tr>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
-    <div id="boton-atras">
-        <button class="boton-atras" onclick="window.location.href='/index'">Regresar al Home</button>
+    <div id="regresar">
+        <a href="{{url_for ('inicio') }}">ATRAS</a>
     </div>
 </body>
 </html>

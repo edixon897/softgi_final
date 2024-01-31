@@ -12,9 +12,27 @@ class Empleados:
         self.cursor.execute(sql)
         self.conexion.commit()
 
+    def emp_existe_en_db(self, empleado):
+            sql = f"SELECT COUNT(*) FROM empleados WHERE doc_cliente = '{empleado}'"
+
+            self.cursor.execute(sql)
+            resultado = self.cursor.fetchone()
+
+            if resultado[0] > 0:
+                return True
+            else:
+                return False
+        
     def eliminar(self,doc_empleado):
-        sql = f"DELETE FROM `empleados` WHERE doc_empleado='{doc_empleado}'"
-        self.cursor.execute(sql)
-        self.conexion.commit()
+        
+        sql = f"UPDATE empleados SET estado = 'INACTIVO' WHERE doc_empleado ='{doc_empleado}'"
+        try:
+            self.cursor.execute(sql)
+            self.conexion.commit()
+            return True
+        except Exception as e:
+             print(f"Error al borrar empelado: {str(e)}")
+             self.conexion.rollback()
+             return False
 
 Dempleados = Empleados(mysql, app)
