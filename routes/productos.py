@@ -116,11 +116,32 @@ def editar_producto(id_producto):
         conn.commit()
 
         if resultado:
-            return render_template("productos/edita_productos.html", resul=resultado[0])
+
+            sql = "SELECT nom_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            proveedores = cursor.fetchall()
+            conn.commit()
+
+            sql = "SELECT nom_categoria FROM categorias WHERE  estado_categorias = 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            categorias = cursor.fetchall()
+            conn.commit()
+            
+            return render_template("productos/edita_productos.html", resul=resultado[0], prove = proveedores, cate = categorias)
         else:
             flash('No se encontró el producto')
     
     return redirect(url_for('index'))
+
+
+
+
+
+
 
 @app.route('/modificar_Producto', methods=['POST'])
 def modificar_Producto():

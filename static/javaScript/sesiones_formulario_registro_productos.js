@@ -68,37 +68,43 @@ boton_volver_2.addEventListener("click", function() {
 /*  animaciones envio formulario */
 
 function animacion_envio() {
-
     let form = document.querySelector('form');
-
-    /* let proveedor = document.getElementById('proveedor').value; */
     let nombre_producto = document.getElementById('nombre_producto').value;
-    let precio_venta = document.getElementById('precio_venta').value;
-    let cantidad_producto = document.getElementById('cantidad_producto').value;
+    let categorias = document.getElementById('categorias').value;
     let ubicacion = document.getElementById('ubicacion').value;
+    let precio_compra = parseFloat(document.getElementById('precio_compra').value);
+    let precio_venta = parseFloat(document.getElementById('precio_venta').value);
+    let cantidad_producto = parseInt(document.getElementById('cantidad_producto').value);
+    let stockminimo = parseInt(document.getElementById('stockminimo').value);
 
     form.addEventListener("submit", function(event) {
-        event.preventDefault()
+        event.preventDefault();
     });
 
-
-    if ((nombre_producto.length > 0) && (precio_venta.length > 0 ) && (cantidad_producto.length > 0) && (ubicacion.length > 0)) {
-
-        Swal.fire({
-            icon: "success",
-            text: "Registrando producto",
-            width: "42%",
-            height: "20%",
-            timer: 1000,
-            showConfirmButton: false
-        });
-
-        setTimeout(function() {
-            form.submit()
-        }, 1100)
-
-    }else{
-
+    if (nombre_producto && precio_venta && precio_compra && cantidad_producto && stockminimo && categorias && ubicacion) {
+        if (precio_compra >= 0 && precio_venta >= 0 && cantidad_producto > 0 && stockminimo >= 0) {
+            Swal.fire({
+                icon: "success",
+                text: "Registrando producto",
+                width: "42%",
+                height: "20%",
+                timer: 1000,
+                showConfirmButton: false
+            });
+            setTimeout(function() {
+                form.submit();
+            }, 1100);
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Valor negativo digitado",
+                width: "50%",
+                height: "20%",
+                showConfirmButton: true
+            });
+        }
+    } else {
         Swal.fire({
             icon: "error",
             title: "Error",
