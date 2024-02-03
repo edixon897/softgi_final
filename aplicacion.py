@@ -12,9 +12,8 @@ from routes.categoria import categorias
 from routes.compra_proveedores import muestra_compra_proved
 from routes.devoluciones import muestraDevoluciones
 from routes.empleados import empleados
-
-
-    
+from models.lector_model import Lector
+ 
 
 
 

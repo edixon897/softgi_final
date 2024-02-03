@@ -5,8 +5,11 @@ import datetime
 from models.productos import Dproductos
 
 
+
+
 @app.route('/crear_Producto', methods=['GET', 'POST'])
 def crear_Producto():
+    global codigo_barras_global
     print("Entrando a crear_Producto")
     if "nom_empleado" in session:
         if request.method == 'POST':
@@ -32,7 +35,6 @@ def crear_Producto():
             sql =f"SELECT nom_categoria FROM categorias WHERE id_categoria= '{categorias_activas}' AND estado_categorias = 'ACTIVO'"
             cursor.execute(sql)
             categorias = cursor.fetchall()
-
             nom_categoria = categorias[0]
             ref_produ_1 = request.form['ref_produ_1']
             ref_produ_2 = request.form['ref_prod_2']
