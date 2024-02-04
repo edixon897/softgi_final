@@ -131,16 +131,37 @@ function campo_lleno9() {
 
 function animacion_envio() {
 
-    let form = document.querySelector('form');
+    let form = document.querySelector("form");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault()
+    });
 
     let input_principal = document.getElementById('documento').value;
 
-    form.addEventListener("submit", function(event) {
-        event.defaultPrevented()
-    });
+
 
     if (input_principal.length > 0) {
-        Swal.fire({
+
+        
+        // Obtener la fecha de nacimiento del campo de entrada
+        let fechaNacimiento = new Date(document.getElementById("fecha").value);
+
+        // Obtener fecha actual
+        let fechaActual = new Date();
+        
+        // Calcular la edad del usuario
+        let edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+        // Verificar si el usuario aún no ha cumplido años este año
+        if (fechaActual.getMonth() < fechaNacimiento.getMonth() || (fechaActual.getMonth() === fechaNacimiento.getMonth() && fechaActual.getDate() < fechaNacimiento.getDate())) {
+            edad--;
+        }
+
+        // Verificar si el usuario es mayor o igual a 18 años
+        if (edad >= 18) {
+
+            Swal.fire({
             icon: "success",
             text: "Guardando cambios",
             width: "42%",
@@ -149,9 +170,23 @@ function animacion_envio() {
             showConfirmButton: false
         });
 
-        setTimeout( function() {
+        setTimeout(function(){
             form.submit()
-        } ,1100)
+        },1100); 
+
+        } else {
+        // Si es menor de 18 años, mostrar un mensaje de error
+
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "El cliente debe ser mayor de 18 años para poder guardar los cambios.",
+                width: "50%",
+                height: "20%",
+                showConfirmButton: true
+            }); 
+        }
+
 
     } else {
         

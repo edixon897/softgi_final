@@ -1,9 +1,9 @@
-function buscarVENTAS() {
+function buscarCategorias() {
     var input, filter, table, tr, td, i, j, txtValue, noResults;
 
-    input = document.getElementById("buscador_ventas");
+    input = document.getElementById("searchCategorias");
     filter = input.value.toUpperCase();
-    table = document.getElementById("tablaVentas");
+    table = document.getElementById("TablaCategorias");
     tr = table.getElementsByTagName("tr");
     noResults = document.getElementById("noResults");
 

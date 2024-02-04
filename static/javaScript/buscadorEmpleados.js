@@ -1,9 +1,9 @@
-function buscarVENTAS() {
+function buscarEmpleados() {
     var input, filter, table, tr, td, i, j, txtValue, noResults;
 
-    input = document.getElementById("buscador_ventas");
+    input = document.getElementById("buscador");
     filter = input.value.toUpperCase();
-    table = document.getElementById("tablaVentas");
+    table = document.getElementById("tabla_empleados");
     tr = table.getElementsByTagName("tr");
     noResults = document.getElementById("noResults");
 

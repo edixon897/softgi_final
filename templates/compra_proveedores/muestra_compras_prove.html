@@ -17,12 +17,12 @@
             <div id="buscar">
                 <form action="busca_compras_prov" method="post" id="buscador">
                     <i class="lni lni-search-alt"></i>
-                    <input type="search" placeholder="Busca alguna compra" aria-label="Search" name="dato_busqueda"> 
+                    <input type="search" placeholder="Busca alguna compra" aria-label="Search" name="dato_busqueda" id="buscador_2" oninput="buscarCompras_prove()"> 
                 </form>
             </div>
         </section>
         <section id="contenido">
-            <table  class="content-table" id="tabla_productos">
+            <table class="content-table" id="tabla_productos">
                 <thead >
                     <tr>
                         <th>Número compra</th>
@@ -59,10 +59,13 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <p id="noResults" style="display: none;">No se encontraron resultados</p>
         </section>
         <a href="{{url_for ('inicio') }}" class="campo_a">
             <p class="color_p">Volver a página principal</p>
         </a>
     </main>
+
+    <script src="../../static/javaScript/buscarCompras_prove.js"></script>
 </body>
 </html>

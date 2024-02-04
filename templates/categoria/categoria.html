@@ -19,15 +19,15 @@
                 </a>
             </div>
             <div id="buscar">
-                <form action="Busca_productos" method="post" id="buscador">
+                <form  id="buscador">
                     <i id="icono_buscar" class="lni lni-search-alt"></i>
-                    <input type="search" placeholder="Realiza una busqueda" name="buscar">
+                    <input type="search" placeholder="Realiza una busqueda" name="buscar" id="searchCategorias" oninput="buscarCategorias()">
                 </form>
             </div>
         </section>
 
         <section id="contenido">
-            <table>
+            <table id="TablaCategorias">
                 <thead>
                     <tr id="tabla-productos">
                         <th>Id Categoría</th>
@@ -57,12 +57,16 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <p id="noResults" style="display: none;">No se encontraron resultados</p>
         </section>
+
         <div id="regresar">
             <a href="{{url_for ('muestra_Productos') }}" class="campo_a">
                 <p class="color_p">Volver a pagina productos</p>
             </a>
         </div>
     </main>
+
+    <script src="../../static/javaScript/buscarCategorias.js"></script>
 </body>
 </html>

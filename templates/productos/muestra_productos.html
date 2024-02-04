@@ -29,7 +29,7 @@
 
             </div>
             <div id="buscar">
-                <form action="/buscar_producto" method="post" id="buscador">
+                <form  id="buscador">
                     <i class="lni lni-search-alt"></i>
                     <input id="searchProductos" type="search" oninput="buscarProductos()" placeholder="parabrisas, manijas, alarmas, etc..." name="buscar">
                 </form>
@@ -90,9 +90,10 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <p id="noResults" style="display: none;">No se encontraron resultados</p>
         </section>
 
-        <p id="noResults" style="display: none;">No se encontraron resultados</p>
+
 
 
         <div id="regresar">
