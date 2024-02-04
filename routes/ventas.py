@@ -11,7 +11,7 @@ from models.ventas import Dventas, Ventas
 @app.route("/muestra_ventas")
 def muestra_ventas():
     if "nom_empleado" in session: 
-        sql = "SELECT  `num_factura`, `cliente_factura`, `documento_operador`, `nombre_operador`, `apellido_operador`, `fechahora_venta`, `forma_pago` FROM `ventas` ORDER BY num_factura DESC"
+        sql = "SELECT  `num_factura`, `cliente_factura`, `nombre_operador`, `apellido_operador`, `fechahora_venta`, `forma_pago` FROM `ventas` ORDER BY num_factura DESC"
         conn = mysql.connect()
         cursor = conn.cursor()     
         cursor.execute(sql)
