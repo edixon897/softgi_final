@@ -26,17 +26,17 @@
                 <span id="usuario">Hola  {{session['nom_empleado']}}</span>
             </div>
 
-            <div id="menu">
+            <!-- <div id="menu">
                 <a title="Se debe ver el menú">
                     <i class="lni lni-menu"></i>
                 </a>
-            </div>
+            </div> -->
         </section>
 
         <section id="buscar">
             <div id="buscador">
                 <i class="lni lni-search-alt"></i>
-                <input type="text" placeholder="parabrisas, manijas, alarmas, etc..." id="searchProduct">
+                <input type="text" placeholder="busca un modulo" id="searchProduct">
             </div>
         </section>
 
@@ -77,7 +77,7 @@
                     <p class="titulo">Clientes</p>
                 </div>
                 </a>
-            <a href="muestra_empleados" class="campo_a">
+            <a href="{{url_for('empleados')}}" class="campo_a">
                 <div id="empleados" class="modulos">
                     <figure><img src="/static/image/modulos/empleados.png" alt=""></figure>
                     <p class="titulo">Empleados</p>

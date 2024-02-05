@@ -3,17 +3,17 @@ from routes.login import index, login
 from routes.registro import registroUsario, confirmar_correo
 from routes.recuperaContra import solicitarCambio_contraseña, recuperar_contraseña
 from routes.clientes import clientes
-from routes.productos import Dproductos
-from routes.ventas import Dventas
-from routes.cotizaciones import cotizaciones
+from routes.productos import muestra_Productos
+from routes.ventas import muestra_ventas
+from routes.cotizaciones import Cotizacion
 from routes.proveedores import proveedores
 from routes.abonos import Dabonos
 from routes.categoria import categorias
-from routes.compra_proveedores import Dcompra_proveedores
-from routes.devoluciones import Ddevoluciones
-
-
-    
+from routes.compra_proveedores import muestra_compra_proved
+from routes.devoluciones import muestraDevoluciones
+from routes.empleados import empleados
+from models.lector_model import Lector
+ 
 
 
 

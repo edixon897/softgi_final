@@ -1,9 +1,9 @@
-function buscarProductos() {
+function buscarCompras_prove() {
     var input, filter, table, tr, td, i, j, txtValue, noResults;
 
-    input = document.getElementById("searchProductos");
+    input = document.getElementById("buscador_2");
     filter = input.value.toUpperCase();
-    table = document.getElementById("Tabla_product");
+    table = document.getElementById("tabla_productos");
     tr = table.getElementsByTagName("tr");
     noResults = document.getElementById("noResults");
 

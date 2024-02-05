@@ -1,9 +1,9 @@
-function buscarProductos() {
+function buscarCategorias() {
     var input, filter, table, tr, td, i, j, txtValue, noResults;
 
-    input = document.getElementById("searchProductos");
+    input = document.getElementById("searchCategorias");
     filter = input.value.toUpperCase();
-    table = document.getElementById("Tabla_product");
+    table = document.getElementById("TablaCategorias");
     tr = table.getElementsByTagName("tr");
     noResults = document.getElementById("noResults");
 

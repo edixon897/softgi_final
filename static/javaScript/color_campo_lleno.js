@@ -150,7 +150,25 @@ function animacion_envio() {
     let fecha = document.getElementById("fecha").value;
 
     if ((documento.length > 0) && (nombre.length > 0) && (apellido.length > 0) && (fecha.length > 0)) {
-        Swal.fire({
+
+        // Obtener la fecha de nacimiento del campo de entrada
+        let fechaNacimiento = new Date(document.getElementById("fecha").value);
+
+        // Obtener fecha actual
+        let fechaActual = new Date();
+
+        // Calcular la edad del usuario
+        let edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+        // Verificar si el usuario aún no ha cumplido años este año
+        if (fechaActual.getMonth() < fechaNacimiento.getMonth() || (fechaActual.getMonth() === fechaNacimiento.getMonth() && fechaActual.getDate() < fechaNacimiento.getDate())) {
+            edad--;
+        }
+
+        // Verificar si el usuario es mayor o igual a 18 años
+        if (edad >= 18) {
+
+            Swal.fire({
             icon: "success",
             text: "Registrando cliente",
             width: "42%",
@@ -161,7 +179,20 @@ function animacion_envio() {
 
         setTimeout(function(){
             form.submit()
-        },1100);
+        },1100); 
+
+        } else {
+        // Si es menor de 18 años, mostrar un mensaje de error
+
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "El cliente debe ser mayor de 18 años para registrarse.",
+                width: "50%",
+                height: "20%",
+                showConfirmButton: true
+            }); 
+        }
 
     } else {
         Swal.fire({
@@ -197,3 +228,4 @@ function desplaza_form_regreso() {
     sesion_buttons_2.style.left = "200%";
     barra_progreso_2.style.background = "white"
 }
+

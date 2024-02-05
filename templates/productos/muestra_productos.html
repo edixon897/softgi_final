@@ -13,21 +13,31 @@
     <main id="inicio">
         <section id="opciones">
             <h2>Productos</h2>
-            <div id="agregar_producto">
-                <a href="{{url_for('crear_Producto')}}">
-                    <p class="aviso_agregar">Agregar producto</p>
-                </a>
+            <div id="conten_opciones">
+
+                <div class="opciones">
+                    <a class="color_opciones" href="{{url_for('categorias')}}">
+                        Categorias
+                    </a>
+                </div>
+                <div class="opciones">
+                    <a class="color_opciones"  href="{{url_for('crear_Producto')}}">
+                        Agregar producto
+                    </a>
+                </div>
+                
+
             </div>
             <div id="buscar">
-                <form action="Busca_productos" method="post" id="buscador">
+                <form  id="buscador">
                     <i class="lni lni-search-alt"></i>
-                    <input type="search" placeholder="parabrisas, manijas, alarmas, etc..." name="buscar">
+                    <input id="searchProductos" type="search" oninput="buscarProductos()" placeholder="parabrisas, manijas, alarmas, etc..." name="buscar">
                 </form>
             </div>
         </section>
 
         <section id="contenido">
-            <table>
+            <table id="Tabla_product">
                 <thead>
                     <tr id="tabla-productos">
                         <th>Referencia 1</th>
@@ -50,6 +60,7 @@
                 <tbody>
                     {% for result in resul %}
                         <tr>
+                            <td>{{result[0]}}</td>
                             <td>{{result[1]}}</td>
                             <td>{{result[2]}}</td>
                             <td>{{result[3]}}</td>
@@ -80,12 +91,21 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <p id="noResults" style="display: none;">No se encontraron resultados</p>
         </section>
+
+
+
+
         <div id="regresar">
             <a href="{{url_for ('inicio') }}" class="campo_a">
-                <p class="color_p">Volver a pagina principal</p>
+                <p class="color_p">ATRAS</p>
             </a>
         </div>
     </main>
+    <script src="../../static/javaScript/buscarProducto.js"></script>
+
+
+
 </body>
 </html>

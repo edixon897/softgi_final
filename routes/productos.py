@@ -5,8 +5,11 @@ import datetime
 from models.productos import Dproductos
 
 
+
+
 @app.route('/crear_Producto', methods=['GET', 'POST'])
 def crear_Producto():
+    global codigo_barras_global
     print("Entrando a crear_Producto")
     if "nom_empleado" in session:
         if request.method == 'POST':
@@ -32,7 +35,6 @@ def crear_Producto():
             sql =f"SELECT nom_categoria FROM categorias WHERE id_categoria= '{categorias_activas}' AND estado_categorias = 'ACTIVO'"
             cursor.execute(sql)
             categorias = cursor.fetchall()
-
             nom_categoria = categorias[0]
             ref_produ_1 = request.form['ref_produ_1']
             ref_produ_2 = request.form['ref_prod_2']
@@ -116,11 +118,32 @@ def editar_producto(id_producto):
         conn.commit()
 
         if resultado:
-            return render_template("productos/edita_productos.html", resul=resultado[0])
+
+            sql = "SELECT nom_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            proveedores = cursor.fetchall()
+            conn.commit()
+
+            sql = "SELECT nom_categoria FROM categorias WHERE  estado_categorias = 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            categorias = cursor.fetchall()
+            conn.commit()
+            
+            return render_template("productos/edita_productos.html", resul=resultado[0], prove = proveedores, cate = categorias)
         else:
             flash('No se encontró el producto')
     
     return redirect(url_for('index'))
+
+
+
+
+
+
 
 @app.route('/modificar_Producto', methods=['POST'])
 def modificar_Producto():

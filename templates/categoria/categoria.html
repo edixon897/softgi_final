@@ -4,48 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorías</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../../static/css/muestra_categorias.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
 </head>
 <body>
-    <table>
-        <div>
-            <h1>CATEGORIAS</h1>
+
+
+    <main id="inicio">
+        <section id="opciones">
+            <h2>CATEGORIAS</h2>
+            <div id="agregar_producto">
+                <a href="{{url_for('crearCategoria')}}">
+                    <p class="aviso_agregar">Crear categoria</p>
+                </a>
+            </div>
+            <div id="buscar">
+                <form  id="buscador">
+                    <i id="icono_buscar" class="lni lni-search-alt"></i>
+                    <input type="search" placeholder="Realiza una busqueda" name="buscar" id="searchCategorias" oninput="buscarCategorias()">
+                </form>
+            </div>
+        </section>
+
+        <section id="contenido">
+            <table id="TablaCategorias">
+                <thead>
+                    <tr id="tabla-productos">
+                        <th>Id Categoría</th>
+                        <th>Nombre</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resul in resulta %}
+                        <tr>
+                            <td>{{resul[0]}}</td>
+                            <td>{{resul[1]}}</td>
+
+                            <td class="btns_centro">
+                                <a href="/editarCategorias/{{resul[0]}}" >
+                                    <i id="icono_editar" class="lni lni-pencil"></i>
+                                </a>
+                            </td>
+
+                            <td class="btns_centro">
+                                <a onclick="return confirm('Seguro que deseas eliminar la categoria?')" href="/borracategoria/{{resul[0]}}">
+                                    <i id="icono_borrar" class="lni lni-trash-can"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p id="noResults" style="display: none;">No se encontraron resultados</p>
+        </section>
+
+        <div id="regresar">
+            <a href="{{url_for ('muestra_Productos') }}" class="campo_a">
+                <p class="color_p">Volver a pagina productos</p>
+            </a>
         </div>
-        <div class="crear-categoria">
-            <a class="crear-categoria" href="{{url_for('crearCategoria')}}">Crear categorias</a>
-        </div>
-        <thead>
-            <tr>
-                <th>Id Categoría</th>
-                <th>Nombre</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        <tbody> 
-            {% for resul in resulta %}
-                <tr>
-                    <td>
-                        {{resul[1]}}
-                    </td>
-                    
-    
-                    <td>
-                        <a class="boton-editar" href="/editarCategorias/{{resul[0]}}">Editar</a>
-                    </td>               
-                    
-    
-                    <td>
-                        <a  class="boton-eliminar" onclick="return confirm('Seguro que deseas eliminar el categoria?')" href="/borracategoria/{{resul[0]}}">Eliminar</a>
-                    </td>
-    
-                </tr>
-            {% endfor %} 
-        </tbody> 
-    </table>
-        <div id="boton-atras">
-            <button class="boton-atras" onclick="window.location.href='/index'">Regresar al home</button>
-        </div>
+    </main>
+
+    <script src="../../static/javaScript/buscarCategorias.js"></script>
 </body>
 </html>

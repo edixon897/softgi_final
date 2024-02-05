@@ -1,7 +1,7 @@
-function buscarVentas() {
+function buscarVENTAS() {
     var input, filter, table, tr, td, i, j, txtValue, noResults;
 
-    input = document.getElementById("searchVentas");
+    input = document.getElementById("buscador_ventas");
     filter = input.value.toUpperCase();
     table = document.getElementById("tablaVentas");
     tr = table.getElementsByTagName("tr");

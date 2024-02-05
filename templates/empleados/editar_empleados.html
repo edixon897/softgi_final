@@ -12,7 +12,7 @@
         <div id="img-parabri">
             <img src="../../static/img/logo_parabrisas_delvalle_PNG_sinFondo.png" alt="logo-fondo-parabrisas-sin-fondo" id="logo">
         </div>
-        <form action="/Actualiza_empleados" method="post" id="formu_editar-empleados">
+        <form action="/actualizar_Empleado" method="post" id="formu_editar-empleados">
             <h2>Editar empleados</h2>
             <div class="cont-campos">
 
@@ -54,7 +54,7 @@
             </div>
         </form>
         <div id="boton-atras">
-            <a class="boton-atras" href="/muestra_productos">Regresar</a>
+            <a class="boton-atras" href="{{url_for('empleados')}}">Regresar</a>
         </div>
     </main>
 </body>
