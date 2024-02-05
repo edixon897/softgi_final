@@ -131,6 +131,7 @@ def editar_producto(id_producto):
             cursor = conn.cursor()
             cursor.execute(sql)
             categorias = cursor.fetchall()
+            print("nombres categorias", categorias)
             conn.commit()
             
             return render_template("productos/edita_productos.html", resul=resultado[0], prove = proveedores, cate = categorias)
@@ -138,11 +139,6 @@ def editar_producto(id_producto):
             flash('No se encontró el producto')
     
     return redirect(url_for('index'))
-
-
-
-
-
 
 
 @app.route('/modificar_Producto', methods=['POST'])
@@ -215,4 +211,63 @@ def borra_produc(id_producto):
     else:
         flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
-    
+
+@app.route("/editar_Cantidad/<int:id_producto>")
+def editar_Cantidad(id_producto):
+    if "nom_empleado" in session:
+        sql = "SELECT id_producto, ref_produ_1, nombre_producto, cantidad_producto FROM productos WHERE id_producto=%s"
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(sql, (id_producto,))
+        resultado = cursor.fetchall()
+        print("Este es el resultado", resultado)
+        conn.commit()
+        return render_template("productos/editar_cantidad.html", resul = resultado[0])
+    else:
+        flash("No se encontro la cantidad")
+    return redirect(url_for('index'))
+
+@app.route('/modificar_Cantidad', methods=['POST'])
+def modificar_cantidad():
+    if "nom_empleado" in session:
+        doc = session["nom_empleado"]
+        sql = f"SELECT doc_empleado, nom_empleado, ape_empleado FROM empleados WHERE nom_empleado='{doc}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        print("Resultado de la consulta:", resultado)
+
+        if resultado and len(resultado) > 0:
+            # Iterar sobre las filas y acceder a los elementos dentro de cada tupla
+            for row in resultado:
+                documento_registro = row[0]
+                nombre_operador = row[1]
+                apellido_operador = row[2]
+
+                if request.method == 'POST':
+                    print("Contenido del formulario:", request.form)
+                    try:
+                        id_producto = request.form['id_producto']
+                        ref_produ_1 = request.form['ref_produ_1']
+                        nombre_producto = request.form['nombre_producto']
+                        cantidad_producto = request.form['cantidad_producto']
+                        datos_modificar = [id_producto, ref_produ_1, nombre_producto, cantidad_producto, documento_registro, nombre_operador, apellido_operador]
+                        print("Datos a modificar:", datos_modificar)
+                        resultado = Dproductos.modificar_cantidad(datos_modificar)
+                        return redirect('/muestra_productos')
+                    except KeyError as e:
+                        print("Error KeyError:", e)
+                        flash('Error al procesar el formulario, por favor, inténtalo de nuevo')
+                        return redirect(url_for('index'))
+            else:
+                # Manejar la situación en la que no hay resultados
+                flash("No se encontraron resultados para la consulta SQL")
+
+        return render_template('muestra_productos.html')
+
+    else:
+        flash('Por favor, inicia sesión para poder acceder')
+        return redirect(url_for('index'))
+            
+

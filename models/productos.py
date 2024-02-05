@@ -49,8 +49,6 @@ class Productos:
         self.conexion.commit()
 
     
-
-    
     def borrar_producto(self, id_producto):
         if not self.producto_existe_en_db(id_producto):
             print(f"Producto con id {id_producto} no encontrado.")
@@ -59,6 +57,22 @@ class Productos:
         self.cursor.execute(sql, (id_producto,))
         self.conexion.commit()
         print(self.cursor.rowcount, "registros afectado/s")
+
+    def modificar_cantidad(self, producto):
+        # Obtener la cantidad actual del producto
+        sql = "SELECT cantidad_producto FROM productos WHERE id_producto = %s"
+        self.cursor.execute(sql, (producto[0],))
+        cantidad_actual = self.cursor.fetchone()[0]
+
+        # Sumar la cantidad actual con la nueva cantidad
+        nueva_cantidad = cantidad_actual + int(producto[3])
+
+        # Actualizar la base de datos con la nueva cantidad
+        sql_update = "UPDATE productos SET cantidad_producto = %s WHERE id_producto = %s"
+        self.cursor.execute(sql_update, (nueva_cantidad, producto[0]))
+
+        # Commit para aplicar los cambios
+        self.conexion.commit()
 
 
         

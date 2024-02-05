@@ -55,12 +55,13 @@
                         <th>Estante</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for result in resul %}
                         <tr>
-                            <td>{{result[0]}}</td>
+                            
                             <td>{{result[1]}}</td>
                             <td>{{result[2]}}</td>
                             <td>{{result[3]}}</td>
@@ -75,6 +76,12 @@
                             <td>{{result[12]}}</td>
                             <td>{{result[13]}}</td>
 
+                            <td>
+                                <a href="/editar_Cantidad/{{result[0]}}">
+                                    <i class="lni lni-plus"></i>
+                                </a>
+                            </td>
+        
 
                             <td class="btns_centro">
                                 <a href="/modificar_Producto/{{result[0]}}" >
@@ -104,8 +111,6 @@
         </div>
     </main>
     <script src="../../static/javaScript/buscarProducto.js"></script>
-
-
 
 </body>
 </html>

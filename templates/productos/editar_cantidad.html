@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar cantidad</title>
+    <link rel="stylesheet" href="../../static/css/editar_cantidad_prod.css">
+</head>
+<body>
+    <main>
+        <div>
+            <form action="/modificar_Cantidad" method="post">
+                <label for="">Id producto</label>
+                <input type="number" name="id_producto" value="{{resul[0]}}">
+                <br>
+                <label for="ref_produ_1">Referencia 1</label>
+                <input type="text" name="ref_produ_1" value="{{resul[1]}}">
+                <br>
+                <label for="">Nombre producto</label>
+                <input type="text" name="nombre_producto" value="{{resul[2]}}">
+                <br>
+                <label for="">Cantidad</label>
+                <input type="number" name="cantidad_producto" id="cantidad_producto" value="{{resul[3]}}">
+
+                <div>
+                    <button type="submit">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
