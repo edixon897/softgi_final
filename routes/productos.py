@@ -192,5 +192,4 @@ def borra_produc(id_producto):
     else:
         flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
-
     

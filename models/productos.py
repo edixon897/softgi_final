@@ -60,6 +60,6 @@ class Productos:
         self.conexion.commit()
         print(self.cursor.rowcount, "registros afectado/s")
 
-    
+
         
 Dproductos = Productos(mysql, app)

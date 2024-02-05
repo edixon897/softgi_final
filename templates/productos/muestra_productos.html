@@ -30,7 +30,6 @@
             <table>
                 <thead>
                     <tr id="tabla-productos">
-                        <th>Id Producto</th>
                         <th>Referencia 1</th>
                         <th>Referencia 2</th>
                         <th>Referencia 3</th>
@@ -51,7 +50,6 @@
                 <tbody>
                     {% for result in resul %}
                         <tr>
-                            <td>{{result[0]}}</td>
                             <td>{{result[1]}}</td>
                             <td>{{result[2]}}</td>
                             <td>{{result[3]}}</td>
@@ -65,6 +63,8 @@
                             <td>{{result[11]}}</td>
                             <td>{{result[12]}}</td>
                             <td>{{result[13]}}</td>
+
+
                             <td class="btns_centro">
                                 <a href="/modificar_Producto/{{result[0]}}" >
                                     <i class="lni lni-pencil"></i>
