@@ -341,10 +341,10 @@ def elimina_todo_seleccionado_p():
         else:
 
             # Muestra el documento del operador
-            documento_operador = session["doc_empleado"]
+            documento_operador = session["documento_operador"]
 
             # consulta los productos del inventario
-            sql = "SELECT `id_producto`, `referencia_producto`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+            sql = "SELECT `id_producto`, `ref_produ_1`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
             conn = mysql.connect()
             cursor = conn.cursor()     
             cursor.execute(sql)
@@ -360,7 +360,7 @@ def elimina_todo_seleccionado_p():
             conn.commit()
 
             mensaje_error = "¡No hay productos seleccionados para eliminar!"
-            return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje = mensaje_error) 
+            return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje = mensaje_error) 
 
 
 
