@@ -463,12 +463,14 @@ def selector_una_cantidad(id_producto):
             conn.commit()
 
             # 2 consulto si la cantidad  adquirida en el carrito ventas
-            sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+            sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = {id_producto}"
             conn = mysql.connect()
             cursor = conn.cursor()     
             cursor.execute(sql)
             cantidad_carrito = cursor.fetchall()
             conn.commit()
+
+            print(f"\n {id_producto} {cantidad_carrito} \n")
             
             # 2 - valido si ya esta seleccionado el producto
             if ((len(cantidad_carrito)) > 0):
@@ -507,10 +509,10 @@ def selector_una_cantidad(id_producto):
         else:
 
             # Muestra el documento del operador
-            documento_operador = session["doc_empleado"]
+            documento_operador = session["documento_operador"]
 
             # consulta los productos del inventario
-            sql = "SELECT `id_producto`, `referencia_producto`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+            sql = "SELECT `id_producto`, `ref_produ_1`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
             conn = mysql.connect()
             cursor = conn.cursor()     
             cursor.execute(sql)
@@ -536,9 +538,9 @@ def selector_una_cantidad(id_producto):
             mensaje_error = "¡La cantidad solicitada es menor a la disponible!"
 
             if Suma_total[0][0] is not None:            
-                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
             else:
-                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje = mensaje_error) 
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje = mensaje_error) 
 
 
     else:
@@ -683,10 +685,10 @@ def Busca_produc_ven():
         busqueda = request.form['id_nombre']
 
         # Muestra el documento del operador
-        documento_operador = session["doc_empleado"]
+        documento_operador = session["documento_operador"]
 
         # consulta los productos del inventario segun la busqueda realizada
-        sql = f"SELECT `id_producto`, `referencia_producto` , `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos`  WHERE estado_producto ='ACTIVO' AND referencia_producto LIKE '%{busqueda}%' OR estado_producto='ACTIVO' AND nombre_producto LIKE '%{busqueda}%'"
+        sql = f"SELECT `id_producto`, `ref_produ_1` , `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos`  WHERE estado_producto ='ACTIVO' AND referencia_producto LIKE '%{busqueda}%' OR estado_producto='ACTIVO' AND nombre_producto LIKE '%{busqueda}%'"
         conn = mysql.connect()
         cursor = conn.cursor()     
         cursor.execute(sql)
@@ -730,10 +732,11 @@ def verCrear_ventas():
         if rol == "administrado" or rol == "vendedor":
 
             # Muestra el documento del operador
-            documento_operador = session["doc_empleado"]
+            documento_operador = session["documento_operador"]
+
 
             # consulta los productos del inventario
-            sql = "SELECT `id_producto`, `referencia_producto`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+            sql = "SELECT `id_producto`, `ref_produ_1`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
             conn = mysql.connect()
             cursor = conn.cursor()     
             cursor.execute(sql)
@@ -758,9 +761,9 @@ def verCrear_ventas():
 
             # le asigno el 0 si la suma es none
             if Suma_total[0][0] is not None:
-                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador) 
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador) 
             else:
-                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador) 
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador) 
         
         else:
             return redirect("/inicio")
