@@ -8,25 +8,36 @@
 </head>
 <body>
     <main>
-        <div>
-            <form action="/modificar_Cantidad" method="post">
-                <label for="">Id producto</label>
-                <input type="number" name="id_producto" value="{{resul[0]}}">
-                <br>
-                <label for="ref_produ_1">Referencia 1</label>
-                <input type="text" name="ref_produ_1" value="{{resul[1]}}">
-                <br>
-                <label for="">Nombre producto</label>
-                <input type="text" name="nombre_producto" value="{{resul[2]}}">
-                <br>
-                <label for="">Cantidad</label>
-                <input type="number" name="cantidad_producto" id="cantidad_producto" value="{{resul[3]}}">
+        <div class="container-modal">
+            <div class="content-modal">
+                <form action="/modificar_Cantidad" method="post">
+                    <label for="">Id producto</label>
+                    <input type="number" name="id_producto" value="{{resul[0]}}">
+                    <br>
+                    <label for="ref_produ_1">Referencia 1</label>
+                    <input type="text" name="ref_produ_1" value="{{resul[1]}}">
+                    <br>
+                    <label for="">Nombre producto</label>
+                    <input type="text" name="nombre_producto" value="{{resul[2]}}">
+                    <br>
+                    <label for="">Cantidad</label>
+                    <input type="number" name="cantidad_producto" id="cantidad_producto" value="">
 
-                <div>
-                    <button type="submit">Agregar</button>
-                </div>
-            </form>
+                    <div class="botones">
+                        <button type="submit" id="btn-agregar">Agregar</button>
+                        <a href="#" onclick="cerrarModal()"><i class="lni lni-exit"></i></a>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </main>
+    <script>
+        // Función para cerrar el modal
+        function cerrarModal() {
+            var modalContenedor = window.parent.document.getElementById("modalContenedor");
+            modalContenedor.style.display = "none";
+        }
+    </script>
 </body>
 </html>
