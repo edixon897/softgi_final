@@ -64,6 +64,7 @@ def login():
             if rol in ROLES_PERMITIDOS:
                 session["nom_empleado"] = resultado[0]
                 session["rol"] = rol  # Asignar el rol a la sesión
+                session["documento_operador"] = documento
                 print("aca va la sesion",session)
                 return redirect(url_for('inicio'))
             else:
