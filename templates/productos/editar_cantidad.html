@@ -11,14 +11,14 @@
         <div class="container-modal">
             <div class="content-modal">
                 <form action="/modificar_Cantidad" method="post">
-                    <label for="">Id producto</label>
-                    <input type="number" name="id_producto" value="{{resul[0]}}">
+                    <!-- <label for="">Id producto</label> -->
+                    <input type="hidden" name="id_producto" value="{{resul[0]}}">
                     <br>
-                    <label for="ref_produ_1">Referencia 1</label>
-                    <input type="text" name="ref_produ_1" value="{{resul[1]}}">
+                    <label for="ref_produ_1">Referencia 1: {{resul[1]}}</label>
+                    <input type="hidden" name="ref_produ_1" value="{{resul[1]}}">
                     <br>
-                    <label for="">Nombre producto</label>
-                    <input type="text" name="nombre_producto" value="{{resul[2]}}">
+                    <label for="">Nombre producto: {{resul[2]}}</label>
+                    <input type="hidden" name="nombre_producto" value="{{resul[2]}}">
                     <br>
                     <label for="">Cantidad</label>
                     <input type="number" name="cantidad_producto" id="cantidad_producto" value="">

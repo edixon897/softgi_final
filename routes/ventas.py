@@ -6,6 +6,100 @@ import datetime
 from models.ventas import Dventas, Ventas
 
 
+
+#-------------------------------------------------------- abonos ventas a credito ----------------------------------------------------------------
+
+@app.route("/abono_credito_2/<contador>")
+def abono_credito_2(contador):
+    if "email_empleado" in session:
+
+        # muestra el html
+        return render_template("/ventas_credito/abono_venta.html",cont = contador)
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+
+
+
+"""   --------------recibe la info del FRONT-END------------  """
+
+@app.route("/confirma_abono_2", methods = ['POST'])
+def confirma_abono_2():
+    if "email_empleado" in session:
+
+        contador = request.form['contador']
+        abono = request.form['abono']
+        documento_operador = session["doc_empleado"]    
+
+        # combierto el texto a numero
+        abono = int(abono)
+        
+        # conuslto el credito restante
+        sql = f"SELECT `credito_restante` FROM `ventas_credito` WHERE contador = '{contador}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()    
+        cursor.execute(sql)
+        credito_restante = cursor.fetchall()
+        conn.commit()
+
+        # 1 - valido si la cantidad digitada es menor a la debida
+        if (credito_restante[0][0] >= abono):
+
+            credito_actual = (credito_restante[0][0] - abono)
+            tiempo_venta = datetime.datetime.now()
+
+            # 2 - valido si la resta = 0
+            if (credito_actual == 0):
+
+                # se cambia el estado de ACTIVO a CANCELADO
+                Ventas.abono_completo(contador)
+                return redirect("/muestra_ventas_credito")
+            
+            
+            # 2 
+            else:
+                # se actualiza el credito restante
+                Ventas.actualiza_credito_rest([credito_actual, contador])
+
+                # se incerta en el historial el abono realizado
+                Ventas.insert_historial_abn([contador, abono, documento_operador, tiempo_venta])
+                return redirect("/muestra_ventas_credito")
+
+        # 1
+        else:
+            mensaj = "¡Cantidd digitada mayor a la debida!"
+            return render_template("/ventas_credito/abono_venta.html",cont = contador, mensaje = mensaj)
+            
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('home'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #-------------------------------------------------------- Historial de ventas ----------------------------------------------------------------
 
 @app.route("/muestra_ventas")
@@ -80,10 +174,10 @@ def confirma_venta():
 #-------------------------------------------- informacion por si hay un error -----------
 
         # Muestra el documento del operador
-        documento_operador = session["doc_empleado"]
+        documento_operador = session["documento_operador"]
 
         # consulta los productos del inventario
-        sql = "SELECT `id_producto`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+        sql = "SELECT `id_producto`, `ref_produ_1`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
         conn = mysql.connect()
         cursor = conn.cursor()     
         cursor.execute(sql)
@@ -151,7 +245,7 @@ def confirma_venta():
                     tiempo_venta = datetime.datetime.now()
 
                     # Agrupo el nombre de todos los productos
-                    sql = "SELECT GROUP_CONCAT(nombre_producto SEPARATOR ', ') FROM carritoventas"
+                    sql = "SELECT GROUP_CONCAT(CONCAT(nombre_producto, ' - ', cantidad_adquirida) SEPARATOR ',   ') AS concatenado FROM carritoventas;"
                     conn = mysql.connect()
                     cursor = conn.cursor()     
                     cursor.execute(sql)
@@ -194,7 +288,7 @@ def confirma_venta():
                         conn.commit()
 
                         #consulto el numero de productos seleccionados
-                        sql = "SELECT COUNT(*) FROM `carritoventas`"
+                        sql = "SELECT SUM(cantidad_adquirida) FROM `carritoventas`"
                         conn = mysql.connect()
                         cursor = conn.cursor()     
                         cursor.execute(sql)
@@ -211,8 +305,16 @@ def confirma_venta():
                         cursor.execute(sql)
                         conn.commit()
 
+                        # consulta los productos seleccionados para venta
+                        sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        productos_carr_2 = cursor.fetchall()
+                        conn.commit()
+
                         mensaje_exitoso = "¡Venta realizada!"
-                        return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje_2 = mensaje_exitoso) 
+                        return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr_2, Total = 0, operador = documento_operador, mensaje_2 = mensaje_exitoso) 
 
 
 
@@ -228,8 +330,16 @@ def confirma_venta():
                         cursor.execute(sql)
                         conn.commit()
 
+                                                # consulta los productos seleccionados para venta
+                        sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        productos_carr_2 = cursor.fetchall()
+                        conn.commit()
+
                         mensaje_exitoso = "¡Venta a credito realizada!"
-                        return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje_2 = mensaje_exitoso)
+                        return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr_2, Total = 0, operador = documento_operador, mensaje_2 = mensaje_exitoso)
 
 
 
@@ -237,18 +347,18 @@ def confirma_venta():
                 # 3
                 else:
                     mensaje_error = "¡El cliente no existe en la base de datos!"
-                    return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+                    return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
 
             # 2
             else:
                 mensaje_error = "¡Identificacion del operador invalida!"
-                return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
         #  1 
         else:
             # envio mensaje del error
             mensaje_error = "¡No hay productos seleccionados!"
             # muestra el HTML registrar_venta
-            return render_template('ventas/registrar_venta.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+            return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
             
     else:
         flash('Porfavor inicia sesion para poder acceder')
@@ -261,7 +371,13 @@ def cancela_venta_c(contador):
     if "nom_empleado" in session:
 
         # funciona al validar q se pago completo el credito 
-        Ventas.venta_cancelada_cred(contador)
+        print(f" porque nooooo\n{contador}\n")
+        #Ventas.venta_cancelada_cred(contador)
+        sql = f"UPDATE `ventas_credito` SET `estado`='PAGADA' WHERE contador = '{contador}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        conn.commit()
         return redirect("/muestra_ventas_credito")
 
     else:
