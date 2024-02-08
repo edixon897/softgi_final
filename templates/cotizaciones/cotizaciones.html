@@ -30,24 +30,27 @@
             <table id="cotizacionTable">
                 <thead>
                     <tr>
+                        <th>Cotizacion #</th>
                         <th>C.C. cliente</th>
                         <th>Nombre cliente</th>
                         <th>Fecha inicio</th>
                         <th>Fecha final</th>
                         <th>Nombre operador</th>
-                        <th>Apellido operador</th>
+                        <th></th>
+                        <th></th>
+                        <!-- <th>Apellido operador</th> -->
                     </tr>
                 </thead>
                 <tbody>
                     {% for dato in datos %}
                         <tr>
-                            
+                            <td>{{dato[0]}}</td>
                             <td>{{dato[1]}}</td>
                             <td>{{dato[2]}}</td>
                             <td>{{dato[3]}}</td>
                             <td>{{dato[4]}}</td>
                             <td>{{dato[5]}}</td>
-                            <td>{{dato[6]}}</td>
+                            <!-- <td>{{dato[6]}}</td> -->
                             
                             <td class="btns_centro">
                                 <a href="editarCotizacion/{{dato[0]}}">

@@ -34,7 +34,7 @@ class Cotizaciones:
         
 
     def crearDetalleCotizacion(self, registrar):
-        bsql = f"INSERT INTO `detallecotizaciones`(`num_cotizacion`, `producto_cotizacion`, `nom_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion`, `detalle_estado`) VALUES ('{registrar[0]}','{registrar[1]}','{registrar[2]}','{registrar[3]}','{registrar[4]}','{registrar[5]}', 'ACTIVO')"
+        bsql = f"INSERT INTO `detallecotizaciones`(`num_cotizacion`, `producto_cotizacion`, `nombre_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion`, `detalle_estado`) VALUES ('{registrar[0]}','{registrar[1]}','{registrar[2]}','{registrar[3]}','{registrar[4]}','{registrar[5]}', 'ACTIVO')"
         self.cursor.execute(bsql)
         self.conexion.commit()
     
