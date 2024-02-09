@@ -19,6 +19,7 @@ def login():
         resultado = cursor.fetchone()
         if resultado is not None:
             session["nom_empleado"] = resultado[0]
+            session["documento_operador"] = documento
             print(session)
             return redirect(url_for('inicio'))
         else:

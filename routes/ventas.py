@@ -313,8 +313,8 @@ def confirma_venta():
                         productos_carr_2 = cursor.fetchall()
                         conn.commit()
 
-                        mensaje_exitoso = "¡Venta realizada!"
-                        return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr_2, Total = 0, operador = documento_operador, mensaje_2 = mensaje_exitoso) 
+                        mensaje_exitoso = "Venta_realizada_normal" #¡Venta realizada!
+                        return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr_2, Total = 0, operador = documento_operador, mensaje = mensaje_exitoso) 
 
 
 
@@ -338,27 +338,27 @@ def confirma_venta():
                         productos_carr_2 = cursor.fetchall()
                         conn.commit()
 
-                        mensaje_exitoso = "¡Venta a credito realizada!"
-                        return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr_2, Total = 0, operador = documento_operador, mensaje_2 = mensaje_exitoso)
+                        mensaje_exitoso = "listo_credito" #¡Venta a credito realizada!
+                        return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr_2, Total = 0, operador = documento_operador, mensaje = mensaje_exitoso)
 
 
 
 
                 # 3
                 else:
-                    mensaje_error = "¡El cliente no existe en la base de datos!"
+                    mensaje_error = 3#¡El cliente no existe en la base de datos!
                     return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
 
             # 2
             else:
-                mensaje_error = "¡Identificacion del operador invalida!"
+                mensaje_error = 2 #¡Identificacion del operador invalida!
                 return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
         #  1 
         else:
             # envio mensaje del error
-            mensaje_error = "¡No hay productos seleccionados!"
+            mensaje_error = 1#¡No hay productos seleccionados!
             # muestra el HTML registrar_venta
-            return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+            return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje = mensaje_error) 
             
     else:
         flash('Porfavor inicia sesion para poder acceder')
@@ -475,7 +475,7 @@ def elimina_todo_seleccionado_p():
             productos_carr = cursor.fetchall()
             conn.commit()
 
-            mensaje_error = "¡No hay productos seleccionados para eliminar!"
+            mensaje_error = "No_hay_productos_seleccionados_para_eliminar" #¡No hay productos seleccionados para eliminar!
             return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje = mensaje_error) 
 
 
@@ -651,12 +651,12 @@ def selector_una_cantidad(id_producto):
             Suma_total = cursor.fetchall()
             conn.commit()
 
-            mensaje_error = "¡La cantidad solicitada es menor a la disponible!"
+            mensaje_error = "La_cantidad_solicitada_es_menor_a_la_disponible" #¡La cantidad solicitada es menor a la disponible!
 
             if Suma_total[0][0] is not None:            
-                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje = mensaje_error) 
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje_2 = mensaje_error) 
             else:
-                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje = mensaje_error) 
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje_2 = mensaje_error) 
 
 
     else:
@@ -844,9 +844,6 @@ def Busca_produc_ven():
 def verCrear_ventas():
     if "nom_empleado" in session:
 
-        rol = session["rol"]
-        if rol == "administrado" or rol == "vendedor":
-
             # Muestra el documento del operador
             documento_operador = session["documento_operador"]
 
@@ -881,9 +878,3 @@ def verCrear_ventas():
             else:
                 return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador) 
         
-        else:
-            return redirect("/inicio")
-
-    else:
-        flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))

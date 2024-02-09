@@ -4,18 +4,249 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar venta</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/crea_venta.css">
     
 </head>
 <body>
 
+    <main id="cuerpo">
 
-    <!-- Realiza la busqueda de un producto del inventario -->
-    <form  id="conten_busqueda">
+        <section id="section_1">
+            <p>Registrar venta</p>
+        </section>
+
+        <section id="section_2">
+
+            <div id="conten_1">
+
+                <div id="conten_tabla_1">
+
+                    <section id="conten_busqueda">
+
+                        <div id="titulo">
+                            <p>Productos</p>
+                        </div>
+
+                        <form id="form_conten" >
+                            <i id="icono_busqueda" class="lni lni-search-alt"></i>
+                            <input type="search" placeholder="" aria-label="Search" name="id_nombre" id="buscador" oninput="buscarProductos()">
+                        </form>
+                        
+                    </section>
+                    <section id="conten_tabla">
+                        <div id="cont_t">
+                            <table id="tabla">
+                                <thead >
+                                    <tr>
+                                        <th>Referencias</th>
+                                        <th>Nombre producto </th>
+                                        <th>Precio unitario</th>
+                                        <th>Stock disponible</th>
+                                        <th>seleccionar muchos</th>
+                                        <th>seleccionar uno</th>
+                                    </tr>
+                                </thead>
+                    
+                                <tbody>         
+                                    {% for c in prod %}
+                                    <tr>
+                                        {% for i in range(1,5) %}
+                                            {% if i==3 %}
+                                                <td class="costo">$ {{c[i]}}</td>
+
+                                            {% else %}
+                                                <td>{{c[i]}}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                            <td> <!--   onclick="abrirModal('{{c[0]}}')"-->
+                                                <a href="/m_selector_cantidad_p/{{c[0]}}" > <i id="icono_select_2" class="lni lni-layers"></i></a>
+                                            </td>
+                                            <td>
+                                                <a href="/selector_una_cantidad/{{c[0]}}"><!-- <i id="icono_select_1" class="lni lni-cart"></i> -->  <i id="icono_select_1" class="lni lni-select-cursor"></i></a>
+                                            </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <p id="noResults" style="display: none;">No se encontraron resultados</p>
+                            </table> 
+                        </div>
+                    </section>
+
+                </div>
+
+                <div id="conten_tabla_2">
+
+                    <section id="conten_titulo">
+                        <p>Productos seleccionados</p>
+                    </section>
+
+                    <section id="conten_t_carrito">
+
+                        <div id="conten_carrito">
+                            <table id="tabla_carrito">
+                                <thead >
+                                    <tr>
+                                        <th>Nombre producto </th>
+                                        <th>Precio unitario</th>
+                                        <th>Cantidad adquirida</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                    
+                                <tbody>         
+                                    {% for c in prod_carr %}
+                                    <tr>
+                                        {% for i in range(1,5) %}
+                                            {% if i==2 %}
+
+                                            <td class="costo">${{c[i]}}</td>
+
+                                            {% elif i==4 %}
+
+                                            <td class="costo">${{c[i]}}</td>
+
+                                            {% else %}
+                                            <td>{{c[i]}}</td>
+                                    {% endif %}
+                                        {% endfor %}
+                                            <td>
+                                                <a href="/elimina_p_select/{{c[0]}}"><i id="icono_delete" class="lni lni-trash-can"></i></a>
+                                            </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        
+                    </section>
+
+                    <section id="conten_boton">
+                        <a class="btn_elinar_todo" href="/elimina_todo_seleccionado_p">Vaciar carrito de ventas</a>
+                    </section>
+                    
+                </div>
+
+            </div>
+
+            <div id="conten_2">
+
+                <div id="conten_formulario_3">
+
+                    <section id="conten_btns">
+                        <div id="separador">
+                            <a href="{{url_for ('crearClientes') }}">Registrar clente</a>
+                            <a href="{{url_for ('muestra_ventas') }}">Regresar</a>
+                        </div>
+                    </section>
+
+
+
+
+
+                    <form id="conten_form" action="/confirma_venta" method="post"> 
+
+                        <div id="lad_1_form">
+
+                            <div class="conten_input">
+                                <div class="campo_2">
+                                    <input type="number" id="doc_operador" name="doc_operador" class="input_campo" value="{{operador}}"  required> 
+                                </div>
+                            </div>
+
+                            <div class="conten_input">
+                                <div class="campo_2">
+                                    <input type="number" id="doc_cliente" name="doc_cliente" placeholder="Cedula del Cliente"  class="input_campo" required>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                        <div id="lad_2_form">
+                            
+                            <div class="conten_input" id="conten_input_2">
+                                <div class="campo_2" >
+                                    <select name="tipo_de_venta" class="input_campo" id="venta_tipo" oninput="verifica_tipo_venta()">
+                                        <option value="venta_normal">Venta normal</option>
+                                        <option value="venta_credito">Venta a credito</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="conten_input" id="conten_input_1">
+                                <div class="campo_2" >
+                                    <select name="forma_de_pago" class="input_campo" id="forma_pago">
+                                        <option value="efectivo">Efectivo</option>
+                                        <option value="Nequi">Nequi</option>
+                                        <option value="Daviplata">Daviplata</option>
+                                        <option value="Bancolombia">Bancolombia</option>
+                                        <option value="Tarjeta debito">Tarjeta debito</option>
+                                        <option value="Tarjeta credito">Tarjeta credito</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="lad_3_form">
+                            <button class="btn_sutmit" type="submit" onclick="valida_campos()">Registrar venta</button>
+                        </div>
+            
+                        
+                        
+                    </form>
+
+
+
+                </div>
+
+                <div id="conten_precio_total">
+                    <h1>$ {{Total}}</h1>
+                </div>
+
+            </div>
+            
+        </section>
+
+    </main>
+
+
+    <input type="hidden" id="input_error" readonly value="{{mensaje}}" oninput="verifica_input()"> 
+   <input type="hidden" id="input_error_2" readonly value="{{mensaje_2}}" oninput="verifica_input_2()">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../static/javaScript/registrar_ventas.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <form  id="conten_busqueda">
         <input type="search" placeholder="Busca productos por codigo o nombre" aria-label="Search" name="id_nombre" id="buscador">
         <button type="submit">Buscar</button>
     </form>
 
-    <div><!-- tabla que muestra todos los productos del inventario -->
+    <div>
         <table>
             <thead >
                 <tr>
@@ -48,7 +279,7 @@
 
     <br>
 
-    <div><!-- Formulario para realizar la venta de los productos -->
+    <div>
 
         <form action="/confirma_venta" method="post">
             
@@ -56,7 +287,7 @@
 
             <input type="number" name="doc_cliente" placeholder="Cedula del Cliente"  required>
 
-            <!-- Forma de pago -->
+            
             <select name="forma_de_pago">
 
                 
@@ -69,7 +300,7 @@
 
             </select>
 
-            <!-- Tipo de venta -->
+            
             <select name="tipo_de_venta">
 
                 <option value="venta_normal">Venta</option>
@@ -83,7 +314,7 @@
 
     </div>
 
-    <div><!-- mensajes del sistema -->
+    <div>
         <p>{{mensaje}}</p>
         <p>{{mensaje_2}}</p>
     </div>
@@ -92,7 +323,7 @@
 
 
 
-    <div><!-- Tabla que muestra los productos seleccionados para la venta -->
+    <div>
         <table>
             <thead >
                 <tr>
@@ -118,18 +349,18 @@
         </table>
     </div>
 
-    <!-- Boton que elimina todos los productos del carrito de ventas -->
+    
     <div>
         <a href="/elimina_todo_seleccionado_p">Vaciar carrito de ventas</a>
     </div>
 
-    <!-- Suma total a pagar -->
+
     <div>
         <h1>$ {{Total}}</h1>
     </div>
 
     <div id="boton-atras">
         <button class="boton-atras" onclick="window.location.href='/index'">Regresar al Home</button>
-    </div>
+    </div>  -->
 </body>
 </html>
