@@ -37,7 +37,7 @@ main#inicio{
     width: 100%;
 } 
 
-h2{                           /* -------------------para títulos----------------- */
+h2{
     color: #454545;
     font-size: 1.5em;
     font-weight: 500;
@@ -45,7 +45,7 @@ h2{                           /* -------------------para títulos---------------
     padding: 0;
 }
 
-div#agregar_producto{                 /* -------------------para botones de agregar u otra interfaz----------------- */
+div#agregar_usuario{
     background-color: #358CB4;
     border: none;
     border-radius: 5px;  
@@ -54,14 +54,15 @@ div#agregar_producto{                 /* -------------------para botones de agre
     padding: 10px;
     width: 20%;
 }
-    #agregar_producto > a{
+    #agregar_usuario > a{
         text-decoration: none;
         text-align: center;
     }
 
-div#buscar{                                 /* -------------------para el campo de búsqueda----------------- */
+div#buscar{
     margin: 30px 20px;
 }
+
     #buscador > i{
         border-radius: 10%;
         color: #358CB4;
@@ -69,7 +70,7 @@ div#buscar{                                 /* -------------------para el campo 
         position: absolute;
         z-index: 3;
     }
-
+    
     #buscador > input{
         border: solid 1px #828282;
         border-radius: 5px;
@@ -82,75 +83,41 @@ div#buscar{                                 /* -------------------para el campo 
         z-index: 2;
     }
 
-section#contenido{                            /* -------------------para las tablas----------------- */
+section#contenido{
     margin: 20px;
 }
-
+    
     table{
         border-collapse: collapse;
         width: 100%;
-
     }
-
+    
         th, td{
             border: solid 1px #828282;
             font-size: 15px;
             padding: 5px; 
         }
-
+    
         th{
             color: #358CB4;
             font-weight: 500;
             text-align: center;
         }
-
+    
         td{
             text-align: left;
         }
-
-/* div#regresar{
-    background-color: #57a8ce;
-    border: none;
-    border-radius: 3px;  
-    font-size: 1em;
-    margin: 18px;
-    padding: 3px;
-    width: 18%;
-}
-    #regresar > a{
-        text-decoration: none;
-        text-align: center;
-    }
-
- */
-
+    
 
 
 /* ------------------Clases------------------- */
 
-.lni{                      /* -------------------para el color y tamaño de iconos----------------- */
+.lni{
     font-size: 1.8em;
     color: #358CB4;
 }
 
-.aviso_agregar{            /* -------------------para el color de las letras de los botones----------------- */
-    color: #fff;
-    margin: 0;
-    padding: 0;
-}
-
-.btns_centro{              /* -------------------para centrar los iconos de editar y eliminar de lasa tablas----------------- */
-    text-align: center;
-}
-
-
-
-#conten_opciones {       /* -------------------para el margin y el ancho del contenedor de los botones de opciones----------------- */
-    margin: 10px 20px;
-    width: 25%;   
-}
-
-.opciones {           /* -------------------para el estilo de los botones de opciones----------------- */
+.opciones {
     width: 100%;
     height: 100%;
     border-radius: 5px;  
@@ -163,16 +130,7 @@ section#contenido{                            /* -------------------para las tab
     margin: 10px 0;
     padding: 8px;
 }
-.color_opciones {
-    text-decoration: none;
-    color: white;
-}
-
-
-@media screen and (max-width: 700px) {
-    #conten_opciones {
-        width: 67%;
+    .color_opciones {
+        text-decoration: none;
+        color: white;
     }
-}
-
-

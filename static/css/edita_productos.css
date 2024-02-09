@@ -197,10 +197,6 @@ main#inicio {
                 right: -100%;
             }
 
-
-
-
-
         div#conten_buttons {
             width: 35%;
             height: 16%;
@@ -272,11 +268,9 @@ main#inicio {
             justify-content: space-between;
             align-items: center;
         }
-
-    
+   
 
 /* CLASES */
-
 
 
 .campo_2 {
@@ -313,7 +307,7 @@ p.icono_listo i {
 }
 
 
-
+/* -------------------------------responsive---------------------- */
 
 
 @media screen and (max-width: 500px) {
@@ -350,7 +344,6 @@ p.icono_listo i {
         font-size: 1.0em;
     }
 }
-
 
 
 @media screen and (max-width: 500px) {

@@ -11,22 +11,15 @@
 </head>
 <body>
     <main id="inicio">
+        <h2>Productos</h2>
         <section id="opciones">
-            <h2>Productos</h2>
             <div id="conten_opciones">
-
-                <div class="opciones">
-                    <a class="color_opciones" href="{{url_for('categorias')}}">
-                        Categorias
-                    </a>
-                </div>
-                <div class="opciones">
-                    <a class="color_opciones"  href="{{url_for('crear_Producto')}}">
-                        Agregar producto
-                    </a>
-                </div>
-                
-
+                <a class="color_opciones" href="{{url_for('categorias')}}">
+                    <div class="opciones">Categorias</div>        
+                </a>
+                <a class="color_opciones"  href="{{url_for('crear_Producto')}}">
+                    <div class="opciones">Agregar producto</div> 
+                </a>
             </div>
             <div id="buscar">
                 <form  id="buscador">
@@ -53,7 +46,7 @@
                         <th>Stock</th>
                         <th>Ubicación</th>
                         <th>Estante</th>
-                        <th></th>
+                        <th>Sumar cantidad</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -78,7 +71,7 @@
 
                             <div id="modalContenedor" style="display: none;"></div>
 
-                            <td>
+                            <td class="btns_centro">
                                 <a href="#" onclick="abrirModal('{{result[0]}}')">
                                     <i class="lni lni-plus"></i>
                                 </a>
@@ -104,12 +97,9 @@
             <p id="noResults" style="display: none;">No se encontraron resultados</p>
         </section>
 
-
-
-
         <div id="regresar">
             <a href="{{url_for ('inicio') }}" class="campo_a">
-                <p class="color_p">ATRAS</p>
+                <i class="lni lni-arrow-left"></i>
             </a>
         </div>
     </main>
