@@ -116,3 +116,104 @@ function verifica_tipo_venta() {
 
     }
 }
+
+
+
+function valida_campos() {
+    let doc_operador = document.getElementById('doc_operador').value;
+    let doc_cliente = document.getElementById('doc_cliente').value;
+    let form = document.querySelector("form");
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault()
+    });
+
+    if (doc_operador && doc_cliente) {
+        form.submit()
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Faltan campos por completar",
+            width: "50%",
+            height: "20%",
+            timer: 1500,
+            showConfirmButton: false
+        });
+    }
+    
+}
+
+
+
+
+
+
+function buscarProductos() {
+    var input, filter, table, tr, td, i, j, txtValue, noResults;
+
+    input = document.getElementById("buscador");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tabla");
+    tr = table.getElementsByTagName("tr");
+    noResults = document.getElementById("noResults");
+
+    noResults.style.display = "none";
+
+    for (i = 0; i < tr.length; i++) {
+        if (!tr[i].getElementsByTagName("td").length) {
+            // Si no hay celdas td, es decir, es un encabezado, se salta la iteración.
+            continue;
+        }
+        td = tr[i].getElementsByTagName("td");
+        var encontrado = false;
+
+        for (j = 0; j < td.length; j++) {
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    encontrado = true;
+                    break;
+                }
+            }
+        }
+
+        // Ocultar o mostrar la fila según si se encontró o no la coincidencia.
+        tr[i].style.display = encontrado ? "" : "none";
+    }
+
+    // Mostrar el mensaje de "No se encontraron resultados" si todas las filas están ocultas.
+    if (Array.from(tr).every(row => row.style.display === "none")) {
+        noResults.style.display = "block";
+    }
+}
+
+
+
+
+
+// Función para abrir el modal
+function abrirModal(idProducto) {
+    // Cargar el contenido de editar_cantidad.html en el modalContenedor
+    var modalContenedor = document.getElementById("modalContenedor");
+    modalContenedor.innerHTML = "";
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            modalContenedor.innerHTML = this.responseText;
+
+            // Mostrar el modal
+            modalContenedor.style.display = "block";
+        }
+    };
+
+    xhttp.open("GET", "/m_selector_cantidad_p/" + idProducto, true);
+    xhttp.send();
+}
+
+// Función para cerrar el modal
+function cerrarModal() {
+    var modalContenedor = document.getElementById("modalContenedor");
+    modalContenedor.style.display = "none";
+};

@@ -138,6 +138,7 @@ main#cuerpo {
                         overflow-y: scroll;
                         display: flex;
                         justify-content: center;
+                        
                     }
 
                     /* estilos croll */
@@ -161,6 +162,8 @@ main#cuerpo {
                         #tabla {
                             border-collapse: collapse;
                             width: 90%;
+                            position: relative;
+                            z-index: 1;
                         }
                         th, td{
                             border-bottom: 0.5px solid #dfdede;
@@ -385,8 +388,18 @@ main#cuerpo {
     color: white;
     font-size: 0.8em;
     border: none;
-    border-radius: 1.0em;
+    border-radius: 0.7em;
 }
     .btn_sutmit:hover {
         cursor: pointer;
     }
+
+
+
+
+#noResults {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

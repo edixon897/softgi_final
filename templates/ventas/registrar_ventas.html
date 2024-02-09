@@ -30,7 +30,7 @@
 
                         <form id="form_conten" >
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
-                            <input type="search" placeholder="" aria-label="Search" name="id_nombre" id="buscador">
+                            <input type="search" placeholder="" aria-label="Search" name="id_nombre" id="buscador" oninput="buscarProductos()">
                         </form>
                         
                     </section>
@@ -43,7 +43,7 @@
                                         <th>Nombre producto </th>
                                         <th>Precio unitario</th>
                                         <th>Stock disponible</th>
-                                        <th>selectionar muchos</th>
+                                        <th>seleccionar muchos</th>
                                         <th>seleccionar uno</th>
                                     </tr>
                                 </thead>
@@ -59,16 +59,17 @@
                                                 <td>{{c[i]}}</td>
                                             {% endif %}
                                         {% endfor %}
-                                            <td>
-                                                <a href="/m_selector_cantidad_p/{{c[0]}}"><i id="icono_select_2" class="lni lni-cart-full"></i></a>
+                                            <td> <!--   onclick="abrirModal('{{c[0]}}')"-->
+                                                <a href="/m_selector_cantidad_p/{{c[0]}}" > <i id="icono_select_2" class="lni lni-layers"></i></a>
                                             </td>
                                             <td>
-                                                <a href="/selector_una_cantidad/{{c[0]}}"><i id="icono_select_1" class="lni lni-package"></i></a>
+                                                <a href="/selector_una_cantidad/{{c[0]}}"><!-- <i id="icono_select_1" class="lni lni-cart"></i> -->  <i id="icono_select_1" class="lni lni-select-cursor"></i></a>
                                             </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
-                            </table>
+                                <p id="noResults" style="display: none;">No se encontraron resultados</p>
+                            </table> 
                         </div>
                     </section>
 
@@ -100,7 +101,7 @@
                                         {% for i in range(1,5) %}
                                             {% if i==2 %}
 
-                                            <td class="costo">$ {{c[i]}}</td>
+                                            <td class="costo">${{c[i]}}</td>
 
                                             {% elif i==4 %}
 
@@ -137,7 +138,7 @@
                     <section id="conten_btns">
                         <div id="separador">
                             <a href="{{url_for ('crearClientes') }}">Registrar clente</a>
-                            <a href="{{url_for ('inicio') }}">Regresar</a>
+                            <a href="{{url_for ('muestra_ventas') }}">Regresar</a>
                         </div>
                     </section>
 
@@ -151,13 +152,13 @@
 
                             <div class="conten_input">
                                 <div class="campo_2">
-                                    <input type="number" name="doc_operador" class="input_campo" value="{{operador}}"  required> 
+                                    <input type="number" id="doc_operador" name="doc_operador" class="input_campo" value="{{operador}}"  required> 
                                 </div>
                             </div>
 
                             <div class="conten_input">
                                 <div class="campo_2">
-                                    <input type="number" name="doc_cliente" placeholder="Cedula del Cliente"  class="input_campo" required>
+                                    <input type="number" id="doc_cliente" name="doc_cliente" placeholder="Cedula del Cliente"  class="input_campo" required>
                                 </div>
                             </div>
 
@@ -165,6 +166,16 @@
                         </div>
 
                         <div id="lad_2_form">
+                            
+                            <div class="conten_input" id="conten_input_2">
+                                <div class="campo_2" >
+                                    <select name="tipo_de_venta" class="input_campo" id="venta_tipo" oninput="verifica_tipo_venta()">
+                                        <option value="venta_normal">Venta normal</option>
+                                        <option value="venta_credito">Venta a credito</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
                             <div class="conten_input" id="conten_input_1">
                                 <div class="campo_2" >
                                     <select name="forma_de_pago" class="input_campo" id="forma_pago">
@@ -177,21 +188,11 @@
                                     </select>
                                 </div>
                             </div>
-                            
-                            <div class="conten_input" id="conten_input_2">
-                                <div class="campo_2" >
-                                    <select name="tipo_de_venta" class="input_campo" id="venta_tipo" oninput="verifica_tipo_venta()">
-                                        <option value="venta_normal">Venta normal</option>
-                                        <option value="venta_credito">Venta a credito</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
 
                         </div>
 
                         <div id="lad_3_form">
-                            <button class="btn_sutmit" type="submit">Registrar venta</button>
+                            <button class="btn_sutmit" type="submit" onclick="valida_campos()">Registrar venta</button>
                         </div>
             
                         
