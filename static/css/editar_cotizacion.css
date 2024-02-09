@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Barlow', sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        h2 {
+            color: #454545;
+            font-size: 1.5em;
+            font-weight: 500;
+            margin: 20px;
+        }
+
+        form {
+            margin: 20px;
+        }
+
+        .campos {
+            margin-bottom: 20px;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #828282;
+            border-radius: 5px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        input[type="submit"] {
+            background-color: #358CB4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px;
+            cursor: pointer;
+            font-family: 'Barlow', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #57A8CE;
+        }

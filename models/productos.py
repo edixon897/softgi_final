@@ -9,6 +9,18 @@ class Productos:
 
     
     def crearProductos(self, producto):
+        
+        # Validar que el precio de venta no sea inferior al precio de compra
+        precio_compra = float(producto[8])
+        precio_venta = float(producto[9])
+        print(f"Precio de compra: {precio_compra}, Precio de venta: {precio_venta}")
+
+
+        if precio_venta <= precio_compra:
+            # Mostrar un mensaje de error o manejar la situación según tus necesidades
+            print("Error: El precio de venta no puede ser igual o inferior al precio de compra.")
+            return  
+
         sql = f"INSERT INTO `productos`(`ref_produ_1`, `ref_produ_2`, `ref_produ_3`, `categoria`, `nom_categoria`, `proveedor`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante`, `fechahora_registro`, `documento_operador`, `nombre_operador`, `apellido_operador`, `estado_producto`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         valores = (producto[0], producto[1], producto[2], producto[3], producto[4], producto[5], producto[6], producto[7], producto[8], producto[9], producto[10], producto[11], producto[12], producto[13], producto[14], producto[15], producto[16], producto[17], producto[18], 'ACTIVO')
         self.cursor.execute(sql, valores)
@@ -17,15 +29,33 @@ class Productos:
 
     
 
-    def producto_existe_en_db(self, producto):
-        sql = f"SELECT COUNT(*) FROM productos WHERE id_producto = '{producto}'"
-        self.cursor.execute(sql)
+    def producto_existe_en_db(self, ref_produ_1, ref_produ_2, ref_produ_3):
+        condiciones = []
+
+        if ref_produ_1 is not None:
+            condiciones.append("ref_produ_1 = %s")
+        if ref_produ_2 is not None:
+            condiciones.append("ref_produ_2 = %s")
+        if ref_produ_3 is not None:
+            condiciones.append("ref_produ_3 = %s")
+
+        condiciones_str = " AND ".join(condiciones)
+
+        sql = f"SELECT COUNT(*) FROM productos WHERE {condiciones_str}"
+        valores = [ref_produ_1, ref_produ_2, ref_produ_3]
+
+        print("SQL:", sql)
+        print("Valores:", valores)
+
+        self.cursor.execute(sql, tuple(valores))
         resultado = self.cursor.fetchone()
 
         if resultado[0] > 0:
-            return True
+            return True  # El producto ya existe en la base de datos
         else:
-            return False
+            return False  # El producto no existe en la base de datos
+
+
         
 
     def buscar_productos(self, id_producto):

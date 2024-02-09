@@ -50,6 +50,11 @@ def crear_Producto():
             estante = request.form['estante']
             tiempoRegistro = datetime.datetime.now()
 
+               # Antes de realizar la inserción, verifica si el producto ya existe
+            if Dproductos.producto_existe_en_db(ref_produ_1, ref_produ_2, ref_produ_3):
+                flash("Error: El producto ya existe en la base de datos.")
+                return redirect(url_for('muestra_Productos'))
+
             
             Dproductos.crearProductos([ref_produ_1, ref_produ_2, ref_produ_3, categorias_activas, nom_categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
             return redirect(url_for('muestra_Productos'))

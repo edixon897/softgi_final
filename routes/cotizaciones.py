@@ -18,7 +18,7 @@ def Cotizacion():
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('home'))
 
-        
+     
 @app.route("/CrearCotizacion")
 def CrearCotizacion():
     if "nom_empleado" in session: 
@@ -34,11 +34,7 @@ def CrearCotizacion():
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('home'))
-
-
-
-
-
+ 
 
 @app.route('/crearCotizacion', methods=['POST'])
 def crearCotizacion():

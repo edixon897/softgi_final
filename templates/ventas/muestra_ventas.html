@@ -26,11 +26,11 @@
                     <tr>
                         <th>Número de factura</th>
                         <th>C.C cliente</th>
-                        <!-- <th>C.C operador</th> -->
                         <th>Nombre operador</th>
                         <th>Apellido operador</th>
                         <th>Fecha de venta</th>
                         <th>Forma de pago</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -43,9 +43,6 @@
                         {% endfor %}
                             <td>
                                 <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}"><i class="lni lni-circle-plus"></i></a>
-    
-                                <!-- <a href="muestra_detalles_ventas{{c[0]}}">Mas detalles</a> -->
-                                <!-- <a href="{{ url_for('muestra_ventas', c=c[0]) }}">Mas detalles</a> -->
     
                             </td>
                     </tr>
