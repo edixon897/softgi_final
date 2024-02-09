@@ -844,9 +844,6 @@ def Busca_produc_ven():
 def verCrear_ventas():
     if "nom_empleado" in session:
 
-        rol = session["rol"]
-        if rol == "administrado" or rol == "vendedor":
-
             # Muestra el documento del operador
             documento_operador = session["documento_operador"]
 
@@ -881,9 +878,3 @@ def verCrear_ventas():
             else:
                 return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador) 
         
-        else:
-            return redirect("/inicio")
-
-    else:
-        flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
