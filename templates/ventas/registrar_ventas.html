@@ -136,7 +136,7 @@
 
                     <section id="conten_btns">
                         <div id="separador">
-                            <a href="#">Registrar clente</a>
+                            <a href="{{url_for ('crearClientes') }}">Registrar clente</a>
                             <a href="{{url_for ('inicio') }}">Regresar</a>
                         </div>
                     </section>
@@ -165,9 +165,9 @@
                         </div>
 
                         <div id="lad_2_form">
-                            <div class="conten_input">
-                                <div class="campo_2">
-                                    <select name="forma_de_pago" class="input_campo">
+                            <div class="conten_input" id="conten_input_1">
+                                <div class="campo_2" >
+                                    <select name="forma_de_pago" class="input_campo" id="forma_pago">
                                         <option value="efectivo">Efectivo</option>
                                         <option value="Nequi">Nequi</option>
                                         <option value="Daviplata">Daviplata</option>
@@ -178,10 +178,10 @@
                                 </div>
                             </div>
                             
-                            <div class="conten_input">
+                            <div class="conten_input" id="conten_input_2">
                                 <div class="campo_2" >
-                                    <select name="tipo_de_venta" class="input_campo">
-                                        <option value="venta_normal">Venta</option>
+                                    <select name="tipo_de_venta" class="input_campo" id="venta_tipo" oninput="verifica_tipo_venta()">
+                                        <option value="venta_normal">Venta normal</option>
                                         <option value="venta_credito">Venta a credito</option>
                                     </select>
                                 </div>
@@ -211,6 +211,13 @@
         </section>
 
     </main>
+
+
+    <input type="hidden" id="input_error" readonly value="{{mensaje}}" oninput="verifica_input()"> 
+   <input type="hidden" id="input_error_2" readonly value="{{mensaje_2}}" oninput="verifica_input_2()">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../static/javaScript/registrar_ventas.js"></script>
 
 
 
