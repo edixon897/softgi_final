@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
 
-        * {
+        /** {
             box-sizing: border-box;
             transition: all 0.3s ease-in-out;
         }
@@ -14,7 +14,7 @@
             font-weight: 300;
         }
 
-        h2 {
+         h2 {
             color: #454545;
             font-size: 1.5em;
             font-weight: 500;
@@ -101,3 +101,99 @@
         button[type="submit"]:hover {
             background-color: #57A8CE;
         }
+ */
+
+
+
+h2 {
+    color: #333;
+}
+
+form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input,
+select,
+button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.campos {
+    width: 90%;
+    text-align: left;
+}
+
+#searchProduct {
+    width: 100%;
+    margin-top: 0px;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.select-button {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+#productosSeleccionados {
+    margin-top: 15px;
+}
+
+button[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+}
+
+@media screen and (min-width: 700px) {
+    form {
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    #searchProduct {
+        width: calc(100% - 5px);
+        display: inline-block;
+    }
+
+    .select-button {
+        width: calc(100% - 5px);
+        display: inline-block;
+    }
+}

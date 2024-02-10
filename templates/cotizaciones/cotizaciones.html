@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizaciones</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../../static/css/crear_cotizaciones.css"> -->
     <link rel="stylesheet" href="../../static/css/muestra_cotizaciones.css">
 </head>
 <body>
@@ -12,9 +13,7 @@
         <section id="opciones">
             <h2>Cotizaciones</h2>
             <div id="agregar_cotizacion">
-                <a href="{{url_for('CrearCotizacion')}}">
-                    <p class="aviso_agregar">Agregar cotización</p>
-                </a>
+                <button id="openCrearCotizacionModal">Agregar cotización</button>
             </div>
 
             <div id="buscar">
@@ -24,7 +23,6 @@
                 </form>
             </div>
         </section>
-        
         
         <section id="contenido">
             <table id="cotizacionTable">
@@ -62,8 +60,7 @@
                                 <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraCotizacion/{{dato[0]}}">
                                     <i class="lni lni-trash-can"></i>
                                 </a>
-                                </td>
-
+                            </td>
                         </tr>
                     {% endfor %} 
                 </tbody>
@@ -71,26 +68,90 @@
         </section>
 
         <p id="noResults" style="display: none;">No se encontraron resultados</p>
-
     
-            <div id="boton-atras">
-                <a href="{{url_for ('inicio') }}" id="enlace_volver">Volver a pagina principal</a>
-            </div>
+        <div id="boton-atras">
+            <a href="{{url_for ('inicio') }}" id="enlace_volver">Volver a pagina principal</a>
+        </div>
     </main>
-    {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
 
-    {% endwith %}
-<script src="/static/javaScript/buscarCotizacion.js">
+    <!-- Modal -->
+    <div id="crearCotizacionModal" class="modal">
+        <div class="modal-content">
+            <h2>Crear Cotización</h2>
+            <form action="/crearCotizacion" method="POST">
+                <div class="form-group">
+                    <label for="fechaInicioNuevoCliente">Fecha de Inicio:</label>
+                    <input type="date" name="fechaInicioNuevoCliente" required>
+                </div>
     
-</script>
-</body>
-</html>
+                <div class="form-group">
+                    <label for="fechaFinNuevoCliente">Fecha de Fin:</label>
+                    <input type="date" name="fechaFinNuevoCliente" required>
+                </div>
+    
+                
+                <input type="text" id="searchProductos" oninput="filterProducts()" placeholder="Buscar productos">
+                    <div class="form-group">
+                    <table id="productTable">
+                        <thead>
+                            <th>Nombre del Producto</th>
+                            <th>Seleccionar</th>
+                        </thead>
+                        <tbody>
+                            {% for c in detalle %}
+                                <tr>
+                                    <td>{{ c[0] }}</td>
+                                    <td><button type="button" class="select-button" onclick="selectProduct('{{ c[0] }}')">Seleccionar</button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="form-group">
+                    <label for="clienteCotizacion">Selecciona un cliente:</label>
+                    <select name="clienteCotizacion" id="clienteCotizacion" required>
+                        <option value="" disabled selected>Selecciona un cliente</option>
+                        {% for client in resulta %}
+                            <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <table id="productosSeleccionados" name="referenciaProductos[]">
+                        <thead>
+                            <th>Nombre del Producto</th>
+                            <th>Cantidad</th>
+                            <th>Eliminar</th>
+                        </thead>
+                        <tbody>
+                            <!-- Puedes agregar filas de productos seleccionados aquí -->
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="form-group">
+                    <button type="submit" value="Registrar">Crear Cotización</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
 
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/static/javaScript/buscarCotizacion.js"></script>
+    <script src="/static/javaScript/modalcotiza.js"></script>
+    <script src="/static/javaScript/cotizacion.js"></script>
+</body>
 </html>

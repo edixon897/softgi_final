@@ -13,15 +13,6 @@ def Cotizacion():
         cursor = conn.cursor()
         cursor.execute(msql)
         datos = cursor.fetchall()
-        return render_template("cotizaciones/cotizaciones.html", datos=datos)
-    else:
-        flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
-
-     
-@app.route("/CrearCotizacion")
-def CrearCotizacion():
-    if "nom_empleado" in session: 
         sql = "SELECT `nom_cliente`, `ape_cliente` FROM clientes WHERE estado_cliente ='ACTIVO'"
         conn = mysql.connect()                    
         cursor = conn.cursor()
@@ -30,11 +21,10 @@ def CrearCotizacion():
         bsql = f"SELECT `nombre_producto` FROM `productos` WHERE `estado_producto`='ACTIVO'"
         cursor.execute(bsql)
         resultado2 = cursor.fetchall() 
-        return render_template('cotizaciones/crear.html', resulta=resultado, detalle=resultado2)
+        return render_template("cotizaciones/cotizaciones.html", datos=datos, resulta=resultado, detalle=resultado2)
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('home'))
- 
 
 @app.route('/crearCotizacion', methods=['POST'])
 def crearCotizacion():

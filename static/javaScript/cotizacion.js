@@ -1,7 +1,7 @@
 
 function filterProducts() {
     var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById('searchProduct');
+    input = document.getElementById('searchProductos');
     filter = input.value.toUpperCase();
     table = document.getElementById('productTable');
     tr = table.getElementsByTagName('tr');
