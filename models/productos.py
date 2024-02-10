@@ -1,3 +1,4 @@
+import time
 from conexiondb import conexion, mysql, app
 
 class Productos:
@@ -104,6 +105,21 @@ class Productos:
         # Commit para aplicar los cambios
         self.conexion.commit()
 
+
+    def verificar_stock(self):
+        while True:
+            # Consulta para obtener productos con bajo stock
+            self.cursor.execute("SELECT id_producto, ref_produ_1, cantidad_producto, stockminimo FROM productos WHERE cantidad_producto <= stockminimo")
+            productos_bajo_stock = self.cursor.fetchall()
+
+            # Verificar y enviar alertas
+            for producto in productos_bajo_stock:
+                mensaje = f"¡Alerta! El producto '{producto[1]}' está cerca del stock mínimo."
+                # Aquí se puede implementar la lógica para enviar la alerta, ya sea por correo electrónico, notificación, etc.
+                print(mensaje)
+
+            # Esperar un intervalo de tiempo antes de volver a verificar
+            time.sleep(3600)  # Verificar cada hora (3600 segundos)
 
         
 Dproductos = Productos(mysql, app)

@@ -181,19 +181,15 @@ section#contenido{
         }
 
 div#regresar{
-    background-color: #57a8ce;
     border: none;
     border-radius: 3px;  
     font-size: 1em;
-    margin: 18px;
-    padding: 3px;
-    width: 18%;
+    left: 1em;
+    margin: 8px;
+    padding: 5px;
+    position: relative;
+    width: 8%;
 }
-    #regresar > a{
-        text-decoration: none;
-        text-align: center;
-    }
-
 
 
 
@@ -201,9 +197,13 @@ div#regresar{
 /* ------------------Clases------------------- */
 
 .lni{
-    font-size: 1.8em;
-    color: #358CB4;
+    font-size: 2em;
+    color: #52a1bb;
 }
+    #atras{
+    font-size: 3em;
+    color: #52a1bb;
+    }
 
 .aviso_agregar{
     color: #fff;
@@ -235,7 +235,7 @@ div#regresar{
 }
 
 .opciones {
-    width: 45%;
+    width: 40%;
     height: 100%;
     border-radius: 5px;  
     font-size: 1em;
@@ -256,13 +256,3 @@ div#regresar{
         width: 67%;
     }
 }
-
-
-
-/* background-color: #358CB4;
-border: none;
-border-radius: 5px;  
-font-size: 1em;
-margin: 20px;
-padding: 10px;
-width: 20%; */

@@ -107,22 +107,21 @@ section#contenido{                            /* -------------------para las tab
         td{
             text-align: left;
         }
+        div#regresar{
+            border: none;
+            border-radius: 3px;  
+            font-size: 1em;
+            left: 1em;
+            margin: 8px;
+            padding: 5px;
+            position: relative;
+            width: 8%;
+        }
+            #atras{
+            font-size: 2em;
+            color: #52a1bb;
+            }
 
-/* div#regresar{
-    background-color: #57a8ce;
-    border: none;
-    border-radius: 3px;  
-    font-size: 1em;
-    margin: 18px;
-    padding: 3px;
-    width: 18%;
-}
-    #regresar > a{
-        text-decoration: none;
-        text-align: center;
-    }
-
- */
 
 
 
@@ -146,12 +145,12 @@ section#contenido{                            /* -------------------para las tab
 
 
 #conten_opciones {       /* -------------------para el margin y el ancho del contenedor de los botones de opciones----------------- */
-    margin: 10px 20px;
-    width: 25%;   
+    margin: 10px 5px 10px 10px;
+    width: 20%;   
 }
 
 .opciones {           /* -------------------para el estilo de los botones de opciones----------------- */
-    width: 100%;
+    width: 60%;
     height: 100%;
     border-radius: 5px;  
     font-size: 1em;
@@ -174,5 +173,3 @@ section#contenido{                            /* -------------------para las tab
         width: 67%;
     }
 }
-
-
