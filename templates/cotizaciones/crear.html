@@ -13,25 +13,26 @@
 
 <body>
 
-<h2>Crear Cotizacion</h2>
+    
 
-<form action="/crearCotizacion" method="POST">
-    <div id="formularioAdicional">
-        <label for="fechaInicioNuevoCliente">Fecha de Inicio:</label>
-        <input type="date" name="fechaInicioNuevoCliente" required>
+    <form action="/crearCotizacion" method="POST">
+        <h2>Crear Cotización</h2>
+        <div>
+            <label for="fechaInicioNuevoCliente">Fecha de Inicio:</label>
+            <input type="date" name="fechaInicioNuevoCliente" required>
+        </div>
 
-        <label for="fechaFinNuevoCliente">Fecha de Fin:</label>
-        <input type="date" name="fechaFinNuevoCliente" required>
-
-        <select name="clienteCotizacion" id="clienteCotizacion" required>
-            <option value="" disabled selected>Selecciona un cliente</option>
-            {% for client in resulta %}
-                <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
-            {% endfor %}
-        </select>
+        <div>
+            <label for="fechaFinNuevoCliente">Fecha de Fin:</label>
+            <input type="date" name="fechaFinNuevoCliente" required>
+        </div>
+        
+        
 
         <div class="campos">
+            
             <input type="text" id="searchProduct" oninput="filterProducts()" placeholder="Buscar productos">
+            
 
             <table id="productTable">
                 <thead>
@@ -47,7 +48,14 @@
                     {% endfor %}
                 </tbody>
             </table>
-
+        </div>
+        <div class="productosSeleccionados">
+            <select name="clienteCotizacion" id="clienteCotizacion" required>
+                <option value="" disabled selected>Selecciona un cliente</option>
+                {% for client in resulta %}
+                    <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
+                {% endfor %}
+            </select>
             <table id="productosSeleccionados" name="referenciaProductos[]">
                 <thead>
                     <th>Nombre del Producto</th>
@@ -58,16 +66,15 @@
 
                 </tbody>
             </table>
-
-            <input type="number" id="cantidadProductoSeleccionado" name="cantidadProductosCotizacion" placeholder="Cantidad de productos" class="campo" disabled>
-
         </div>
+        <div>
+            <button type="submit" value="Registrar">Crear Cotización</button>
+        </div>
+        
+    </form>
 
-        <button type="submit" value="Registrar">Crear Cotizacion</button>
-    </div>
-</form>
-
-<script src="/static/javaScript/cotizacion.js"></script>
+    <script src="/static/javaScript/cotizacion.js"></script>
+    
 
 </body>
 </html>
