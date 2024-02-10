@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizaciones</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="../../static/css/crear_cotizaciones.css"> -->
     <link rel="stylesheet" href="../../static/css/muestra_cotizaciones.css">
 </head>
 <body>
@@ -69,8 +68,10 @@
 
         <p id="noResults" style="display: none;">No se encontraron resultados</p>
     
-        <div id="boton-atras">
-            <a href="{{url_for ('inicio') }}" id="enlace_volver">Volver a pagina principal</a>
+        <div id="regresar">
+            <a href="{{url_for ('inicio') }}" id="enlace_volver">
+                <i id="atras" class="lni lni-arrow-left"></i>
+            </a>
         </div>
     </main>
 
@@ -126,7 +127,6 @@
                             <th>Eliminar</th>
                         </thead>
                         <tbody>
-                            <!-- Puedes agregar filas de productos seleccionados aquí -->
                         </tbody>
                     </table>
                 </div>
