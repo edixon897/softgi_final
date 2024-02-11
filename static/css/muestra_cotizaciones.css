@@ -128,7 +128,7 @@ div#buscar{
 /* Estilo general del modal */
 /* Estilo general del modal */
 .modal {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -152,18 +152,10 @@ div#buscar{
 /* Alinea los elementos dentro del modal */
 .modal-content div {
     margin-bottom: 15px;
+    
 }
 
-/* Estilo de los campos de entrada */
-.modal-content input,
-.modal-content select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
+
 
 /* Estilo de la tabla dentro del modal */
 #productTable, #productosSeleccionados {
@@ -177,15 +169,63 @@ div#buscar{
     text-align: left;
 }
 
-/* Estilo del botón de selección */
+.form-group.date-container {
+    display: flex;
+    justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+}
+
+/* Estilos para el contenedor de los campos de fecha */
+.form-group {
+    display: flex;
+    align-items: center;
+    
+}
+
+/* Estilos para los labels */
+.form-group .date-container label {
+    display: block;
+    padding: 10px;
+}
+
+
+.modal-content label,
+.modal-content input,
+.modal-content select{
+    margin-left: 0px;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+
+.sele{
+    margin-top: -6px;
+}
+
+
+
+/* Estilo de los campos de entrada */
+
+.modal-content input,
+.modal-content select {
+    width: calc(100% - 3px); /* Dividir el ancho en dos y ajustar el tamaño */
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block; /* Mostrar en línea para que estén uno al lado del otro */
+}
+
+
+
 .select-button {
-    width: 100%;
+    width: calc(100% - 5px); /* Dividir el ancho en dos y ajustar el tamaño */
     padding: 10px;
     cursor: pointer;
     background-color: #4CAF50;
     color: #fff;
     border: none;
     border-radius: 5px;
+    display: inline-block; /* Mostrar en línea para que estén uno al lado del otro */
 }
 
 /* Estilo del botón de enviar */
@@ -199,4 +239,11 @@ button[type="submit"] {
     border-radius: 5px;
 }
 
-/* Añade más estilos según sea necesario */
+.table-container {
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
+    max-height: 300px; /* Ajusta la altura máxima según tu preferencia */
+}
+
+.table-wrapper {
+    width: 100%;
+}

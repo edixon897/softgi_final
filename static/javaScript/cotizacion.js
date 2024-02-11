@@ -85,3 +85,42 @@ function updateTotalQuantity() {
     cantidadProductoSeleccionado.value = totalQuantity;
 }
 
+
+$(document).ready(function () {
+    // Establecer el número inicial de productos a mostrar
+    var productosMostrados = 2;
+
+    // Ocultar las filas que están más allá del límite inicial
+    $(".product-row:gt(" + (productosMostrados - 1) + ")").hide();
+
+    // Manejar el clic en el botón "Cargar más productos"
+    $("#loadMoreButton").click(function () {
+        // Mostrar las siguientes 4 filas
+        $(".product-row:lt(" + productosMostrados + ")").show();
+        // Actualizar el número de productos mostrados
+        productosMostrados += 1;
+
+        // Ocultar el botón si no hay más productos por mostrar
+        if (productosMostrados >= $(".product-row").length) {
+            $("#loadMoreButton").hide();
+        }
+    });
+});
+
+$(document).ready(function () {
+    // Establecer el número inicial de productos a mostrar
+    var productosMostrados = 2;
+
+    // Ocultar las filas que están más allá del límite inicial
+    $(".product-row:gt(" + (productosMostrados - 1) + ")").hide();
+
+    // Manejar el clic en el botón "Cargar más productos"
+    $("#loadMoreButton").click(function () {
+        // Mostrar las siguientes 2 filas
+        $(".product-row:lt(" + productosMostrados + ")").show();
+        // Actualizar el número de productos mostrados
+        productosMostrados += 2;
+
+        
+    });
+});
