@@ -128,3 +128,50 @@ def borrarcliente(documento):
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
 
+
+
+""" Registra clientes en modulo ventas  """
+
+@app.route("/crearClientes_2")
+def crearClientes_2():
+    if "nom_empleado" in session:                                
+        return render_template('clientes/registrar_clientes_2.html')    
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('index'))
+    
+
+
+
+
+@app.route("/crear_cliente_2", methods=['POST'])
+def crear_cliente_2():
+    if "nom_empleado" in session:
+        doc = session["nom_empleado"]
+        bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE nom_empleado='{doc}'"
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(bsq)
+        resultado = cursor.fetchone()
+        documento_registro = resultado[0]
+        nombre_operador = resultado[1]
+        apellido_operador = resultado[2]
+        doc_cliente = request.form['doc_cliente']
+        nom_cliente = request.form['nom_cliente']
+        ape_cliente = request.form['ape_cliente']
+        fecha_nacimiento_cliente = request.form['fecha_nacimiento_cliente']
+        contacto_cliente = request.form['contacto_cliente']
+        email_cliente = request.form['email_cliente']
+        direccion_cliente = request.form['direccion_cliente']
+        ciudad_cliente = request.form['ciudad_cliente']
+        tipo_persona = request.form['tipopersona']                 
+        tiempo = datetime.datetime.now()
+        if not Dclientes.buscar_cliente(doc_cliente):
+            Dclientes.crear_cliente([doc_cliente, nom_cliente, ape_cliente, fecha_nacimiento_cliente, contacto_cliente, email_cliente, direccion_cliente, ciudad_cliente, tipo_persona, tiempo, documento_registro, nombre_operador, apellido_operador])
+            return redirect('/verCrear_ventas')
+        else:
+            """ mensaje="Cliente ya existe"
+            cliente =[doc_cliente, nom_cliente, ape_cliente, contacto_cliente, email_cliente, direccion_cliente, ciudad_cliente, tipo_persona]
+            return render_template('clientes/clientes.html', mensaje=mensaje, cliente=cliente) """
+            mensaje = 1
+            return render_template('clientes/registrar_clientes_2.html', mensaje=mensaje)
