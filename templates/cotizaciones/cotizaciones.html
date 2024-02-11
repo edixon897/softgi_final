@@ -14,7 +14,6 @@
             <div id="agregar_cotizacion">
                 <button id="openCrearCotizacionModal">Agregar cotización</button>
             </div>
-
             <div id="buscar">
                 <form id="buscador">
                     <i class="lni lni-search-alt"></i>
@@ -27,12 +26,12 @@
             <table id="cotizacionTable">
                 <thead>
                     <tr>
-                        <th>Cotizacion #</th>
                         <th>C.C. cliente</th>
                         <th>Nombre cliente</th>
                         <th>Fecha inicio</th>
                         <th>Fecha final</th>
                         <th>Nombre operador</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <!-- <th>Apellido operador</th> -->
@@ -41,13 +40,18 @@
                 <tbody>
                     {% for dato in datos %}
                         <tr>
-                            <td>{{dato[0]}}</td>
                             <td>{{dato[1]}}</td>
                             <td>{{dato[2]}}</td>
                             <td>{{dato[3]}}</td>
                             <td>{{dato[4]}}</td>
                             <td>{{dato[5]}}</td>
                             <!-- <td>{{dato[6]}}</td> -->
+
+                            <td class="btns_centro">
+                                <a href="detalle/{{dato[0]}}">
+                                    ver detalle
+                                </a>
+                            </td>
                             
                             <td class="btns_centro">
                                 <a href="editarCotizacion/{{dato[0]}}">
@@ -76,66 +80,79 @@
     </main>
 
     <!-- Modal -->
-    <div id="crearCotizacionModal" class="modal">
+    <div id="crearCotizacionModal" class="modal" style="display: none;">
         <div class="modal-content">
-            <h2>Crear Cotización</h2>
             <form action="/crearCotizacion" method="POST">
+
                 <div class="form-group">
-                    <label for="fechaInicioNuevoCliente">Fecha de Inicio:</label>
-                    <input type="date" name="fechaInicioNuevoCliente" required>
+                    <div class="ini">
+                        <label for="fechaInicioNuevoCliente">Fecha de Inicio:</label>
+                        <input type="date" name="fechaInicioNuevoCliente" id="fechaInicio" required>
+                    </div>
+                    <div class="fin">
+                        <label for="fechaFinNuevoCliente">Fecha de Fin:</label>
+                        <input type="date" name="fechaFinNuevoCliente" id="fechaFin" required>
+                    </div>
                 </div>
-    
+
                 <div class="form-group">
-                    <label for="fechaFinNuevoCliente">Fecha de Fin:</label>
-                    <input type="date" name="fechaFinNuevoCliente" required>
-                </div>
-    
-                
-                <input type="text" id="searchProductos" oninput="filterProducts()" placeholder="Buscar productos">
-                    <div class="form-group">
-                    <table id="productTable">
-                        <thead>
-                            <th>Nombre del Producto</th>
-                            <th>Seleccionar</th>
-                        </thead>
-                        <tbody>
-                            {% for c in detalle %}
-                                <tr>
-                                    <td>{{ c[0] }}</td>
-                                    <td><button type="button" class="select-button" onclick="selectProduct('{{ c[0] }}')">Seleccionar</button></td>
-                                </tr>
+                    <input type="text" id="searchProductos" oninput="filterProducts()" placeholder="Buscar productos">
+                    
+                    <div class="sele">
+                        <label for="clienteCotizacion">Selecciona un cliente:</label>
+                        <select name="clienteCotizacion" id="clienteCotizacion" required>
+                            <option value="" disabled selected>Selecciona un cliente</option>
+                            {% for client in resulta %}
+                                <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
                             {% endfor %}
-                        </tbody>
-                    </table>
+                        </select>
+                    </div>
                 </div>
-    
-                <div class="form-group">
-                    <label for="clienteCotizacion">Selecciona un cliente:</label>
-                    <select name="clienteCotizacion" id="clienteCotizacion" required>
-                        <option value="" disabled selected>Selecciona un cliente</option>
-                        {% for client in resulta %}
-                            <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-    
-                <div class="form-group">
-                    <table id="productosSeleccionados" name="referenciaProductos[]">
-                        <thead>
-                            <th>Nombre del Producto</th>
-                            <th>Cantidad</th>
-                            <th>Eliminar</th>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-    
-                <div class="form-group">
-                    <button type="submit" value="Registrar">Crear Cotización</button>
-                </div>
+
+
+                <div class="form-group-n">
+                    <div class="table-container">
+                        <div class="table-wrapper">
+                            <table id="productTable">
+                                <thead>
+                                    <th>Nombre del Producto</th>
+                                    <th>Seleccionar</th>
+                                </thead>
+                                <tbody>
+                                    {% for c in detalle %}
+                                        <tr class="product-row">
+                                            <td>{{ c[0] }}</td>
+                                            <td><button type="button" class="select-button" onclick="selectProduct('{{ c[0] }}')">Seleccionar</button></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-wrapper">
+                                <table id="productosSeleccionados" name="referenciaProductos[]">
+                                    <thead>
+                                        <th>Nombre del Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Eliminar</th>
+                                    </thead>
+                                    <tbody >
+                                        <!-- Puedes agregar filas de productos seleccionados aquí -->
+                                    </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="select-button" value="Registrar">Crear Cotización</button>
+                    </div>
             </form>
         </div>
+    </div>
+
     </div>
     
 

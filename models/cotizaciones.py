@@ -34,10 +34,14 @@ class Cotizaciones:
         
 
     def crearDetalleCotizacion(self, registrar):
-        bsql = f"INSERT INTO `detallecotizaciones`(`num_cotizacion`, `producto_cotizacion`, `nombre_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion`, `detalle_estado`) VALUES ('{registrar[0]}','{registrar[1]}','{registrar[2]}','{registrar[3]}','{registrar[4]}','{registrar[5]}', 'ACTIVO')"
-        self.cursor.execute(bsql)
-        self.conexion.commit()
-    
+        try:
+            bsql = "INSERT INTO `detallecotizaciones`(`num_cotizacion`, `producto_cotizacion`, `nombre_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion`, `totalpagar_cotizacion`, `detalle_estado`) VALUES (%s, %s, %s, %s, %s, %s, %s, 'ACTIVO')"
+            self.cursor.execute(bsql, tuple(registrar))
+            self.conexion.commit()
+            print("Datos insertados exitosamente.")
+        except Exception as e:
+            print(f"Error al insertar datos: {e}")
+
     def editarDetalleCotizaciones(self, editar):
         bsql =f"UPDATE `detallecotizaciones` SET `id_detalle_cotizacion`='{editar[0]}',`num_cotizacion`='{editar[1]}',`producto_cotizacion`='{editar[2]}',`cantidad_productos_cotizacion`='{editar[3]}',`valorunidad_prodcotizacion`='{editar[4]}',`valortotal_cantidaproductos_cotizacion`='{editar[5]}' WHERE `id_detalle_cotizacion`='{editar[0]}'"
         self.cursor.execute(bsql)

@@ -9,6 +9,7 @@ from email.message import EmailMessage
 
 
 
+
 app = Flask(__name__)
 socketio = SocketIO(app)
 mysql = MySQL()

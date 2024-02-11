@@ -85,3 +85,33 @@ function updateTotalQuantity() {
     cantidadProductoSeleccionado.value = totalQuantity;
 }
 
+
+$(document).ready(function () {
+
+    var productosMostrados = 1;
+
+ 
+    $(".product-row:gt(" + (productosMostrados - 1) + ")").hide();
+
+    $("#loadMoreButton").click(function () {
+        $(".product-row:lt(" + productosMostrados + ")").show();
+
+        productosMostrados += 1;
+
+    
+    });
+});
+
+$(document).ready(function () {
+    var productosMostrados = 1;
+
+    $(".product-row:gt(" + (productosMostrados - 1) + ")").hide();
+
+    $("#loadMoreButton").click(function () {
+
+        $(".product-row:lt(" + productosMostrados + ")").show();
+        productosMostrados += 1;
+
+        
+    });
+});

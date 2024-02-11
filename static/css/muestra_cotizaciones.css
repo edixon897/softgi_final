@@ -45,19 +45,7 @@ h2{
     padding: 0;
 }
 
-div#agregar_cotizacion{
-    background-color: #358CB4;
-    border: none;
-    border-radius: 5px;  
-    font-size: 1em;
-    margin: 20px;
-    padding: 10px;
-    width: 20%;
-}
-    #agregar_cotizacion > a{
-        text-decoration: none;
-        text-align: center;
-    }
+
 
 
 
@@ -124,10 +112,32 @@ div#buscar{
         width: 100%;
         z-index: 2;
     }
-/* Estilo general del modal */
-/* Estilo general del modal */
+#agregar_cotizacion {
+    text-align:left;
+    margin-top: 20px;
+    margin-left: 20px;
+    }
+    #openCrearCotizacionModal {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: #358CB4; /* Color de fondo verde */
+        color: white; /* Color del texto blanco */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #openCrearCotizacionModal:hover {
+        background-color: #45a049; /* Cambia el color de fondo al pasar el mouse */
+    }
+
+/*  modal */
 .modal {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -137,7 +147,7 @@ div#buscar{
     z-index: 1;
 }
 
-/* Centra el contenido del modal vertical y horizontalmente */
+
 .modal-content {
     background-color: #fff;
     border-radius: 10px;
@@ -148,23 +158,14 @@ div#buscar{
     text-align: left;
 }
 
-/* Alinea los elementos dentro del modal */
+
 .modal-content div {
-    margin-bottom: 15px;
+    margin-bottom: 0px;
+    
 }
 
-/* Estilo de los campos de entrada */
-.modal-content input,
-.modal-content select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
 
-/* Estilo de la tabla dentro del modal */
+
 #productTable, #productosSeleccionados {
     margin-top: 15px;
 }
@@ -176,18 +177,63 @@ div#buscar{
     text-align: left;
 }
 
-/* Estilo del botón de selección */
+.form-group.date-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    
+}
+
+
+.form-group .date-container label {
+    display: block;
+    padding: 10px;
+}
+
+
+.modal-content label,
+.modal-content input,
+.modal-content select{
+    margin-left: 0px;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+
+.sele{
+    margin-top: -6px;
+}
+
+
+
+.modal-content input,
+.modal-content select {
+    width: calc(100% - 3px); 
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block; 
+}
+
+
+
 .select-button {
-    width: 100%;
+    width: calc(100% - 5px); 
     padding: 10px;
     cursor: pointer;
     background-color: #4CAF50;
     color: #fff;
     border: none;
     border-radius: 5px;
+    display: inline-block; 
 }
 
-/* Estilo del botón de enviar */
+
 button[type="submit"] {
     background-color: #3498db;
     color: #fff;
@@ -198,4 +244,11 @@ button[type="submit"] {
     border-radius: 5px;
 }
 
-/* Añade más estilos según sea necesario */
+.table-container {
+    overflow-y: auto; 
+    max-height: 300px; 
+}
+
+.table-wrapper {
+    width: 100%;
+}
