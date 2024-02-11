@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
-/* font-family: 'Barlow', sans-serif;
-font-family: 'Lato', sans-serif; */
+
 *{
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
@@ -45,16 +44,20 @@ h2{
     padding: 0;
 }
 
-div#agregar_producto{
-    background-color: #358CB4;
+div#crear_proveedor{
+    background-color: #89c7e4;
     border: none;
     border-radius: 5px;  
-    font-size: 1em;
-    margin: 20px;
-    padding: 10px;
-    width: 20%;
+    font-size: 1.3em;
+    left: 1%;
+    margin: 10;
+    padding: 5px;
+    position: relative;
+    top: -10px;
+    width: 15%;
 }
-    #agregar_producto > a{
+    #crear_proveedor > a{
+        color: #fff;
         text-decoration: none;
         text-align: center;
     }
@@ -107,21 +110,17 @@ section#contenido{
         td{
             text-align: left;
         }
-
 div#regresar{
-   /*  background-color: #57a8ce; */
     border: none;
     border-radius: 3px;  
     font-size: 1em;
-    margin: 18px;
-    padding: 3px;
-    width: 18%;
-}
-    /* #regresar > a{
-        text-decoration: none;
-        text-align: center;
-    } */
-    #atras{
+    left: 1em;
+    margin: 8px;
+    padding: 5px;
+    position: relative;
+    width: 8%;
+        }
+        #atras{
         font-size: 2em;
         color: #52a1bb;
         }
@@ -146,11 +145,32 @@ div#regresar{
     text-align: center;
 }
 
-.color_p{
-    color: #fff;
-    margin: 0;
-    padding: 0;
+#conten_opciones {       /* -------------------para el margin y el ancho del contenedor de los botones de opciones----------------- */
+    margin: 10px 5px 10px 10px;
+    width: 20%;   
+}
+
+.opciones {           /* -------------------para el estilo de los botones de opciones----------------- */
+    width: 60%;
+    height: 100%;
+    border-radius: 5px;  
+    font-size: 1em;
+    border: none;
+    background-color: #358CB4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    padding: 8px;
+}
+.color_opciones {
+    text-decoration: none;
+    color: white;
 }
 
 
-
+@media screen and (max-width: 700px) {
+    #conten_opciones {
+        width: 67%;
+    }
+}

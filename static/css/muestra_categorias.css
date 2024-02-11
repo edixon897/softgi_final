@@ -109,7 +109,7 @@ section#contenido{
         }
 
 div#regresar{
-    background-color: #57a8ce;
+    /* background-color: #57a8ce; */
     border: none;
     border-radius: 3px;  
     font-size: 1em;
@@ -117,10 +117,10 @@ div#regresar{
     padding: 3px;
     width: 18%;
 }
-    #regresar > a{
-        text-decoration: none;
-        text-align: center;
-    }
+    #atras{
+        font-size: 2.5em;
+        color: #52a1bb;
+        }
 
 
 

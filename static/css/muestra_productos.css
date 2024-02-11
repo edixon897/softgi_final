@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
-/* font-family: 'Barlow', sans-serif;
-font-family: 'Lato', sans-serif; */
+
 *{
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
@@ -106,21 +105,21 @@ section#contenido{                            /* -------------------para las tab
 
         td{
             text-align: left;
-        }
-        div#regresar{
-            border: none;
-            border-radius: 3px;  
-            font-size: 1em;
-            left: 1em;
-            margin: 8px;
-            padding: 5px;
-            position: relative;
-            width: 8%;
-        }
-            #atras{
-            font-size: 2em;
-            color: #52a1bb;
-            }
+}
+div#regresar{
+    border: none;
+    border-radius: 3px;  
+    font-size: 1em;
+    left: 1em;
+    margin: 8px;
+    padding: 5px;
+    position: relative;
+    width: 8%;
+}
+    #atras{
+    font-size: 2em;
+    color: #52a1bb;
+    }
 
 
 
