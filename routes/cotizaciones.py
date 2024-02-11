@@ -72,11 +72,11 @@ def crearCotizacion():
                 valortotalCantidaproductosCotizacion = cantidadProducto * valorunidadProdcotizacion
                                 
                 datos = [id_cotizacion, producto_cotizacion, referenciaProducto, cantidadProducto, valorunidadProdcotizacion, valortotalCantidaproductosCotizacion]
-                
+                print(datos)
                 cotizaciones.crearDetalleCotizacion(datos)
                 
             cotizaciones.crearCotizaciones([id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fechaInicioCotizacion, fechaFinCotizacion, nombre_cliente_cotizacion])
-            
+            print(cotizaciones)
             flash('Tu cliente fue creado con éxito')
             return redirect(url_for('Cotizacion'))
         
