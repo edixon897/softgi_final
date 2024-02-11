@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
-
+/* font-family: 'Barlow', sans-serif;
+font-family: 'Lato', sans-serif; */
 *{
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
@@ -44,20 +45,16 @@ h2{
     padding: 0;
 }
 
-div#crear_proveedor{
-    background-color: #89c7e4;
+div#agregar_usuario{
+    background-color: #358CB4;
     border: none;
     border-radius: 5px;  
-    font-size: 1.3em;
-    left: 1%;
-    margin: 10;
-    padding: 5px;
-    position: relative;
-    top: -10px;
-    width: 15%;
+    font-size: 1em;
+    margin: 20px;
+    padding: 10px;
+    width: 20%;
 }
-    #crear_proveedor > a{
-        color: #fff;
+    #agregar_usuario > a{
         text-decoration: none;
         text-align: center;
     }
@@ -65,6 +62,7 @@ div#crear_proveedor{
 div#buscar{
     margin: 30px 20px;
 }
+
     #buscador > i{
         border-radius: 10%;
         color: #358CB4;
@@ -72,7 +70,7 @@ div#buscar{
         position: absolute;
         z-index: 3;
     }
-
+    
     #buscador > input{
         border: solid 1px #828282;
         border-radius: 5px;
@@ -88,28 +86,28 @@ div#buscar{
 section#contenido{
     margin: 20px;
 }
-
+    
     table{
         border-collapse: collapse;
         width: 100%;
-
     }
-
+    
         th, td{
             border: solid 1px #828282;
             font-size: 15px;
             padding: 5px; 
         }
-
+    
         th{
             color: #358CB4;
             font-weight: 500;
             text-align: center;
         }
-
+    
         td{
             text-align: left;
         }
+    
         div#regresar{
             border: none;
             border-radius: 3px;  
@@ -125,9 +123,6 @@ section#contenido{
             color: #52a1bb;
             }
 
-
-
-
 /* ------------------Clases------------------- */
 
 .lni{
@@ -135,23 +130,8 @@ section#contenido{
     color: #358CB4;
 }
 
-.aviso_agregar{
-    color: #fff;
-    margin: 0;
-    padding: 0;
-}
-
-.btns_centro{
-    text-align: center;
-}
-
-#conten_opciones {       /* -------------------para el margin y el ancho del contenedor de los botones de opciones----------------- */
-    margin: 10px 5px 10px 10px;
-    width: 20%;   
-}
-
-.opciones {           /* -------------------para el estilo de los botones de opciones----------------- */
-    width: 60%;
+.opciones {
+    width: 100%;
     height: 100%;
     border-radius: 5px;  
     font-size: 1em;
@@ -163,14 +143,7 @@ section#contenido{
     margin: 10px 0;
     padding: 8px;
 }
-.color_opciones {
-    text-decoration: none;
-    color: white;
-}
-
-
-@media screen and (max-width: 700px) {
-    #conten_opciones {
-        width: 67%;
+    .color_opciones {
+        text-decoration: none;
+        color: white;
     }
-}
