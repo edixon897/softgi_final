@@ -12,6 +12,8 @@
             display: none;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
+
 </head>
 <body>
     <main id="inicio">
@@ -26,10 +28,11 @@
                 <span id="usuario">Hola  {{session['nom_empleado']}}</span>
             </div>
 
-            <!-- <div id="menu">
-                <a title="Se debe ver el menú">
-                    <i class="lni lni-menu"></i>
-                </a>
+           <!-- Modal para mostrar mensajes de alerta -->
+           
+            <!-- <div id="alertModal" style="display: none;">
+                <p id="alertMessage"></p>
+                <button onclick="cerrarModal()">Aceptar</button>
             </div> -->
         </section>
 
@@ -92,6 +95,16 @@
         </section>
     </main>
 
-    <script src="/static/javaScript/bucadorInicio.js"></script>
+    <script src="/static/javaScript/buscadorInicio.js"></script>
+    
+
+  <!--   <button onclick="emitirEventoPrueba()">Emitir Evento de Prueba</button>
+
+    <script>
+        function emitirEventoPrueba() {
+            socket.emit('mostrar_modal', { mensaje: 'Prueba de mensaje en evento de SocketIO' });
+        }
+    </script> -->
+
 </body>
 </html>

@@ -14,10 +14,8 @@
             <div class="opciones">
                 <a class="color_opciones" href="Regitra_compra_prov">Registrar compra</a>
             </div>
-            <div id="ver_proveedores">
-                <a href="{{url_for('proveedores')}}">
-                    <p class="ver_proveedores">Proveedores</p>
-                </a>
+            <div  class="opciones">
+                <a class="color_opciones" href="{{url_for('proveedores')}}">Proveedores</a>
             </div>
             <div id="buscar">
                 <form action="busca_compras_prov" method="post" id="buscador">
@@ -66,9 +64,12 @@
             </table>
             <p id="noResults" style="display: none;">No se encontraron resultados</p>
         </section>
-        <a href="{{url_for ('inicio') }}" class="campo_a">
-            <p class="color_p">Volver a página principal</p>
-        </a>
+
+        <div id="regresar">
+            <a href="{{url_for ('inicio') }}" class="campo_a">
+                <i id="atras" class="lni lni-arrow-left"></i>
+            </a>
+        </div>
     </main>
 
     <script src="../../static/javaScript/buscarCompras_prove.js"></script>

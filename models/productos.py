@@ -106,20 +106,54 @@ class Productos:
         self.conexion.commit()
 
 
-    def verificar_stock(self):
+    """ def verificar_stock(self):
         while True:
             # Consulta para obtener productos con bajo stock
-            self.cursor.execute("SELECT id_producto, ref_produ_1, cantidad_producto, stockminimo FROM productos WHERE cantidad_producto <= stockminimo")
+            print("Iniciando la función verificar_stock")
+            sql = ("SELECT id_producto, ref_produ_1, cantidad_producto, stockminimo FROM productos WHERE cantidad_producto <= stockminimo")
+            self.cursor.execute(sql)
+            print("Consulta SQL:")
             productos_bajo_stock = self.cursor.fetchall()
 
             # Verificar y enviar alertas
             for producto in productos_bajo_stock:
+                print("Producto bajo stock:", producto)
                 mensaje = f"¡Alerta! El producto '{producto[1]}' está cerca del stock mínimo."
-                # Aquí se puede implementar la lógica para enviar la alerta, ya sea por correo electrónico, notificación, etc.
-                print(mensaje)
+                print("LLegaste cerca del stockminimo", mensaje)
+
+            print("Finalizando la función verificar_stock")
 
             # Esperar un intervalo de tiempo antes de volver a verificar
-            time.sleep(3600)  # Verificar cada hora (3600 segundos)
+            time.sleep(60)  # Verificar cada hora (3600 segundos) """
+    """ def verificar_stock(self):
+        while True:
+            try:
+                # Consulta para obtener productos con bajo stock
+                print("Iniciando la función verificar_stock")
+                sql = "SELECT id_producto, ref_produ_1, cantidad_producto, stockminimo FROM productos WHERE cantidad_producto <= stockminimo"
+                self.cursor.execute(sql)
+                print("Consulta SQL:")
+                productos_bajo_stock = self.cursor.fetchall()
+
+                # Verificar y enviar alertas
+                for producto in productos_bajo_stock:
+                    print("Producto bajo stock:", producto)
+                    mensaje = f"¡Alerta! El producto '{producto[1]}' está cerca del stock mínimo."
+                    print("LLegaste cerca del stockminimo", mensaje)
+
+                print("Finalizando la función verificar_stock")
+
+                # Esperar un intervalo de tiempo antes de volver a verificar
+                time.sleep(60)  # Verificar cada hora (3600 segundos)
+
+            except mysql.connector.Error as e:
+                print(f"Error en la consulta SQL: {e}")
+
+            except mysql.connector.DatabaseError as e:
+                print(f"Error de base de datos: {e}")
+
+            except Exception as e:
+                print(f"Excepción no manejada: {e}") """
 
         
 Dproductos = Productos(mysql, app)

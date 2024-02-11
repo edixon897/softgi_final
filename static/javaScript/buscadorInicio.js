@@ -17,7 +17,17 @@ function buscarEnTiempoReal() {
             a.style.display = "none";
         }
     }
-}
+};
+/* const socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+
+socket.on('mostrar_modal', function(data) {
+    document.getElementById('alertMessage').innerText = data.mensaje;
+    document.getElementById('alertModal').style.display = 'block';
+});
+
+function cerrarModal() {
+    document.getElementById('alertModal').style.display = 'none';
+} */
 
 
 document.getElementById("searchProduct").addEventListener("input", buscarEnTiempoReal);

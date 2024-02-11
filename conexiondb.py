@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, g, session
+from flask_socketio import SocketIO
 from flaskext.mysql import MySQL
 from flask_mail import Mail, Message
 from email.mime.text import MIMEText
@@ -10,6 +11,7 @@ from email.message import EmailMessage
 
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 mysql = MySQL()
 
 app.secret_key = 'hfoy9ew87rwhdfs'
