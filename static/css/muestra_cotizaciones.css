@@ -124,8 +124,8 @@ div#buscar{
         width: 100%;
         z-index: 2;
     }
-/* Estilo general del modal */
-/* Estilo general del modal */
+
+/*  modal */
 .modal {
     display: block;
     position: fixed;
@@ -137,7 +137,7 @@ div#buscar{
     z-index: 1;
 }
 
-/* Centra el contenido del modal vertical y horizontalmente */
+
 .modal-content {
     background-color: #fff;
     border-radius: 10px;
@@ -148,7 +148,7 @@ div#buscar{
     text-align: left;
 }
 
-/* Alinea los elementos dentro del modal */
+
 .modal-content div {
     margin-bottom: 15px;
     
@@ -156,7 +156,6 @@ div#buscar{
 
 
 
-/* Estilo de la tabla dentro del modal */
 #productTable, #productosSeleccionados {
     margin-top: 15px;
 }
@@ -170,17 +169,16 @@ div#buscar{
 
 .form-group.date-container {
     display: flex;
-    justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+    justify-content: space-between;
 }
 
-/* Estilos para el contenedor de los campos de fecha */
 .form-group {
     display: flex;
     align-items: center;
     
 }
 
-/* Estilos para los labels */
+
 .form-group .date-container label {
     display: block;
     padding: 10px;
@@ -201,33 +199,31 @@ div#buscar{
 
 
 
-/* Estilo de los campos de entrada */
-
 .modal-content input,
 .modal-content select {
-    width: calc(100% - 3px); /* Dividir el ancho en dos y ajustar el tamaño */
+    width: calc(100% - 3px); 
     padding: 10px;
     margin-bottom: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    display: inline-block; /* Mostrar en línea para que estén uno al lado del otro */
+    display: inline-block; 
 }
 
 
 
 .select-button {
-    width: calc(100% - 5px); /* Dividir el ancho en dos y ajustar el tamaño */
+    width: calc(100% - 5px); 
     padding: 10px;
     cursor: pointer;
     background-color: #4CAF50;
     color: #fff;
     border: none;
     border-radius: 5px;
-    display: inline-block; /* Mostrar en línea para que estén uno al lado del otro */
+    display: inline-block; 
 }
 
-/* Estilo del botón de enviar */
+
 button[type="submit"] {
     background-color: #3498db;
     color: #fff;
@@ -239,8 +235,8 @@ button[type="submit"] {
 }
 
 .table-container {
-    overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
-    max-height: 300px; /* Ajusta la altura máxima según tu preferencia */
+    overflow-y: auto; 
+    max-height: 300px; 
 }
 
 .table-wrapper {
