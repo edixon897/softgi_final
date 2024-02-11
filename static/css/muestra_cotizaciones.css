@@ -45,19 +45,7 @@ h2{
     padding: 0;
 }
 
-div#agregar_cotizacion{
-    background-color: #358CB4;
-    border: none;
-    border-radius: 5px;  
-    font-size: 1em;
-    margin: 20px;
-    padding: 10px;
-    width: 20%;
-}
-    #agregar_cotizacion > a{
-        text-decoration: none;
-        text-align: center;
-    }
+
 
 
 
@@ -124,6 +112,28 @@ div#buscar{
         width: 100%;
         z-index: 2;
     }
+#agregar_cotizacion {
+    text-align:left;
+    margin-top: 20px;
+    margin-left: 20px;
+    }
+    #openCrearCotizacionModal {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: #358CB4; /* Color de fondo verde */
+        color: white; /* Color del texto blanco */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #openCrearCotizacionModal:hover {
+        background-color: #45a049; /* Cambia el color de fondo al pasar el mouse */
+    }
 
 /*  modal */
 .modal {
@@ -150,7 +160,7 @@ div#buscar{
 
 
 .modal-content div {
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     
 }
 
