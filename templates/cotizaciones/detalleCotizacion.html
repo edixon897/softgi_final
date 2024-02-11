@@ -4,14 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/detalle_cotizaciones.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
     <title>Detalle cotización</title>
+    <style>
+        /* Agregar estilos CSS adicionales si es necesario */
+
+        @media print {
+            head{
+                visibility: hidden;
+            }
+            body * {
+                visibility: hidden;
+            }
+            
+            #tabla_productos, #tabla_productos * {
+                visibility: visible;
+            }
+            #tabla_productos {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
     
 
 </head>
 <body>
-    <div></div>
+    
     <h1>Detalle de cotizacion</h1>
     <br>
+    <div>
+        <button onclick="imprimir()">Imprimir</button>
+        <button onclick="generarPDF()">Generar PDF</button>
+    </div>
     <table class="content-table" id="tabla_productos">
         <thead>
             <tr>
@@ -40,7 +68,24 @@
             </tr>
         </tfoot>
     </table>
-    
+    <div id="regresar">
+        <a href="{{url_for ('Cotizacion') }}" id="enlace_volver">
+            <i id="atras" class="lni lni-arrow-left"></i>
+            Volver a cotizar
+        </a>
+    </div>
+    <script>
+        // Función para imprimir la página
+        function imprimir() {
+            window.print();
+        }
+
+        // Función para generar un archivo PDF usando html2pdf
+        function generarPDF() {
+            var element = document.getElementById("tabla_productos"); // Elemento a convertir
+            html2pdf(element);
+        }
+    </script>
     
 </body>
 </html>

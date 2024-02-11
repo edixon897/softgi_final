@@ -59,7 +59,9 @@ def crearCotizacion():
             
             referenciasProductos = request.form.getlist('referenciaProducto[]')
             cantidadesProductos = request.form.getlist('cantidadPorProducto[]')
-            
+            Cotiza = [id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fechaInicioCotizacion, fechaFinCotizacion, nombre_cliente_cotizacion]
+            cotizaciones.crearCotizaciones(Cotiza)
+            print(Cotiza)
             for i in range(len(referenciasProductos)):
                 referenciaProducto = referenciasProductos[i]
                 cantidadProducto = int(cantidadesProductos[i])
@@ -70,13 +72,11 @@ def crearCotizacion():
                 producto_cotizacion = resultadoReferencia[0]
                 valorunidadProdcotizacion = int(resultadoReferencia[1])
                 valortotalCantidaproductosCotizacion = cantidadProducto * valorunidadProdcotizacion
-                                
-                datos = [id_cotizacion, producto_cotizacion, referenciaProducto, cantidadProducto, valorunidadProdcotizacion, valortotalCantidaproductosCotizacion]
-                print(datos)
+                total= valortotalCantidaproductosCotizacion
+                datos = [id_cotizacion, producto_cotizacion, referenciaProducto, cantidadProducto, valorunidadProdcotizacion, valortotalCantidaproductosCotizacion, total]
                 cotizaciones.crearDetalleCotizacion(datos)
-                print(datos)    
-            cotizaciones.crearCotizaciones([id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fechaInicioCotizacion, fechaFinCotizacion, nombre_cliente_cotizacion])
-            print(cotizaciones)
+                print(datos)
+            
             flash('Tu cliente fue creado con éxito')
             return redirect(url_for('Cotizacion'))
         
@@ -90,11 +90,23 @@ def crearCotizacion():
 @app.route("/editarCotizacion/<id_cotizacion>")
 def editarCotizacion(id_cotizacion):
     if "nom_empleado" in session:
-        sql = f"SELECT * FROM cotizaciones WHERE num_cotizacion = '{id_cotizacion}'"
+        sql = """
+            SELECT
+                cotizaciones.fecha_inicio_cotizacion,
+                cotizaciones.fecha_fin_cotizacion,
+                detallecotizaciones.producto_cotizacion,
+                detallecotizaciones.nombre_producto,
+                detallecotizaciones.cantidad_productos_cotizacion,
+                detallecotizaciones.valorunidad_prodcotizacion
+            FROM cotizaciones
+            INNER JOIN detallecotizaciones ON cotizaciones.num_cotizacion = detallecotizaciones.num_cotizacion
+            WHERE cotizaciones.num_cotizacion = '{}'
+        """.format(id_cotizacion)
         conn = mysql.connect()
         cursor = conn.cursor()                                   
         cursor.execute(sql)
         resultado = cursor.fetchall()
+        print(resultado)
         bsql = f"SELECT `nombre_producto` FROM `productos` WHERE `estado_producto`='ACTIVO'"
         cursor.execute(bsql)
         resultado2 = cursor.fetchall() 
@@ -147,7 +159,7 @@ def borraCotizacion(id_cotizacion):
 @app.route("/detalle/<id_cotizacion>")
 def detalle(id_cotizacion):
     if "nom_empleado" in session:
-        sql = f"SELECT `nom_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion` FROM `detallecotizaciones` WHERE `num_cotizacion` = '{id_cotizacion}' AND `detalle_estado` = 'ACTIVO'"
+        sql = f"SELECT `nombre_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion` FROM `detallecotizaciones` WHERE `num_cotizacion` = '{id_cotizacion}' AND `detalle_estado` = 'ACTIVO'"
         conn = mysql.connect()
         cursor = conn.cursor()                                   
         cursor.execute(sql)

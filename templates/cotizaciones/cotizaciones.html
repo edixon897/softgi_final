@@ -14,7 +14,6 @@
             <div id="agregar_cotizacion">
                 <button id="openCrearCotizacionModal">Agregar cotización</button>
             </div>
-
             <div id="buscar">
                 <form id="buscador">
                     <i class="lni lni-search-alt"></i>
@@ -27,12 +26,12 @@
             <table id="cotizacionTable">
                 <thead>
                     <tr>
-                        <th>Cotizacion #</th>
                         <th>C.C. cliente</th>
                         <th>Nombre cliente</th>
                         <th>Fecha inicio</th>
                         <th>Fecha final</th>
                         <th>Nombre operador</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <!-- <th>Apellido operador</th> -->
@@ -41,13 +40,18 @@
                 <tbody>
                     {% for dato in datos %}
                         <tr>
-                            <td>{{dato[0]}}</td>
                             <td>{{dato[1]}}</td>
                             <td>{{dato[2]}}</td>
                             <td>{{dato[3]}}</td>
                             <td>{{dato[4]}}</td>
                             <td>{{dato[5]}}</td>
                             <!-- <td>{{dato[6]}}</td> -->
+
+                            <td class="btns_centro">
+                                <a href="detalle/{{dato[0]}}">
+                                    ver detalle
+                                </a>
+                            </td>
                             
                             <td class="btns_centro">
                                 <a href="editarCotizacion/{{dato[0]}}">
@@ -76,7 +80,7 @@
     </main>
 
     <!-- Modal -->
-    <div id="crearCotizacionModal" class="modal">
+    <div id="crearCotizacionModal" class="modal" style="display: none;">
         <div class="modal-content">
             <form action="/crearCotizacion" method="POST">
 
@@ -104,7 +108,6 @@
                         </select>
                     </div>
                 </div>
-<<<<<<< HEAD
 
 
                 <div class="form-group-n">
@@ -125,7 +128,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <button id="loadMoreButton">Cargar más productos</button>
                     </div>
                     </div>
 
@@ -147,37 +149,6 @@
                     <div class="form-group">
                         <button type="submit" class="select-button" value="Registrar">Crear Cotización</button>
                     </div>
-=======
-    
-                <div class="form-group">
-                    <label for="clienteCotizacion">Selecciona un cliente:</label>
-                    <select name="clienteCotizacion" id="clienteCotizacion" required>
-                        <option value="" disabled selected>Selecciona un cliente</option>
-                        {% for client in resulta %}
-                            <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-    
-                <div class="form-group">
-                    <table id="productosSeleccionados" name="referenciaProductos[]">
-                        <thead>
-                            <th>Nombre del Producto</th>
-                            <th>Cantidad</th>
-                            <th>Eliminar</th>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-    
-                <div class="form-group">
-                    <button type="submit" value="Registrar">Crear Cotización</button>
->>>>>>> 1236b96f00be786a530f725d5a06bf7e56dfe2c1
-                </div>
-                
-
-                
             </form>
         </div>
     </div>
