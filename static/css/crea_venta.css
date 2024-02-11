@@ -47,6 +47,8 @@ main#cuerpo {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    position: relative;
 }
     main#cuerpo section#section_1 {
         width: 97%;
