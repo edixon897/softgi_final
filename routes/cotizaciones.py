@@ -74,7 +74,7 @@ def crearCotizacion():
                 datos = [id_cotizacion, producto_cotizacion, referenciaProducto, cantidadProducto, valorunidadProdcotizacion, valortotalCantidaproductosCotizacion]
                 print(datos)
                 cotizaciones.crearDetalleCotizacion(datos)
-                
+                print(datos)    
             cotizaciones.crearCotizaciones([id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fechaInicioCotizacion, fechaFinCotizacion, nombre_cliente_cotizacion])
             print(cotizaciones)
             flash('Tu cliente fue creado con éxito')

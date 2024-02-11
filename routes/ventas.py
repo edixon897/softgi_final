@@ -78,34 +78,26 @@ def confirma_abono_2():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #-------------------------------------------------------- Historial de ventas ----------------------------------------------------------------
 
 @app.route("/muestra_ventas")
 def muestra_ventas():
     if "nom_empleado" in session: 
-        sql = "SELECT  `num_factura`, `cliente_factura`, `nombre_operador`, `apellido_operador`, `fechahora_venta`, `forma_pago` FROM `ventas` ORDER BY num_factura DESC"
+        sql =  """
+            SELECT 
+                v.num_factura, 
+                v.cliente_factura, 
+                CONCAT(c.nom_cliente, ' ', c.ape_cliente) as nombre_cliente, 
+                CONCAT(v.nombre_operador, ' ', v.apellido_operador) as nombre_operador, 
+                v.fechahora_venta, 
+                v.forma_pago 
+            FROM 
+                ventas v
+            JOIN 
+                clientes c ON v.cliente_factura = c.doc_cliente
+            ORDER BY 
+                v.num_factura DESC
+        """
         conn = mysql.connect()
         cursor = conn.cursor()     
         cursor.execute(sql)

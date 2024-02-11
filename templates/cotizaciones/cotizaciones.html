@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizaciones</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="../../static/css/crear_cotizaciones.css"> -->
     <link rel="stylesheet" href="../../static/css/muestra_cotizaciones.css">
 </head>
 <body>
@@ -69,8 +68,10 @@
 
         <p id="noResults" style="display: none;">No se encontraron resultados</p>
     
-        <div id="boton-atras">
-            <a href="{{url_for ('inicio') }}" id="enlace_volver">Volver a pagina principal</a>
+        <div id="regresar">
+            <a href="{{url_for ('inicio') }}" id="enlace_volver">
+                <i id="atras" class="lni lni-arrow-left"></i>
+            </a>
         </div>
     </main>
 
@@ -103,6 +104,7 @@
                         </select>
                     </div>
                 </div>
+<<<<<<< HEAD
 
 
                 <div class="form-group-n">
@@ -145,6 +147,33 @@
                     <div class="form-group">
                         <button type="submit" class="select-button" value="Registrar">Crear Cotización</button>
                     </div>
+=======
+    
+                <div class="form-group">
+                    <label for="clienteCotizacion">Selecciona un cliente:</label>
+                    <select name="clienteCotizacion" id="clienteCotizacion" required>
+                        <option value="" disabled selected>Selecciona un cliente</option>
+                        {% for client in resulta %}
+                            <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <table id="productosSeleccionados" name="referenciaProductos[]">
+                        <thead>
+                            <th>Nombre del Producto</th>
+                            <th>Cantidad</th>
+                            <th>Eliminar</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="form-group">
+                    <button type="submit" value="Registrar">Crear Cotización</button>
+>>>>>>> 1236b96f00be786a530f725d5a06bf7e56dfe2c1
                 </div>
                 
 
