@@ -16,18 +16,6 @@ body{
     font-weight: 300;
 }
 
-figure{
-    margin: 0;
-    padding: 0;
-}
-
-figure img{
-    margin: 0;
-    width: 100%;
-}
-
-
-
 main#inicio{
     margin: 0;
     min-height: 100vh;
@@ -149,12 +137,12 @@ div#regresar{
 }
 
 .opciones {           /* -------------------para el estilo de los botones de opciones----------------- */
-    width: 60%;
-    height: 100%;
+    width: 15%;
+    height: 80%;
     border-radius: 5px;  
     font-size: 1em;
     border: none;
-    background-color: #358CB4;
+    background-color: #5faccf;
     display: flex;
     justify-content: center;
     align-items: center;

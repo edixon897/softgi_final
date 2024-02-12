@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+body, html{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Barlow', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+
+
+#inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#conten_titulo_lado_1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#conten_formulario_2 {
+    width: 50%;
+}
+
+.campos {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.campo {
+    width: calc(50% - 10px);
+    padding: 10px;
+    margin: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.subtitulos {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+button {
+    background-color: #5ec462;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+div#regresar{
+    border: none;
+    border-radius: 3px;  
+    font-size: 1em;
+    left: 1em;
+    margin: 8px;
+    padding: 5px;
+    position: relative;
+    width: 8%;
+}
+    #atras{
+    font-size: 2em;
+    color: #52a1bb;
+    }
+
+.campo_a {
+    text-decoration: none;
+    color: #333;
+}
+
+#atras {
+    margin-left: 1px;
+}
+
+/* Reglas de medios para hacer responsive */
+@media screen and (max-width: 768px) {
+    .campo {
+        width: 100%;
+    }
+}
