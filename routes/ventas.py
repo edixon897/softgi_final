@@ -657,7 +657,7 @@ def selector_una_cantidad(id_producto):
 
 
 #---------------------------------------- Selector de productos para Ventas -------------------------------------------
-@app.route("/m_selector_cantidad_p/<id_producto>")
+@app.route("/m_selector_cantidad_p/<int:id_producto>")
 def m_selector_cantidad_p(id_producto):
     if "nom_empleado" in session:
 
@@ -704,81 +704,143 @@ def confirma_p_seleccionado():
         conn.commit()
 
 
-        # 1 - valido si la cantidad digitada es menor a la disponible 
-        if (stock[0][0] > cantidad_digitada) or (stock[0][0] == 1 and cantidad_digitada == 1):
-            
-            sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
-            conn = mysql.connect()
-            cursor = conn.cursor()     
-            cursor.execute(sql)
-            cantidad_carrito = cursor.fetchall()
-            conn.commit()
-            
-            # 2 - valido si ya esta seleccionado el producto
-            if ((len(cantidad_carrito)) > 0):
+        # 1 valido que el valor no sea menor o igual a 0
+        if (cantidad_digitada > 0):
 
-                # Actualizo el stock disponible del producto 
-                stock_disponible = (stock_disponible - cantidad_digitada)
-
-                # Actualizo el stock en la base de datos
-                sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+            # 2 - valido si la cantidad digitada es menor a la disponible 
+            if (stock[0][0] > cantidad_digitada) or (stock[0][0] == 1 and cantidad_digitada == 1):
+                
+                sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
                 conn = mysql.connect()
                 cursor = conn.cursor()     
                 cursor.execute(sql)
+                cantidad_carrito = cursor.fetchall()
                 conn.commit()
+                
+                # 3 - valido si ya esta seleccionado el producto
+                if ((len(cantidad_carrito)) > 0):
 
-                # sumamos la cantidad ya seleccionado con lo digitado
-                cantidad_total_adqui = (cantidad_carrito[0][0] + cantidad_digitada)
+                    # Actualizo el stock disponible del producto 
+                    stock_disponible = (stock_disponible - cantidad_digitada)
 
-                # saco el nuevo total a pagar
-                total = (cantidad_total_adqui * precio_unidad)
+                    # Actualizo el stock en la base de datos
+                    sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    conn.commit()
 
-                # actualizo la info del registro de carrito venta
-                sql = f"UPDATE `carritoventas` SET `cantidad_adquirida`='{cantidad_total_adqui}',`total`='{total}' WHERE id_producto = '{id_producto}'"
-                conn = mysql.connect()
-                cursor = conn.cursor()     
-                cursor.execute(sql)
-                conn.commit()
+                    # sumamos la cantidad ya seleccionado con lo digitado
+                    cantidad_total_adqui = (cantidad_carrito[0][0] + cantidad_digitada)
 
-                return redirect("/verCrear_ventas")
+                    # saco el nuevo total a pagar
+                    total = (cantidad_total_adqui * precio_unidad)
+
+                    # actualizo la info del registro de carrito venta
+                    sql = f"UPDATE `carritoventas` SET `cantidad_adquirida`='{cantidad_total_adqui}',`total`='{total}' WHERE id_producto = '{id_producto}'"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    conn.commit()
+
+                    return redirect("/verCrear_ventas")
 
 
-            # 2 inserta normal
+                # 3 inserta normal
+                else:
+                    # Saco el total a pagar por la catidad digitada
+                    total = (precio_unidad * cantidad_digitada)
+
+                    # Actualizo el stock disponible del producto 
+                    stock_disponible = (stock_disponible - cantidad_digitada)
+
+                    # Actualizo el stock en la base de datos
+                    sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    conn.commit()
+
+                    # inserto los datos en la tabla Carrito ventas
+                    sql = f"INSERT INTO `carritoventas`(`id_producto`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total`) VALUES ('{id_producto}','{nombre_producto}','{precio_unidad}','{cantidad_digitada}','{total}')"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    conn.commit()
+
+                    return redirect("/verCrear_ventas")
+            
+            # 2
             else:
-                # Saco el total a pagar por la catidad digitada
-                total = (precio_unidad * cantidad_digitada)
+                # Muestra el documento del operador
+                documento_operador = session["documento_operador"]
 
-                # Actualizo el stock disponible del producto 
-                stock_disponible = (stock_disponible - cantidad_digitada)
-
-                # Actualizo el stock en la base de datos
-                sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+                # consulta los productos del inventario
+                sql = "SELECT `id_producto`, `ref_produ_1`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
                 conn = mysql.connect()
                 cursor = conn.cursor()     
                 cursor.execute(sql)
+                productos_inven = cursor.fetchall()
                 conn.commit()
 
-                # inserto los datos en la tabla Carrito ventas
-                sql = f"INSERT INTO `carritoventas`(`id_producto`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total`) VALUES ('{id_producto}','{nombre_producto}','{precio_unidad}','{cantidad_digitada}','{total}')"
+                # consulta los productos seleccionados para venta
+                sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
                 conn = mysql.connect()
                 cursor = conn.cursor()     
                 cursor.execute(sql)
+                productos_carr = cursor.fetchall()
                 conn.commit()
 
-                return redirect("/verCrear_ventas")
-        
-        # 1
-        else:
-            sql = f"SELECT `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+                # Realiza la suma de el total de todos los productos seleccionados
+                sql = "SELECT SUM(total) FROM carritoventas"
+                conn = mysql.connect()
+                cursor = conn.cursor()     
+                cursor.execute(sql) 
+                Suma_total = cursor.fetchall()
+                conn.commit()
+
+                mensaje_error = "La_cantidad_solicitada_es_menor_a_la_disponible" #¡La cantidad solicitada es menor a la disponible!
+
+                if Suma_total[0][0] is not None:            
+                    return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje_2 = mensaje_error) 
+                else:
+                    return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje_2 = mensaje_error) 
+
+        #1
+        else:      
+            # Muestra el documento del operador
+            documento_operador = session["documento_operador"]
+
+            # consulta los productos del inventario
+            sql = "SELECT `id_producto`, `ref_produ_1`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
             conn = mysql.connect()
             cursor = conn.cursor()     
             cursor.execute(sql)
-            info_producto = cursor.fetchall()
+            productos_inven = cursor.fetchall()
             conn.commit()
 
-            mensaje_error = "¡Cantidad dijitada mayor a la disponible en el stock!"
-        
-            return render_template('ventas/producto_seleccionado.html',id_p = id_producto, nom_p = info_producto[0], mensaje_Error = mensaje_error)
+            # consulta los productos seleccionados para venta
+            sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            productos_carr = cursor.fetchall()
+            conn.commit()
+
+            # Realiza la suma de el total de todos los productos seleccionados
+            sql = "SELECT SUM(total) FROM carritoventas"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql) 
+            Suma_total = cursor.fetchall()
+            conn.commit()
+
+            mensaje_error = "La_cantidad_solicitada_es_menor_o_igual_a_cero" #¡La cantidad solicitada es menor a la disponible!
+
+            if Suma_total[0][0] is not None:            
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje_2 = mensaje_error) 
+            else:
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje_2 = mensaje_error) 
 
 
     else:
