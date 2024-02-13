@@ -11,7 +11,13 @@
 </head>
 <body>
     <main id="inicio">
-        <h2>Productos</h2>
+        <div id="primerlinea">
+                <a  href="{{url_for ('inicio') }}" class="campo_a">
+                    <i id="atras" class="lni lni-arrow-left"></i>
+                </a>
+            <h2>Productos</h2>
+        </div>
+        
         <section id="opciones">
             <div id="conten_opciones">
                 <a class="color_opciones" href="{{url_for('categorias')}}">
