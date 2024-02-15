@@ -12,6 +12,8 @@
 
     <main id="cuerpo">
 
+        <div id="modalContenedor" style="display: none;"></div>
+
         <section id="section_1">
             <p>Registrar venta</p>
         </section>
@@ -59,13 +61,15 @@
                                                 <td>{{c[i]}}</td>
                                             {% endif %}
                                         {% endfor %}
+                                            
                                             <td> <!--   onclick="abrirModal('{{c[0]}}')"-->
-                                                <a href="/m_selector_cantidad_p/{{c[0]}}" > <i id="icono_select_2" class="lni lni-layers"></i></a>
+                                                <a href="#" onclick="abrirModal('{{c[0]}}')" > <i id="icono_select_2" class="lni lni-layers"></i></a>
                                             </td>
                                             <td>
                                                 <a href="/selector_una_cantidad/{{c[0]}}"><!-- <i id="icono_select_1" class="lni lni-cart"></i> -->  <i id="icono_select_1" class="lni lni-select-cursor"></i></a>
                                             </td>
                                     </tr>
+                                    
                                     {% endfor %}
                                 </tbody>
                                 <p id="noResults" style="display: none;">No se encontraron resultados</p>
@@ -137,7 +141,7 @@
 
                     <section id="conten_btns">
                         <div id="separador">
-                            <a href="{{url_for ('crearClientes') }}">Registrar clente</a>
+                            <a href="{{url_for ('crearClientes_2') }}">Registrar clente</a>
                             <a href="{{url_for ('muestra_ventas') }}">Regresar</a>
                         </div>
                     </section>
@@ -192,7 +196,7 @@
                         </div>
 
                         <div id="lad_3_form">
-                            <button class="btn_sutmit" type="submit" onclick="valida_campos()">Registrar venta</button>
+                            <button id="btn_enviar" class="btn_sutmit" type="submit" onclick="valida_campos() ">Registrar venta</button>
                         </div>
             
                         

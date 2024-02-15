@@ -26,12 +26,12 @@ def crear_devolucion():
 @app.route('/crear_devolucion', methods=['POST'])
 def crearDevoluciones():
     if "nom_empleado" in session:
-        email = session["email_empleado"]
+        doc = session["nom_empleado"]
         conn = mysql.connect()
         cursor = conn.cursor()
 
         # Obtener los detalles del empleado
-        bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE email_empleado='{email}'"
+        bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE nom_empleado='{doc}'"
         cursor.execute(bsq)
         resultado = cursor.fetchone()
 
@@ -64,10 +64,10 @@ def crearDevoluciones():
                 return redirect('muestraDevoluciones')
             else:
                 flash('Algunos datos no existen en la base de datos')
-                return redirect(url_for('home'))
+                return redirect(url_for('crearDevoluciones'))
         else:
             flash('No se encontró el empleado en la base de datos')
-            return redirect(url_for('home'))
+            return redirect(url_for('crearDevoluciones'))
     else:
         flash('Por favor inicia sesión para poder acceder')
         return redirect(url_for('index'))

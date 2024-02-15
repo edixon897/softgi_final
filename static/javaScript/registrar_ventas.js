@@ -70,7 +70,16 @@ function verifica_input_2() {
         Swal.fire({
             icon: "error",
             title: "Error",
-            text: "La cantidad solicitada del producto es menor a la disponible",
+            text: "La cantidad solicitada del producto es mayor a la disponible",
+            width: "50%",
+            height: "20%",
+            showConfirmButton: true
+        });
+    }  else if (valor_input == "La_cantidad_solicitada_es_menor_o_igual_a_cero") {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "La cantidad solicitada es menor o igual a cero",
             width: "50%",
             height: "20%",
             showConfirmButton: true
@@ -198,6 +207,11 @@ function abrirModal(idProducto) {
     var modalContenedor = document.getElementById("modalContenedor");
     modalContenedor.innerHTML = "";
 
+    var btn_enviar = document.getElementById('btn_enviar');
+    btn_enviar.style.backgroundColor = "white"
+    btn_enviar.style.color = "#358CB4"
+    btn_enviar.style.border = "1px solid #358CB4"
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -216,4 +230,9 @@ function abrirModal(idProducto) {
 function cerrarModal() {
     var modalContenedor = document.getElementById("modalContenedor");
     modalContenedor.style.display = "none";
-};
+
+    var btn_enviar = document.getElementById('btn_enviar');
+    btn_enviar.style.backgroundColor = "#358CB4"
+    btn_enviar.style.color = "white"
+    btn_enviar.style.border = "none"
+}

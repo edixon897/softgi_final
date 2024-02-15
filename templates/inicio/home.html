@@ -12,6 +12,8 @@
             display: none;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
+
 </head>
 <body>
     <main id="inicio">
@@ -26,17 +28,12 @@
                 <span id="usuario">Hola  {{session['nom_empleado']}}</span>
             </div>
 
-            <!-- <div id="menu">
-                <a title="Se debe ver el menú">
-                    <i class="lni lni-menu"></i>
-                </a>
-            </div> -->
         </section>
 
         <section id="buscar">
             <div id="buscador">
                 <i class="lni lni-search-alt"></i>
-                <input type="text" placeholder="busca un modulo" id="searchProduct">
+                <input type="text" placeholder="Busca un modulo" id="searchProduct">
             </div>
         </section>
 
@@ -92,6 +89,8 @@
         </section>
     </main>
 
-    <script src="/static/javaScript/bucadorInicio.js"></script>
+    <script src="/static/javaScript/buscadorInicio.js"></script>
+    
+
 </body>
 </html>

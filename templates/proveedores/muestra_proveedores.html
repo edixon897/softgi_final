@@ -4,53 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proveedores</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/muestra_proveedores.css">
 </head>
 <body>
+
+    <main id="inicio">
+        <section id="opciones">
+            <h1>Proveedores</h1>
+            <div id="crear_proveedor">
+                <a href="{{url_for('crear_Proveedores')}}">
+                    <p >Crear Proveedores</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="contenido">
+            <table  id="TablaClientes">
+                <thead >
+                    <tr>
+                        <th>Documento proveedor</th>
+                        <th>Nombre proveedor</th>
+                        <th>Contacto proveedor</th>
+                        <th>Correo electrónico</th>
+                        <th>Dirección proveedor</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in resul %}
+                        <tr>
+                            {% for i in range(0,5) %}
+
+                                <td>{{c[i]}}</td>
+
+                            {% endfor %}
+
+                                <td>
+                                    <a class="boton-editar" href="/actializarProveedor/{{c[0]}}">Editar</a>
+                                </td>
+
+                                <td>
+                                    <a class="boton-eliminar"  onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraProveedor/{{c[0]}}">Eliminar</a>
+                                </td>
+
+                        </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        </section>
+        <div id="regresar">
+            <a href="{{url_for('muestra_compra_proved')}}">
+                <i id="atras" class="lni lni-arrow-left"></i>
+            </a>
+        </div>
+    </main>
     
-    <h1>Proveedores</h1>
-    <div id="crear-prov">
-    <a class="crear-prov" href="{{url_for('crear_Proveedores')}}">Crear Proveedores</a>
-    </div>
-    
-    <br>
-
-    <table class="content-table" id="tabla_productos">
-        <thead >
-            <tr>
-                <th>Documento proveedor</th>
-                <th>Nombre proveedor</th>
-                <th>Contacto proveedor</th>
-                <th>Correo electrónico</th>
-                <th>Dirección proveedor</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for c in resul %}
-                <tr>
-                    {% for i in range(0,5) %}
-
-                        <td>{{c[i]}}</td>
-
-                    {% endfor %}
-
-                        <td>
-                            <a class="boton-editar" href="/actializarProveedor/{{c[0]}}">Editar</a>
-                        </td>
-
-                        <td>
-                            <a class="boton-eliminar"  onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraProveedor/{{c[0]}}">Eliminar</a>
-                        </td>
-
-                </tr>
-            {% endfor %} 
-        </tbody>
-    </table>
-
-    <div class="conten_buttons_2">
-        <a id="enlace_regresar" class="stylo_btn_regresar" href="/muestra_compra_proved">Regresar</a>
-    </div>
 </body>
 </html>

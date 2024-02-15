@@ -17,7 +17,7 @@ function buscarEnTiempoReal() {
             a.style.display = "none";
         }
     }
-}
+};
 
 
 document.getElementById("searchProduct").addEventListener("input", buscarEnTiempoReal);
