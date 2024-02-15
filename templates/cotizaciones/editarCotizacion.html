@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario cotizaciones</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/editar_cotizacion.css">
 </head>
 <body>
@@ -12,20 +13,92 @@
         <div>
             <h2>EDITAR COTIZACIONES</h2>
         </div>
-        
-            <form action="/atualizarCotizacion" method="post" id="formu_proveed">
-                <div class="campos">
-                    
-                    <input type="text" name="clienteCotizacion" id="documentoProvedor"  class="campo" value="{{resul[7]}}">
-                    <input type="date" name="fechaInicioCotizacion" id="fechaInicioCotizacion"  class="campo" value="{{resul[1]}}">
-                    <input type="date" name="fechaFinCotizacion" id="fechaFinCotizacion" class="campo" value="{{resul[0]}}">
+        <div id="editarCotizacion" class="Editar" >
+            <div class="modal-content">
+                <form action="/editarCotizacion" method="POST">
 
-                </div>
-                <div id="boton-atras">
-                <input type="submit" value="Registrar" class="boton-atras">
-                </div>
-            </form>
+                    <div class="form-group">
+                        <div class="ini">
+                            <label for="fechaInicioEditarCliente">Fecha de Inicio:</label>
+                            <input type="date" name="fechaInicioEditarCliente"  id="fechaInicioEditar" value="{{datos[1]}}">
+                        </div>
+                        <div class="fin">
+                            <label for="fechaFinEditarCliente">Fecha de Fin:</label>
+                            <input type="date" name="fechaFinEditarCliente" id="fechaFinEditar" value="{{datos[0]}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="searchProductosEditar" oninput="filterProductss()" placeholder="Buscar productos">
+
+                        <div class="sele">
+                            <label for="clienteCotizacionEditar">Selecciona un cliente:</label>
+                            <select name="clienteCotizacionEditar" id="clienteCotizacionEditar" required>
+                                <option value="{{datos[2]}}" disabled selected>Selecciona un cliente</option>
+                                {% for client in cliente %}
+                                    <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group-n">
+                        <div class="table-container">
+                            <div class="table-wrapper">
+                                <table id="productTable">
+                                    <thead>
+                                        <th>Nombre del Producto</th>
+                                        <th>Seleccionar</th>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in prod %}
+                                            <tr class="product-rows">
+                                                <td>{{ i[0] }}</td>
+                                                <td><button type="button" class="select-button" onclick="selectProducts('{{ i[0] }}')">Seleccionar</button></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-wrapper">
+                            <table id="productosSeleccionadosEditar" name="referenciaProductosEditar[]">
+                                <thead>
+                                    <th>Nombre del Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Eliminar</th>
+                                </thead>
+                                <tbody>
+                                    {% for p in dato %}
+                                    <tr class="filaProducto">
+                                        <td><input readonly type="text" name="nombreProd[]"
+                                            value="{{p[4]}}"/></td>
+                                        <td><input type="number" name="cantidadProd[]" value="{{p[5]}}"/></td>
+                                        <td><button type="button" class="btn btn-default eliminarFila">Eliminar</button></td>
+                                    </tr>
+                                    {% endfor %}
+                                    
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="select-button" value="Actualizar">Actualizar Cotización</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </main>
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+
+</script>
 </body>
 </html>
