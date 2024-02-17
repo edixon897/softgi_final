@@ -9,7 +9,104 @@
 </head>
 <body>
 
-    <main>
+
+
+
+    <main id="cuerpo">
+
+        <section id="section_1">
+            <p>Devoluciones</p>
+        </section>
+
+
+        <section id="section_2">
+
+            <div id="conten_botones">
+                <div id="conten_regresar">
+                    <div id="isla_1">
+                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
+                    </div>
+                </div>
+                <div id="conten_btn_navegacion">
+                    <div id="isla_2">
+                        <a class="botones" href="{{url_for('crear_devolucion')}}">Registrar devolución</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conten_tabla">
+
+                <div id="isla_3">
+                    <section id="section_buscador_titulo">
+                        
+                        <div id="conten_titulo">
+                            <p>Todas mis devoluciones</p>
+                        </div>
+                        <form id="form_conten">
+                            <i id="icono_busqueda" class="lni lni-search-alt"></i>
+                            <input type="search" id="searchClientes" oninput="buscarClientes()" placeholder="">
+                        </form>
+
+                    </section>
+                    <section id="section_tabla_info">
+                        <div id="conten_t">
+                            <table id="TablaClientes">
+                                <thead>
+                                    <tr>
+                                        <th>Id devolución</th>
+                                        <th>Numero factura</th>
+                                        <th>Documento operador</th>
+                                        <th>Nombre empleado</th>
+                                        <th>Apellido empleado</th>
+                                        <th>Nombre del cliente</th>
+                                        <th>Fecha de la devolución</th>
+                                    </tr>
+                                </thead>
+                            
+                                <tbody>
+                                    {% for c in datos %}
+                                    <tr>
+                                        {% for i in range(0, 7) %}
+                                            
+                                            <td>{{ c[i] }}</td>
+                                            
+                                        {% endfor %}
+                                        <td class="btns_centro">
+                                            <a href="/modificar_devolucion/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a onclick="return confirm('Seguro que deseas eliminar la devolucion?')" href="/borra_devoluc/{{c[0]}}">
+                                                <i id=icono_2 class="lni lni-trash-can"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <p id="noResults" style="display: none;">No se encontraron resultados</p>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--     <main>
 
         <h1>Devoluciónes</h1>
         <div class="opciones">
@@ -57,7 +154,7 @@
                 <i id="atras" class="lni lni-arrow-left"></i>
             </a>
         </div>
-    </main>
+    </main> -->
 
 </body>
 </html>
