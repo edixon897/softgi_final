@@ -1,5 +1,3 @@
-
-
 /* -------------------- Desplazamiento del formulario -------------------------- */
 
 
@@ -115,3 +113,9 @@ function animacion_envio() {
         });
     }
 };
+
+
+
+
+
+

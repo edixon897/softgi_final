@@ -73,6 +73,7 @@
 
                     <div class="content_inputs_2">
 
+                        
                         <div class="campo_2">
                             <select id="proveedor" name="proveedor" class="input_campo">
                                 <option value="" disabled selected>Selecciona un proveedor</option>
@@ -83,6 +84,9 @@
                             <label  for="proveedor">Proveedor</label>
                         </div>
 
+                        <!-- Botón para abrir el modal para registrar proveedor -->
+                        <a href="{{url_for('crear_Proveedores')}}" id="crear-proveedor-2">Nuevo Proveedor</a>
+
                         <div class="campo_2">
                             <select id="categorias" name="categorias" class="input_campo">
                                 <option value="" disabled selected>Selecciona una categoria</option>
@@ -92,7 +96,8 @@
                             </select>
                             <label  for="categorias">categoria</label>
                         </div>
-
+                        <!-- Botón para abrir el modal para registrar proveedor -->
+                        <a href="{{url_for('crearCategoria')}}" id="crear-proveedor-2">Nueva Categoria</a>
                         
                     </div>
 
@@ -248,7 +253,7 @@
         </form>
 
     </main>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/sesiones_formulario_registro_productos.js"></script>
         
