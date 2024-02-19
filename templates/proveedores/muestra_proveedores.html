@@ -9,57 +9,90 @@
 </head>
 <body>
 
-    <main id="inicio">
-        <section id="opciones">
-            <h1>Proveedores</h1>
-            <div id="crear_proveedor">
-                <a href="{{url_for('crear_Proveedores')}}">
-                    <p >Crear Proveedores</p>
-                </a>
+    <main id="cuerpo">
+
+        <section id="section_1">
+            <p>Proveedores</p>
+        </section>
+
+
+        <section id="section_2">
+
+            <div id="conten_botones">
+                <div id="conten_regresar">
+                    <div id="isla_1">
+                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
+                    </div>
+                </div>
+                <div id="conten_btn_navegacion">
+                    <div id="isla_2">
+                        <a class="botones"  href="{{url_for('muestra_compra_proved')}}">Compras a proveedores</a>
+                        <a class="botones" href="{{url_for('crear_Proveedores')}}">Crear proveedor</a>
+                    </div>
+                </div>
             </div>
+
+            <div id="conten_tabla">
+
+                <div id="isla_3">
+                    <section id="section_buscador_titulo">
+                        
+                        <div id="conten_titulo">
+                            <p>Mis proveedores</p>
+                        </div>
+                        <form id="form_conten">
+                            <i id="icono_busqueda" class="lni lni-search-alt"></i>
+                            <input type="search" id="buscador_ventas" oninput="buscarVENTAS()" placeholder="">
+                        </form>
+
+                    </section>
+                    <section id="section_tabla_info">
+                        <div id="conten_t">
+                            <table id="tablaVentas">
+                                <thead>
+                                    <tr>
+                                        <th>Documento proveedor</th>
+                                        <th>Nombre proveedor</th>
+                                        <th>Contacto proveedor</th>
+                                        <th>Correo electrónico</th>
+                                        <th>Dirección proveedor</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            
+                                <tbody>
+                                    {% for c in resul %}
+                                    <tr>
+                                        {% for i in range(0, 5) %}
+                                            
+                                            <td>{{ c[i] }}</td>
+                                            
+                                        {% endfor %}
+                                        <td class="btns_centro">
+                                            <a href="/actializarProveedor/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraProveedor/{{c[0]}}">
+                                                <i id=icono_2 class="lni lni-trash-can"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <p id="noResults" style="display: none;">No se encontraron resultados</p>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+
         </section>
 
-        <section id="contenido">
-            <table  id="TablaClientes">
-                <thead >
-                    <tr>
-                        <th>Documento proveedor</th>
-                        <th>Nombre proveedor</th>
-                        <th>Contacto proveedor</th>
-                        <th>Correo electrónico</th>
-                        <th>Dirección proveedor</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for c in resul %}
-                        <tr>
-                            {% for i in range(0,5) %}
-
-                                <td>{{c[i]}}</td>
-
-                            {% endfor %}
-
-                                <td>
-                                    <a class="boton-editar" href="/actializarProveedor/{{c[0]}}">Editar</a>
-                                </td>
-
-                                <td>
-                                    <a class="boton-eliminar"  onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraProveedor/{{c[0]}}">Eliminar</a>
-                                </td>
-
-                        </tr>
-                    {% endfor %} 
-                </tbody>
-            </table>
-        </section>
-        <div id="regresar">
-            <a href="{{url_for('muestra_compra_proved')}}">
-                <i id="atras" class="lni lni-arrow-left"></i>
-            </a>
-        </div>
     </main>
+    <script src="/static/javaScript/buscadorVentas.js"></script>
     
 </body>
 </html>

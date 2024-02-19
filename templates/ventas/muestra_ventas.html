@@ -8,78 +8,88 @@
     <link rel="stylesheet" href="../../static/css/muestra_ventas.css">
 </head>
 <body>
-    <main id="inicio">
-        <section id="opciones">
-            <h2>Historial de ventas</h2>
-            <div id="conten_opciones">
 
-                <div class="opciones">
-                    <a class="color_opciones" href="{{url_for('muestra_ventas_credito')}}">
-                        Ventas a credito
-                    </a>
-                </div>
-                <div class="opciones">
-                    <a class="color_opciones"  href="{{url_for('verCrear_ventas')}}">
-                        Realizar ventas
-                    </a>
-                </div>
-                
+    <main id="cuerpo">
 
-            </div>
-            <div id="buscar">
-                <form id="buscador">
-                    <i class="lni lni-search-alt"></i>
-                    <input type="search" id="buscador_ventas" oninput="buscarVENTAS()" placeholder="Buscar ventas">
-                </form>
-                
-            </div>
-            
-        </section>
-        <section id="contenido">
-            <table  id="tablaVentas">
-                <thead >
-                    <tr>
-                        <th>Factura #</th>
-                        <th>C.C cliente</th>
-                        <th>Nombre cliente</th>
-                        <th>Realizo venta</th>
-                        <th>Fecha de venta</th>
-                        <th>Forma de pago</th>
-                        <th></th>
-                    </tr>
-                </thead>
-    
-                <tbody>
-                    {% for c in resul %}
-                    <tr>
-                        {% for i in range(0,6) %}
-                            <td>{{c[i]}}</td>
-                        {% endfor %}
-                            <td>
-                                <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}"><i class="lni lni-circle-plus"></i></a>
-    
-                            </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <p id="noResults" style="display: none;">No se encontraron resultados</p>
+        <section id="section_1">
+            <p>Historial de ventas</p>
         </section>
 
-            <div id="regresar">
-                <a href="{{url_for ('inicio') }}">
-                    <i id="atras" class="lni lni-arrow-left"></i>
-                </a>
+
+        <section id="section_2">
+
+            <div id="conten_botones">
+                <div id="conten_regresar">
+                    <div id="isla_1">
+                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
+                    </div>
+                </div>
+                <div id="conten_btn_navegacion">
+                    <div id="isla_2">
+                        <a class="botones" href="{{url_for('muestra_ventas_credito')}}">Ventas a credito</a>
+                        <a class="botones"  href="{{url_for('verCrear_ventas')}}">Realizar ventas</a>
+                    </div>
+                </div>
             </div>
-        
-            <script src="/static/javaScript/buscadorVentas.js"></script>
+
+            <div id="conten_tabla">
+
+                <div id="isla_3">
+                    <section id="section_buscador_titulo">
+                        
+                        <div id="conten_titulo">
+                            <p>$ ventas normales</p>
+                        </div>
+                        <form id="form_conten">
+                            <i id="icono_busqueda" class="lni lni-search-alt"></i>
+                            <input type="search" id="buscador_ventas" oninput="buscarVENTAS()" placeholder="">
+                        </form>
+
+                    </section>
+                    <section id="section_tabla_info">
+                        <div id="conten_t">
+                            <table id="tablaVentas">
+                                <thead>
+                                    <tr>
+                                        <th>Factura #</th>
+                                        <th>C.C cliente</th>
+                                        <th>Nombre cliente</th>
+                                        <th>Realizo venta</th>
+                                        <th>Fecha de venta</th>
+                                        <th>Forma de pago</th>
+                                        <th>Mas detalles</th>
+                                    </tr>
+                                </thead>
+                            
+                                <tbody>
+                                    {% for c in resul %}
+                                    <tr>
+                                        {% for i in range(0, 6) %}
+                                            {% if i == 5 %} {# Para la primera columna, que es la factura # #}
+                                                <td class="{% if c[i] == 'efectivo' %} clase1 {% elif c[i] == 'Daviplata' %} clase2 {% elif c[i] == 'Bancolombia' %} clase3 {% elif c[i] == 'Nequi' %} clase4 {% elif c[i] == 'Tarjeta cred' %} clase5 {% endif %}">{{ c[i] }}</td>
+                                            {% else %} {# Para las otras columnas, puedes agregar más lógica según sea necesario #}
+                                                <td>{{ c[i] }}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <td class="btns_centro">
+                                            <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}"><i id="icono_ver_mas" class="lni lni-information"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <p id="noResults" style="display: none;">No se encontraron resultados</p>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
-    
-    
-    
-        
 
-    
-   
+    <script src="/static/javaScript/buscadorVentas.js"></script>
 </body>
 </html>

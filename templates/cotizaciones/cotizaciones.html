@@ -53,9 +53,10 @@
                             
                             <td class="btns_centro">
                                 <a href="editarCotizacion/{{dato[0]}}">
-                                    <i class="lni lni-pencil"></i>
+                                    <i class="lni lni-pencil"></i> 
                                 </a>
                             </td>
+
 
                             <td class="btns_centro">
                                 <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraCotizacion/{{dato[0]}}">
@@ -117,8 +118,8 @@
                                     <th>Seleccionar</th>
                                 </thead>
                                 <tbody>
-                                    {% for c in detalle %}
-                                        <tr class="product-row">
+                                    {% for c in detal %}
+                                        <tr class="product-rows">
                                             <td>{{ c[0] }}</td>
                                             <td><button type="button" class="select-button" onclick="selectProduct('{{ c[0] }}')">Seleccionar</button></td>
                                         </tr>
@@ -151,8 +152,8 @@
         </div>
     </div>
 
-    </div>
-    
+   
+
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}

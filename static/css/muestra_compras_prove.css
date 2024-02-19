@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
-/* font-family: 'Barlow', sans-serif;
-font-family: 'Lato', sans-serif; */
+
+
 *{
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
@@ -13,7 +13,7 @@ body, html{
 
 body{
     font-family: 'Barlow', sans-serif;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 300;
 }
 
@@ -26,109 +26,255 @@ figure img{
     margin: 0;
     width: 100%;
 }
-
-main#inicio{
+h2 {
     margin: 0;
-    min-height: 100vh;
+}
+h1 {
+    margin: 0;
+}
+p {
+    margin: 0;
+}
+
+/* PARAMETRIZACION */
+
+main#cuerpo {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
     padding: 0;
-    position: relative;
-    width: 100%;
-} 
-
-h2{
-    color: #454545;
-    font-size: 1.5em;
-    font-weight: 500;
-    margin: 20px;
-    padding: 0;
-}
-
-
-div#buscar{
-    margin: 30px 20px;
-}
-    #buscador > i{
-        border-radius: 10%;
-        color: #358CB4;
-        padding: 7px;
-        position: absolute;
-        z-index: 3;
-    }
-
-    #buscador > input{
-        border: solid 1px #828282;
-        border-radius: 5px;
-        font-family: 'Barlow', sans-serif;
-        font-size: 15px;
-        font-weight: 400;
-        margin: 0;
-        padding: 0.8em 0.8em 1em 45px;
-        width: 100%;
-        z-index: 2;
-    }
-
-
-    section#contenido{
-        margin: 20px;
-    }
-    
-        table{
-            border-collapse: collapse;
-            width: 100%;
-    
-        }
-    
-            th, td{
-                border: solid 1px #828282;
-                font-size: 15px;
-                padding: 5px; 
-            }
-    
-            th{
-                color: #358CB4;
-                font-weight: 500;
-                text-align: center;
-            }
-    
-            td{
-                text-align: left;
-            }
-    
-div#regresar{
-    /*  background-color: #57a8ce; */
-        border: none;
-        border-radius: 3px;  
-        font-size: 1em;
-        margin: 18px;
-        padding: 3px;
-        width: 18%;
-    }
-    #atras{
-        font-size: 2em;
-        color: #52a1bb;
-        }
-
-/* ------------------Clases------------------- */
-
-.lni{
-    font-size: 2em;
-    color: #358CB4;
-}
-
-.opciones {
-    width: 20%;
-    height: 100%;
-    border-radius: 5px;  
-    font-size: 1em;
-    border: none;
-    background-color: #4aabd8;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin: 10px 20px;
-    padding: 5px;
+    justify-content: center;
 }
-.color_opciones {
+    main#cuerpo section#section_1 {
+        background-color: white;
+        width: 97%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+        section#section_1 {
+            font-size: 1.4em;
+            font-weight: 500;
+        }
+
+    main#cuerpo section#section_2 {
+        background-color: #F5F5F5;
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+        div#conten_botones {
+            width: 95%;
+            height: 18%;
+            display: flex;
+            margin-left: 7.5%;
+        }
+            div#conten_regresar {
+                width: 20%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+                div#isla_1 {
+                    width: 90%;
+                    height: 70%;
+                    background-color: white;
+                    border-radius: 1.6em;
+                    border: 0.5px solid #dfdede;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                    #boton_back {
+                        font-size: 2.5em; 
+                        text-decoration: none;
+                        color: #358CB4;
+                    }
+            div#conten_btn_navegacion {
+                width: 30%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+                div#isla_2 {
+                    width: 90%;
+                    height: 70%;
+                    background-color: white;
+                    border-radius: 1.6em;
+                    border: 0.5px solid #dfdede;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                }
+        div#conten_tabla {
+            width: 95%;
+            height: 78%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+            div#isla_3 {
+                background-color: white;
+                width: 90%;
+                height: 95%;
+                border-radius: 1.6em;
+                border: 0.5px solid #dfdede;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+                section#section_buscador_titulo {
+                    width: 97%;
+                    height: 17%;
+                    display: flex;
+                    justify-content: space-between;
+                }
+                    div#conten_titulo {
+                        width: 15%;
+                        height: 100%;
+                        font-size: 1.2em;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    form#form_conten {
+                        width: 45%;
+                        height: 100%;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                        i#icono_busqueda {
+                            font-size: 1.4em;
+                            position: absolute;
+                            top: 50%;
+                            left: 20px;
+                            transform: translateY(-50%);
+                            color: #358CB4;
+                        }
+                        form#form_conten input#buscador_2 {
+                            width: 100%;
+                            height: 60%;
+                            border-radius: 1.0em;
+                            outline: none;
+                            border: 0.5px solid #dfdede;
+                            padding-left: 55px;
+                            font-size: 1.0em;
+                        }
+                section#section_tabla_info {
+                    width: 97%;
+                    height: 83%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                    div#conten_t {
+                        width: 100%;
+                        height: 90%;
+                        overflow-y: scroll;
+                        display: flex;
+                        justify-content: center;
+                    }
+                        /* estilos croll */
+                        ::-webkit-scrollbar {
+                            width: 10px;
+                        }
+                        
+                        ::-webkit-scrollbar-track {
+                            background-color: #f1f1f1;
+                        }
+                        
+                        ::-webkit-scrollbar-thumb {
+                            background-color: #358cb47b;
+                            border-radius: 6px;
+                        }
+                        
+                        ::-webkit-scrollbar-thumb:hover {
+                            background-color: #358CB4;
+                        }
+
+                        #tabla_productos {
+                            border-collapse: collapse;
+                            width: 90%;
+                            position: relative;
+                            z-index: 1;
+                        }
+                        th, td{
+                            border-bottom: 0.5px solid #dfdede;
+                            font-size: 16px;
+                            padding: 5px; 
+                        }
+                
+                        th{
+                            color: #358CB4;
+                            font-weight: 500;
+                            text-align: center;
+                        }
+                
+                        td{
+                            margin: 5px;
+                            text-align: center;
+                        }
+                        i#icono_ver_mas {
+                            font-size: 1.8em;
+                            color: #358cb475;
+                            }i#icono_ver_mas:hover {
+                                color: #358CB4;
+                            }
+
+                            i#icono_2 {
+                                font-size: 1.8em;
+                                color: #358cb475;
+                            }
+                                i#icono_2:hover {
+                                    color: #358CB4;
+                                }
+
+                            i#icono_3 {
+                                font-size: 1.8em;
+                                color: #358cb475;
+                                }i#icono_3:hover {
+                                    color: #358CB4;
+                                }
+
+
+
+
+
+        /* div#conten_btn_regresar {
+            width: 95%;
+            height: 15%;
+            background-color: red;
+        } */
+
+
+
+
+
+
+/* CLASES */
+.botones {
+    border: 1px solid #358CB4;
+    padding: 8px;
+    background-color: #ffffff;
     text-decoration: none;
-    color: white;
+    color: #358CB4;
+    border-radius: 0.3em;
 }
+
+.clase1 {
+    color: rgb(183, 35, 5);
+}
+

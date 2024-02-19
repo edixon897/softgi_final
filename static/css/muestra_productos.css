@@ -36,13 +36,25 @@ main#inicio{
     width: 100%;
 } 
 
-h2{                           /* -------------------para títulos----------------- */
-    color: #454545;
-    font-size: 1.5em;
-    font-weight: 500;
-    margin: 20px;
-    padding: 0;
+div#primerlinea{
+    display: flex;
 }
+    a{
+        margin: 8px;
+        padding: 5px;
+    }
+        #atras{
+        font-size: 2em;
+        color: #52a1bb;
+        }
+
+    h2{                           /* -------------------para títulos----------------- */
+        color: #454545;
+        font-size: 1.5em;
+        font-weight: 500;
+        margin: 8px;
+        padding: 5px;
+    }
 
 div#agregar_producto{                 /* -------------------para botones de agregar u otra interfaz----------------- */
     background-color: #358CB4;
@@ -106,20 +118,6 @@ section#contenido{                            /* -------------------para las tab
         td{
             text-align: left;
 }
-div#regresar{
-    border: none;
-    border-radius: 3px;  
-    font-size: 1em;
-    left: 1em;
-    margin: 8px;
-    padding: 5px;
-    position: relative;
-    width: 8%;
-}
-    #atras{
-    font-size: 2em;
-    color: #52a1bb;
-    }
 
 
 
