@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario proveedores</title>
-    <link rel="stylesheet" href="../../static/css/proveedore.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/crear_proveedores.css">
 </head>
 <body>
 
     <main id="inicio">
-        <div>
-            <h2>CREAR PROVEEDORES</h2>
-        </div>
-        <div id="img-parabri">
-            <img src="../../static/img/logo_parabrisas_delvalle_PNG_sinFondo.png" alt="logo-fondo-parabrisas-sin-fondo" id="logo">
-        </div>
-            <form action="/crearProveedores" method="post" id="formu_proveed">
+        <section id="content_titulo-1">
+            <div id="content_titulo_lado_1">
+                <h2>CREAR PROVEEDORES</h2>
+            </div>
+        </section>
+            <form action="/crearProveedores" method="post" id="conten_formulario_2">
                 <div class="campos">
                     <input type="number" name="documentoProveedor" id="documentoProvedor" placeholder="Ingresar documento" class="campo">
                     <input type="text" name="nombreProveedor" id="nombreProveedor" placeholder="Ingresar nombre" class="campo">
@@ -28,9 +28,12 @@
                 <input type="submit" value="Registrar" class="boton-atras">
                 </div>
             </form>
+            <div id="regresar">
+                <a href="{{url_for ('proveedores') }}" id="enlace_volver">
+                    <i id="atras" class="lni lni-arrow-left"></i>
+                </a>
+            </div>
     </main>
-        <div id="boton-atras">
-            <button class="boton-atras" onclick="window.location.href='/index'">Regresar  al Home</button>
-        </div>
+    
 </body>
 </html>
