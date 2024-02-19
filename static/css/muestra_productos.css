@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
 
+
 *{
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
@@ -25,148 +26,279 @@ figure img{
     margin: 0;
     width: 100%;
 }
-
-
-
-main#inicio{
+h2 {
     margin: 0;
-    min-height: 100vh;
+}
+h1 {
+    margin: 0;
+}
+p {
+    margin: 0;
+}
+
+/* PARAMETRIZACION */
+
+main#cuerpo {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
     padding: 0;
-    position: relative;
-    width: 100%;
-} 
-
-div#primerlinea{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
 }
-    a{
-        margin: 8px;
-        padding: 5px;
+    main#cuerpo section#section_1 {
+        background-color: white;
+        width: 97%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
     }
-        #atras{
-        font-size: 2em;
-        color: #52a1bb;
-        }
-
-    h2{                           /* -------------------para títulos----------------- */
-        color: #454545;
-        font-size: 1.5em;
-        font-weight: 500;
-        margin: 8px;
-        padding: 5px;
-    }
-
-div#agregar_producto{                 /* -------------------para botones de agregar u otra interfaz----------------- */
-    background-color: #358CB4;
-    border: none;
-    border-radius: 5px;  
-    font-size: 1em;
-    margin: 20px;
-    padding: 10px;
-    width: 20%;
-}
-    #agregar_producto > a{
-        text-decoration: none;
-        text-align: center;
-    }
-
-div#buscar{                                 /* -------------------para el campo de búsqueda----------------- */
-    margin: 30px 20px;
-}
-    #buscador > i{
-        border-radius: 10%;
-        color: #358CB4;
-        padding: 7px;
-        position: absolute;
-        z-index: 3;
-    }
-
-    #buscador > input{
-        border: solid 1px #828282;
-        border-radius: 5px;
-        font-family: 'Barlow', sans-serif;
-        font-size: 15px;
-        font-weight: 400;
-        margin: 0;
-        padding: 0.8em 0.8em 1em 45px;
-        width: 100%;
-        z-index: 2;
-    }
-
-section#contenido{                            /* -------------------para las tablas----------------- */
-    margin: 20px;
-}
-
-    table{
-        border-collapse: collapse;
-        width: 100%;
-
-    }
-
-        th, td{
-            border: solid 1px #828282;
-            font-size: 15px;
-            padding: 5px; 
-        }
-
-        th{
-            color: #358CB4;
+        section#section_1 {
+            font-size: 1.4em;
             font-weight: 500;
-            text-align: center;
         }
 
-        td{
-            text-align: left;
+    main#cuerpo section#section_2 {
+        background-color: #F5F5F5;
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+        div#conten_botones {
+            width: 95%;
+            height: 18%;
+            display: flex;
+            margin-left: 7.5%;
+        }
+            div#conten_regresar {
+                width: 20%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+                div#isla_1 {
+                    width: 90%;
+                    height: 70%;
+                    background-color: white;
+                    border-radius: 1.6em;
+                    border: 0.5px solid #dfdede;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                    #boton_back {
+                        font-size: 2.5em; 
+                        text-decoration: none;
+                        color: #358CB4;
+                    }
+            div#conten_btn_navegacion {
+                width: 28%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+                div#isla_2 {
+                    width: 90%;
+                    height: 70%;
+                    background-color: white;
+                    border-radius: 1.6em;
+                    border: 0.5px solid #dfdede;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                }
+        div#conten_tabla {
+            width: 95%;
+            height: 78%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+            div#isla_3 {
+                background-color: white;
+                width: 90%;
+                height: 95%;
+                border-radius: 1.6em;
+                border: 0.5px solid #dfdede;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+                section#section_buscador_titulo {
+                    width: 97%;
+                    height: 17%;
+                    display: flex;
+                    justify-content: space-between;
+                }
+                    div#conten_titulo {
+                        width: 15%;
+                        height: 100%;
+                        font-size: 1.2em;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    form#form_conten {
+                        width: 45%;
+                        height: 100%;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                        i#icono_busqueda {
+                            font-size: 1.4em;
+                            position: absolute;
+                            top: 50%;
+                            left: 20px;
+                            transform: translateY(-50%);
+                            color: #358CB4;
+                        }
+                        form#form_conten input#searchProductos {
+                            width: 100%;
+                            height: 60%;
+                            border-radius: 1.0em;
+                            outline: none;
+                            border: 0.5px solid #dfdede;
+                            padding-left: 55px;
+                            font-size: 1.0em;
+                        }
+                section#section_tabla_info {
+                    width: 97%;
+                    height: 83%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                    div#conten_t {
+                        width: 100%;
+                        height: 90%;
+                        overflow-y: scroll;
+                        display: flex;
+                        justify-content: center;
+                    }
+                        /* estilos croll */
+                        ::-webkit-scrollbar {
+                            width: 10px;
+                        }
+                        
+                        ::-webkit-scrollbar-track {
+                            background-color: #f1f1f1;
+                        }
+                        
+                        ::-webkit-scrollbar-thumb {
+                            background-color: #358cb47b;
+                            border-radius: 6px;
+                        }
+                        
+                        ::-webkit-scrollbar-thumb:hover {
+                            background-color: #358CB4;
+                        }
+
+                        #Tabla_product {
+                            border-collapse: collapse;
+                            width: 95%;
+                            position: relative;
+                            z-index: 1;
+                        }
+                        th, td{
+                            border-bottom: 0.5px solid #dfdede;
+                            font-size: 16px;
+                            padding: 5px; 
+                        }
+                
+                        th{
+                            color: #358CB4;
+                            font-weight: 500;
+                            text-align: center;
+                        }
+                
+                        td{
+                            margin: 5px;
+                            text-align: center;
+                        }
+                        i#icono_ver_mas {
+                            font-size: 1.8em;
+                            color: #358cb475;
+                            }i#icono_ver_mas:hover {
+                                color: #358CB4;
+                            }
+
+                            i#icono_2 {
+                                font-size: 1.8em;
+                                color: #358CB4;
+                            }
+
+                            i#icono_3 {
+                                font-size: 1.3em;
+                                color: #358cb475;
+                                }i#icono_3:hover {
+                                    color: #358CB4;
+                                }
+
+
+
+
+
+        /* div#conten_btn_regresar {
+            width: 95%;
+            height: 15%;
+            background-color: red;
+        } */
+
+
+
+
+
+
+/* CLASES */
+.botones {
+    border: 1px solid #358CB4;
+    padding: 8px;
+    background-color: #ffffff;
+    text-decoration: none;
+    color: #358CB4;
+    border-radius: 0.3em;
 }
 
+.clase1 {
+    color: rgb(183, 35, 5);
+}
 
+.valor_menor {
+    color: rgb(183, 35, 5);
+    font-weight: 450;
+}
+.valor_mayor {
+    color: #358CB4;
+    font-weight: 400;
+}
 
-
-/* ------------------Clases------------------- */
-
-.lni{                      /* -------------------para el color y tamaño de iconos----------------- */
-    font-size: 1.8em;
+.campo_dinero1 {
+    color: rgb(5, 183, 5);
+}
+.campo_dinero2 {
+    color: rgb(5, 183, 5);
+    font-weight: 400;
+}
+.color_nombre {
     color: #358CB4;
 }
-
-.aviso_agregar{            /* -------------------para el color de las letras de los botones----------------- */
-    color: #fff;
-    margin: 0;
-    padding: 0;
+.color_stock_minimo {
+    color: rgb(183, 35, 5);
+    font-weight: 400;
 }
-
-.btns_centro{              /* -------------------para centrar los iconos de editar y eliminar de lasa tablas----------------- */
-    text-align: center;
-}
-
-
-
-#conten_opciones {       /* -------------------para el margin y el ancho del contenedor de los botones de opciones----------------- */
-    margin: 10px 5px 10px 10px;
-    width: 20%;   
-}
-
-.opciones {           /* -------------------para el estilo de los botones de opciones----------------- */
-    width: 60%;
-    height: 100%;
-    border-radius: 5px;  
-    font-size: 1em;
-    border: none;
-    background-color: #358CB4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0;
-    padding: 8px;
-}
-.color_opciones {
-    text-decoration: none;
-    color: white;
-}
-
-
-@media screen and (max-width: 700px) {
-    #conten_opciones {
-        width: 67%;
-    }
+.color_td {
+    color: #debf26;
 }

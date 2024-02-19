@@ -11,7 +11,121 @@
 </head>
 <body>
 
+    <main id="cuerpo">
 
+        <section id="section_1">
+            <p>Productos</p>
+        </section>
+
+
+        <section id="section_2">
+
+            <div id="conten_botones">
+                <div id="conten_regresar">
+                    <div id="isla_1">
+                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
+                    </div>
+                </div>
+                <div id="conten_btn_navegacion">
+                    <div id="isla_2">
+                        <a class="botones" href="{{url_for('categorias')}}">Categorias</a>
+                        <a class="botones" href="{{url_for('crear_Producto')}}">Crear producto</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conten_tabla">
+
+                <div id="isla_3">
+                    <section id="section_buscador_titulo">
+                        
+                        <div id="conten_titulo">
+                            <p>Todos mis productos</p>
+                        </div>
+                        <form id="form_conten">
+                            <i id="icono_busqueda" class="lni lni-search-alt"></i>
+                            <input type="search" id="searchProductos" oninput="buscarProductos()" placeholder="">
+                        </form>
+
+                    </section>
+                    <section id="section_tabla_info">
+                        <div id="conten_t">
+                            <div id="modalContenedor" style="display: none;"></div>
+                            <table id="Tabla_product">
+                                <thead>
+                                    <tr>
+                                        <th>Referencia 1</th>
+                                        <th>Referencia 2</th>
+                                        <th>Referencia 3</th>
+                                        <th>Nom Categoria</th>
+                                        <th>Nom Proveedor</th>
+                                        <th>Nom producto</th>
+                                        <th>Precio comp</th>
+                                        <th>Precio venta</th>
+                                        <th>Cantidad</th>
+                                        <th>Descripcion</th>
+                                        <th>Stock minimo</th>
+                                        <th>Ubicación</th>
+                                        <th>Estante</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            
+                                <tbody>
+                                    {% for c in resul %}
+                                    <tr>
+                                        {% for i in range(1, 14) %}
+
+                                            {% if i == 9 %}
+                                                {% if c[i] <= c[11] %}
+                                                    <td class="valor_menor">{{ c[i] }}</td>
+                                                {% else %}
+                                                    <td class="valor_mayor">{{ c[i] }}</td>
+                                                {% endif %}
+                                            {% elif i == 4 %}
+                                                <td class="color_td">{{c[i]}}</td>
+                                            {% elif i == 6 %}
+                                                <td class="color_nombre">{{c[i]}}</td>
+                                            {% elif i == 7 %}
+                                                <td class="campo_dinero1">${{c[i]}}</td>
+                                            {% elif i == 8 %}
+                                                <td class="campo_dinero2">${{c[i]}}</td>
+                                            {% elif i == 11 %}
+                                                <td class="color_stock_minimo">{{c[i]}}</td>
+                                            {% else %}
+                                                <td>{{ c[i] }}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <td class="btns_centro">
+                                            <a href="#" onclick="abrirModal('{{c[0]}}')">
+                                                <i id=icono_3 class="lni lni-plus"></i>
+                                            </a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a href="/modificar_Producto/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borra_produc/{{c[0]}}">
+                                                <i id=icono_2 class="lni lni-trash-can"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <p id="noResults" style="display: none; ">No se encontraron resultados</p>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
 
 
 
