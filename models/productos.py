@@ -81,9 +81,9 @@ class Productos:
 
     
     def borrar_producto(self, id_producto):
-        if not self.producto_existe_en_db(id_producto):
+        """ if not self.producto_existe_en_db(id_producto):
             print(f"Producto con id {id_producto} no encontrado.")
-            return
+            return """
         sql = f"UPDATE productos SET estado_producto='INACTIVO' WHERE id_producto=%s"
         self.cursor.execute(sql, (id_producto,))
         self.conexion.commit()
