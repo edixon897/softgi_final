@@ -7,12 +7,14 @@ from models.clientes import Dclientes
 @app.route("/clientes")
 def clientes():
     if "nom_empleado" in session: 
-        sql = "SELECT * FROM clientes WHERE estado_cliente ='ACTIVO'"
-        conn = mysql.connect()                    
-        cursor = conn.cursor()
-        cursor.execute(sql)                                          
-        resultado = cursor.fetchall()
-        return render_template('clientes/clientes.html', resulta=resultado)
+            
+        
+            sql = "SELECT * FROM clientes WHERE estado_cliente ='ACTIVO'"
+            conn = mysql.connect()                    
+            cursor = conn.cursor()
+            cursor.execute(sql)                                          
+            resultado = cursor.fetchall()
+            return render_template('clientes/clientes.html', resulta=resultado)
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))

@@ -12,6 +12,10 @@ function buscarProductos() {
 
 
     for (i = 0; i < tr.length; i++) {
+        if (!tr[i].getElementsByTagName("td").length) {
+            // Si no hay celdas td, es decir, es un encabezado, se salta la iteración.
+            continue;
+        }
         td = tr[i].getElementsByTagName("td");
         var encontrado = false;
 
@@ -20,14 +24,15 @@ function buscarProductos() {
                 txtValue = td[j].textContent || td[j].innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     encontrado = true;
-                    break; 
+                    break;
                 }
             }
         }
 
-        
+        // Ocultar o mostrar la fila según si se encontró o no la coincidencia.
         tr[i].style.display = encontrado ? "" : "none";
     }
+
 
     
     if (Array.from(tr).every(row => row.style.display === "none")) {

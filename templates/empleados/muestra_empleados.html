@@ -8,7 +8,119 @@
     <link rel="stylesheet" href="../../static/css/muestra_empleados.css">
 </head>
 <body>
-    <main id="inicio">
+
+
+    <main id="cuerpo">
+
+        <section id="section_1">
+            <p>Empleados</p>
+        </section>
+
+
+        <section id="section_2">
+
+            <div id="conten_botones">
+                <div id="conten_regresar">
+                    <div id="isla_1">
+                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
+                    </div>
+                </div>
+                <div id="conten_btn_navegacion">
+                    <div id="isla_2">
+                        <a class="botones" href="{{url_for('registroUsario')}}">Crear empleado</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conten_tabla">
+
+                <div id="isla_3">
+                    <section id="section_buscador_titulo">
+                        
+                        <div id="conten_titulo">
+                            <p>Mis Empleados</p>
+                        </div>
+                        <form id="form_conten">
+                            <i id="icono_busqueda" class="lni lni-search-alt"></i>
+                            <input type="search" id="searchClientes" oninput="buscarClientes()" placeholder="">
+                        </form>
+
+                    </section>
+                    <section id="section_tabla_info">
+                        <div id="conten_t">
+                            <table id="TablaClientes">
+                                <thead>
+                                    <tr>
+                                        <th>doc_empleado</th>
+                                        <th>nombre</th>
+                                        <th>apellido</th>
+                                        <th>fecha de nacimiento</th>
+                                        <th>contacto</th>
+                                        <th>email</th>
+                                        <th>Direccion</th>
+                                        <th>ciudad</th>
+                                        <th>Rol</th>
+                                        <th>fecha de registro</th>
+                                        <th>Nombre operador</th>
+                                        <th>Apellido operador</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            
+                                <tbody>
+                                    {% for c in resulta %}
+                                    <tr>
+                                        {% for i in range(0, 12) %}
+                                            
+                                            <td>{{ c[i] }}</td>
+                                            
+                                        {% endfor %}
+                                        <td class="btns_centro">
+                                            <a href="/editar_empleado/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borrarEmpleado/{{c[0]}}">
+                                                <i id=icono_2 class="lni lni-trash-can"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <p id="noResults" style="display: none;">No se encontraron resultados</p>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <main id="inicio">
         <h2>Empleados</h2>
         <section id="opciones"> 
             <div class="opciones" id="agregar_usuario">
@@ -77,9 +189,9 @@
             <a href="{{url_for ('inicio') }}">
                 <i class="lni lni-arrow-left"></i>
             </a>
-        </div>
+        </div> -->
 
-        <script src="../../static/javaScript/buscadorEmpleados.js"></script>
+        <script src="/static/javaScript/buscarClientes.js"></script>
     </main>
 </body>
 </html>

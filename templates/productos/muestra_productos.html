@@ -10,105 +10,123 @@
 
 </head>
 <body>
-    <main id="inicio">
-        <div id="primerlinea">
-                <a  href="{{url_for ('inicio') }}" class="campo_a">
-                    <i id="atras" class="lni lni-arrow-left"></i>
-                </a>
-            <h2>Productos</h2>
-        </div>
-        
-        <section id="opciones">
-            <div id="conten_opciones">
-                <a class="color_opciones" href="{{url_for('categorias')}}">
-                    <div class="opciones">Categorias</div>        
-                </a>
-                <a class="color_opciones"  href="{{url_for('crear_Producto')}}">
-                    <div class="opciones">Agregar producto</div> 
-                </a>
-            </div>
-            <div id="buscar">
-                <form  id="buscador">
-                    <i class="lni lni-search-alt"></i>
-                    <input id="searchProductos" type="search" oninput="buscarProductos()" placeholder="parabrisas, manijas, alarmas, etc..." name="buscar">
-                </form>
-            </div>
+
+    <main id="cuerpo">
+
+        <section id="section_1">
+            <p>Productos</p>
         </section>
 
-        <section id="contenido">
-            <table id="Tabla_product">
-                <thead>
-                    <tr id="tabla-productos">
-                        <th>Referencia 1</th>
-                        <th>Referencia 2</th>
-                        <th>Referencia 3</th>
-                        <th>Nom Categoria</th>
-                        <th>Nom Proveedor</th>
-                        <th>Nom producto</th>
-                        <th>Precio comp</th>
-                        <th>Precio venta</th>
-                        <th>Cantidad</th>
-                        <th>Descripcion</th>
-                        <th>Stock</th>
-                        <th>Ubicación</th>
-                        <th>Estante</th>
-                        <th>Sumar cantidad</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for result in resul %}
-                        <tr>
-                            
-                            <td>{{result[1]}}</td>
-                            <td>{{result[2]}}</td>
-                            <td>{{result[3]}}</td>
-                            <td>{{result[4]}}</td>
-                            <td>{{result[5]}}</td>
-                            <td>{{result[6]}}</td>
-                            <td>{{result[7]}}</td>
-                            <td>{{result[8]}}</td>
-                            <td>{{result[9]}}</td>
-                            <td>{{result[10]}}</td>
-                            <td>{{result[11]}}</td>
-                            <td>{{result[12]}}</td>
-                            <td>{{result[13]}}</td>
 
+        <section id="section_2">
+
+            <div id="conten_botones">
+                <div id="conten_regresar">
+                    <div id="isla_1">
+                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
+                    </div>
+                </div>
+                <div id="conten_btn_navegacion">
+                    <div id="isla_2">
+                        <a class="botones" href="{{url_for('categorias')}}">Categorias</a>
+                        <a class="botones" href="{{url_for('crear_Producto')}}">Crear producto</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conten_tabla">
+
+                <div id="isla_3">
+                    <section id="section_buscador_titulo">
+                        
+                        <div id="conten_titulo">
+                            <p>Todos mis productos</p>
+                        </div>
+                        <form id="form_conten">
+                            <i id="icono_busqueda" class="lni lni-search-alt"></i>
+                            <input type="search" id="searchProductos" oninput="buscarProductos()" placeholder="">
+                        </form>
+
+                    </section>
+                    <section id="section_tabla_info">
+                        <div id="conten_t">
                             <div id="modalContenedor" style="display: none;"></div>
-
-                            <td class="btns_centro">
-                                <a href="#" onclick="abrirModal('{{result[0]}}')">
-                                    <i class="lni lni-plus"></i>
-                                </a>
-                            </td>
+                            <table id="Tabla_product">
+                                <thead>
+                                    <tr>
+                                        <th>Referencia 1</th>
+                                        <th>Referencia 2</th>
+                                        <th>Referencia 3</th>
+                                        <th>Nom Categoria</th>
+                                        <th>Nom Proveedor</th>
+                                        <th>Nom producto</th>
+                                        <th>Precio comp</th>
+                                        <th>Precio venta</th>
+                                        <th>Cantidad</th>
+                                        <th>Descripcion</th>
+                                        <th>Stock minimo</th>
+                                        <th>Ubicación</th>
+                                        <th>Estante</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
                             
-        
+                                <tbody>
+                                    {% for c in resul %}
+                                    <tr>
+                                        {% for i in range(1, 14) %}
 
-                            <td class="btns_centro">
-                                <a href="/modificar_Producto/{{result[0]}}" >
-                                    <i class="lni lni-pencil"></i>
-                                </a>
-                            </td>
+                                            {% if i == 9 %}
+                                                {% if c[i] <= c[11] %}
+                                                    <td class="valor_menor">{{ c[i] }}</td>
+                                                {% else %}
+                                                    <td class="valor_mayor">{{ c[i] }}</td>
+                                                {% endif %}
+                                            {% elif i == 4 %}
+                                                <td class="color_td">{{c[i]}}</td>
+                                            {% elif i == 6 %}
+                                                <td class="color_nombre">{{c[i]}}</td>
+                                            {% elif i == 7 %}
+                                                <td class="campo_dinero1">${{c[i]}}</td>
+                                            {% elif i == 8 %}
+                                                <td class="campo_dinero2">${{c[i]}}</td>
+                                            {% elif i == 11 %}
+                                                <td class="color_stock_minimo">{{c[i]}}</td>
+                                            {% else %}
+                                                <td>{{ c[i] }}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <td class="btns_centro">
+                                            <a href="#" onclick="abrirModal('{{c[0]}}')">
+                                                <i id=icono_3 class="lni lni-chevron-right"></i><!-- lni lni-arrow-right -->
+                                            </a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a href="/modificar_Producto/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borra_produc/{{c[0]}}">
+                                                <i id=icono_2 class="lni lni-trash-can"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <p id="noResults" style="display: none; ">No se encontraron resultados</p>
+                            </table>
+                        </div>
+                    </section>
 
-                            <td class="btns_centro">
-                                <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borra_produc/{{result[0]}}">
-                                    <i class="lni lni-trash-can"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <p id="noResults" style="display: none;">No se encontraron resultados</p>
+                </div>
+
+            </div>
+
         </section>
 
-        <div id="regresar">
-            <a  href="{{url_for ('inicio') }}" class="campo_a">
-                <i id="atras" class="lni lni-arrow-left"></i>
-            </a>
-        </div>
     </main>
+
     
     <script src="../../static/javaScript/buscarProducto.js"></script>
 

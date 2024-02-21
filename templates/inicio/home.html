@@ -31,64 +31,66 @@
         </section>
 
         <section id="buscar">
-            <div id="buscador">
+           <!--  <div id="buscador">
                 <i class="lni lni-search-alt"></i>
                 <input type="text" placeholder="Busca un modulo" id="searchProduct">
-            </div>
+            </div> -->
         </section>
 
         <section id="modulos">
-            <a href="{{url_for('muestra_Productos')}}" class="campo_a">
+            <a href="{{url_for('muestra_Productos')}}" class="campo_a" id="modulo_productos" style="display: none;">
                 <div id="producto" class="modulos">
                     <figure><img src="/static/image/modulos/producto.png" alt=""></figure>
                     <p class="titulo">Productos</p>
                 </div>
             </a>
-            <a href="{{url_for('muestra_ventas')}}" class="campo_a">
+            <a href="{{url_for('muestra_ventas')}}" class="campo_a" id="modulo_ventas" style="display: none;">
                 <div id="ventas" class="modulos">
                     <figure><img src="/static/image/modulos/ventas.png" alt=""></figure>
                     <p class="titulo">Ventas</p>
                 </div>
             </a>
-            <a href="{{url_for('Cotizacion')}}" class="campo_a">
+            <a href="{{url_for('Cotizacion')}}" class="campo_a" id="modulo_cotizaciones" style="display: none;">
                 <div id="cotizaciones" class="modulos">
                     <figure><img src="/static/image/modulos/cotizaciones.png" alt=""></figure>
                     <p class="titulo">Cotizaciones</p>
                 </div>
             </a>
-            <a href="{{url_for('muestra_compra_proved')}}" class="campo_a">
+            <a href="{{url_for('muestra_compra_proved')}}" class="campo_a" id="modulo_compra_prove" style="display: none;">
                 <div id="compras_proveedores" class="modulos">
                     <figure><img src="/static/image/modulos/compras_proveedores.png" alt=""></figure>
                     <p class="titulo">Compras a proveedores</p>
                 </div>
             </a>
-            <a href="{{url_for('muestraDevoluciones')}}" class="campo_a">
+            <!-- <a href="{{url_for('muestraDevoluciones')}}" class="campo_a">
                 <div id="devoluciones" class="modulos">
                     <figure><img src="/static/image/modulos/devoluciones.png" alt=""></figure>
                     <p class="titulo">Devoluciones</p>
-                </div>
+                </div> -->
             </a>
-            <a href="{{url_for('clientes')}}" class="campo_a">
+            <a href="{{url_for('clientes')}}" class="campo_a" id="modulo_clientes" style="display: none;">
                 <div id="clientes" class="modulos">
                     <figure><img src="/static/image/modulos/clientes.png" alt=""></figure>
                     <p class="titulo">Clientes</p>
                 </div>
                 </a>
-            <a href="{{url_for('empleados')}}" class="campo_a">
+            <a href="{{url_for('empleados')}}" class="campo_a" id="modulo_empleados" style="display: none;">
                 <div id="empleados" class="modulos">
                     <figure><img src="/static/image/modulos/empleados.png" alt=""></figure>
                     <p class="titulo">Empleados</p>
                 </div>
             </a>
-            <a href="" class="campo_a">
+           
+            <!-- <a href="" class="campo_a">
                 <div id="administracion" class="modulos">
                     <figure><img src="/static/image/modulos/administracion.png" alt=""></figure>
                     <p class="titulo">Administración</p>
                 </div>
-            </a>
+            </a> -->
         </section>
     </main>
 
+    <input type="hidden" readonly id="input_oculta_rol" value="{{rol}}" oninput="oculta_modulos()">
     <script src="/static/javaScript/buscadorInicio.js"></script>
     
 
