@@ -8,13 +8,11 @@
     <link rel="stylesheet" href="../../static/css/detalle_ventas.css">
 </head>
 <body>
-    <section id="opciones">
-        <div id="regresar_ventas">
-            <a href="{{url_for ('muestra_ventas') }}">
-                <i id="atras" class="lni lni-arrow-left"></i>
-            </a>
-        </div>
-    </section>
+
+    <div id="titulo">
+        <h2>Detalle de ventas</h2>
+    </div>
+    
     <section id="contenido">
         <table  class="content-table" id="tabla_productos">
             <thead >
@@ -36,8 +34,15 @@
                 {% endfor %}
             </tbody>
         </table>
+
     </section>
     
-    
+    <section id="opciones">
+        <div id="regresar_ventas">
+            <a href="{{url_for ('muestra_ventas') }}">
+                <i id="atras" class="lni lni-arrow-left"></i>
+            </a>
+        </div>
+    </section>
 </body>
 </html>
