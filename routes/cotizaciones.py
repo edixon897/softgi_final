@@ -120,7 +120,7 @@ def editarCotizacion(id_cotizacion):
                     cursor.execute(sql_clients)
                     cliente = cursor.fetchall()
 
-            return render_template('editar_cotizacion.html', datos=datos, productos=productos, cliente=cliente)
+            return render_template('/cotizaciones/editarCotizacion.html', datos=datos, productos=productos, cliente=cliente)
 
         elif request.method == 'POST':
             doc = session["nom_empleado"]

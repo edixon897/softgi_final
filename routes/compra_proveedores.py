@@ -121,17 +121,21 @@ def edita_compras_provee(num_compra):
 @app.route("/actualiza_compra_provee", methods=['POST'])
 def actualiza_compra_provee():
     if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "almacenista":
 
-        num_compra = request.form['num_compra']
-        producto_compra = request.form['producto_compra']
-        cantidad_compra = request.form['cantidad_compra']
-        valor_unidad = request.form['valor_unidad']
-        valor_total_unidad = (cantidad_compra*valor_unidad)
-        
-        Dcompra_proveedores.edita_detalles_compra([num_compra, producto_compra, cantidad_compra, valor_unidad, valor_total_unidad])
+            num_compra = request.form['num_compra']
+            producto_compra = request.form['producto_compra']
+            cantidad_compra = request.form['cantidad_compra']
+            valor_unidad = request.form['valor_unidad']
+            valor_total_unidad = (cantidad_compra*valor_unidad)
+            
+            Dcompra_proveedores.edita_detalles_compra([num_compra, producto_compra, cantidad_compra, valor_unidad, valor_total_unidad])
 
-        return redirect("/muestra_compra_proved")
+            return redirect("/muestra_compra_proved")
     
+        else:
+            return redirect("/inicio")
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
@@ -143,17 +147,22 @@ def actualiza_compra_provee():
 @app.route("/busca_compras_prov", methods=['POST', 'GET'])
 def busca_compras_prov():
     if "nom_empleado" in session:
-        if request.method == 'POST':
-            dato_busqueda = request.form['dato_busqueda']
-            sql = f"SELECT `num_compra`, `proveedor_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `date_compra`, `num_factura_proveedor` FROM `comprasproveedores` WHERE estado='activo' AND (num_compra LIKE '%{dato_busqueda}%' OR proveedor_compra LIKE '%{dato_busqueda}%')"
-            conn = mysql.connect()
-            cursor = conn.cursor()                  # muestra las compras a proveedores dependiendo de la busqueda
-            cursor.execute(sql)
-            resultado = cursor.fetchall()  
-            conn.commit()
-            return render_template("/compra_proveedores/muestra_compras_prove.html", resul=resultado)
-        return redirect('muestra_compra_proved')
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "almacenista":
 
+            if request.method == 'POST':
+                dato_busqueda = request.form['dato_busqueda']
+                sql = f"SELECT `num_compra`, `proveedor_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `date_compra`, `num_factura_proveedor` FROM `comprasproveedores` WHERE estado='activo' AND (num_compra LIKE '%{dato_busqueda}%' OR proveedor_compra LIKE '%{dato_busqueda}%')"
+                conn = mysql.connect()
+                cursor = conn.cursor()                  # muestra las compras a proveedores dependiendo de la busqueda
+                cursor.execute(sql)
+                resultado = cursor.fetchall()  
+                conn.commit()
+                return render_template("/compra_proveedores/muestra_compras_prove.html", resul=resultado)
+            return redirect('muestra_compra_proved')
+        
+        else:
+            return redirect("/inicio")
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
@@ -164,8 +173,10 @@ def busca_compras_prov():
 @app.route("/muestra_compra_proved")
 def muestra_compra_proved():
     if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "almacenista":
 
-        sql ="SELECT cp.`num_compra`, cp.`proveedor_compra`, p.`nom_proveedor`, cp.`fecha_compra`, p.`direccion_proveedor`, cp.`num_factura_proveedor`, CONCAT(cp.`nombre_operador`, ' ', cp.`apellido_operador`) AS nombre_completo FROM `comprasproveedores` cp JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` WHERE cp.`estado` = 'ACTIVO'"
+        sql ="SELECT `num_compra`, `proveedor_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `date_compra`, `num_factura_proveedor` FROM `comprasproveedores` WHERE estado = 'ACTIVO'"
         conn = mysql.connect()
         cursor = conn.cursor()                  # muestra las compras a proveedores
         cursor.execute(sql)
@@ -183,15 +194,19 @@ def muestra_compra_proved():
 @app.route("/muestra_detalles_com/<num_compra>")
 def muestra_detalles_com(num_compra):
     if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "almacenista":
         
-        sql = f"SELECT `detallenum_compra`,`detallenum_compra`, `producto_compra`, `cantidad_producto_compra`, `valorunidad_prodcompra`, `valortotal_cantidadcomp`, `totalpagar_compra` FROM `detallecomprasproveedores` WHERE detallenum_compra = '{num_compra}'"
-        conn = mysql.connect()
-        cursor = conn.cursor()                  # muestra los detalles de compras a proveedores
-        cursor.execute(sql)
-        resultado = cursor.fetchall()  
-        conn.commit()
-        return render_template("/compra_proveedores/detalles_compras/muestra_detalles.html", resul=resultado)
+            sql = f"SELECT `detallenum_compra`,`detallenum_compra`, `producto_compra`, `cantidad_producto_compra`, `valorunidad_prodcompra`, `valortotal_cantidadcomp`, `totalpagar_compra` FROM `detallecomprasproveedores` WHERE detallenum_compra = '{num_compra}'"
+            conn = mysql.connect()
+            cursor = conn.cursor()                  # muestra los detalles de compras a proveedores
+            cursor.execute(sql)
+            resultado = cursor.fetchall()  
+            conn.commit()
+            return render_template("/compra_proveedores/detalles_compras/muestra_detalles.html", resul=resultado)
 
+        else:
+            return redirect("/inicio")
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))

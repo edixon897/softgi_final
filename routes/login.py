@@ -20,7 +20,17 @@ def login():
         if resultado is not None:
             session["nom_empleado"] = resultado[0]
             session["documento_operador"] = documento
+
+            sql = f"SELECT `rol` FROM `empleados` WHERE doc_empleado = '{documento}'"
+            conn = mysql.connect()                    
+            cursor = conn.cursor()
+            cursor.execute(sql)                                          
+            rol_usuario = cursor.fetchall()
+            conn.commit()
+            session["rol"] = rol_usuario[0][0]
+            print(rol_usuario[0][0])
             print(session)
+            
             return redirect(url_for('inicio'))
         else:
             flash('Algo está mal en tus credenciales o tu correo no ha sido confirmado.', 'success')
@@ -30,8 +40,9 @@ def login():
 
 @app.route("/inicio")
 def inicio():
-    if "nom_empleado" in session:                                
-        return render_template('inicio/home.html')    
+    if "nom_empleado" in session:    
+        rol_usuario = session["rol"]                            
+        return render_template('inicio/home.html', rol=rol_usuario)    
     else:
         flash('Algo esta mal en sus datos digitados')
         return redirect(url_for('index'))

@@ -230,19 +230,23 @@ main#cuerpo {
                         }
                         i#icono_ver_mas {
                             font-size: 1.8em;
-                            color: #358cb475;
+                            color: #358CB4;
                             }i#icono_ver_mas:hover {
                                 color: #358CB4;
                             }
 
                             i#icono_2 {
                                 font-size: 1.8em;
+                                color: #358cb475;
+                            }
+                            i#icono_2:hover {
+                                font-size: 1.8em;
                                 color: #358CB4;
                             }
 
                             i#icono_3 {
                                 font-size: 1.3em;
-                                color: #358cb475;
+                                color: #358CB4;
                                 }i#icono_3:hover {
                                     color: #358CB4;
                                 }
@@ -300,5 +304,5 @@ main#cuerpo {
     font-weight: 400;
 }
 .color_td {
-    color: #debf26;
+    color: #d7b923;
 }
