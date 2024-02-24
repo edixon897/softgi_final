@@ -12,7 +12,7 @@ from models.compra_proveedores import Dcompra_proveedores
 def Regitra_compra_prov():
     if "nom_empleado" in session:
 
-        sql = "SELECT doc_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
+        sql = "SELECT doc_proveedor, nom_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
         conn = mysql.connect()
         cursor = conn.cursor()                  # consulta todos los documentos de los proveedores y los envia al select
         cursor.execute(sql)
@@ -21,7 +21,7 @@ def Regitra_compra_prov():
         return render_template("/compra_proveedores/registrar_compra_proveedores.html",resul = resultado)
 
     else:
-        flash('Porfavor inicia sesion para poder acceder')
+        flash('Por favor inicia sesion para acceder')
         return redirect(url_for('index'))
 
 
@@ -29,8 +29,8 @@ def Regitra_compra_prov():
 def Registrar_compra_p():
     if "nom_empleado" in session:
 
-        email = session["nom_empleado"]
-        bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE email_empleado='{email}'"
+        doc = session["nom_empleado"]
+        bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE nom_empleado='{doc}'"
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(bsq)                         # recibe la info y consulta los datos del operador
@@ -41,12 +41,13 @@ def Registrar_compra_p():
         apellido_operador = resultado[2]
 
         proveedor_compra = request.form['proveedor_compra']
+        fecha_compra = request.form['fecha_compra']
+        num_factura_proveedor = request.form['num_factura_proveedor']
         producto_compra = request.form['producto_compra']
         Cantidad_compra = request.form['cantidad_compra']
         cantidad_compra = int(Cantidad_compra)
         valor_unidad = request.form['valor_unidad']
         valor_total_unidad = (valor_unidad*cantidad_compra)
-        estado = "ACTIVO"
         tiempo_compra = datetime.datetime.now()
 
         lower = string.ascii_lowercase       
@@ -59,7 +60,7 @@ def Registrar_compra_p():
             codigo_2+=c
         print(f"\n {codigo_2} \n")
 
-        Dcompra_proveedores.registrar_compra([proveedor_compra, documento_operador, nombre_operador, apellido_operador, tiempo_compra, estado, codigo_2])   # se incerta los datos en la primera tabla
+        Dcompra_proveedores.registrar_compra([proveedor_compra, fecha_compra, documento_operador, nombre_operador, apellido_operador, tiempo_compra, num_factura_proveedor, codigo_2])   # se incerta los datos en la primera tabla
         
         
         sql = f"SELECT num_compra FROM comprasproveedores WHERE codigo_tabla = '{codigo_2}'"
@@ -69,9 +70,10 @@ def Registrar_compra_p():
         num_compra = cursor.fetchall()   # consulta el numero de compra de acuerdo al  codigo de esa tabla
         conn.commit()
         num = num_compra[0][0] # [[N]] ----> N 
+        total = valor_unidad * cantidad_compra
         
-        Dcompra_proveedores.registrar_detalles_compra([num, producto_compra, cantidad_compra, valor_unidad, valor_total_unidad])   # se incerta los datos en la segunda tabla
-        flash('¡Compra registrada con exito!')
+        Dcompra_proveedores.registrar_detalles_compra([num, producto_compra, cantidad_compra, valor_unidad, valor_total_unidad, total ])   # se incerta los datos en la segunda tabla
+        flash('¡Se registro con exito!')
         return redirect("/Regitra_compra_prov")
 
 
@@ -163,7 +165,7 @@ def busca_compras_prov():
 def muestra_compra_proved():
     if "nom_empleado" in session:
 
-        sql ="SELECT `num_compra`, `proveedor_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `date_compra`, `num_factura_proveedor` FROM `comprasproveedores` WHERE estado = 'ACTIVO'"
+        sql ="SELECT cp.`num_compra`, cp.`proveedor_compra`, p.`nom_proveedor`, cp.`fecha_compra`, p.`direccion_proveedor`, cp.`num_factura_proveedor`, CONCAT(cp.`nombre_operador`, ' ', cp.`apellido_operador`) AS nombre_completo FROM `comprasproveedores` cp JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` WHERE cp.`estado` = 'ACTIVO'"
         conn = mysql.connect()
         cursor = conn.cursor()                  # muestra las compras a proveedores
         cursor.execute(sql)

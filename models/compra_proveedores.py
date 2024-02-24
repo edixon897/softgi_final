@@ -8,12 +8,13 @@ class Compras_proved:
         self.cursor = self.conexion.cursor()
 
     def registrar_compra(self,datos_compra):
-        sql = f"INSERT INTO `comprasproveedores`(`proveedor_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `date_compra`,`estado`,`codigo_tabla`) VALUES ('{datos_compra[0]}','{datos_compra[1]}','{datos_compra[2]}','{datos_compra[3]}','{datos_compra[4]}','{datos_compra[5]}','{datos_compra[6]}')"
-        self.cursor.execute(sql)
+        sql = f"INSERT INTO `comprasproveedores`( `proveedor_compra`, `fecha_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `tiempo_registro`, `num_factura_proveedor`,`codigo_tabla`,  `estado`)  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        valores = (datos_compra[0], datos_compra[1], datos_compra[2], datos_compra[3], datos_compra[4], datos_compra[5], datos_compra[6], datos_compra[7], 'ACTIVO')
+        self.cursor.execute(sql, valores)
         self.conexion.commit()
         
     def registrar_detalles_compra(self,datos_compra):
-        sql = f"INSERT INTO detallecomprasproveedores (detallenum_compra, producto_compra, cantidad_producto_compra, valorunidad_prodcompra, valortotal_cantidadcomp) VALUES ('{datos_compra[0]}','{datos_compra[1]}','{datos_compra[2]}','{datos_compra[3]}','{datos_compra[4]}')"
+        sql = f"INSERT INTO detallecomprasproveedores (detallenum_compra, producto_compra, cantidad_producto_compra, valorunidad_prodcompra, valortotal_cantidadcomp, totalpagar_compra) VALUES ('{datos_compra[0]}','{datos_compra[1]}','{datos_compra[2]}','{datos_compra[3]}','{datos_compra[4]}', '{datos_compra[5]}')"
         self.cursor.execute(sql)
         self.conexion.commit()
 
