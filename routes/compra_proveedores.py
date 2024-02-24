@@ -176,7 +176,7 @@ def muestra_compra_proved():
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
 
-        sql ="SELECT `num_compra`, `proveedor_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `date_compra`, `num_factura_proveedor` FROM `comprasproveedores` WHERE estado = 'ACTIVO'"
+            sql ="SELECT `num_compra`, `proveedor_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `date_compra`, `num_factura_proveedor` FROM `comprasproveedores` WHERE estado = 'ACTIVO'"
         conn = mysql.connect()
         cursor = conn.cursor()                  # muestra las compras a proveedores
         cursor.execute(sql)
