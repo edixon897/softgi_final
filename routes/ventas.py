@@ -184,14 +184,6 @@ def buscador_venta_c():
 @app.route("/muestra_ventas_credito")
 def muestra_ventas_credito():
     if "nom_empleado" in session: 
-<<<<<<< HEAD
-        sql = " SELECT vc.`contador`, vc.`cliente`, vc.`productos`, vc.`credito_total`, vc.`credito_restante`, CONCAT(e.`nom_empleado`, ' ', e.`ape_empleado`) AS nombre_completo,vc.`fecha_venta`FROM `ventas_credito` vc JOIN `empleados` e ON vc.`operador` = e.`doc_empleado`WHERE vc.`estado` = 'ACTIVO' "
-        conn = mysql.connect()
-        cursor = conn.cursor()     #muestra toda la informacion
-        cursor.execute(sql)
-        resultado = cursor.fetchall()
-        return render_template("/ventas_credito/muestra_ventas.html",resul = resultado)
-=======
             
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
@@ -206,7 +198,6 @@ def muestra_ventas_credito():
         else:
             return redirect("/inicio")
 
->>>>>>> 68f575d096f1e582dc60b9d7828120d808be6871
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
