@@ -11,14 +11,14 @@ from models.ventas import Dventas, Ventas
 
 @app.route("/abono_credito_2/<contador>")
 def abono_credito_2(contador):
-    if "email_empleado" in session:
+    if "nom_empleado" in session:
 
         # muestra el html
         return render_template("/ventas_credito/abono_venta.html",cont = contador)
 
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 
 
@@ -27,7 +27,7 @@ def abono_credito_2(contador):
 
 @app.route("/confirma_abono_2", methods = ['POST'])
 def confirma_abono_2():
-    if "email_empleado" in session:
+    if "nom_empleado" in session:
 
         contador = request.form['contador']
         abono = request.form['abono']
@@ -74,7 +74,7 @@ def confirma_abono_2():
             
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 
 
@@ -106,7 +106,7 @@ def muestra_ventas():
     
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
     
     
 @app.route("/muestra_detalles_ventas/<num_factura>")
@@ -120,7 +120,7 @@ def muestra_detalles_ventas(num_factura):
         return render_template('ventas/detalle_ventas.html', resul = resultado)
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 
 # -------------------------------- Buscador ventas a credito ---------------------
@@ -138,14 +138,14 @@ def buscador_venta_c():
         return render_template("/ventas_credito/muestra_ventas.html",resul = resultado)
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 #-------------------------------------------------------- Historial de ventas a credito ----------------------------------------------------------------
 
 @app.route("/muestra_ventas_credito")
 def muestra_ventas_credito():
     if "nom_empleado" in session: 
-        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+        sql = " SELECT vc.`contador`, vc.`cliente`, vc.`productos`, vc.`credito_total`, vc.`credito_restante`, CONCAT(e.`nom_empleado`, ' ', e.`ape_empleado`) AS nombre_completo,vc.`fecha_venta`FROM `ventas_credito` vc JOIN `empleados` e ON vc.`operador` = e.`doc_empleado`WHERE vc.`estado` = 'ACTIVO' "
         conn = mysql.connect()
         cursor = conn.cursor()     #muestra toda la informacion
         cursor.execute(sql)
@@ -153,7 +153,7 @@ def muestra_ventas_credito():
         return render_template("/ventas_credito/muestra_ventas.html",resul = resultado)
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 
 #----------------------------------------------------------------------------------------------------------------------------
@@ -354,7 +354,7 @@ def confirma_venta():
             
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
     
 #-------------------------------------------------------- Cancelador ventas a credito ----------------------------------------------------------------
 
@@ -374,7 +374,7 @@ def cancela_venta_c(contador):
 
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
     
 #---------------------------------------- Elimina Todos los productos seleccionados -------------------------------------------
 @app.route("/elimina_todo_seleccionado_p")
@@ -474,7 +474,7 @@ def elimina_todo_seleccionado_p():
 
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 
 #---------------------------------------- Elimina productos 1 por 1 seleccionados -------------------------------------------
@@ -528,7 +528,7 @@ def elimina_p_select(contador):
 
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
     
 
@@ -653,7 +653,7 @@ def selector_una_cantidad(id_producto):
 
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 
 #---------------------------------------- Selector de productos para Ventas -------------------------------------------
@@ -673,7 +673,7 @@ def m_selector_cantidad_p(id_producto):
 
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
     
 
 
@@ -845,7 +845,7 @@ def confirma_p_seleccionado():
 
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 #---------------------------------------- Buscador de productos en Ventas -------------------------------------------
 @app.route("/Busca_produc_ven", methods = ['POST'])
@@ -890,7 +890,7 @@ def Busca_produc_ven():
 
     else:
         flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 
 #--------------------------------------------- Muestra registro de venta----------------------------------------------

@@ -101,59 +101,7 @@ class Productos:
         # Actualizar la base de datos con la nueva cantidad
         sql_update = "UPDATE productos SET cantidad_producto = %s WHERE id_producto = %s"
         self.cursor.execute(sql_update, (nueva_cantidad, producto[0]))
-
-        # Commit para aplicar los cambios
-        self.conexion.commit()
-
-
-    """ def verificar_stock(self):
-        while True:
-            # Consulta para obtener productos con bajo stock
-            print("Iniciando la función verificar_stock")
-            sql = ("SELECT id_producto, ref_produ_1, cantidad_producto, stockminimo FROM productos WHERE cantidad_producto <= stockminimo")
-            self.cursor.execute(sql)
-            print("Consulta SQL:")
-            productos_bajo_stock = self.cursor.fetchall()
-
-            # Verificar y enviar alertas
-            for producto in productos_bajo_stock:
-                print("Producto bajo stock:", producto)
-                mensaje = f"¡Alerta! El producto '{producto[1]}' está cerca del stock mínimo."
-                print("LLegaste cerca del stockminimo", mensaje)
-
-            print("Finalizando la función verificar_stock")
-
-            # Esperar un intervalo de tiempo antes de volver a verificar
-            time.sleep(60)  # Verificar cada hora (3600 segundos) """
-    """ def verificar_stock(self):
-        while True:
-            try:
-                # Consulta para obtener productos con bajo stock
-                print("Iniciando la función verificar_stock")
-                sql = "SELECT id_producto, ref_produ_1, cantidad_producto, stockminimo FROM productos WHERE cantidad_producto <= stockminimo"
-                self.cursor.execute(sql)
-                print("Consulta SQL:")
-                productos_bajo_stock = self.cursor.fetchall()
-
-                # Verificar y enviar alertas
-                for producto in productos_bajo_stock:
-                    print("Producto bajo stock:", producto)
-                    mensaje = f"¡Alerta! El producto '{producto[1]}' está cerca del stock mínimo."
-                    print("LLegaste cerca del stockminimo", mensaje)
-
-                print("Finalizando la función verificar_stock")
-
-                # Esperar un intervalo de tiempo antes de volver a verificar
-                time.sleep(60)  # Verificar cada hora (3600 segundos)
-
-            except mysql.connector.Error as e:
-                print(f"Error en la consulta SQL: {e}")
-
-            except mysql.connector.DatabaseError as e:
-                print(f"Error de base de datos: {e}")
-
-            except Exception as e:
-                print(f"Excepción no manejada: {e}") """
+        self.conexion.commit()  # Commit para aplicar los cambios
 
         
 Dproductos = Productos(mysql, app)

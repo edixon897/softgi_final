@@ -14,8 +14,9 @@ class Compras_proved:
         self.conexion.commit()
         
     def registrar_detalles_compra(self,datos_compra):
-        sql = f"INSERT INTO detallecomprasproveedores (detallenum_compra, producto_compra, cantidad_producto_compra, valorunidad_prodcompra, valortotal_cantidadcomp, totalpagar_compra) VALUES ('{datos_compra[0]}','{datos_compra[1]}','{datos_compra[2]}','{datos_compra[3]}','{datos_compra[4]}', '{datos_compra[5]}')"
-        self.cursor.execute(sql)
+        sql = f"INSERT INTO detallecomprasproveedores (detallenum_compra, producto_compra, cantidad_producto_compra, valorunidad_prodcompra, valortotal_cantidadcomp) VALUES (%s, %s, %s, %s, %s )"
+        valores1 = (datos_compra[0], datos_compra[1], datos_compra[2], datos_compra[3], datos_compra[4])
+        self.cursor.execute(sql, valores1)
         self.conexion.commit()
 
     def cacela_compra(self,num_compra):

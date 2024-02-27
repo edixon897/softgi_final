@@ -20,7 +20,7 @@ def conexion():
         app.config['MYSQL_DATABASE_SECRET_KEY'] = app.secret_key
         app.config['MYSQL_DATABASE_USER'] = 'root'
         app.config['MYSQL_DATABASE_PASSWORD'] = ''
-        app.config['MYSQL_DATABASE_DB'] = 'sofgi'
+        app.config['MYSQL_DATABASE_DB'] = 'softgi'
         app.config['MYSQL_DATABASE_HOST'] = 'localhost'
         app.config['MYSQL_DATABASE_PORT'] = 3306
         app.config['MYSQL_DATABASE_CHARSET'] = 'utf8mb4'
@@ -37,6 +37,17 @@ def servicion():
         app.config['MAIL_PASSWORD'] = 'laobfjwveaolryrt' 
     except Exception as e:
                 print(f"Error al intentar conectarse al servicio de envio de correo: {str(e)}")
+
+
+@socketio.on('connect')
+def handle_connect():
+    print('Cliente conectado')
+    
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Cliente desconectado')
+
+
 
 servicion()
 mail = Mail(app)

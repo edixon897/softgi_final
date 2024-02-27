@@ -47,8 +47,22 @@ def Registrar_compra_p():
         Cantidad_compra = request.form['cantidad_compra']
         cantidad_compra = int(Cantidad_compra)
         valor_unidad = request.form['valor_unidad']
+
         valor_total_unidad = (valor_unidad*cantidad_compra)
-        tiempo_compra = datetime.datetime.now()
+
+        try:
+            cantidad_compra = int(Cantidad_compra)
+        except ValueError:
+            flash("La cantidad no es un número válido. Se ha establecido en 0.", "error")
+            cantidad_compra = 0  # o el valor predeterminado que desees
+
+        try:
+            valor_unidad = int(valor_unidad)
+        except ValueError:
+            flash("El valor por unidad no es un número válido. Se ha establecido en 0.", "error")
+            valor_unidad = 0  # o el valor predeterminado que desees
+
+        tiempo_registro = datetime.datetime.now()
 
         lower = string.ascii_lowercase       
         upper = string.ascii_uppercase # generador de codigo 
@@ -56,12 +70,13 @@ def Registrar_compra_p():
         chars = lower + upper + num
         codigo = random.sample(chars, 10)
         codigo_2 = ""  # variable que guarda el codigo
+        
         for c in codigo:
             codigo_2+=c
         print(f"\n {codigo_2} \n")
 
-        Dcompra_proveedores.registrar_compra([proveedor_compra, fecha_compra, documento_operador, nombre_operador, apellido_operador, tiempo_compra, num_factura_proveedor, codigo_2])   # se incerta los datos en la primera tabla
-        
+        Dcompra_proveedores.registrar_compra([proveedor_compra, fecha_compra, documento_operador, nombre_operador, apellido_operador, tiempo_registro, num_factura_proveedor, codigo_2])   # se incerta los datos en la primera tabla
+        print("aca van los datos: 1ra parte", Dcompra_proveedores)
         
         sql = f"SELECT num_compra FROM comprasproveedores WHERE codigo_tabla = '{codigo_2}'"
         conn = mysql.connect()
@@ -69,15 +84,14 @@ def Registrar_compra_p():
         cursor.execute(sql)
         num_compra = cursor.fetchall()   # consulta el numero de compra de acuerdo al  codigo de esa tabla
         conn.commit()
-        num = num_compra[0][0] # [[N]] ----> N 
-        total = valor_unidad * cantidad_compra
-        
-        Dcompra_proveedores.registrar_detalles_compra([num, producto_compra, cantidad_compra, valor_unidad, valor_total_unidad, total ])   # se incerta los datos en la segunda tabla
-        flash('¡Se registro con exito!')
-        return redirect("/Regitra_compra_prov")
-
-
-
+        if num_compra:
+            num = num_compra[0][0] # [[N]] ----> N 
+            total = valor_unidad * cantidad_compra
+            print(f"num: {num}, total: {total}")
+            Dcompra_proveedores.registrar_detalles_compra([num, producto_compra, cantidad_compra, valor_total_unidad,  total ])
+              # se incerta los datos en la segunda tabla
+            flash('¡Se registro con exito!')
+            return redirect("/Regitra_compra_prov")
     else:
         flash('Por favor inicia sesion para poder acceder')
         return redirect(url_for('index'))
