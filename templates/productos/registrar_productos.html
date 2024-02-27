@@ -15,7 +15,7 @@
         <section id="conten_titulo_1">
 
             <div id="conten_titulo_lado_1">
-                <h2>Registra Productos</h2>
+                <h2>Registro de productos</h2>
             </div>
             <div id="conten_titulo_lado_2">
                 <div id="barra_progreso_1">
@@ -48,17 +48,17 @@
                         <div class="campo_2">
                             
                             <input type="text" name="ref_produ_1" id="ref_produ_1" class="input_campo"> 
-                            <label id="ref_produ_1" for="nombre">Referencia 1</label>
+                            <label id="ref_produ_1" for="nombre">Referencia #1</label>
                         </div>
 
                         <div class="campo_2">
                             <input type="text" name="ref_prod_2" id="ref_prod_2"  class="input_campo">
-                            <label id="ref_prod_2" for="Apellidos">Referencia 2</label>
+                            <label id="ref_prod_2" for="Apellidos">Referencia #2</label>
                         </div>
 
                         <div class="campo_2">
                             <input type="text" name="ref_prod_3" id="ref_prod_3"  class="input_campo" >
-                            <label id="ref_prod_3" for="fecha">Referencia 3</label>
+                            <label id="ref_prod_3" for="fecha">Referencia #3</label>
                         </div>
 
                     </div>
@@ -68,7 +68,7 @@
                 <section class="lado_info_contacto">
 
                     <div class="conten_titulo_div_2">
-                        <p>Clasificacion</p>
+                        <p>Clasificación</p>
                     </div>
 
                     <div class="content_inputs_2">
@@ -76,7 +76,7 @@
                         
                         <div class="campo_2">
                             <select id="proveedor" name="proveedor" class="input_campo">
-                                <option value="" disabled selected>Selecciona un proveedor</option>
+                                <option value="" disabled selected>Seleccione el proveedor</option>
                                 {% for proveedor in proveedores %}
                                 <option value="{{ proveedor[0] }}">{{ proveedor[1] }}</option>
                                 {% endfor %}
@@ -89,15 +89,15 @@
 
                         <div class="campo_2">
                             <select id="categorias" name="categorias" class="input_campo">
-                                <option value="" disabled selected>Selecciona una categoria</option>
+                                <option value="" disabled selected>Seleccione la categoria</option>
                                 {% for categoria in categorias %}
                                     <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
                                 {% endfor %}
                             </select>
-                            <label  for="categorias">categoria</label>
+                            <label  for="categorias">Categoría</label>
                         </div>
                         <!-- Botón para abrir el modal para registrar proveedor -->
-                        <a href="{{url_for('crearCategoria')}}" id="crear-proveedor-2">Nueva Categoria</a>
+                        <a href="{{url_for('crearCategoria')}}" id="crear-proveedor-2">Nueva categoría</a>
                         
                     </div>
 
@@ -109,7 +109,7 @@
                     <section class="lado_info_personal">
 
                         <div id="conten_titulo_div">
-                            <p>Detalles producto</p>
+                            <p>Detalles del producto</p>
                         </div>
     
                         <div class="conten_inputs_1">
@@ -118,22 +118,22 @@
     
                             <div class="campo_2">
                                 <input type="text" name="nombre_producto" id="nombre_producto" class="input_campo">
-                                <label for="nombre_producto">Nombre producto</label>
+                                <label for="nombre_producto">Nombre del producto</label>
                             </div>
     
                             <div class="campo_2">
                                 <input type="number" name="precio_compra" id="precio_compra"  class="input_campo" >
-                                <label  for="precio_compra">Precio compra</label>
+                                <label  for="precio_compra">Precio de compra</label>
                             </div>
     
                             <div class="campo_2">
                                 <input type="number" name="precio_venta" id="precio_venta"  class="input_campo" >
-                                <label  for="fecha">Precio venta</label>
+                                <label  for="fecha">Precio de venta</label>
                             </div>
     
                             <div class="campo_2">
                                 <input type="text" name="descripcion" id="descripcion"  class="input_campo"  >
-                                <label  for="descripcion">Descripcion</label>
+                                <label  for="descripcion">Descripción</label>
                             </div>
     
                         </div>
@@ -150,12 +150,12 @@
     
                             <div class="campo_2">
                                 <input type="number" name="cantidad_producto" id="cantidad_producto"  class="input_campo" >
-                                <label cantidad_producto for="cantidad_producto">Cantidad producto</label>
+                                <label cantidad_producto for="cantidad_producto">Cantidad de productos</label>
                             </div>
     
                             <div class="campo_2">
                                 <input type="number" name="stockminimo" id="stockminimo"  class="input_campo">
-                                <label  for="stockminimo">Cantidad minima</label>
+                                <label  for="stockminimo">Cantidad mínima</label>
                             </div>
     
     
@@ -172,23 +172,23 @@
                     <section class="lado_info_personal">
 
                         <div id="conten_titulo_div">
-                            <p>Ubicacion</p>
+                            <p>Ubicación</p>
                         </div>
     
                         <div class="conten_inputs_1">
                             
                             <div class="campo_2">
                                 <select id="ubicacion" name="ubicacion" class="input_campo">
-                                    <option value="Ninguna">Seleccione una ubicacion</option>
+                                    <option value="Ninguna">Seleccione el lugar</option>
                                     <option value="Bodega">Bodega</option>
-                                    <option value="Almacen">Almacen</option>
+                                    <option value="Almacen">Almacén</option>
                                 </select>
-                                <label  for="ubicacion">Ubicacion</label>
+                                <label  for="ubicacion">Ubicación</label>
                             </div>
     
                             <div class="campo_2">
                                 <input type="text" name="estante" id="estante"  class="input_campo" >
-                                <label  for="estante">Estante</label>
+                                <label  for="estante">Número de estante</label>
                             </div>
     
                         </div>
