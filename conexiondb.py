@@ -38,6 +38,17 @@ def servicion():
     except Exception as e:
                 print(f"Error al intentar conectarse al servicio de envio de correo: {str(e)}")
 
+
+@socketio.on('connect')
+def handle_connect():
+    print('Cliente conectado')
+    
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Cliente desconectado')
+
+
+
 servicion()
 mail = Mail(app)
 conexion()

@@ -67,6 +67,7 @@
                                         {% for i in range(0, 6) %}
                                             {% if i == 5 %} {# Para la primera columna, que es la factura # #}
                                                 <td class="{% if c[i] == 'efectivo' %} clase1 {% elif c[i] == 'Daviplata' %} clase2 {% elif c[i] == 'Bancolombia' %} clase3 {% elif c[i] == 'Nequi' %} clase4 {% elif c[i] == 'Tarjeta cred' %} clase5 {% endif %}">{{ c[i] }}</td>
+                                                
                                             {% else %} {# Para las otras columnas, puedes agregar más lógica según sea necesario #}
                                                 <td>{{ c[i] }}</td>
                                             {% endif %}
