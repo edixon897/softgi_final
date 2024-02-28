@@ -209,13 +209,29 @@ def muestra_compra_proved():
 def muestra_detalles_com(num_compra):
     if "nom_empleado" in session:
         rol_usuario = session["rol"]
+
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
         
-            sql = f"SELECT `detallenum_compra`,`detallenum_compra`, `producto_compra`, `cantidad_producto_compra`, `valorunidad_prodcompra`, `valortotal_cantidadcomp`, `totalpagar_compra` FROM `detallecomprasproveedores` WHERE detallenum_compra = '{num_compra}'"
+            sql =  f"""
+                SELECT 
+                    dc.detallenum_compra, 
+                    dc.producto_compra, 
+                    dc.cantidad_producto_compra, 
+                    dc.valorunidad_prodcompra, 
+                    dc.valortotal_cantidadcomp, 
+                    dc.totalpagar_compra 
+                FROM 
+                    detallecomprasproveedores dc
+                JOIN 
+                    comprasproveedores cp ON dc.detallenum_compra = cp.num_compra
+                WHERE 
+                    dc.detallenum_compra = '{num_compra}' and num_compra = '{num_compra}'
+            """
             conn = mysql.connect()
             cursor = conn.cursor()                  # muestra los detalles de compras a proveedores
             cursor.execute(sql)
-            resultado = cursor.fetchall()  
+            resultado = cursor.fetchall() 
+            print("estos datos:", resultado) 
             conn.commit()
             return render_template("/compra_proveedores/detalles_compras/muestra_detalles.html", resul=resultado)
 

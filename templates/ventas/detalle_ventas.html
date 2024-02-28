@@ -22,7 +22,6 @@
                     <th>Cantidad Total</th>
                     <th>Total pagado</th>
                 </tr>
-                
             </thead>
                 <tbody>
                     {% for c in resul %}
@@ -31,16 +30,14 @@
                         <!-- Creamos una nueva fila en la tabla para cada elemento en resul -->
                         {% for i in range(0,4) %}
                         <!-- Comenzamos otro bucle para recorrer las primeras 4 posiciones (0 a 3) de cada fila -->
-                            {% if i == 2 or i == 3 %}
+                            {% if i == 3 %}
                             <!-- Verificamos si estamos en la columna 2 o 3 de la fila (contando desde 0) -->
                                 <td>
                                     <!-- Iniciamos una nueva celda en la fila -->
-                                    {% if c[i] is string %}
+                                    {% set numeric_value = c[i]|float if c[i] is defined and c[i] is not none else none %}
                                     <!-- Verificamos si el valor en la columna actual (c[i]) es una cadena de texto -->
-                                       $ {{ "{:,.0f}".format(float(c[i])) }}
-                                        <!-- Si es una cadena, lo convertimos a un número decimal y lo formateamos con comas -->
-                                    {% else %}
-                                        {{ "{:,.0f}".format(c[i]) }}
+                                    {% if numeric_value is not none %}
+                                        $ {{ "{:,.0f}".format(numeric_value) }}
                                         <!-- Si no es una cadena, simplemente formateamos el número sin convertirlo -->
                                     {% endif %}
                                 </td>
