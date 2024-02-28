@@ -9,6 +9,8 @@
     
 </head>
 <body>
+
+
     <main id="inicio">
 
         <section id="conten_titulo_1">
@@ -30,7 +32,9 @@
 
         <form action="/crear_cliente_2" method="post" id="conten_formulario_2">
 
-            <div class="campos">
+            <div id="conten_FORM">
+
+            
 
                 <section class="lado_info_personal">
 
@@ -60,6 +64,7 @@
                             <input type="text" name="ape_cliente" id="apellido" class="input_campo" oninput="campo_lleno3()">
                             <label for="apellido">Apellidos</label>
                         </div>
+                        
 
                     </div>
                     
@@ -96,8 +101,17 @@
                 </section>
 
 
+
+
+
+
+
+
                 <div id="conten_FORM_2">
 
+
+
+                    
                     <section class="lado_info_personal">
 
                         <div class="conten_titulo_div">
@@ -125,7 +139,7 @@
                             </div>
                             
                             <div class="campo_2">
-                                <input type="text" name="ciudad_cliente" id="ciudad" placeholder="ciudad" class="input_campo"  oninput="campo_lleno9()">
+                                <input type="text" name="ciudad_cliente" id="ciudad" placeholder="" class="input_campo"  oninput="campo_lleno9()">
                                 <label for="ciudad">Ciudad</label>
                             </div>
                             
@@ -186,6 +200,7 @@
 
 
     </main>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
