@@ -15,7 +15,7 @@
         <div id="modalContenedor" style="display: none;"></div>
 
         <section id="section_1">
-            <p>Registrar venta</p>
+            <p>Realizar venta</p>
         </section>
 
         <section id="section_2">
@@ -42,11 +42,11 @@
                                 <thead >
                                     <tr>
                                         <th>Referencias</th>
-                                        <th>Nombre producto </th>
+                                        <th>Nombre del producto </th>
                                         <th>Precio unitario</th>
-                                        <th>Stock disponible</th>
-                                        <th>seleccionar muchos</th>
-                                        <th>seleccionar uno</th>
+                                        <th>Cantidad disponible</th>
+                                        <th>Seleccionar varios productos</th>
+                                        <th>Seleccionar un producto</th>
                                     </tr>
                                 </thead>
                     
@@ -91,9 +91,9 @@
                             <table id="tabla_carrito">
                                 <thead >
                                     <tr>
-                                        <th>Nombre producto </th>
+                                        <th>Nombre del producto </th>
                                         <th>Precio unitario</th>
-                                        <th>Cantidad adquirida</th>
+                                        <th>Cantidad de unidades</th>
                                         <th>Total</th>
                                         <th></th>
                                     </tr>
@@ -141,7 +141,7 @@
 
                     <section id="conten_btns">
                         <div id="separador">
-                            <a href="{{url_for ('crearClientes_2') }}">Registrar clente</a>
+                            <a href="{{url_for ('crearClientes_2') }}">Registrar cliente</a>
                             <a href="{{url_for ('muestra_ventas') }}">Regresar</a>
                         </div>
                     </section>
@@ -162,7 +162,7 @@
 
                             <div class="conten_input">
                                 <div class="campo_2">
-                                    <input type="number" id="doc_cliente" name="doc_cliente" placeholder="Cedula del Cliente"  class="input_campo" required>
+                                    <input type="number" id="doc_cliente" name="doc_cliente" placeholder="Cédula del cliente"  class="input_campo" required>
                                 </div>
                             </div>
 
@@ -175,7 +175,7 @@
                                 <div class="campo_2" >
                                     <select name="tipo_de_venta" class="input_campo" id="venta_tipo" oninput="verifica_tipo_venta()">
                                         <option value="venta_normal">Venta normal</option>
-                                        <option value="venta_credito">Venta a credito</option>
+                                        <option value="venta_credito">Venta a crédito</option>
                                     </select>
                                 </div>
                             </div>
@@ -187,8 +187,8 @@
                                         <option value="Nequi">Nequi</option>
                                         <option value="Daviplata">Daviplata</option>
                                         <option value="Bancolombia">Bancolombia</option>
-                                        <option value="Tarjeta debito">Tarjeta debito</option>
-                                        <option value="Tarjeta credito">Tarjeta credito</option>
+                                        <option value="Tarjeta debito">Tarjeta débito</option>
+                                        <option value="Tarjeta credito">Tarjeta crédito</option>
                                     </select>
                                 </div>
                             </div>
@@ -196,7 +196,7 @@
                         </div>
 
                         <div id="lad_3_form">
-                            <button id="btn_enviar" class="btn_sutmit" type="submit" onclick="valida_campos() ">Registrar venta</button>
+                            <button id="btn_enviar" class="btn_sutmit" type="submit" onclick="valida_campos() ">Finalizar venta</button>
                         </div>
             
                         
