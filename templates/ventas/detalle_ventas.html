@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de venta</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/detalle_ventas.css">
+    <link rel="stylesheet" href="../../static/css/ventas/detalle_ventas.css">
 </head>
 <body>
 
@@ -22,47 +22,40 @@
                     <th>Cantidad Total</th>
                     <th>Total pagado</th>
                 </tr>
+                
             </thead>
-    
-            <!-- ... Tu código HTML anterior ... -->
-
-<tbody>
-    {% for c in resul %}
-    <!-- Comenzamos un bucle para recorrer cada elemento (c) en la lista resul -->
-    <tr>
-        <!-- Creamos una nueva fila en la tabla para cada elemento en resul -->
-        {% for i in range(0,4) %}
-        <!-- Comenzamos otro bucle para recorrer las primeras 4 posiciones (0 a 3) de cada fila -->
-            {% if i == 2 or i == 3 %}
-            <!-- Verificamos si estamos en la columna 2 o 3 de la fila (contando desde 0) -->
-                <td>
-                    <!-- Iniciamos una nueva celda en la fila -->
-                    {% if c[i] is string %}
-                    <!-- Verificamos si el valor en la columna actual (c[i]) es una cadena de texto -->
-                        {{ "{:,.0f}".format(float(c[i])) }}
-                        <!-- Si es una cadena, lo convertimos a un número decimal y lo formateamos con comas -->
-                    {% else %}
-                        {{ "{:,.0f}".format(c[i]) }}
-                        <!-- Si no es una cadena, simplemente formateamos el número sin convertirlo -->
-                    {% endif %}
-                </td>
-                <!-- Cerramos la celda -->
-            {% else %}
-                <td>{{ c[i] }}</td>
-                <!-- Si no estamos en una columna especial, simplemente mostramos el valor tal cual -->
-            {% endif %}
-        {% endfor %}
-        <!-- Cerramos el bucle que recorre las columnas -->
-    </tr>
-    <!-- Cerramos la fila -->
-    {% endfor %}
-    <!-- Cerramos el bucle que recorre las filas -->
-</tbody>
-<!-- Cerramos la sección del cuerpo de la tabla -->
-
-<!-- ... Tu código HTML posterior ... -->
-
-
+                <tbody>
+                    {% for c in resul %}
+                    <!-- Comenzamos un bucle para recorrer cada elemento (c) en la lista resul -->
+                    <tr>
+                        <!-- Creamos una nueva fila en la tabla para cada elemento en resul -->
+                        {% for i in range(0,4) %}
+                        <!-- Comenzamos otro bucle para recorrer las primeras 4 posiciones (0 a 3) de cada fila -->
+                            {% if i == 2 or i == 3 %}
+                            <!-- Verificamos si estamos en la columna 2 o 3 de la fila (contando desde 0) -->
+                                <td>
+                                    <!-- Iniciamos una nueva celda en la fila -->
+                                    {% if c[i] is string %}
+                                    <!-- Verificamos si el valor en la columna actual (c[i]) es una cadena de texto -->
+                                       $ {{ "{:,.0f}".format(float(c[i])) }}
+                                        <!-- Si es una cadena, lo convertimos a un número decimal y lo formateamos con comas -->
+                                    {% else %}
+                                        {{ "{:,.0f}".format(c[i]) }}
+                                        <!-- Si no es una cadena, simplemente formateamos el número sin convertirlo -->
+                                    {% endif %}
+                                </td>
+                                <!-- Cerramos la celda -->
+                            {% else %}
+                                <td>{{ c[i] }}</td>
+                                <!-- Si no estamos en una columna especial, simplemente mostramos el valor tal cual -->
+                            {% endif %}
+                        {% endfor %}
+                        <!-- Cerramos el bucle que recorre las columnas -->
+                    </tr>
+                    <!-- Cerramos la fila -->
+                    {% endfor %}
+                    <!-- Cerramos el bucle que recorre las filas -->
+                </tbody>
         </table>
 
     </section>

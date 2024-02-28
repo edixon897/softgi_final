@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registra compras de proveedores</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/registrar_compra_proveedores.css">
+    <link rel="stylesheet" href="../../static/css/compra_proveedores/registrar_compra_proveedores.css">
 </head>
 <body>
  
@@ -15,7 +15,7 @@
                 <select name="proveedor_compra" id="proveedor_compra" class="input_campo">
                     <option value="">Proveedor</option>
                             {% for c in resul %}
-                                <option value="{{c[0]}}">{{c[0]}}</option>
+                                <option value="{{c[0]}}">{{c[1]}}</option>
                             {% endfor %}
                 </select>
                 <input type="date" name="fecha_compra" id="fecha" class="campo">

@@ -418,7 +418,6 @@ def confirma_venta():
 @app.route("/cancela_venta_c/<contador>")
 def cancela_venta_c(contador):
     if "nom_empleado" in session:
-        
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
 
