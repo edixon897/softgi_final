@@ -406,12 +406,17 @@ def confirma_venta():
             return redirect("/inicio")       
     else:
         flash('Porfavor inicia sesion para poder acceder')
+<<<<<<< HEAD
         return redirect(url_for('index'))
+=======
+        return redirect(url_for('home'))
+    
+#-------------------------------------------------------- Cancelador ventas a credito ----------------------------------------------------------------
+>>>>>>> b55a2074de78a71200aa139a37cd889b5b366a67
 
 @app.route("/cancela_venta_c/<contador>")
 def cancela_venta_c(contador):
     if "nom_empleado" in session:
-        
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
 
