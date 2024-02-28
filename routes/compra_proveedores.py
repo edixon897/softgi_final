@@ -48,7 +48,7 @@ def Registrar_compra_p():
         cantidad_compra = int(Cantidad_compra)
         valor_unidad = request.form['valor_unidad']
 
-        valor_total_unidad = (valor_unidad*cantidad_compra)
+        
 
         try:
             cantidad_compra = int(Cantidad_compra)
@@ -88,7 +88,7 @@ def Registrar_compra_p():
             num = num_compra[0][0] # [[N]] ----> N 
             total = valor_unidad * cantidad_compra
             print(f"num: {num}, total: {total}")
-            Dcompra_proveedores.registrar_detalles_compra([num, producto_compra, cantidad_compra, valor_total_unidad,  total ])
+            Dcompra_proveedores.registrar_detalles_compra([num, producto_compra, cantidad_compra, valor_unidad,  total ])
               # se incerta los datos en la segunda tabla
             flash('¡Se registro con exito!')
             return redirect("/Regitra_compra_prov")
