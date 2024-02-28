@@ -104,10 +104,13 @@ section#buscar{
         }
 
 section#modulos{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
     gap: 20px;
     padding: 0 20px; 
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
     #modulos figure{
@@ -149,6 +152,8 @@ section#modulos{
     text-decoration: none;
     background-color: #f5f5f5;
     border-radius: 5px;
+    flex-basis: 250px;
+    margin-bottom: 2em;
 }
 
 
