@@ -15,7 +15,7 @@
                 <select name="proveedor_compra" id="proveedor_compra" class="input_campo">
                     <option value="">Proveedor</option>
                             {% for c in resul %}
-                                <option value="{{c[0]}}">{{c[0]}}</option>
+                                <option value="{{c[0]}}">{{c[1]}}</option>
                             {% endfor %}
                 </select>
                 <input type="date" name="fecha_compra" id="fecha" class="campo">
