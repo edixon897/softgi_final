@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventas a credito</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/muestra_ventas_credito.css">
+    <link rel="stylesheet" href="../../static/css/ventas/ventas_credito/muestra_ventas_credito.css">
 </head>
 <body>
 
@@ -13,7 +13,7 @@
     <main id="cuerpo">
 
         <section id="section_1">
-            <p>Historial de ventas</p>
+            <p>Historial de créditos</p>
         </section>
 
 
@@ -39,7 +39,7 @@
                     <section id="section_buscador_titulo">
                         
                         <div id="conten_titulo">
-                            <p>Ventas a credito</p>
+                            <p>Ventas a crédito</p>
                         </div>
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
@@ -52,11 +52,11 @@
                             <table id="tablaVentas">
                                 <thead>
                                     <tr>
-                                        <th> C.C cliente</th>
+                                        <th> C.C. cliente</th>
                                         <th>Productos</th>
-                                        <th>Credito total</th>
-                                        <th>Credito restante</th>
-                                        <th>Nombre operador</th>
+                                        <th>Crédito total</th>
+                                        <th>Crédito restante</th>
+                                        <th>Vendedor</th>
                                         <th>Fecha de venta</th>
                                         <th>Historial de pagos</th>
                                         <th>Registrar pago</th>
@@ -80,10 +80,10 @@
                                                 </td>
                                             {% endfor %}
                                             <td class="btns_centro">
-                                                <a href="/abono_credito_2/{{result[0]}}"><i id="icono_ver_mas" class="lni lni-stats-up"></i></a>
+                                                <a href="#"><i id="icono_ver_mas" class="lni lni-stats-up"></i></a>
                                             </td>
                                             <td class="btns_centro">
-                                                <a href="/borra_produc/{{result[0]}}">
+                                                <a href="/abono_credito_2/{{result[0]}}">
                                                     <i id=icono_2 class="lni lni-dollar"></i>
                                                 </a>
                                             </td>
