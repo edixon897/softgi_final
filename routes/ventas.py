@@ -7,9 +7,29 @@ from models.ventas import Dventas, Ventas
 
 
 
+
+
+@app.route("/historial_abono/<contador>")
+def historial_abono(contador):
+    if "nom_empleado" in session:
+        
+        sql = f"SELECT `abono`, `operador`, `fecha_abono` FROM `historial_credito` WHERE contador_ventacredito = '{contador}' ORDER BY contador DESC"
+        conn = mysql.connect()
+        cursor = conn.cursor()     #muestra toda la informacion
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        conn.commit()
+        return render_template("/ventas_credito/historial_abonos.html",resul = resultado)
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('index'))
+
+
+
 #-------------------------------------------------------- abonos ventas a credito ----------------------------------------------------------------
 
-@app.route("/abono_credito_2/<contador>")
+@app.route("/abono_credito_2/<int:contador>")
 def abono_credito_2(contador):
     if "nom_empleado" in session:
 
@@ -62,7 +82,12 @@ def confirma_abono_2():
                 if (credito_actual == 0):
 
                     # se cambia el estado de ACTIVO a CANCELADO
-                    Ventas.abono_completo(contador)
+                    """ Ventas.abono_completo(contador) """
+                    sql = f"UPDATE `ventas_credito` SET `credito_restante`='{0}', `estado`='PAGADO' WHERE contador = '{contador}'"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    conn.commit()
                     return redirect("/muestra_ventas_credito")
                 
                 
@@ -77,7 +102,13 @@ def confirma_abono_2():
                     conn.commit()
 
                     # se incerta en el historial el abono realizado
-                    Ventas.insert_historial_abn([contador, abono, documento_operador, tiempo_venta])
+                    """ Ventas.insert_historial_abn([contador, abono, documento_operador, tiempo_venta]) """
+                    sql = f"INSERT INTO `historial_credito`(`contador_ventacredito`, `abono`, `operador`, `fecha_abono`) VALUES ('{contador}','{abono}','{documento_operador}','{tiempo_venta}')"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    conn.commit()
+                    
                     return redirect("/muestra_ventas_credito")
 
             # 1
