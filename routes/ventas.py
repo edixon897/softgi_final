@@ -39,7 +39,7 @@ def confirma_abono_2():
 
             contador = request.form['contador']
             abono = request.form['abono']
-            documento_operador = session["doc_empleado"]    
+            documento_operador = session["documento_operador"]    
 
             # combierto el texto a numero
             abono = int(abono)
@@ -69,7 +69,12 @@ def confirma_abono_2():
                 # 2 
                 else:
                     # se actualiza el credito restante
-                    Ventas.actualiza_credito_rest([credito_actual, contador])
+                    """ Ventas.actualiza_credito_rest([credito_actual, contador]) """
+                    sql = f"UPDATE `ventas_credito` SET `credito_restante`='{credito_actual}' WHERE contador = '{contador}'"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    conn.commit()
 
                     # se incerta en el historial el abono realizado
                     Ventas.insert_historial_abn([contador, abono, documento_operador, tiempo_venta])
