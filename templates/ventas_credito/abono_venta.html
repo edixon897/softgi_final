@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../static/css/ventas/ventas_credito/abpno_credito.css">
 </head>
 <body>
 
-    <a href="/muestra_ventas_credito">Regresar</a>
-    <br>
-    <h1>Realizar un abono</h1>
-    <br>
+    
     <form action="/confirma_abono_2" method="post">
 
         <input type="hidden" name="contador" value="{{cont}}" required readonly >
@@ -22,6 +20,18 @@
     </form>
     <br>
     <p>{{mensaje}}</p>
+    <button type="submit" id="btn-agregar" ><i class="lni lni-checkmark-circle"></i></button>
+
+
+
+
+    <script>
+        // Función para cerrar el modal
+        function cerrarModal() {
+            var modalContenedor = window.parent.document.getElementById("modalContenedor");
+            modalContenedor.style.display = "none";
+        }
+    </script>
     
 </body>
 </html>
