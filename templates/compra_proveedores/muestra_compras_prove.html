@@ -26,8 +26,9 @@
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
                         <a class="botones"  href="{{url_for('proveedores')}}"> Mis proveedores</a>
-                        <a class="botones" href="{{url_for('Regitra_compra_prov')}}">Registrar una compra</a>
-                    </div>
+                        <!-- <a class="botones" href="" onClick="abrirModal()">Registrar una compra</a> -->
+                        <span class="botones" onClick="abrirModal()">Registrar compra</span>
+                    </div> <!-- {{url_for('Regitra_compra_prov')}} -->
                 </div>
             </div>
 
@@ -103,8 +104,52 @@
 
         </section>
 
-    </main>
+        <div id="modal">
+            <h4>Registra compras de proveedores</h4>
+            <form id="compraForm">
+                <div>
+                    <label for="proveedor_compra">Proveedor</label>
+                    <select name="proveedor_compra" id="proveedor_compra" class="input_campo">
+                        <option value="">Proveedor</option>
+                        {% for c in resul %}
+                            <option value="{{c[0]}}">{{c[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="fecha_compra">Fecha</label>
+                    <input type="date" name="fecha_compra" id="fecha_compra" class="campo">
+                </div>
+                
+                <div>
+                    <label for="num_factura_proveedor">N° factura</label>
+                    <input type="text" name="num_factura_proveedor" id="num_factura_proveedor" placeholder="N° factura" class="campo">
+                </div>
+        
+                <div>
+                    <label for="producto_compra">Producto</label>
+                    <input type="text" name="producto_compra" id="producto_compra" placeholder="Producto" class="campo">
+                </div>
+        
+                <div>
+                    <label for="cantidad_compra">Cantidad</label>
+                    <input type="number" name="cantidad_compra" id="cantidad_compra" placeholder="Cantidad" id="cantidad" class="campo">
+                </div>
+        
+                <div>
+                    <label for="valor_unidad">Valor por unidad</label>
+                    <input type="number" name="valor_unidad" id="valor_unidad" placeholder="Valor por unidad" class="campo">
+                </div>
+        
+            </form>
+            <button type="button" onclick="agregarProducto()">Agregar Producto</button>
+            <button type="submit">Registrar</button>
+            <button type="button" onclick="cerrarModal()">Cerrar</button>
+        </div>
 
+    </main>
+    <script src="../../static/javaScript/modal_form_compraProveedores.js"></script>
     <script src="../../static/javaScript/buscarCompras_prove.js"></script>
 </body>
 </html>
