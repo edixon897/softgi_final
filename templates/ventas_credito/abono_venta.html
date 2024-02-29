@@ -11,27 +11,33 @@
     
     <form action="/confirma_abono_2" method="post">
 
-        <input type="hidden" name="contador" value="{{cont}}" required readonly >
+        <div id="div_titulo">
+            <p>Pago parcial</p>
+        </div>
 
-        <input type="number" name="abono" required >
+        <div id="div_input">
+            <input type="hidden" name="contador" value="{{cont}}" required readonly >
+            <input type="number" placeholder="" name="abono" required >
+        </div>
 
-        <button type="submit">Finalizar</button>
+        <div id="div_btns">
+            <section id="conten_btn_1" >
+                <a href="#" onclick="cerrarModal()">Cancelar</a>
+            </section>
+            <section id="conten_btn_2">
+                <button type="submit">Realizar</button>
+            </section>
+            
+        </div>
+
+        
+
+        
+
         
     </form>
-    <br>
+    <!-- <br>
     <p>{{mensaje}}</p>
-    <button type="submit" id="btn-agregar" ><i class="lni lni-checkmark-circle"></i></button>
-
-
-
-
-    <script>
-        // Función para cerrar el modal
-        function cerrarModal() {
-            var modalContenedor = window.parent.document.getElementById("modalContenedor");
-            modalContenedor.style.display = "none";
-        }
-    </script>
-    
+    <button type="submit" id="btn-agregar" ><i class="lni lni-checkmark-circle"></i></button> -->
 </body>
 </html>

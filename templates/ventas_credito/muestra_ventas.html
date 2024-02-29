@@ -12,9 +12,9 @@
 
     <main id="cuerpo">
 
-        <section id="conten_registra_pago">
+        <section id="conten_registra_pago" onclick="cerrarModal()">
 
-            <div id="modalContenedor" style="display: none;"></div>
+            <div id="modalContenedor" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
 
         </section>
 
@@ -91,53 +91,24 @@
                                             <td class="btns_centro">
                                                 <a href="/historial_abono/{{result[0]}}"><i id="icono_ver_mas" class="lni lni-stats-up"></i></a>
                                             </td>
-                                            <td class="btns_centro" onclick="abrirModal('{{result[0]}}')">
-                                                <a href="#"> <!-- /abono_credito_2/{{result[0]}} -->
-                                                    <i id=icono_select_2 class="lni lni-dollar"></i>
+
+
+                                            <td class="btns_centro">
+                                                <a href="#" onclick="abrirModal('{{result[0]}}')"><!-- /abono_credito_2/{{result[0]}} -->
+                                                    <i id=icono_3 class="lni lni-dollar"></i>
                                                 </a>
-                                                
                                             </td>
+
+
                                             <td class="btns_centro">
                                                 <a href="/cancela_venta_c/{{result[0]}}">
-                                                    <i id="icono_3" class="lni lni-checkmark-circle"></i>
+                                                    <i id="icono_2" class="lni lni-checkmark-circle"></i>
                                                 </a>
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
 
-                                
-                                
-                            
-                                <!-- <tbody>
-                                    {% for result in resul %}
-                                    <tr>
-                                        {% for i in range(1, 7) %}
-                                            {% if i == 3 %}
-                                                <td class="clase1">$ {{result[i]}}</td>
-                                            {% elif i == 4 %}
-                                                <td class="clase1">$ {{result[i]}}</td>
-                                            {% else %}
-                                                <td>{{ result[i] }}</td>
-                                            {% endif %}
-                                        {% endfor %}
-                                        <td class="btns_centro">
-                                            <a href="/abono_credito_2/{{result[0]}}"><i id="icono_ver_mas" class="lni lni-stats-up"></i></a>
-                                        </td>
-                                        <td class="btns_centro">
-                                            <a href="/borra_produc/{{resul[0]}}">
-                                                <i id=icono_2 class="lni lni-dollar"></i>
-                                            </a>
-                                        </td>
-            
-                                        <td class="btns_centro">
-                                            <a href="/cancela_venta_c/{{result[0]}}">
-                                                <i id="icono_3" class="lni lni-checkmark-circle"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody> -->
                                 
                                 <p id="noResults" style="display: none;">No se encontraron resultados</p>
                             </table>
@@ -150,7 +121,10 @@
 
         </section>
 
+        <input type="hidden" value="{{msj}}" id="input_error" oninput="verifica_input()">
+
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/static/javaScript/buscadorVentas.js"></script>
     <script src="/static/javaScript/modal_historial_creditos.js"></script>
 </body>
