@@ -1,14 +1,17 @@
 function abrirModal() {
+    console.log("Abriendo modal");
     var modal = document.getElementById('modal');
     modal.style.display ='block';
 }
 
 function cerrarModal() {
+    console.log("Cerrando modal");
     var modal = document.getElementById('modal');
     modal.style.display = 'none';
 }
 
 function registrar() {
+    console.log("Entró a la función registrar");
 // Obtener los valores ingresados en la ventana modal
 var proveedorCompraElement = document.getElementById('proveedor_compra');
 var fechaCompraElement = document.getElementById('fecha_compra');

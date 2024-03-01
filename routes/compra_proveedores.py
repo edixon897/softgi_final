@@ -30,7 +30,7 @@ def Regitra_compra_prov():
         return redirect(url_for('index'))
 
 
-""" @app.route("/Registrar_compra_p", methods=['POST'])
+@app.route("/Registrar_compra_p", methods=['POST'])
 def Registrar_compra_p():
     if "nom_empleado" in session:
 
@@ -94,10 +94,10 @@ def Registrar_compra_p():
             Dcompra_proveedores.registrar_detalles_compra([num, producto_compra, cantidad_compra, valor_unidad,  total ])
               # se incerta los datos en la segunda tabla
             flash('¡Se registro con exito!')
-            return redirect("/Regitra_compra_prov")
+            return redirect("/muestra_compra_proved")
     else:
         flash('Por favor inicia sesion para poder acceder')
-        return redirect(url_for('index')) """
+        return redirect(url_for('index'))
     
 
 
@@ -121,18 +121,37 @@ def cancelar_compra_proveed(num_compra):
 @app.route("/edita_compras_provee/<num_compra>") 
 def edita_compras_provee(num_compra):
     if "nom_empleado" in session:
-
-        sql = f"SELECT detallenum_compra, producto_compra, cantidad_producto_compra, valorunidad_prodcompra FROM detallecomprasproveedores WHERE detallenum_compra = '{num_compra}' "
+        sql = (
+            f"SELECT d.`id_detalle_compra`, d.`detallenum_compra`, d.`producto_compra`, "
+            f"d.`cantidad_producto_compra`, "
+            f"d.`valorunidad_prodcompra`, "
+            f"d.`valortotal_cantidadcomp`, "
+            f"d.`totalpagar_compra`, "
+            f"cp.`num_factura_proveedor` "
+            f"FROM `detallecomprasproveedores` d "
+            f"JOIN `comprasproveedores` cp ON d.`detallenum_compra` = cp.`num_compra` "
+            f"WHERE d.`detallenum_compra` = '{num_compra}'"
+        )
         conn = mysql.connect()
         cursor = conn.cursor()                  
         cursor.execute(sql)
-        resultado = cursor.fetchall()  
-        conn.commit()
-        return render_template("/compra_proveedores/edita_compras_prove.html", resul=resultado[0])
-    
+        resultado = cursor.fetchall()
+        print("Resultado de la consulta:", resultado)
+        # Resto del código...
+  # Agrega este print para ver el resultado de la consulta
+
+
+        if resultado:  # Verifica si la tupla no está vacía
+            conn.commit()
+            return render_template("/compra_proveedores/edita_compras_prove.html", resul=resultado[0])
+        else:
+            flash('Compra no encontrada')
+            return redirect(url_for('muestra_compra_proved'))
+
     else:
-        flash('Porfavor inicia sesion para poder acceder')
+        flash('Por favor, inicia sesión para poder acceder')
         return redirect(url_for('index'))
+
 
 
 @app.route("/actualiza_compra_provee", methods=['POST'])
@@ -244,57 +263,3 @@ def muestra_detalles_com(num_compra):
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
     
-
-@app.route('/guardar_datos_en_bd', methods=['POST'])
-def guardar_datos_en_bd():
-    if "nom_empleado" in session:
-        data = request.json
-        try:
-            doc = session["nom_empleado"]
-            bsq = f"SELECT doc_empleado, nom_empleado, ape_empleado FROM empleados WHERE nom_empleado='{doc}'"
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute(bsq)
-            resultado = cursor.fetchone()
-
-            documento_operador = resultado[0]
-            nombre_operador = resultado[1]
-            apellido_operador = resultado[2]
-
-            tiempo_registro = datetime.datetime.now()
-
-            lower = string.ascii_lowercase
-            upper = string.ascii_uppercase
-            num = string.digits
-            chars = lower + upper + num
-            codigo = random.sample(chars, 10)
-            codigo_2 = ""
-
-            for c in codigo:
-                codigo_2+=c
-
-            sql =f"SELECT num_compra FROM comprasproveedores WHERE codigo_tabala = '{codigo_2}'"
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute(sql)
-            num_compra = cursor.fetchall()
-            conn.commit()
-            if num_compra:
-                num = num_compra[0][0]
-
-            total = data['valor_unidad'] * data['cantidad_compra']
-            data['documento_operador'] = documento_operador
-            data['nombre_operador'] = nombre_operador
-            data['apellido_operador'] = apellido_operador
-            data['tiempo_registro'] = tiempo_registro
-            data['codigo_2'] = codigo_2
-            data['total'] = total
-            Dcompra_proveedores.registrar_compra(data)
-            Dcompra_proveedores.registrar_detalles_compra(data)
-            return jsonify({'status': 'success'})
-        except Exception as e:
-            return jsonify({'status': 'error', 'message': str(e)})
-        finally:
-            conn.close()
-    else:
-        return jsonify({'status': 'error', 'message': 'No se a iniciado session'})
