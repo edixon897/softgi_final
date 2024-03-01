@@ -72,12 +72,53 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                            
+
                                 <tbody>
                                     {% for c in resul %}
                                     <tr>
                                         {% for i in range(1, 14) %}
-
+                                            {% if i == 9 %}
+                                                {% if c[i] <= c[11] %}
+                                                    <td class="valor_menor">{{ "{:,.0f}".format(c[i]) }}</td>
+                                                {% else %}
+                                                    <td class="valor_mayor">{{ "{:,.0f}".format(c[i]) }}</td>
+                                                {% endif %}
+                                            {% elif i == 4 %}
+                                                <td class="color_td">{{ c[i] }}</td>
+                                            {% elif i == 6 %}
+                                                <td class="color_nombre">{{ c[i] }}</td>
+                                            {% elif i == 11 %}
+                                                <td class="color_stock_minimo">{{ c[i] }}</td>
+                                            {% elif i in [7, 8] %}
+                                                <td class="campo_dinero1 {{ i }}">${{ "{:,.0f}".format(c[i]) }}</td>
+                                            {% elif i == 11 %}
+                                                <td class="color_stock_minimo">{{c[i]}}</td>
+                                            {% else %}
+                                                <td>{{ c[i] }}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <td class="btns_centro">
+                                            <a href="#" onclick="abrirModal('{{c[0]}}')">
+                                                <i id=icono_3 class="lni lni-chevron-right"></i>
+                                            </a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a href="/modificar_Producto/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borra_produc/{{c[0]}}">
+                                                <i id=icono_2 class="lni lni-trash-can"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                
+                            
+                                <!-- <tbody>
+                                    {% for c in resul %}
+                                    <tr>
+                                        {% for i in range(1, 14) %}
                                             {% if i == 9 %}
                                                 {% if c[i] <= c[11] %}
                                                     <td class="valor_menor">{{ c[i] }}</td>
@@ -100,7 +141,7 @@
                                         {% endfor %}
                                         <td class="btns_centro">
                                             <a href="#" onclick="abrirModal('{{c[0]}}')">
-                                                <i id=icono_3 class="lni lni-chevron-right"></i><!-- lni lni-arrow-right -->
+                                                <i id=icono_3 class="lni lni-chevron-right"></i><!-- lni lni-arrow-right 
                                             </a>
                                         </td>
                                         <td class="btns_centro">
@@ -113,7 +154,7 @@
                                         </td>
                                     </tr>
                                     {% endfor %}
-                                </tbody>
+                                </tbody> -->
                                 <p id="noResults" style="display: none; ">No se encontraron resultados</p>
                             </table>
                         </div>

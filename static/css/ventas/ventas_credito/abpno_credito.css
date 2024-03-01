@@ -1,0 +1,104 @@
+div#modalContenedor {
+    background-color: white;
+    width: 38%;
+    height: 43%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.8em;
+    opacity: 1;
+    z-index: 3;
+}
+    form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+        form div#div_titulo {
+            width: 80%;
+            height: 38%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.6em;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.554);
+        }
+
+        form div#div_input {
+            width: 80%;
+            height: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+            div#div_input input {
+                width: 100%;
+                height: 45%;
+                border: 0.5px solid #DDDDDD;
+                border-radius: 0.4em;
+                font-size: 1.3em;
+                padding-left: 9%;
+                padding-right: 9%;
+                outline: none;
+            }
+                div#div_input input:focus {
+                    border: 0.5px solid #358CB4;
+                }
+
+        form div#div_btns {
+            width: 80%;
+            height: 22%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: -20px;
+        }
+            section#conten_btn_1 {
+                width: 48%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+                section#conten_btn_1 a {
+                    width: 60%;
+                    height: 70%;
+                    background-color: #BBBBBB;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 1.3em;
+                    font-weight: 500;
+                    border-radius: 0.4em;
+                }
+            section#conten_btn_2 {
+                width: 48%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+                section#conten_btn_2 button {
+                    width: 60%;
+                    height: 70%;
+                    background-color: #358CB4;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 1.2em;
+                    font-weight: 500;
+                    border-radius: 0.4em;
+                    border: none;
+                    text-align: center;
+                }
+
+

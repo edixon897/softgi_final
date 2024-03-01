@@ -1,7 +1,7 @@
 import random
 import string
 import sys
-from flask import Flask, request, render_template, flash, redirect, url_for, session
+from flask import Flask, jsonify, request, render_template, flash, redirect, url_for, session
 from conexiondb import conexion, mysql, app
 import datetime
 from models.compra_proveedores import Dcompra_proveedores
@@ -12,20 +12,25 @@ from models.compra_proveedores import Dcompra_proveedores
 def Regitra_compra_prov():
     if "nom_empleado" in session:
 
-        sql = "SELECT doc_proveedor, nom_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
-        conn = mysql.connect()
-        cursor = conn.cursor()                  # consulta todos los documentos de los proveedores y los envia al select
-        cursor.execute(sql)
-        resultado = cursor.fetchall()         # y muestra el html registra_compras_prove
-        conn.commit()
-        return render_template("/compra_proveedores/registrar_compra_proveedores.html",resul = resultado)
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "almacenista":
+
+            sql = "SELECT doc_proveedor, nom_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()                  # consulta todos los documentos de los proveedores y los envia al select
+            cursor.execute(sql)
+            resultado = cursor.fetchall()         # y muestra el html registra_compras_prove
+            conn.commit()
+            return render_template("/compra_proveedores/registrar_compra_proveedores.html",resul = resultado)
+        else:
+            return redirect("/inicio")
 
     else:
         flash('Por favor inicia sesion para acceder')
         return redirect(url_for('index'))
 
 
-@app.route("/Registrar_compra_p", methods=['POST'])
+""" @app.route("/Registrar_compra_p", methods=['POST'])
 def Registrar_compra_p():
     if "nom_empleado" in session:
 
@@ -47,8 +52,6 @@ def Registrar_compra_p():
         Cantidad_compra = request.form['cantidad_compra']
         cantidad_compra = int(Cantidad_compra)
         valor_unidad = request.form['valor_unidad']
-
-        
 
         try:
             cantidad_compra = int(Cantidad_compra)
@@ -94,7 +97,7 @@ def Registrar_compra_p():
             return redirect("/Regitra_compra_prov")
     else:
         flash('Por favor inicia sesion para poder acceder')
-        return redirect(url_for('index'))
+        return redirect(url_for('index')) """
     
 
 
@@ -190,7 +193,7 @@ def muestra_compra_proved():
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
 
-            sql ="SELECT cp.`num_compra`, cp.`proveedor_compra`,  p.`nom_proveedor`, cp.`fecha_compra`, `direccion_proveedor`, cp.`num_factura_proveedor`, CONCAT(cp.`nombre_operador`, ' ', cp.`apellido_operador`) AS nombre_completo FROM `comprasproveedores` cp JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` WHERE cp.`estado` = 'ACTIVO'"
+            sql ="SELECT cp.`num_compra`, cp.`proveedor_compra`,  p.`nom_proveedor`, cp.`num_factura_proveedor`, CONCAT(cp.`nombre_operador`, ' ', cp.`apellido_operador`) AS nombre_completo, cp.`fecha_compra`, `direccion_proveedor` FROM `comprasproveedores` cp JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` WHERE cp.`estado` = 'ACTIVO'"
         conn = mysql.connect()
         cursor = conn.cursor()                  # muestra las compras a proveedores
         cursor.execute(sql)
@@ -240,3 +243,58 @@ def muestra_detalles_com(num_compra):
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
+    
+
+@app.route('/guardar_datos_en_bd', methods=['POST'])
+def guardar_datos_en_bd():
+    if "nom_empleado" in session:
+        data = request.json
+        try:
+            doc = session["nom_empleado"]
+            bsq = f"SELECT doc_empleado, nom_empleado, ape_empleado FROM empleados WHERE nom_empleado='{doc}'"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(bsq)
+            resultado = cursor.fetchone()
+
+            documento_operador = resultado[0]
+            nombre_operador = resultado[1]
+            apellido_operador = resultado[2]
+
+            tiempo_registro = datetime.datetime.now()
+
+            lower = string.ascii_lowercase
+            upper = string.ascii_uppercase
+            num = string.digits
+            chars = lower + upper + num
+            codigo = random.sample(chars, 10)
+            codigo_2 = ""
+
+            for c in codigo:
+                codigo_2+=c
+
+            sql =f"SELECT num_compra FROM comprasproveedores WHERE codigo_tabala = '{codigo_2}'"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            num_compra = cursor.fetchall()
+            conn.commit()
+            if num_compra:
+                num = num_compra[0][0]
+
+            total = data['valor_unidad'] * data['cantidad_compra']
+            data['documento_operador'] = documento_operador
+            data['nombre_operador'] = nombre_operador
+            data['apellido_operador'] = apellido_operador
+            data['tiempo_registro'] = tiempo_registro
+            data['codigo_2'] = codigo_2
+            data['total'] = total
+            Dcompra_proveedores.registrar_compra(data)
+            Dcompra_proveedores.registrar_detalles_compra(data)
+            return jsonify({'status': 'success'})
+        except Exception as e:
+            return jsonify({'status': 'error', 'message': str(e)})
+        finally:
+            conn.close()
+    else:
+        return jsonify({'status': 'error', 'message': 'No se a iniciado session'})
