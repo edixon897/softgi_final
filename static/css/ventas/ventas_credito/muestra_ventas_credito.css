@@ -121,7 +121,7 @@ main#cuerpo {
                         color: #358CB4;
                     }
             div#conten_btn_navegacion {
-                width: 40%;
+                width: 30%;
                 height: 100%;
                 display: flex;
                 justify-content: center;
@@ -136,7 +136,7 @@ main#cuerpo {
                     display: flex;
                     align-items: center;
                     justify-content: space-evenly;
-                    margin: 0 0 0 10px;
+                    margin: 0 0 0 20px;
                 }
         div#conten_tabla {
             width: 95%;
@@ -195,6 +195,7 @@ main#cuerpo {
                             outline: none;
                             border: 0.5px solid #dfdede;
                             padding-left: 55px;
+                            padding-right: 20px;
                             font-size: 1.0em;
                         }
                 section#section_tabla_info {
@@ -210,6 +211,7 @@ main#cuerpo {
                         overflow-y: scroll;
                         display: flex;
                         justify-content: center;
+                        align-items: first baseline;
                     }
                         /* estilos croll */
                         ::-webkit-scrollbar {

@@ -9,7 +9,7 @@ from models.ventas import Dventas, Ventas
 
 
 
-@app.route("/historial_abono/<contador>")
+@app.route("/historial_abono/<int:contador>")
 def historial_abono(contador):
     if "nom_empleado" in session:
         
@@ -91,7 +91,15 @@ def confirma_abono_2():
                         cursor = conn.cursor()     
                         cursor.execute(sql)
                         conn.commit()
-                        return redirect("/muestra_ventas_credito")
+                        
+                        mensaj = "El_credito_fue_pagado_exitosamente_por_completo"
+
+                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     #muestra toda la informacion
+                        cursor.execute(sql)
+                        resultado = cursor.fetchall()
+                        return render_template("/ventas_credito/muestra_ventas.html",resul = resultado, msj = mensaj)
                     
                     
                     # 2 
@@ -111,8 +119,17 @@ def confirma_abono_2():
                         cursor = conn.cursor()     
                         cursor.execute(sql)
                         conn.commit()
+
+                        mensaj = "Pago_parcial_registrado_exitosamente"
+
+                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     #muestra toda la informacion
+                        cursor.execute(sql)
+                        resultado = cursor.fetchall()
+                        return render_template("/ventas_credito/muestra_ventas.html",resul = resultado, msj = mensaj)
                         
-                        return redirect("/muestra_ventas_credito")
+                        
 
                 # 1
                 else:
@@ -481,7 +498,15 @@ def cancela_venta_c(contador):
             cursor = conn.cursor()     
             cursor.execute(sql)
             conn.commit()
-            return redirect("/muestra_ventas_credito")
+            
+            mensaj = "El_credito_fue_pagado_exitosamente_por_completo"
+
+            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     #muestra toda la informacion
+            cursor.execute(sql)
+            resultado = cursor.fetchall()
+            return render_template("/ventas_credito/muestra_ventas.html",resul = resultado, msj = mensaj)
         
         else:
             return redirect("/inicio")      
