@@ -13,8 +13,8 @@ body, html{
 
 body{
     font-family: 'Barlow', sans-serif;
-    font-size: 18px;
-    font-weight: 300;
+    font-size: 23px;
+    font-weight: 400;
 }
 
 figure{
@@ -64,7 +64,7 @@ main#cuerpo {
     main#cuerpo section#section_2 {
         background-color: #F5F5F5;
         width: 100%;
-        height: 90%;
+        height: 80%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -164,7 +164,7 @@ main#cuerpo {
                             transform: translateY(-50%);
                             color: #358CB4;
                         }
-                        form#form_conten input#buscador_ventas {
+                        form#form_conten input#buscador_2 {
                             width: 100%;
                             height: 60%;
                             border-radius: 1.0em;
@@ -205,7 +205,7 @@ main#cuerpo {
                             background-color: #358CB4;
                         }
 
-                        #tablaVentas {
+                        #tabla_productos {
                             border-collapse: collapse;
                             width: 90%;
                             position: relative;
@@ -234,25 +234,20 @@ main#cuerpo {
                                 color: #358CB4;
                             }
 
-                            i#icono_ver_mas {
+                            i#icono_2 {
                                 font-size: 1.8em;
                                 color: #358cb475;
-                                
+                            }
+                                i#icono_2:hover {
+                                    color: #358CB4;
                                 }
 
-
-
-
-
-        /* div#conten_btn_regresar {
-            width: 95%;
-            height: 15%;
-            background-color: red;
-        } */
-
-
-
-
+                            i#icono_3 {
+                                font-size: 1.8em;
+                                color: #358cb475;
+                                }i#icono_3:hover {
+                                    color: #358CB4;
+                                }
 
 
 /* CLASES */
@@ -266,19 +261,16 @@ main#cuerpo {
 }
 
 .clase1 {
-    color: rgb(5, 183, 5);
+    color: rgb(183, 35, 5);
 }
-
-.clase2 {
-    color: #FF0000;
+#regresar{
+    position: relative;
+    top: 20%;
+    padding: 20px;
+    margin: 20px;
 }
-
-.clase3 {
-    color:#004481;
-}
-.clase4 {
-    color: #916fcf;
-}
-.clase5 {
-    color: #bebebe;
+#enlace_volver{
+    font-weight: bold;
+    
+    
 }

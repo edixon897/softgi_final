@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventas a credito</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/muestra_ventas_credito.css">
+    <link rel="stylesheet" href="../../static/css/ventas/ventas_credito/muestra_ventas_credito.css">
 </head>
 <body>
 
 
     <main id="cuerpo">
 
+        <section id="conten_registra_pago" onclick="cerrarModal(),cerrarModal_2()">
+
+            <div id="modalContenedor" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
+            <div id="modalContenedor_2" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
+
+        </section>
+
         <section id="section_1">
-            <p>Historial de ventas</p>
+            <p>Historial de créditos</p>
         </section>
 
 
@@ -21,14 +28,14 @@
 
             <div id="conten_botones">
                 <div id="conten_regresar">
-                    <div id="isla_1">
-                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
-                    </div>
+                    <a href="{{url_for ('inicio') }}" id="isla_1">
+                        <i id="boton_back" class="lni lni-home"></i>
+                    </a>
                 </div>
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
                         <a class="botones" href="{{url_for('muestra_ventas')}}">Ventas normales</a>
-                        <a class="botones"  href="{{url_for('verCrear_ventas')}}">Realizar ventas</a>
+                        <a class="botones"  href="{{url_for('verCrear_ventas')}}">Realizar venta</a>
                     </div>
                 </div>
             </div>
@@ -39,7 +46,7 @@
                     <section id="section_buscador_titulo">
                         
                         <div id="conten_titulo">
-                            <p>Ventas a credito</p>
+                            <p>Ventas a crédito</p>
                         </div>
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
@@ -52,47 +59,60 @@
                             <table id="tablaVentas">
                                 <thead>
                                     <tr>
-                                        <th> C.C cliente</th>
+                                        <th> C.C. cliente</th>
                                         <th>Productos</th>
-                                        <th>Credito total</th>
-                                        <th>Credito restante</th>
-                                        <th>c.c operador</th>
+                                        <th>Crédito total</th>
+                                        <th>Crédito restante</th>
+                                        <th>Vendedor</th>
                                         <th>Fecha de venta</th>
-                                        <th>Historial de pagos</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <!-- <th>Historial de pagos</th>
                                         <th>Registrar pago</th>
-                                        <th>Venta cancelada</th>
+                                        <th>Venta cancelada</th> -->
                                     </tr>
                                 </thead>
-                            
-                                <tbody>
-                                    {% for result in resul %}
-                                    <tr>
-                                        {% for i in range(1, 7) %}
-                                            {% if i == 3 %}
-                                                <td class="clase1">$ {{result[i]}}</td>
-                                            {% elif i == 4 %}
-                                                <td class="clase1">$ {{result[i]}}</td>
-                                            {% else %}
-                                                <td>{{ result[i] }}</td>
-                                            {% endif %}
+                                    <tbody>
+                                        {% for result in resul %}
+                                        <tr>
+                                            {% for i in range(1, 7) %}
+                                                <td {% if i in [3, 4] %} class="clase1" {% endif %}>
+                                                    {% if result[i] is defined %}
+                                                        {% if i in [3, 4] %}
+                                                            $ {{ "{:,.0f}".format(result[i] | int) }}
+                                                        {% else %}
+                                                            {{ result[i] }}
+                                                        {% endif %}
+                                                    {% else %}
+                                                        {{ result[i] }}
+                                                    {% endif %}
+                                                </td>
+                                            {% endfor %}
+                                            <td class="btns_centro">
+                                                <a href="#" onclick="abrirModal_2('{{result[0]}}')"><!-- /abono_credito_2/{{result[0]}} -->
+                                                    <i id=icono_3 class="lni lni-stats-up"></i>
+                                                </a>
+                                            </td>
+
+
+                                            <td class="btns_centro">
+                                                <a href="#" onclick="abrirModal('{{result[0]}}')"><!-- /abono_credito_2/{{result[0]}} -->
+                                                    <i id=icono_3 class="lni lni-dollar"></i>
+                                                </a>
+                                            </td>
+
+
+                                            <td class="btns_centro">
+                                                <a href="/cancela_venta_c/{{result[0]}}">
+                                                    <i id="icono_2" class="lni lni-checkmark-circle"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                         {% endfor %}
-                                        <td class="btns_centro">
-                                            <a href="/abono_credito_2/{{result[0]}}"><i id="icono_ver_mas" class="lni lni-stats-up"></i></a>
-                                        </td>
-                                        <td class="btns_centro">
-                                            <a href="/borra_produc/{{resul[0]}}">
-                                                <i id=icono_2 class="lni lni-dollar"></i>
-                                            </a>
-                                        </td>
-            
-                                        <td class="btns_centro">
-                                            <a href="/cancela_venta_c/{{result[0]}}">
-                                                <i id="icono_3" class="lni lni-checkmark-circle"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
+                                    </tbody>
+
+                                
                                 <p id="noResults" style="display: none;">No se encontraron resultados</p>
                             </table>
                         </div>
@@ -104,7 +124,11 @@
 
         </section>
 
+        <input type="hidden" value="{{msj}}" id="input_error" oninput="verifica_input()">
+
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/static/javaScript/buscadorVentas.js"></script>
+    <script src="/static/javaScript/modal_historial_creditos.js"></script>
 </body>
 </html>

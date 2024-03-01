@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizaciones</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/muestra_cotizaciones.css">
+    <link rel="stylesheet" href="../../static/css/cotizaciones/muestra_cotizaciones.css">
 </head>
 <body>
 
@@ -22,9 +22,9 @@
 
             <div id="conten_botones">
                 <div id="conten_regresar">
-                    <div id="isla_1">
-                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
-                    </div>
+                        <a href="{{url_for ('inicio') }}" id="isla_1">
+                            <i id="boton_back" class="lni lni-home"></i>
+                        </a>
                 </div>
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
@@ -39,7 +39,7 @@
                     <section id="section_buscador_titulo">
                         
                         <div id="conten_titulo">
-                            <p>Todas mis cotizaciones</p>
+                            <p>Todas las cotizaciones</p>
                         </div>
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
@@ -53,10 +53,10 @@
                                 <thead>
                                     <tr>
                                         <th>C.C. cliente</th>
-                                        <th>Nombre cliente</th>
-                                        <th>Fecha inicio</th>
+                                        <th>Nombre</th>
+                                        <th>Fecha de inicio</th>
                                         <th>Fecha final</th>
-                                        <th>Nombre operador</th>
+                                        <th>Vendedor</th>
                                         <th></th>
                                         <th></th>
                                         <th></th>

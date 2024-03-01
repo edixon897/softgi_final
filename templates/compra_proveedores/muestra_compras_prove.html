@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compras proveedores</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/muestra_compras_prove.css">
+    <link rel="stylesheet" href="../../static/css/compra_proveedores/muestra_compras_prove.css">
 </head>
 <body>
 
@@ -15,20 +15,20 @@
             <p>Compras a proveedores</p>
         </section>
 
-
         <section id="section_2">
 
             <div id="conten_botones">
                 <div id="conten_regresar">
-                    <div id="isla_1">
-                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
-                    </div>
+                        <a href="{{url_for ('inicio') }}" id="isla_1">
+                            <i id="boton_back" class="lni lni-home"></i>
+                        </a>
                 </div>
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
-                        <a class="botones"  href="{{url_for('proveedores')}}"> Mis proveedores</a>
-                        <a class="botones" href="{{url_for('Regitra_compra_prov')}}">Registrar una compra</a>
-                    </div>
+                        <a class="botones"  href="{{url_for('muestra_compra_proved')}}">Compras a  proveedores</a>
+                        <!-- <a class="botones" href="" onClick="abrirModal()">Registrar una compra</a> -->
+                        <span class="botones" onClick="abrirModal()">Registrar compra</span>
+                    </div> <!-- {{url_for('Regitra_compra_prov')}} -->
                 </div>
             </div>
 
@@ -52,13 +52,14 @@
                                 <thead>
                                     <tr>
                                         <th>Número compra</th>
-                                        <th>Proveedor</th>
-                                        <th>Documento operador</th>
+                                        <th>C.C./NIT proveedor</th>
+                                        <th>Nombre proveedor</th>
+                                        <th>Número factura del proveedor</th>
                                         <th>Nombre operador</th>
-                                        <th>Apellido operador</th>
-                                        <th>Fecha</th>
+                                        <th>Fecha de compra</th>
                                         <th>Dirección</th>
-                                        <th>Num_factura_proveedor</th>
+                                        <th></th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
@@ -100,87 +101,52 @@
 
         </section>
 
-    </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--     <main id="inicio">
-        <section id="opciones">
-            <h2>Compras a proveedores</h2>
-            <div class="opciones">
-                <a class="color_opciones" href="Regitra_compra_prov">Registrar compra</a>
-            </div>
-            <div  class="opciones">
-                <a class="color_opciones" href="{{url_for('proveedores')}}">Proveedores</a>
-            </div>
-            <div id="buscar">
-                <form action="busca_compras_prov" method="post" id="buscador">
-                    <i class="lni lni-search-alt"></i>
-                    <input type="search" placeholder="Busca alguna compra" aria-label="Search" name="dato_busqueda" id="buscador_2" oninput="buscarCompras_prove()"> 
-                </form>
-            </div>
-        </section>
-        <section id="contenido">
-            <table class="content-table" id="tabla_productos">
-                <thead >
-                    <tr>
-                        <th>Número compra</th>
-                        <th>Proveedor</th>
-                        <th>Documento operador</th>
-                        <th>Nombre operador</th>
-                        <th>Apellido operador</th>
-                        <th>Fecha</th>
-                        <th>Dirección</th>
-                        <th>Num_factura_proveedor</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for c in resul %}
-                    <tr>
-                        {% for i in range(0,8) %}
-                            <td>{{c[i]}}</td>
+        <div id="modal">
+            <h4>Registra compras de proveedores</h4>
+            <form id="compraForm">
+                <div>
+                    <label for="proveedor_compra">Proveedor</label>
+                    <select name="proveedor_compra" id="proveedor_compra" class="input_campo">
+                        <option value="">Proveedor</option>
+                        {% for c in resul %}
+                            <option value="{{c[0]}}">{{c[1]}}</option>
                         {% endfor %}
-                            <td>
-                                <a class="boton-editar" href="edita_compras_provee/{{c[0]}}"> <i class="lni lni-pencil"></i></a>
-                            </td>
-                            <td>
-                                <a class="boton-eliminar"  href="cancelar_compra_proveed/{{c[0]}}"><i class="lni lni-trash-can"></i></a>
-                            </td>
-                            <td>
-                                <a href="muestra_detalles_com/{{c[0]}}"><i class="lni lni-circle-plus"></i></a>
-                            </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <p id="noResults" style="display: none;">No se encontraron resultados</p>
-        </section>
-
-        <div id="regresar">
-            <a href="{{url_for ('inicio') }}" class="campo_a">
-                <i id="atras" class="lni lni-arrow-left"></i>
-            </a>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="fecha_compra">Fecha</label>
+                    <input type="date" name="fecha_compra" id="fecha_compra" class="campo">
+                </div>
+                
+                <div>
+                    <label for="num_factura_proveedor">N° factura</label>
+                    <input type="text" name="num_factura_proveedor" id="num_factura_proveedor" placeholder="N° factura" class="campo">
+                </div>
+        
+                <div>
+                    <label for="producto_compra">Producto</label>
+                    <input type="text" name="producto_compra" id="producto_compra" placeholder="Producto" class="campo">
+                </div>
+        
+                <div>
+                    <label for="cantidad_compra">Cantidad</label>
+                    <input type="number" name="cantidad_compra" id="cantidad_compra" placeholder="Cantidad" id="cantidad" class="campo">
+                </div>
+        
+                <div>
+                    <label for="valor_unidad">Valor por unidad</label>
+                    <input type="number" name="valor_unidad" id="valor_unidad" placeholder="Valor por unidad" class="campo">
+                </div>
+        
+            </form>
+            <button type="button" onclick="agregarProducto()">Agregar Producto</button>
+            <button type="submit">Registrar</button>
+            <button type="button" onclick="cerrarModal()">Cerrar</button>
         </div>
-    </main> -->
 
+    </main>
+    <script src="../../static/javaScript/modal_form_compraProveedores.js"></script>
     <script src="../../static/javaScript/buscarCompras_prove.js"></script>
 </body>
 </html>

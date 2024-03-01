@@ -6,7 +6,7 @@
     <title>Muestra productos</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../../static/css/muestra_productos.css">
+    <link rel="stylesheet" href="../../static/css/productos/muestra_productos.css">
 
 </head>
 <body>
@@ -22,13 +22,13 @@
 
             <div id="conten_botones">
                 <div id="conten_regresar">
-                    <div id="isla_1">
-                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
-                    </div>
+                        <a href="{{url_for ('inicio') }}" id="isla_1">
+                            <i id="boton_back" class="lni lni-home"></i>
+                        </a>
                 </div>
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
-                        <a class="botones" href="{{url_for('categorias')}}">Categorias</a>
+                        <a class="botones" href="{{url_for('categorias')}}">Categorías</a>
                         <a class="botones" href="{{url_for('crear_Producto')}}">Crear producto</a>
                     </div>
                 </div>
@@ -54,17 +54,17 @@
                             <table id="Tabla_product">
                                 <thead>
                                     <tr>
-                                        <th>Referencia 1</th>
-                                        <th>Referencia 2</th>
-                                        <th>Referencia 3</th>
-                                        <th>Nom Categoria</th>
-                                        <th>Nom Proveedor</th>
-                                        <th>Nom producto</th>
-                                        <th>Precio comp</th>
-                                        <th>Precio venta</th>
+                                        <th>Referencia #1</th>
+                                        <th>Referencia #2</th>
+                                        <th>Referencia #3</th>
+                                        <th>Categoría</th>
+                                        <th>Proveedor</th>
+                                        <th>Nombre del producto</th>
+                                        <th>Precio de compra</th>
+                                        <th>Precio de venta</th>
                                         <th>Cantidad</th>
-                                        <th>Descripcion</th>
-                                        <th>Stock minimo</th>
+                                        <th>Descripción</th>
+                                        <th>Cantidad mínima</th>
                                         <th>Ubicación</th>
                                         <th>Estante</th>
                                         <th></th>
@@ -72,12 +72,53 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                            
+
                                 <tbody>
                                     {% for c in resul %}
                                     <tr>
                                         {% for i in range(1, 14) %}
-
+                                            {% if i == 9 %}
+                                                {% if c[i] <= c[11] %}
+                                                    <td class="valor_menor">{{ "{:,.0f}".format(c[i]) }}</td>
+                                                {% else %}
+                                                    <td class="valor_mayor">{{ "{:,.0f}".format(c[i]) }}</td>
+                                                {% endif %}
+                                            {% elif i == 4 %}
+                                                <td class="color_td">{{ c[i] }}</td>
+                                            {% elif i == 6 %}
+                                                <td class="color_nombre">{{ c[i] }}</td>
+                                            {% elif i == 11 %}
+                                                <td class="color_stock_minimo">{{ c[i] }}</td>
+                                            {% elif i in [7, 8] %}
+                                                <td class="campo_dinero1 {{ i }}">${{ "{:,.0f}".format(c[i]) }}</td>
+                                            {% elif i == 11 %}
+                                                <td class="color_stock_minimo">{{c[i]}}</td>
+                                            {% else %}
+                                                <td>{{ c[i] }}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <td class="btns_centro">
+                                            <a href="#" onclick="abrirModal('{{c[0]}}')">
+                                                <i id=icono_3 class="lni lni-chevron-right"></i>
+                                            </a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a href="/modificar_Producto/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
+                                        </td>
+                                        <td class="btns_centro">
+                                            <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borra_produc/{{c[0]}}">
+                                                <i id=icono_2 class="lni lni-trash-can"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                
+                            
+                                <!-- <tbody>
+                                    {% for c in resul %}
+                                    <tr>
+                                        {% for i in range(1, 14) %}
                                             {% if i == 9 %}
                                                 {% if c[i] <= c[11] %}
                                                     <td class="valor_menor">{{ c[i] }}</td>
@@ -100,7 +141,7 @@
                                         {% endfor %}
                                         <td class="btns_centro">
                                             <a href="#" onclick="abrirModal('{{c[0]}}')">
-                                                <i id=icono_3 class="lni lni-chevron-right"></i><!-- lni lni-arrow-right -->
+                                                <i id=icono_3 class="lni lni-chevron-right"></i><!-- lni lni-arrow-right 
                                             </a>
                                         </td>
                                         <td class="btns_centro">
@@ -113,7 +154,7 @@
                                         </td>
                                     </tr>
                                     {% endfor %}
-                                </tbody>
+                                </tbody> -->
                                 <p id="noResults" style="display: none; ">No se encontraron resultados</p>
                             </table>
                         </div>

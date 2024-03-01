@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../static/css/seleccion_muchos_productos.css">
+    <link rel="stylesheet" href="../../static/css/ventas/seleccion_muchos_productos.css">
 </head>
 <body>
 
@@ -15,12 +15,12 @@
             <p>Producto seleccionado: <span>{{nom_p[0]}}</span> </p>
         </div>
         <div id="modal_info">
-            <p>Por favor, ingrese la cantidad del producto que desea seleccionar para la venta en el campo a continuación.</p>
+            <p>Ingrese el número de unidades para agregar</p>
         </div>
 
         <form action="/confirma_p_seleccionado" method="post" id="CONTEN_FORM_2">
             <!-- <label for="">Id producto</label> -->
-            <input type="hidden" name="id_producto" placeholder="Codigo del producto" value="{{id_p}}" required>
+            <input type="hidden" name="id_producto" placeholder="Código del producto" value="{{id_p}}" required>
             <input type="hidden" name="nombre_producto" value="{{nom_p[0]}}">
             <input type="hidden" name="precio_unidad" value="{{nom_p[1]}}">     
             <input type="hidden" name="Stock_disponible" value="{{nom_p[2]}}">

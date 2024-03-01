@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proveedores</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/muestra_proveedores.css">
+    <link rel="stylesheet" href="../../static/css/proveedores/muestra_proveedores.css">
 </head>
 <body>
 
@@ -20,9 +20,9 @@
 
             <div id="conten_botones">
                 <div id="conten_regresar">
-                    <div id="isla_1">
-                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
-                    </div>
+                    <a href="{{url_for ('inicio') }}" id="isla_1">
+                        <i id="boton_back" class="lni lni-home"></i>
+                    </a>
                 </div>
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
@@ -51,11 +51,11 @@
                             <table id="tablaVentas">
                                 <thead>
                                     <tr>
-                                        <th>Documento proveedor</th>
-                                        <th>Nombre proveedor</th>
-                                        <th>Contacto proveedor</th>
+                                        <th>C.C./NIT proveedor</th>
+                                        <th>Nombre</th>
+                                        <th>Contacto</th>
                                         <th>Correo electrónico</th>
-                                        <th>Dirección proveedor</th>
+                                        <th>Dirección</th>
                                         <th></th>
                                         <th></th>
                                     </tr>

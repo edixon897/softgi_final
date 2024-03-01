@@ -5,40 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles compras proveedores</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../static/css/muestra_detalles_compras.css">
+    <link rel="stylesheet" href="../../../static/css/compra_proveedores/detalles_compras/detalles_compra_proveedores.css">
 </head>
 <body>
-    <h2>Detalles de la compra</h2>
 
-    <table  class="content-table" id="tabla_compras">
-        <thead >
-            <tr>
-                <th>numero compra</th>
-                <th>producto</th>
-                <th>Cantidad</th>
-                <th>Valor unidad</th>
-                <th>valor cantidad total</th>
-                <th>total a pagar</th>
-                <th></th>
-                <th></th>
+    <main id="cuerpo">
+        <section id="section-1">
+            <p>Detalles de la compra</p>
+        </section>
+        <section id="section_2">
+            <div id="conten_tabla">
+                <div id="isla_3">
 
+                    <table id="tabla_productos">
+                        <thead >
+                            <tr>
+                                <th>numero compra</th>
+                                <th>producto</th>
+                                <th>Cantidad</th>
+                                <th>Valor unidad</th>
+                                <th>valor cantidad total</th>
+                                <th>total a pagar</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
 
-            </tr>
-        </thead>
+                        <tbody>
+                            {% for c in resul %}
+                            <tr>
+                                {% for i in range(0,6) %}
+                                    <td>{{c[i]}}</td>
+                                {% endfor %}
 
-        <tbody>
-            {% for c in resul %}
-            <tr>
-                {% for i in range(0,7) %}
-                    <td>{{c[i]}}</td>
-                {% endfor %}
-
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div id="boton-atras">
-        <button class="boton-atras" onclick="window.location.href='/muestra_compra_proved'">Regresar</button>
-    </div>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div id="regresar">
+                        <a href="{{url_for ('muestra_compra_proved') }}" id="enlace_volver">
+                                <i id="atras" class="lni lni-arrow-left"></i>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../../static/javaScript/buscarCompras_prove.js"></script>
 </body>
 </html>

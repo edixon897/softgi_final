@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar productos</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/edita_productos.css">
+    <link rel="stylesheet" href="../../static/css/productos/edita_productos.css">
    
 </head>
 <body>
@@ -31,15 +31,15 @@
                         <input type="hidden" name="id_producto" id="id_producto"  value="{{resul[0]}}">
                         <div class="campo_2">
                             <input type="text" name="ref_produ_1" id="ref_produ_1" class="input_campo" value="{{resul[1]}}" oninput="cambia_color_1()">
-                            <label id="label_1" for="referencia_producto">Referencia 1</label>
+                            <label id="label_1" for="referencia_producto">Referencia #1</label>
                         </div>
                         <div class="campo_2">
                             <input type="text" name="ref_produ_2" id="ref_produ_2"  class="input_campo" value="{{resul[2]}}" oninput="cambia_color_2()">
-                            <label  id="label_2" for="ref_produ_2">Referencia 2</label>
+                            <label  id="label_2" for="ref_produ_2">Referencia #2</label>
                         </div>
                         <div class="campo_2">
                             <input type="text" name="ref_produ_3" id="ref_produ_3"  class="input_campo" value="{{resul[3]}}" oninput="cambia_color_3()">
-                            <label id="label_3" for="ref_produ_3">Referencia 3</label>
+                            <label id="label_3" for="ref_produ_3">Referencia #3</label>
                         </div>
                     </div>
                 </section>
@@ -65,7 +65,7 @@
                                 <option value="{{c[0]}}">{{c[0]}}</option>
                             {% endfor %}
                             </select>
-                            <label id="label_5"  for="nom_categoria">Categoria</label>
+                            <label id="label_5"  for="nom_categoria">Categoría</label>
                         </div>
                     </div>
                 </section>
@@ -124,7 +124,7 @@
                                 <select id="ubicacion" name="ubicacion" class="input_campo" oninput="cambia_color_12()">
                                     <option value="{{resul[12]}}">{{resul[12]}}</option>
                                     <option value="Bodega">Bodega</option>
-                                    <option value="Almacen">Almacen</option>
+                                    <option value="Almacen">Almacén</option>
                                 </select>
                                 <label id="label_12" for="ubicacion">Ubicación</label>
                             </div>
@@ -135,9 +135,7 @@
                         </div>
                     </section>
                     <section class="lado_info_contacto">
-                        <!-- <div class="conten_titulo_div_2">
-                            <p></p>
-                        </div> -->
+                        
                         <div class="content_inputs_2">
                             <p class="icono_listo"><i class="lni lni-pencil-alt"></i></p>
                         </div>

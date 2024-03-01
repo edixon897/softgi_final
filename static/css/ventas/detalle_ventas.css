@@ -17,19 +17,14 @@ body{
     font-weight: 300;
 }
 
-figure{
-    margin: 0;
-    padding: 0;
+#titulo{
+    position: relative;
+    left: 35%;
 }
-
-figure img{
-    margin: 0;
-    width: 100%;
-}
-
 
 section#contenido{
     margin: 20px;
+    
 }
 
     table{
@@ -53,3 +48,15 @@ section#contenido{
         td{
             text-align: left;
         }
+#opciones{
+    position: relative;
+}
+#regresar_ventas{
+    position: relative;
+    left: 2%;
+    top: 10%;
+}
+#opciones #regresar_ventas a i#atras {
+    font-size: 34px;
+    border-width: 2px;
+}

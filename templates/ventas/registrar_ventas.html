@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar venta</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/crea_venta.css">
+    <link rel="stylesheet" href="../../static/css/ventas/crea_venta.css">
     
 </head>
 <body>
@@ -15,7 +15,7 @@
         <div id="modalContenedor" style="display: none;"></div>
 
         <section id="section_1">
-            <p>Registrar venta</p>
+            <p>Realizar venta</p>
         </section>
 
         <section id="section_2">
@@ -42,11 +42,11 @@
                                 <thead >
                                     <tr>
                                         <th>Referencias</th>
-                                        <th>Nombre producto </th>
+                                        <th>Nombre del producto </th>
                                         <th>Precio unitario</th>
-                                        <th>Stock disponible</th>
-                                        <th>seleccionar muchos</th>
-                                        <th>seleccionar uno</th>
+                                        <th>Cantidad disponible</th>
+                                        <th>Seleccionar varios productos</th>
+                                        <th>Seleccionar un producto</th>
                                     </tr>
                                 </thead>
                     
@@ -55,7 +55,7 @@
                                     <tr>
                                         {% for i in range(1,5) %}
                                             {% if i==3 %}
-                                                <td class="costo">$ {{c[i]}}</td>
+                                            <td class="costo">${{ "{:,.0f}".format(c[i]|float) }}</td>
 
                                             {% else %}
                                                 <td>{{c[i]}}</td>
@@ -91,9 +91,9 @@
                             <table id="tabla_carrito">
                                 <thead >
                                     <tr>
-                                        <th>Nombre producto </th>
+                                        <th>Nombre del producto </th>
                                         <th>Precio unitario</th>
-                                        <th>Cantidad adquirida</th>
+                                        <th>Cantidad de unidades</th>
                                         <th>Total</th>
                                         <th></th>
                                     </tr>
@@ -103,19 +103,13 @@
                                     {% for c in prod_carr %}
                                     <tr>
                                         {% for i in range(1,5) %}
-                                            {% if i==2 %}
-
-                                            <td class="costo">${{c[i]}}</td>
-
-                                            {% elif i==4 %}
-
-                                            <td class="costo">${{c[i]}}</td>
-
+                                            {% if i == 2 or i == 4 %}
+                                                <td class="costo">${{ "{:,.0f}".format(c[i]|float) }}</td>
                                             {% else %}
-                                            <td>{{c[i]}}</td>
-                                    {% endif %}
+                                                <td>{{c[i]}}</td>
+                                            {% endif %}
                                         {% endfor %}
-                                            <td>
+                                        <td>
                                                 <a href="/elimina_p_select/{{c[0]}}"><i id="icono_delete" class="lni lni-trash-can"></i></a>
                                             </td>
                                     </tr>
@@ -123,7 +117,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                         
                     </section>
 
@@ -141,14 +134,10 @@
 
                     <section id="conten_btns">
                         <div id="separador">
-                            <a href="{{url_for ('crearClientes_2') }}">Registrar clente</a>
+                            <a href="{{url_for ('crearClientes_2') }}">Registrar cliente</a>
                             <a href="{{url_for ('muestra_ventas') }}">Regresar</a>
                         </div>
                     </section>
-
-
-
-
 
                     <form id="conten_form" action="/confirma_venta" method="post"> 
 
@@ -162,7 +151,7 @@
 
                             <div class="conten_input">
                                 <div class="campo_2">
-                                    <input type="number" id="doc_cliente" name="doc_cliente" placeholder="Cedula del Cliente"  class="input_campo" required>
+                                    <input type="number" id="doc_cliente" name="doc_cliente" placeholder="Cédula del cliente"  class="input_campo" required>
                                 </div>
                             </div>
 
@@ -175,7 +164,7 @@
                                 <div class="campo_2" >
                                     <select name="tipo_de_venta" class="input_campo" id="venta_tipo" oninput="verifica_tipo_venta()">
                                         <option value="venta_normal">Venta normal</option>
-                                        <option value="venta_credito">Venta a credito</option>
+                                        <option value="venta_credito">Venta a crédito</option>
                                     </select>
                                 </div>
                             </div>
@@ -187,8 +176,8 @@
                                         <option value="Nequi">Nequi</option>
                                         <option value="Daviplata">Daviplata</option>
                                         <option value="Bancolombia">Bancolombia</option>
-                                        <option value="Tarjeta debito">Tarjeta debito</option>
-                                        <option value="Tarjeta credito">Tarjeta credito</option>
+                                        <option value="Tarjeta debito">Tarjeta débito</option>
+                                        <option value="Tarjeta credito">Tarjeta crédito</option>
                                     </select>
                                 </div>
                             </div>
@@ -196,19 +185,15 @@
                         </div>
 
                         <div id="lad_3_form">
-                            <button id="btn_enviar" class="btn_sutmit" type="submit" onclick="valida_campos() ">Registrar venta</button>
+                            <button id="btn_enviar" class="btn_sutmit" type="submit" onclick="valida_campos() ">Finalizar venta</button>
                         </div>
             
-                        
-                        
                     </form>
-
-
 
                 </div>
 
                 <div id="conten_precio_total">
-                    <h1>$ {{Total}}</h1>
+                    <h1>${{ "{:,.0f}".format(Total|int) }}</h1>
                 </div>
 
             </div>
@@ -217,154 +202,11 @@
 
     </main>
 
-
     <input type="hidden" id="input_error" readonly value="{{mensaje}}" oninput="verifica_input()"> 
    <input type="hidden" id="input_error_2" readonly value="{{mensaje_2}}" oninput="verifica_input_2()">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/registrar_ventas.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <form  id="conten_busqueda">
-        <input type="search" placeholder="Busca productos por codigo o nombre" aria-label="Search" name="id_nombre" id="buscador">
-        <button type="submit">Buscar</button>
-    </form>
-
-    <div>
-        <table>
-            <thead >
-                <tr>
-                    <th>Referencias</th>
-                    <th>Nombre producto </th>
-                    <th>Precio unitario</th>
-                    <th>Stock disponible</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>         
-                {% for c in prod %}
-                <tr>
-                    {% for i in range(1,5) %}
-                        <td>{{c[i]}}</td>
-                    {% endfor %}
-                        <td>
-                            <a href="/m_selector_cantidad_p/{{c[0]}}">Seleccionar cantidad</a>
-                        </td>
-                        <td>
-                            <a href="/selector_una_cantidad/{{c[0]}}">Adquirir</a>
-                        </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    <br>
-
-    <div>
-
-        <form action="/confirma_venta" method="post">
-            
-            <input type="number" name="doc_operador" placeholder="Cedula del operador" value="{{operador}}"  required> 
-
-            <input type="number" name="doc_cliente" placeholder="Cedula del Cliente"  required>
-
-            
-            <select name="forma_de_pago">
-
-                
-                <option value="efectivo">Efectivo</option>
-                <option value="Nequi">Nequi</option>
-                <option value="Daviplata">Daviplata</option>
-                <option value="Bancolombia">Bancolombia</option>
-                <option value="Tarjeta debito">Tarjeta debito</option>
-                <option value="Tarjeta credito">Tarjeta credito</option>
-
-            </select>
-
-            
-            <select name="tipo_de_venta">
-
-                <option value="venta_normal">Venta</option>
-                <option value="venta_credito">Venta a credito</option>
-
-            </select>
-
-            <button type="submit">Registrar venta</button>
-
-        </form>
-
-    </div>
-
-    <div>
-        <p>{{mensaje}}</p>
-        <p>{{mensaje_2}}</p>
-    </div>
-
-    <br>
-
-
-
-    <div>
-        <table>
-            <thead >
-                <tr>
-                    <th>Nombre producto </th>
-                    <th>Precio unitario</th>
-                    <th>Cantidad adquirida</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-
-            <tbody>         
-                {% for c in prod_carr %}
-                <tr>
-                    {% for i in range(1,5) %}
-                        <td>{{c[i]}}</td>
-                    {% endfor %}
-                        <td>
-                            <a href="/elimina_p_select/{{c[0]}}">Eliminar</a>
-                        </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    
-    <div>
-        <a href="/elimina_todo_seleccionado_p">Vaciar carrito de ventas</a>
-    </div>
-
-
-    <div>
-        <h1>$ {{Total}}</h1>
-    </div>
-
-    <div id="boton-atras">
-        <button class="boton-atras" onclick="window.location.href='/index'">Regresar al Home</button>
-    </div>  -->
 </body>
 </html>
