@@ -169,8 +169,8 @@ def confirma_abono_2():
 def muestra_ventas():
     if "nom_empleado" in session: 
 
-        rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+        rol_usuario = session["nom_empleado"]
+        if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
 
 
             sql =  """
@@ -205,7 +205,7 @@ def muestra_ventas():
     
 
 
-@app.route("/muestra_detalles_ventas/<num_factura>")
+@app.route("/muestra_detalles_ventas/<int:num_factura>")
 def muestra_detalles_ventas(num_factura):
     if "nom_empleado" in session: 
 
@@ -259,8 +259,8 @@ def buscador_venta_c():
 def muestra_ventas_credito():
     if "nom_empleado" in session: 
             
-        rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+        rol_usuario = session["nom_empleado"]
+        if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
 
             sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
             conn = mysql.connect()
@@ -1066,9 +1066,11 @@ def Busca_produc_ven():
 @app.route("/verCrear_ventas")
 def verCrear_ventas():
     if "nom_empleado" in session:
-            
-        rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+        
+
+        
+        rol_usuario = session["nom_empleado"]
+        if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
 
             # Muestra el documento del operador
             documento_operador = session["documento_operador"]

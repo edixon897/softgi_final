@@ -11,6 +11,12 @@
 
     <main id="cuerpo">
 
+        <section id="conten_registra_pago" onclick="cerrarModal_2()">
+
+            <div id="modalContenedor_2" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
+
+        </section>
+
         <section id="section_1">
             <p>Historial de ventas</p>
         </section>
@@ -73,7 +79,10 @@
                                             {% endif %}
                                         {% endfor %}
                                         <td class="btns_centro">
-                                            <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}"><i id="icono_ver_mas" class="lni lni-information"></i></a>
+                                            <!-- <a href="{{ url_for('muestra_detalles_ventas', num_factura=c[0]) }}"><i id="icono_ver_mas" class="lni lni-information"></i></a> -->
+                                            <a href="#" onclick="abrirModal_2('{{c[0]}}')">
+                                                <i id="icono_ver_mas" class="lni lni-information"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     {% endfor %}
