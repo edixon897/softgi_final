@@ -112,11 +112,9 @@ function cerrarModal_2() {
         setTimeout( function() {
             conten_registra_pago.style.display = "none";
         }, 400);
-
 }
 
 
-/* todo exelente */
 
 
 
