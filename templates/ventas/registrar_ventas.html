@@ -12,7 +12,11 @@
 
     <main id="cuerpo">
 
-        <div id="modalContenedor" style="display: none;"></div>
+        <section id="conten_registra_pago" onclick="cerrarModal_2()">
+
+            <div id="modalContenedor_2" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
+
+        </section>
 
         <section id="section_1">
             <p>Realizar venta</p>
@@ -62,8 +66,11 @@
                                             {% endif %}
                                         {% endfor %}
                                             
-                                            <td> <!--   onclick="abrirModal('{{c[0]}}')"-->
-                                                <a href="#" onclick="abrirModal('{{c[0]}}')" > <i id="icono_select_2" class="lni lni-layers"></i></a>
+                                            <td>
+                                                <!-- <a href="#" onclick="abrirModal('{{c[0]}}')" > <i id="icono_select_2" class="lni lni-layers"></i></a> -->
+                                                <a href="#" onclick="abrirModal_2('{{c[0]}}')">
+                                                    <i id="icono_select_2" class="lni lni-layers"></i>
+                                                </a>
                                             </td>
                                             <td>
                                                 <a href="/selector_una_cantidad/{{c[0]}}"><!-- <i id="icono_select_1" class="lni lni-cart"></i> -->  <i id="icono_select_1" class="lni lni-select-cursor"></i></a>
