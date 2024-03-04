@@ -12,7 +12,12 @@
 
     <main id="cuerpo">
 
-        <div id="modalContenedor" style="display: none;"></div>
+        <section id="conten_registra_pago" onclick="cerrarModal_2(), cerrarModal_3()">
+
+            <div id="modalContenedor_2" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
+            <div id="modalContenedor_3" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
+
+        </section>
 
         <section id="section_1">
             <p>Realizar venta</p>
@@ -62,8 +67,11 @@
                                             {% endif %}
                                         {% endfor %}
                                             
-                                            <td> <!--   onclick="abrirModal('{{c[0]}}')"-->
-                                                <a href="#" onclick="abrirModal('{{c[0]}}')" > <i id="icono_select_2" class="lni lni-layers"></i></a>
+                                            <td>
+                                                <!-- <a href="#" onclick="abrirModal('{{c[0]}}')" > <i id="icono_select_2" class="lni lni-layers"></i></a> -->
+                                                <a href="#" onclick="abrirModal_2('{{c[0]}}')">
+                                                    <i id="icono_select_2" class="lni lni-layers"></i>
+                                                </a>
                                             </td>
                                             <td>
                                                 <a href="/selector_una_cantidad/{{c[0]}}"><!-- <i id="icono_select_1" class="lni lni-cart"></i> -->  <i id="icono_select_1" class="lni lni-select-cursor"></i></a>
@@ -134,7 +142,8 @@
 
                     <section id="conten_btns">
                         <div id="separador">
-                            <a href="{{url_for ('crearClientes_2') }}">Registrar cliente</a>
+                            <a href="#" onclick="abrirModal_3()">Registrar cliente</a>
+                            <!-- <a href="{{url_for ('crearClientes_2') }}">Registrar cliente</a> -->
                             <a href="{{url_for ('muestra_ventas') }}">Regresar</a>
                         </div>
                     </section>
@@ -143,14 +152,15 @@
 
                         <div id="lad_1_form">
 
-                            <div class="conten_input">
-                                <div class="campo_2">
-                                    <input type="number" id="doc_operador" name="doc_operador" class="input_campo" value="{{operador}}"  required> 
+                            <div class="conten_input" id="conten_identificacion">
+                                <div class="campo_3" >
+                                    <input type="hidden" id="doc_operador" name="doc_operador" class="input_campo" value="{{operador}}"  required readonly> 
+                                    <label><i id="icono_cedula" class="lni lni-postcard"></i></label>
                                 </div>
                             </div>
 
-                            <div class="conten_input">
-                                <div class="campo_2">
+                            <div class="conten_input" id="conten_input_cc_client">
+                                <div class="campo_3">
                                     <input type="number" id="doc_cliente" name="doc_cliente" placeholder="Cédula del cliente"  class="input_campo" required>
                                 </div>
                             </div>
@@ -161,7 +171,7 @@
                         <div id="lad_2_form">
                             
                             <div class="conten_input" id="conten_input_2">
-                                <div class="campo_2" >
+                                <div class="campo_3" >
                                     <select name="tipo_de_venta" class="input_campo" id="venta_tipo" oninput="verifica_tipo_venta()">
                                         <option value="venta_normal">Venta normal</option>
                                         <option value="venta_credito">Venta a crédito</option>
@@ -170,7 +180,7 @@
                             </div>
                             
                             <div class="conten_input" id="conten_input_1">
-                                <div class="campo_2" >
+                                <div class="campo_3" >
                                     <select name="forma_de_pago" class="input_campo" id="forma_pago">
                                         <option value="efectivo">Efectivo</option>
                                         <option value="Nequi">Nequi</option>
@@ -206,6 +216,7 @@
    <input type="hidden" id="input_error_2" readonly value="{{mensaje_2}}" oninput="verifica_input_2()">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../static/javaScript/color_campo_lleno.js"></script>
     <script src="../../static/javaScript/registrar_ventas.js"></script>
 
 </body>

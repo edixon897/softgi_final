@@ -6,6 +6,8 @@
     <title>Empleados</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/empleados/muestra_empleados.css">
+    <link rel="stylesheet" href="../../static/css/registro/regristro.css">
+    
 </head>
 <body>
 
@@ -21,13 +23,13 @@
 
             <div id="conten_botones">
                 <div id="conten_regresar">
-                    <div id="isla_1">
-                        <a href="{{url_for ('inicio') }}"><i id="boton_back" class="lni lni-home"></i></a>
-                    </div>
+                        <a href="{{url_for ('inicio') }}" id="isla_1">
+                            <i id="boton_back" class="lni lni-home"></i>
+                        </a>
                 </div>
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
-                        <a class="botones" href="{{url_for('registroUsario')}}">Agregar empleado</a>
+                        <button class="botones" i id="abrirModalBtn">Agregar empleado</button>
                     </div>
                 </div>
             </div>
@@ -91,15 +93,85 @@
                             </table>
                         </div>
                     </section>
-
                 </div>
-
             </div>
-
         </section>
 
-    </main>
 
+<<<<<<< HEAD
+=======
+         <!-- Modal -->
+        <div id="crearEmpleadoModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <form action="/registro" method="post" id="campo_registro">
+                    <div id="pag_1" class="campos">
+                        <div id="nombre" class="campo_icono">
+                            <i class="lni lni-user"></i>
+                            <input type="text" name="nombre" maxlength="25" minlength="2"
+                            pattern="[a-zA-Z ]{2,25}" autocomplete="given-name" placeholder="Nombre (s)">
+                        </div>
+                        <div id="contacto" class="campo_icono">
+                            <i class="lni lni-mobile"></i>
+                            <input type="tel" name="contacto" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Celular">
+                        </div>
+                        <div id="fecha_nac" class="fecha_nac">
+                            <label for="fechaNacimiento" class="aclaracion">Fecha de nacimiento</label>
+                            <input type="date" name="nacimiento">
+                        </div>
+                        <div id="ciudad" class="campo_icono">
+                            <i class="lni lni-home"></i>
+                            <input type="text" name="ciudad" maxlength="14" minlength="2" pattern="[a-zA-Z]{2,14}" placeholder="Ciudad">
+                        </div>
+                        <div id="rol">
+                            <label for="" class="aclaracion">Rol</label>
+                            <select name="rol" id="rol">
+                                <option value="administrador">Administrador</option>
+                                <option value="almacenista">Almacenista</option>
+                                <option value="vendedor">Vendedor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="pag_2" class="campos">
+                        <div id="apellido" class="campo_icono">
+                            <i></i>
+                            <input type="text" name="apellido" maxlength="25" minlength="2"
+                            pattern="[a-zA-Z ]{2,25}" autocomplete="family-name" placeholder="Apellido (s)">
+                        </div>
+                        <div id="correo" class="campo_icono">
+                            <i class="lni lni-envelope"></i>
+                            <input type="email" name="correo" inputmode="email" maxlength="56" placeholder="Correo">
+                        </div>
+                        <div id="documento" class="campo_icono">
+                            <i class="lni lni-postcard"></i>
+                            <input type="number" name="documento" pattern="[0-9]{10}" maxlength="10" minlength="6" autocomplete="off" placeholder="Cédula">
+                        </div>
+                        <div id="direccion" class="campo_icono">
+                            <i class="lni lni-map-marker"></i>
+                            <input type="text" name="direccion" maxlength="56" minlength="2" placeholder="Dirección">
+                        </div>
+                        <div id="Contraseña" class="campo_icono">
+                            <i class="lni lni-key"></i>
+                            <input type="password" name="contrasena" placeholder="Contraseña">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">REGISTRAR</button>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% endwith %}
+                </form>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="/static/javaScript/modalEmpleado.js"></script>
+>>>>>>> e7ccb319f904c35088afbc8860ed502e0afe7033
         <script src="/static/javaScript/buscarClientes.js"></script>
     </main>
 </body>

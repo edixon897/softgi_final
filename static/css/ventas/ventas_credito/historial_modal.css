@@ -44,7 +44,7 @@ div#modalContenedor_2 {
             div#conten_tabla_modal {
                 width: 96%;
                 height: 90%;
-                overflow: hidden;
+                overflow-y: scroll;
                 display: flex;
                 justify-content: center;
                 align-items: first baseline;

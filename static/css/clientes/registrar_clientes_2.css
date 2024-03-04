@@ -35,9 +35,22 @@ p {
 
 /* PARATRIZACION */
 
+div#modalContenedor_3 {
+    background-color: white;
+    width: 60%;
+    height: 65%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.8em;
+    opacity: 1;
+    z-index: 3;
+}
+
 main#inicio {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     display: flex;
@@ -79,8 +92,9 @@ main#inicio {
                     background-color: #358CB4;
                     border-top-left-radius: 8px;
                     border-bottom-left-radius: 8px;
-                    width: 20%;
-                    height: 20%;
+                    width: 30%;
+                    height: 25%;
+                    display: none;
                 }
                 div#barra_progreso_3 {
                     border-top: 1px solid #358CB4;
@@ -88,8 +102,9 @@ main#inicio {
                     border-right: 1px solid #358CB4 ;
                     border-bottom-right-radius: 8px;
                     border-top-right-radius: 8px;
-                    width: 20%;
-                    height: 20%;
+                    width: 30%;
+                    height: 25%;
+                    display: none;
                 }/* -------------------- */
 
     form#conten_formulario_2 {
@@ -98,6 +113,7 @@ main#inicio {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 20px;
 /*         background-color: blueviolet; */
     }
         div#conten_FORM {
@@ -127,6 +143,7 @@ main#inicio {
                     align-items: center;
                     color: #57A8CE;
                     font-weight: 500;
+                    font-size: 1.4em;
                 }
                 div.conten_inputs_1 {
                     width: 80%;
@@ -155,6 +172,7 @@ main#inicio {
                     align-items: center;
                     color: #57A8CE;
                     font-weight: 500;
+                    font-size: 1.4em;
                 }
                 div.content_inputs_2 {
                     width: 80%;
@@ -188,7 +206,7 @@ main#inicio {
         }
             div.conten_buttons_2 {
                 width: 45%;
-                height: 30%;
+                height: 55%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -200,7 +218,7 @@ main#inicio {
                     width: 100%;
                     height: 100%;
                     border-radius: 8px;
-                    font-size: 1.0em;
+                    font-size: 1.2em;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -212,14 +230,15 @@ main#inicio {
                 a.enlace_regresar {
                     width: 100%;
                     height: 100%;
-                    background-color: rgb(255, 255, 255);
-                    border: 1px solid #57A8CE;
-                    border-radius: 8px;
-                    text-decoration: none;
-                    color: #57A8CE;
+                    background-color: #BBBBBB;
                     display: flex;
-                    align-items: center;
                     justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 1.3em;
+                    font-weight: 500;
+                    border-radius: 0.4em;
                 }
 
         div#sesion_buttons_2 {
@@ -268,13 +287,12 @@ main#inicio {
     .campo_2 label {
         position: absolute;
         left: 4%;
-        top: 8;
+        top: -35%;
         font-size:0.9em;
         transform: translateY(-50%);
         color: #BBBBBB;
         pointer-events: none;
         font-weight: 400;
-        background-color: #fff;
     }
 
     p.icono_listo i {

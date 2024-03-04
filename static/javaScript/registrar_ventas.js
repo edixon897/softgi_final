@@ -84,6 +84,15 @@ function verifica_input_2() {
             height: "20%",
             showConfirmButton: true
         });
+    } else if (valor_input == "El_cliente_ya_existe_en_la_base_de_datos") {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "El cliente ya existe en la base de datos",
+            width: "50%",
+            height: "20%",
+            showConfirmButton: true
+        });
     }
 }
 
@@ -202,7 +211,7 @@ function buscarProductos() {
 
 
 // Función para abrir el modal
-function abrirModal(idProducto) {
+/* function abrirModal(idProducto) {
     // Cargar el contenido de editar_cantidad.html en el modalContenedor
     var modalContenedor = document.getElementById("modalContenedor");
     modalContenedor.innerHTML = "";
@@ -224,10 +233,10 @@ function abrirModal(idProducto) {
 
     xhttp.open("GET", "/m_selector_cantidad_p/" + idProducto, true);
     xhttp.send();
-}
+} */
 
 // Función para cerrar el modal
-function cerrarModal() {
+/* function cerrarModal() {
     var modalContenedor = document.getElementById("modalContenedor");
     modalContenedor.style.display = "none";
 
@@ -235,4 +244,164 @@ function cerrarModal() {
     btn_enviar.style.backgroundColor = "#358CB4"
     btn_enviar.style.color = "white"
     btn_enviar.style.border = "none"
+} */
+
+
+
+
+
+function abrirModal_2(idProducto) {
+    // Cargar el contenido de editar_cantidad.html en el modalContenedor
+
+    var btn_enviar = document.getElementById('btn_enviar');
+    btn_enviar.style.backgroundColor = "white"
+    btn_enviar.style.color = "#358CB4"
+    btn_enviar.style.border = "1px solid #358CB4"
+
+    var modalContenedor = document.getElementById("modalContenedor_2");
+    modalContenedor.innerHTML = "";
+
+    var conten_registra_pago = document.getElementById("conten_registra_pago");
+    conten_registra_pago.style.display = "block"
+
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            modalContenedor.innerHTML = this.responseText;
+
+            // Mostrar el modal
+            modalContenedor.style.display = "block";
+            setTimeout( function() {
+                conten_registra_pago.style.background = "rgba(36, 36, 36, 0.4)";
+            }, 400);
+            setTimeout( function() {
+                modalContenedor.style.opacity = "1";
+            }, 255);
+        }
+    };
+
+    xhttp.open("GET", "/m_selector_cantidad_p/" + idProducto, true);
+    xhttp.send();
 }
+
+
+
+
+function cerrarModal_2() {
+    /* var modalContenedor = document.getElementById("modalContenedor");
+    modalContenedor.style.display = "none"; */
+
+    var conten_registra_pago = document.getElementById("conten_registra_pago");
+        var modalContenedor = window.parent.document.getElementById("modalContenedor_2");
+            
+
+        setTimeout( function() {
+            modalContenedor.style.opacity = "0";
+        }, 15);
+
+        setTimeout( function() {
+            modalContenedor.style.display = "none";
+        }, 215);
+        
+
+        setTimeout( function() {
+            conten_registra_pago.style.background = "rgba(36, 36, 36, 0.0)";
+        }, 80);
+
+        setTimeout( function() {
+            conten_registra_pago.style.display = "none";
+        }, 400);
+
+
+        var btn_enviar = document.getElementById('btn_enviar');
+        btn_enviar.style.backgroundColor = "#358CB4"
+        btn_enviar.style.color = "white"
+        btn_enviar.style.border = "none"
+}
+
+
+
+function abrirModal_3() {
+    // Cargar el contenido de editar_cantidad.html en el modalContenedor
+
+    var btn_enviar = document.getElementById('btn_enviar');
+    btn_enviar.style.backgroundColor = "white"
+    btn_enviar.style.color = "#358CB4"
+    btn_enviar.style.border = "1px solid #358CB4"
+
+    var icono_cedula = document.getElementById('icono_cedula')
+    icono_cedula.style.display = "none"
+
+    var modalContenedor = document.getElementById("modalContenedor_3");
+    modalContenedor.innerHTML = "";
+
+    var conten_registra_pago = document.getElementById("conten_registra_pago");
+    conten_registra_pago.style.display = "block"
+
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            modalContenedor.innerHTML = this.responseText;
+
+            // Mostrar el modal
+            modalContenedor.style.display = "block";
+            setTimeout( function() {
+                conten_registra_pago.style.background = "rgba(36, 36, 36, 0.4)";
+            }, 400);
+            setTimeout( function() {
+                modalContenedor.style.opacity = "1";
+            }, 255);
+        }
+    };
+
+    xhttp.open("GET", "/crearClientes_2", true);
+    xhttp.send();
+}
+
+
+
+function cerrarModal_3() {
+    /* var modalContenedor = document.getElementById("modalContenedor");
+    modalContenedor.style.display = "none"; */
+
+    var conten_registra_pago = document.getElementById("conten_registra_pago");
+    var modalContenedor = window.parent.document.getElementById("modalContenedor_3");
+            
+    var icono_cedula = document.getElementById('icono_cedula')
+    icono_cedula.style.display = "block"
+
+        setTimeout( function() {
+            modalContenedor.style.opacity = "0";
+        }, 15);
+
+        setTimeout( function() {
+            modalContenedor.style.display = "none";
+        }, 215);
+        
+
+        setTimeout( function() {
+            conten_registra_pago.style.background = "rgba(36, 36, 36, 0.0)";
+        }, 80);
+
+        setTimeout( function() {
+            conten_registra_pago.style.display = "none";
+        }, 400);
+
+
+        var btn_enviar = document.getElementById('btn_enviar');
+        btn_enviar.style.backgroundColor = "#358CB4"
+        btn_enviar.style.color = "white"
+        btn_enviar.style.border = "none"
+}
+
+
+
+
+function detenerPropagacion(event) {
+    event.stopPropagation();
+}
+
+
+

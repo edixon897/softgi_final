@@ -9,7 +9,7 @@ from models.ventas import Dventas, Ventas
 
 
 
-@app.route("/historial_abono/<contador>")
+@app.route("/historial_abono/<int:contador>")
 def historial_abono(contador):
     if "nom_empleado" in session:
         
@@ -72,49 +72,87 @@ def confirma_abono_2():
             credito_restante = cursor.fetchall()
             conn.commit()
 
-            # 1 - valido si la cantidad digitada es menor a la debida
-            if (credito_restante[0][0] >= abono):
+            # 0 valido que no sea igual a 0 o negativos
+            if (abono >= 1):
 
-                credito_actual = (credito_restante[0][0] - abono)
-                tiempo_venta = datetime.datetime.now()
+                # 1 - valido si la cantidad digitada es menor a la debida
+                if (credito_restante[0][0] >= abono):
 
-                # 2 - valido si la resta = 0
-                if (credito_actual == 0):
+                    credito_actual = (credito_restante[0][0] - abono)
+                    tiempo_venta = datetime.datetime.now()
 
-                    # se cambia el estado de ACTIVO a CANCELADO
-                    """ Ventas.abono_completo(contador) """
-                    sql = f"UPDATE `ventas_credito` SET `credito_restante`='{0}', `estado`='PAGADO' WHERE contador = '{contador}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    conn.commit()
-                    return redirect("/muestra_ventas_credito")
-                
-                
-                # 2 
-                else:
-                    # se actualiza el credito restante
-                    """ Ventas.actualiza_credito_rest([credito_actual, contador]) """
-                    sql = f"UPDATE `ventas_credito` SET `credito_restante`='{credito_actual}' WHERE contador = '{contador}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    conn.commit()
+                    # 2 - valido si la resta = 0
+                    if (credito_actual == 0):
 
-                    # se incerta en el historial el abono realizado
-                    """ Ventas.insert_historial_abn([contador, abono, documento_operador, tiempo_venta]) """
-                    sql = f"INSERT INTO `historial_credito`(`contador_ventacredito`, `abono`, `operador`, `fecha_abono`) VALUES ('{contador}','{abono}','{documento_operador}','{tiempo_venta}')"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    conn.commit()
+                        # se cambia el estado de ACTIVO a CANCELADO
+                        """ Ventas.abono_completo(contador) """
+                        sql = f"UPDATE `ventas_credito` SET `credito_restante`='{0}', `estado`='PAGADO' WHERE contador = '{contador}'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        conn.commit()
+                        
+                        mensaj = "El_credito_fue_pagado_exitosamente_por_completo"
+
+                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     #muestra toda la informacion
+                        cursor.execute(sql)
+                        resultado = cursor.fetchall()
+                        return render_template("/ventas_credito/muestra_ventas.html",resul = resultado, msj = mensaj)
                     
-                    return redirect("/muestra_ventas_credito")
+                    
+                    # 2 
+                    else:
+                        # se actualiza el credito restante
+                        """ Ventas.actualiza_credito_rest([credito_actual, contador]) """
+                        sql = f"UPDATE `ventas_credito` SET `credito_restante`='{credito_actual}' WHERE contador = '{contador}'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        conn.commit()
 
-            # 1
+                        # se incerta en el historial el abono realizado
+                        """ Ventas.insert_historial_abn([contador, abono, documento_operador, tiempo_venta]) """
+                        sql = f"INSERT INTO `historial_credito`(`contador_ventacredito`, `abono`, `operador`, `fecha_abono`) VALUES ('{contador}','{abono}','{documento_operador}','{tiempo_venta}')"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        conn.commit()
+
+                        mensaj = "Pago_parcial_registrado_exitosamente"
+
+                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     #muestra toda la informacion
+                        cursor.execute(sql)
+                        resultado = cursor.fetchall()
+                        return render_template("/ventas_credito/muestra_ventas.html",resul = resultado, msj = mensaj)
+                        
+                        
+
+                # 1
+                else:
+                    mensaj = "¡Cantidd_digitada_mayor_a_la_debida!"
+
+                    sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     #muestra toda la informacion
+                    cursor.execute(sql)
+                    resultado = cursor.fetchall()
+                    return render_template("/ventas_credito/muestra_ventas.html",resul = resultado, msj = mensaj)
+                
+        # 0
             else:
-                mensaj = "¡Cantidd digitada mayor a la debida!"
-                return render_template("/ventas_credito/abono_venta.html",cont = contador, mensaje = mensaj)
+                mensaj = "menor_igual_cero"
+
+                sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                conn = mysql.connect()
+                cursor = conn.cursor()     #muestra toda la informacion
+                cursor.execute(sql)
+                resultado = cursor.fetchall()
+                return render_template("/ventas_credito/muestra_ventas.html",resul = resultado, msj = mensaj)
+            
             
             
         else:
@@ -131,8 +169,8 @@ def confirma_abono_2():
 def muestra_ventas():
     if "nom_empleado" in session: 
 
-        rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+        rol_usuario = session["nom_empleado"]
+        if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
 
 
             sql =  """
@@ -167,7 +205,7 @@ def muestra_ventas():
     
 
 
-@app.route("/muestra_detalles_ventas/<num_factura>")
+@app.route("/muestra_detalles_ventas/<int:num_factura>")
 def muestra_detalles_ventas(num_factura):
     if "nom_empleado" in session: 
 
@@ -221,8 +259,8 @@ def buscador_venta_c():
 def muestra_ventas_credito():
     if "nom_empleado" in session: 
             
-        rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+        rol_usuario = session["nom_empleado"]
+        if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
 
             sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
             conn = mysql.connect()
@@ -460,7 +498,15 @@ def cancela_venta_c(contador):
             cursor = conn.cursor()     
             cursor.execute(sql)
             conn.commit()
-            return redirect("/muestra_ventas_credito")
+            
+            mensaj = "El_credito_fue_pagado_exitosamente_por_completo"
+
+            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     #muestra toda la informacion
+            cursor.execute(sql)
+            resultado = cursor.fetchall()
+            return render_template("/ventas_credito/muestra_ventas.html",resul = resultado, msj = mensaj)
         
         else:
             return redirect("/inicio")      
@@ -1020,9 +1066,11 @@ def Busca_produc_ven():
 @app.route("/verCrear_ventas")
 def verCrear_ventas():
     if "nom_empleado" in session:
-            
-        rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+        
+
+        
+        rol_usuario = session["nom_empleado"]
+        if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
 
             # Muestra el documento del operador
             documento_operador = session["documento_operador"]

@@ -17,7 +17,7 @@
 
 
             <div id="conten_titulo_lado_1">
-                <h2>Registrar cliente</h2>
+                <h2></h2>
             </div>
             <div id="conten_titulo_lado_2">
                 <div id="barra_progreso_1">
@@ -50,19 +50,18 @@
 
 
                         <div class="campo_2">
-                            <input type="number" name="doc_cliente" id="documento" class="input_campo" oninput="campo_lleno1()">
-                            <label for="documento">Documento</label>
+                            <input type="number" name="doc_cliente" id="documento" class="input_campo" placeholder="Documento">
+                            
                         </div>
                         
                         <div class="campo_2">
-                            <input type="text" name="nom_cliente" id="nombre"  class="input_campo" oninput="campo_lleno2()">
-                            <label for="nombre">Nombres</label>
+                            <input type="text" name="nom_cliente" id="nombre"  class="input_campo" placeholder="Nombres">
                         </div>
                        
 
                         <div class="campo_2">
-                            <input type="text" name="ape_cliente" id="apellido" class="input_campo" oninput="campo_lleno3()">
-                            <label for="apellido">Apellidos</label>
+                            <input type="text" name="ape_cliente" id="apellido" class="input_campo" placeholder="Apellidos">
+                        
                         </div>
                         
 
@@ -73,13 +72,13 @@
                 <section class="lado_info_contacto">
 
                     <div class="conten_titulo_div_2">
-                        <p>Info personal</p>
+                        <p></p>
                     </div>
 
                     <div class="content_inputs_2">
 
                         <div class="campo_2">
-                            <input type="date" name="fecha_nacimiento_cliente" id="fecha" class="input_campo" oninput="campo_lleno4()">
+                            <input type="date" name="fecha_nacimiento_cliente" id="fecha" class="input_campo" >
                             <label for="fecha">Fecha de nacimiento</label>
                         </div>
                         
@@ -115,13 +114,15 @@
                     <section class="lado_info_personal">
 
                         <div class="conten_titulo_div">
-                            <p>contacto y ubicacion</p>
+                            <p></p>
                         </div>
     
     
                         <div class="conten_inputs_1">
+
+                            <p>Por favor, recuerda completar toda la información del cliente despues de finalizar la acción que deseas realizar.</p>
     
-                            <div class="campo_2">
+                            <!-- <div class="campo_2">
                                 <input type="number" name="contacto_cliente" id="contacto" placeholder="" class="input_campo" oninput="campo_lleno6()">
                                 <label for="contacto">Telefono</label>
                             </div>
@@ -141,7 +142,7 @@
                             <div class="campo_2">
                                 <input type="text" name="ciudad_cliente" id="ciudad" placeholder="" class="input_campo"  oninput="campo_lleno9()">
                                 <label for="ciudad">Ciudad</label>
-                            </div>
+                            </div> -->
                             
     
                         </div>
@@ -172,7 +173,7 @@
 
             <div id="conten_buttons">
                 <div class="conten_buttons_2">
-                    <a href="{{url_for('verCrear_ventas')}}" class="enlace_regresar">Volver</a>
+                    <a href="#" onclick="cerrarModal_3()" class="enlace_regresar">Volver</a>
                 </div>
                 <div class="conten_buttons_2">
                     <a onclick="desplaza_form()" class="boton_registrar"><i class="lni lni-arrow-right"></i></a>

@@ -227,10 +227,10 @@ def crear_cliente_2():
             nom_cliente = request.form['nom_cliente']
             ape_cliente = request.form['ape_cliente']
             fecha_nacimiento_cliente = request.form['fecha_nacimiento_cliente']
-            contacto_cliente = request.form['contacto_cliente']
-            email_cliente = request.form['email_cliente']
-            direccion_cliente = request.form['direccion_cliente']
-            ciudad_cliente = request.form['ciudad_cliente']
+            contacto_cliente = ""
+            email_cliente = ""
+            direccion_cliente = ""
+            ciudad_cliente = ""
             tipo_persona = request.form['tipopersona']                 
             tiempo = datetime.datetime.now()
             if not Dclientes.buscar_cliente(doc_cliente):
@@ -240,8 +240,44 @@ def crear_cliente_2():
                 """ mensaje="Cliente ya existe"
                 cliente =[doc_cliente, nom_cliente, ape_cliente, contacto_cliente, email_cliente, direccion_cliente, ciudad_cliente, tipo_persona]
                 return render_template('clientes/clientes.html', mensaje=mensaje, cliente=cliente) """
-                mensaje = 1
-                return render_template('clientes/registrar_clientes_2.html', mensaje=mensaje)
+                
+
+
+            # Muestra el documento del operador
+            documento_operador = session["documento_operador"]
+
+
+            # consulta los productos del inventario
+            sql = "SELECT `id_producto`, `ref_produ_1`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            productos_inven = cursor.fetchall()
+            conn.commit()
+
+            # consulta los productos seleccionados para venta
+            sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql)
+            productos_carr = cursor.fetchall()
+            conn.commit()
+
+            # Realiza la suma de el total de todos los productos seleccionados
+            sql = "SELECT SUM(total) FROM carritoventas"
+            conn = mysql.connect()
+            cursor = conn.cursor()     
+            cursor.execute(sql) 
+            Suma_total = cursor.fetchall()
+            conn.commit()
+
+            mensaje_error = "El_cliente_ya_existe_en_la_base_de_datos"
+
+            # le asigno el 0 si la suma es none
+            if Suma_total[0][0] is not None:
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = Suma_total[0][0], operador = documento_operador, mensaje_2 = mensaje_error) 
+            else:
+                return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje_2 = mensaje_error) 
             
         else:
             return redirect("/inicio")
