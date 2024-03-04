@@ -94,7 +94,7 @@ def confirma_abono_2():
                         
                         mensaj = "El_credito_fue_pagado_exitosamente_por_completo"
 
-                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'  ORDER BY fecha_venta DESC"
                         conn = mysql.connect()
                         cursor = conn.cursor()     #muestra toda la informacion
                         cursor.execute(sql)
@@ -122,7 +122,7 @@ def confirma_abono_2():
 
                         mensaj = "Pago_parcial_registrado_exitosamente"
 
-                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' ORDER BY fecha_venta DESC"
                         conn = mysql.connect()
                         cursor = conn.cursor()     #muestra toda la informacion
                         cursor.execute(sql)
@@ -135,7 +135,7 @@ def confirma_abono_2():
                 else:
                     mensaj = "¡Cantidd_digitada_mayor_a_la_debida!"
 
-                    sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                    sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'  ORDER BY fecha_venta DESC"
                     conn = mysql.connect()
                     cursor = conn.cursor()     #muestra toda la informacion
                     cursor.execute(sql)
@@ -146,7 +146,7 @@ def confirma_abono_2():
             else:
                 mensaj = "menor_igual_cero"
 
-                sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' ORDER BY fecha_venta DESC"
                 conn = mysql.connect()
                 cursor = conn.cursor()     #muestra toda la informacion
                 cursor.execute(sql)
@@ -262,7 +262,7 @@ def muestra_ventas_credito():
         rol_usuario = session["nom_empleado"]
         if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
 
-            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' ORDER BY fecha_venta DESC"
             conn = mysql.connect()
             cursor = conn.cursor()     #muestra toda la informacion
             cursor.execute(sql)
@@ -501,7 +501,7 @@ def cancela_venta_c(contador):
             
             mensaj = "El_credito_fue_pagado_exitosamente_por_completo"
 
-            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' ORDER BY fecha_venta DESC"
             conn = mysql.connect()
             cursor = conn.cursor()     #muestra toda la informacion
             cursor.execute(sql)
