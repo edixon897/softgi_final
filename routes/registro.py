@@ -76,7 +76,14 @@ def confirmar_correo(token):
             return redirect(url_for('index'))
         if request.method == 'POST': 
             confi= request.form['confir'] 
-            cursor.execute(f"UPDATE tokens SET confir_user = '{confi}' WHERE email_empleado = '{email}'") 
+            cursor.execute(f"""
+            UPDATE tokens t
+            JOIN empleados e ON t.email_empleado = e.email_empleado
+            SET t.confir_user = '{confi}', e.estado = 'ACTIVO'
+            WHERE e.email_empleado = '{email}'
+        """)
+            """ cursor.execute(f"UPDATE tokens SET confir_user = '{confi}' WHERE email_empleado = '{email}'")
+            cursor.execute(f"UPDATE empleados SET estado = 'ACTIVO' WHERE email_empleado = '{email}'") """ 
             mysql.get_db().commit()
             flash('Tu correo ha sido confirmado correctamente.', 'success')
             return redirect(url_for('index'))
