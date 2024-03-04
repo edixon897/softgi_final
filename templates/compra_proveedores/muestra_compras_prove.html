@@ -24,10 +24,7 @@
                         </a>
                 </div>
                 <div id="conten_btn_navegacion">
-                    <!-- <div id="isla_2">
-                        <a class="botones"  href="{{url_for('muestra_compra_proved')}}">Compras a  proveedores</a> -->
-                        
-                        <span class="botones" onClick="abrirModal()">Registrar compra</span>
+                        <button class="botones" id="botonAbrirModal">Registrar compra</button>
                     </div> 
                 </div>
             </div>
@@ -102,45 +99,48 @@
         </section>
 
     </main>
-
-    <div id="modal">
-        <h4>Registra compras de proveedores</h4>
-        <form id="compraForm" action="Registrar_compra_p" method="post"> 
-            <div>
-                <label for="proveedor_compra">Proveedor</label>
-                <select name="proveedor_compra" id="proveedor_compra" class="input_campo">
-                    <option value="">Proveedor</option>
-                    {% for c in prove %}
-                        <option value="{{c[0]}}">{{c[1]}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div>
-                <label for="fecha_compra">Fecha</label>
-                <input type="date" name="fecha_compra" id="fecha_compra" class="campo">
-            </div>
-            <div>
-                <label for="num_factura_proveedor">N° factura</label>
-                <input type="text" name="num_factura_proveedor" id="num_factura_proveedor" placeholder="N° factura" class="campo">
-            </div>
-            <div>
-                <label for="producto_compra_modal_' + contadorProductos + '">Producto</label>
-                <input type="text" name="productos_compra[producto][]" id="producto_compra_modal_' + contadorProductos + '" placeholder="Producto" class="campo">
-            </div>
-            <div>
-                <label for="cantidad_compra_modal_' + contadorProductos + '">Cantidad</label>
-                <input type="number" name="productos_compra[cantidad][]" id="cantidad_compra_modal_' + contadorProductos + '" placeholder="Cantidad" class="campo">
-            </div>
-            <div>
-                <label for="valor_unidad_modal_' + contadorProductos + '">Valor por unidad</label>
-                <input type="number" name="productos_compra[valor_unidad][]" id="valor_unidad_modal_' + contadorProductos + '" placeholder="Valor por unidad" class="campo">
-            </div>
-            
-            <button type="submit" value="registrar">Registrar</button>
-        </form>
-        <button type="button" onclick="agregarProducto()">Agregar Producto</button>
-        <button type="button" onclick="cerrarModal()">Cerrar</button>
+    <div id="crearCompraModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h4>Registra compras de proveedores</h4>
+            <form id="compraForm" action="Registrar_compra_p" method="post"> 
+                <div>
+                    <label for="proveedor_compra">Proveedor</label>
+                    <select name="proveedor_compra" id="proveedor_compra" class="input_campo">
+                        <option value="">Proveedor</option>
+                        {% for c in prove %}
+                            <option value="{{c[0]}}">{{c[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="fecha_compra">Fecha</label>
+                    <input type="date" name="fecha_compra" id="fecha_compra" class="campo">
+                </div>
+                <div>
+                    <label for="num_factura_proveedor">N° factura</label>
+                    <input type="text" name="num_factura_proveedor" id="num_factura_proveedor" placeholder="N° factura" class="campo">
+                </div>
+                <div>
+                    <label for="producto_compra_modal_' + contadorProductos + '">Producto</label>
+                    <input type="text" name="productos_compra[producto][]" id="producto_compra_modal_' + contadorProductos + '" placeholder="Producto" class="campo">
+                </div>
+                <div>
+                    <label for="cantidad_compra_modal_' + contadorProductos + '">Cantidad</label>
+                    <input type="number" name="productos_compra[cantidad][]" id="cantidad_compra_modal_' + contadorProductos + '" placeholder="Cantidad" class="campo">
+                </div>
+                <div>
+                    <label for="valor_unidad_modal_' + contadorProductos + '">Valor por unidad</label>
+                    <input type="number" name="productos_compra[valor_unidad][]" id="valor_unidad_modal_' + contadorProductos + '" placeholder="Valor por unidad" class="campo">
+                </div>
+                
+                <button type="submit" value="registrar">Registrar</button>
+            </form>
+            <!-- <button type="button" onclick="agregarProducto()">Agregar Producto</button> -->
+        
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../../static/javaScript/modal_form_compraProveedores.js"></script>
     <script src="../../static/javaScript/buscarCompras_prove.js"></script>
 </body>

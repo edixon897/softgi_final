@@ -1,16 +1,19 @@
-function abrirModal() {
-    console.log("Abriendo modal");
-    var modal = document.getElementById('modal');
-    modal.style.display ='block';
-}
+$(document).ready(function () {
+    // Cuando se hace clic en el botón para abrir el modal
+    $("#botonAbrirModal").click(function () {
+        console.log('ejecutado')
+        $("#crearCompraModa").css("display", "block");
+    });
 
-function cerrarModal() {
-    console.log("Cerrando modal");
-    var modal = document.getElementById('modal');
-    modal.style.display = 'none';
-}
+    // Cuando se hace clic fuera del modal, se cierra
+    $(window).click(function (e) {
+        if (e.target.id === "crearCompraModa") {
+            $("#crearCompraModa").css("display", "none");
+        }
+    });
+});
 
-var contadorProductos = 0;
+/* var contadorProductos = 0;
 
 function agregarProducto() {
     contadorProductos++;
@@ -31,3 +34,4 @@ function agregarProducto() {
     console.log(valor_unidad);
 
 }
+ */

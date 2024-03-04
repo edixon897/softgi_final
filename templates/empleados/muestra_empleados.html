@@ -29,7 +29,7 @@
                 </div>
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
-                        <button class="botones" i id="abrirModalBtn">Agregar empleado</button>
+                        <button class="botones"  id="abrirModalBtn">Agregar empleado</button>
                     </div>
                 </div>
             </div>
@@ -154,15 +154,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn">REGISTRAR</button>
-                    {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <ul>
-                            {% for message in messages %}
-                                <li>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                    {% endwith %}
+                   
                 </form>
             </div>
         </div>
