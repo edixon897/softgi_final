@@ -27,7 +27,7 @@
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
                         <a class="botones"  href="{{url_for('muestra_compra_proved')}}">Compras a proveedores</a>
-                        <a class="botones" href="{{url_for('crear_Proveedores')}}">Crear proveedor</a>
+                        <button class="botones" id="AbrirModal">Crear proveedor</button>
                     </div>
                 </div>
             </div>
@@ -92,6 +92,26 @@
         </section>
 
     </main>
+    <div id="crearCProveedorModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <form action="/crearProveedores" method="post" id="conten_formulario_2">
+                <div class="campos">
+                    <input type="number" name="documentoProveedor" id="documentoProvedor" placeholder="Ingresar documento" class="campo">
+                    <input type="text" name="nombreProveedor" id="nombreProveedor" placeholder="Ingresar nombre" class="campo">
+                    <input type="number" name="numeroProveedores" id="numeroProveedores" placeholder="Ingresar numero telefonico" class="campo">
+                    <input type="email" name="correoProveedores" id="correoProveedores" placeholder="Ingresa correo electronico" class="campo">
+                    <input type="text" name="direccionProveedores" id="direccionProveedores" placeholder="Ingresar dirrecion" class="campo">
+                    <input type="text" name="ciudadProveedor" id="ciudadProveedor" placeholder="Ingresar ciudad " class="campo">
+                </div>
+                <div id="boton-atras">
+                <input type="submit" value="Registrar" class="boton-atras">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/static/javaScript/modalProveedor.js"></script>
     <script src="/static/javaScript/buscadorVentas.js"></script>
     
 </body>
