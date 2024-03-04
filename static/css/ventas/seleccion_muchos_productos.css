@@ -1,38 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
-
-*{
-    box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
-}
-
-body, html{
-    margin: 0;
-    padding: 0;
-}
-
-body{
-    background: #efefef;
-    font-family: 'Barlow', sans-serif;
-    font-size: 18px;
-    font-weight: 300;
-}
-
-/* Estilos para el modal */
-#modalContenedor {
+div#modalContenedor_2 {
+    background-color: white;
+    width: 38%;
+    height: 43%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #ffffff;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    width: 40%;
-    height: 40%;
-    border-radius: 0.7em;
+    border-radius: 0.8em;
+    opacity: 1;
+    z-index: 3;
 }
-
-    main {
+    form#CONTEN_FORM_2 {
         width: 100%;
         height: 100%;
         display: flex;
@@ -40,93 +18,87 @@ body{
         align-items: center;
         flex-direction: column;
     }
-
-        div#modal_titulo {
-            width: 90%;
-            height: 25%;
+        form div#div_titulo {
+            width: 80%;
+            height: 38%;
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-            color: #202020;
+            font-size: 2.6em;
             font-weight: 500;
-            font-size: 1.3em;
+            color: rgba(0, 0, 0, 0.554);
         }
-            div#modal_titulo span {
-                color: #358CB4;
-                font-size: 1.0em;
-            }
-        div#modal_info {
-            width: 90%;
-            height: 25%;
+
+        form div#div_input {
+            width: 80%;
+            height: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        form#CONTEN_FORM_2 {
-            width: 90%;
-            height: 60%;
-        }
-            div#contenedor_input {
+            div#div_input input {
                 width: 100%;
-                height: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                height: 45%;
+                border: 0.5px solid #DDDDDD;
+                border-radius: 0.4em;
+                font-size: 1.3em;
+                padding-left: 9%;
+                padding-right: 9%;
+                outline: none;
             }
-                div#contenedor_input input#input_cantidad {
-                    width: 90%;
-                    height: 70%;
-                    padding-left: 3%;
-                    padding-right: 3%;
-                    font-size: 0.9em;
-                    outline: none;
-                    border: 0.5px solid #686868;
-                    border-radius: 0.7em;
-                    
+                div#div_input input:focus {
+                    border: 0.5px solid #358CB4;
                 }
-            div#botones {
-                width: 100%;
-                height: 50%;
+
+        form div#div_btns {
+            width: 80%;
+            height: 22%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: -20px;
+        }
+            section#conten_btn_1 {
+                width: 48%;
+                height: 100%;
                 display: flex;
+                align-items: center;
+                justify-content: flex-end;
             }
-                div.contenedor_btn {
-                    width: 50%;
-                    height: 100%;
+                section#conten_btn_1 a {
+                    width: 60%;
+                    height: 70%;
+                    background-color: #BBBBBB;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 1.3em;
+                    font-weight: 500;
+                    border-radius: 0.4em;
                 }
-                    button#btn-agregar {
-                        width: 75%;
-                        height: 40%;
-                        border: none;
-                        background-color: #358CB4;
-                        color: white;
-                        font-size: 1.5em;
-                        border-radius: 0.3em;
-                    }
-                        button#btn-agregar:hover {
-                            cursor: pointer;
-                            background-color: #358CB4;
-                        }
-                    a#btn-cerrar {
-                        width: 75%;
-                        height: 40%;
-                        border: none;
-                        border: 1px solid #358CB4;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 1.5em;
-                        border-radius: 0.3em;
-                        text-decoration: none;
-                        color: #358CB4;
-                    }
+            section#conten_btn_2 {
+                width: 48%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+                section#conten_btn_2 button {
+                    width: 60%;
+                    height: 70%;
+                    background-color: #358CB4;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 1.2em;
+                    font-weight: 500;
+                    border-radius: 0.4em;
+                    border: none;
+                    text-align: center;
+                }
 
 
-
-
-/* Estilos específicos para pantallas más pequeñas (ej. dispositivos móviles) */
-@media  screen and (max-width: 600px) {
-    #modalContenedor {
-        width: 60%; /* Ajusta según sea necesario para pantallas más pequeñas */
-
-    }
-}

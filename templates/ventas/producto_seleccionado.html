@@ -9,7 +9,52 @@
 <body>
 
 
-    <main>
+    <form action="/confirma_p_seleccionado" method="post" id="CONTEN_FORM_2">
+
+        <div id="div_titulo">
+            <p>Digita la cantidad</p>
+        </div>
+
+        <div id="div_input">
+            <input type="hidden" name="id_producto" placeholder="Código del producto" value="{{id_p}}" required>
+            <input type="hidden" name="nombre_producto" value="{{nom_p[0]}}">
+            <input type="hidden" name="precio_unidad" value="{{nom_p[1]}}">     
+            <input type="hidden" name="Stock_disponible" value="{{nom_p[2]}}">
+
+            <input type="number" name="cantidad_digitada" required id="input_cantidad" autofocus> 
+        </div>
+
+        <div id="div_btns">
+            <section id="conten_btn_1" >
+                <a href="#" onclick="cerrarModal_2()">Cancelar</a>
+            </section>
+            <section id="conten_btn_2">
+                <button type="submit">Realizar</button>
+            </section>
+            
+        </div>
+
+        
+
+        
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <main>
 
         <div id="modal_titulo">
             <p>Producto seleccionado: <span>{{nom_p[0]}}</span> </p>
@@ -19,7 +64,7 @@
         </div>
 
         <form action="/confirma_p_seleccionado" method="post" id="CONTEN_FORM_2">
-            <!-- <label for="">Id producto</label> -->
+           
             <input type="hidden" name="id_producto" placeholder="Código del producto" value="{{id_p}}" required>
             <input type="hidden" name="nombre_producto" value="{{nom_p[0]}}">
             <input type="hidden" name="precio_unidad" value="{{nom_p[1]}}">     
@@ -27,7 +72,7 @@
 
             <div id="contenedor_input">
                 <input type="number" name="cantidad_digitada" required id="input_cantidad" autofocus> 
-                <!-- <i class="lni lni-package"></i> -->
+                
             </div>
             
             <div id="botones">
@@ -41,63 +86,8 @@
             </div>
 
         </form>
+ 
+    </main> -->
 
-        
-            
-
-        
-        
-    </main>
-    <script>
-        // Función para cerrar el modal
-        function cerrarModal() {
-            var modalContenedor = window.parent.document.getElementById("modalContenedor");
-            modalContenedor.style.display = "none";
-        }
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <a href="/verCrear_ventas">Regresar</a>
-
-    <br>
-
-    <h1>Producto seleccionado: {{nom_p[0]}}</h1> 
-    <br>
-
-
-    <form action="/confirma_p_seleccionado" method="post">
-
-        <input type="hidden" name="id_producto" placeholder="Codigo del producto" value="{{id_p}}" required>
-        <input type="hidden" name="nombre_producto" value="{{nom_p[0]}}">
-        <input type="hidden" name="precio_unidad" value="{{nom_p[1]}}">     
-        <input type="hidden" name="Stock_disponible" value="{{nom_p[2]}}">
-
-        
-        <input type="number" name="cantidad_digitada" placeholder="Digite la cantidad a vender" required> 
-
-        <button type="submit">Realizar</button>
-
-    </form>
-
-    
-    <div>
-        <p>{{mensaje_Error}}</p>
-    </div>
-    <div id="boton-atras">
-        <button class="boton-atras" onclick="window.location.href='/index'">Regresar al Home</button>
-    </div> -->
 </body>
 </html>
