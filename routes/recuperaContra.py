@@ -32,7 +32,7 @@ def solicitarCambio_contraseña():
             envio_correo(usuario, token_recuperar)
             print(usuario, token_recuperar)
             flash('Se ha enviado un correo electrónico con instrucciones para restablecer la contraseña.', 'success')
-            return redirect(url_for('index'))
+            return redirect(url_for('empleados'))
         else:
             flash('No se encontró ninguna cuenta con ese correo electrónico.', 'danger')
     return render_template('envioEmail/recuperarContra.html')
