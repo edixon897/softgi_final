@@ -6,6 +6,7 @@
     <title>Proveedores</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/proveedores/muestra_proveedores.css">
+    <link rel="stylesheet" href="../../static/css/proveedores/crear_proveedores.css">
 </head>
 <body>
 
@@ -27,7 +28,7 @@
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
                         <a class="botones"  href="{{url_for('muestra_compra_proved')}}">Compras a proveedores</a>
-                        <button class="botones" id="AbrirModal">Crear proveedor</button>
+                        <button class="botones" id="abrirModalBtn">Crear proveedor</button>
                     </div>
                 </div>
             </div>
@@ -92,7 +93,9 @@
         </section>
 
     </main>
-    <div id="crearCProveedorModal" class="modal" style="display: none;">
+
+
+    <div id="crearProveedorModal" class="modal" style="display: none;">
         <div class="modal-content">
             <form action="/crearProveedores" method="post" id="conten_formulario_2">
                 <div class="campos">

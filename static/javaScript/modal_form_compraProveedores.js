@@ -1,14 +1,14 @@
 $(document).ready(function () {
     // Cuando se hace clic en el botón para abrir el modal
-    $("#botonAbrirModal").click(function () {
+    $("#botonAbrirModalBtn").click(function () {
         console.log('ejecutado')
-        $("#crearCompraModa").css("display", "block");
+        $("#crearCompraModal").css("display", "block");
     });
 
     // Cuando se hace clic fuera del modal, se cierra
     $(window).click(function (e) {
-        if (e.target.id === "crearCompraModa") {
-            $("#crearCompraModa").css("display", "none");
+        if (e.target.id === "crearCompraModal") {
+            $("#crearCompraModal").css("display", "none");
         }
     });
 });
