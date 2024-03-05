@@ -94,7 +94,7 @@ def confirma_abono_2():
                         
                         mensaj = "El_credito_fue_pagado_exitosamente_por_completo"
 
-                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'  ORDER BY fecha_venta DESC"
                         conn = mysql.connect()
                         cursor = conn.cursor()     #muestra toda la informacion
                         cursor.execute(sql)
@@ -122,7 +122,7 @@ def confirma_abono_2():
 
                         mensaj = "Pago_parcial_registrado_exitosamente"
 
-                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                        sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' ORDER BY fecha_venta DESC"
                         conn = mysql.connect()
                         cursor = conn.cursor()     #muestra toda la informacion
                         cursor.execute(sql)
@@ -135,7 +135,7 @@ def confirma_abono_2():
                 else:
                     mensaj = "¡Cantidd_digitada_mayor_a_la_debida!"
 
-                    sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                    sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'  ORDER BY fecha_venta DESC"
                     conn = mysql.connect()
                     cursor = conn.cursor()     #muestra toda la informacion
                     cursor.execute(sql)
@@ -146,7 +146,7 @@ def confirma_abono_2():
             else:
                 mensaj = "menor_igual_cero"
 
-                sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+                sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' ORDER BY fecha_venta DESC"
                 conn = mysql.connect()
                 cursor = conn.cursor()     #muestra toda la informacion
                 cursor.execute(sql)
@@ -262,7 +262,7 @@ def muestra_ventas_credito():
         rol_usuario = session["nom_empleado"]
         if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
 
-            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' ORDER BY fecha_venta DESC"
             conn = mysql.connect()
             cursor = conn.cursor()     #muestra toda la informacion
             cursor.execute(sql)
@@ -501,7 +501,7 @@ def cancela_venta_c(contador):
             
             mensaj = "El_credito_fue_pagado_exitosamente_por_completo"
 
-            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO'"
+            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' ORDER BY fecha_venta DESC"
             conn = mysql.connect()
             cursor = conn.cursor()     #muestra toda la informacion
             cursor.execute(sql)
@@ -543,48 +543,45 @@ def elimina_todo_seleccionado_p():
 
 
                     # consulto el id_producto 
-                    sql = f"SELECT `id_producto` FROM `carritoventas` WHERE contador = '{contador_2[i]}'" # <---- i es el CONTADOR
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    id_pro = cursor.fetchall()
-                    conn.commit()
-                    id_producto = id_pro[0][0]
+                    for contador_tuple in contadores:
+                        contador = contador_tuple[0]
 
-                    # consulto el stock disponible que tiene el producto 
-                    sql = f"SELECT `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    stock_disponible = cursor.fetchall()
-                    conn.commit()
+                        # consulto el id_producto 
+                        sql = f"SELECT `id_producto` FROM `carritoventas` WHERE contador = '{contador}'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        id_pro = cursor.fetchall()
+                        conn.commit()
+                        id_producto = id_pro[0][0]
 
-                    # consulto la cantidad seleccionada del producto en el carrito ventas
-                    sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    cantidad_adquirida = cursor.fetchall()
-                    conn.commit()
+                        # consulto el stock disponible que tiene el producto 
+                        sql = f"SELECT `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+                        cursor.execute(sql)
+                        stock_disponible = cursor.fetchone()[0]
 
-                    # sumo al stock disponible la cantidad que adquirida
-                    stock_disponible = (stock_disponible[0][0] + cantidad_adquirida[0][0])
+                        # consulto la cantidad seleccionada del producto en el carrito ventas
+                        sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+                        cursor.execute(sql)
+                        cantidad_adquirida = cursor.fetchone()[0]
 
-                    # inserto el nuevo stock en la base de datos
-                    sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    conn.commit()
+                        # sumo al stock disponible la cantidad que adquirida
+                        stock_disponible += cantidad_adquirida
 
-                    # borro el producto seleccionado de la tabla carrito_ventas
-                    sql = f"DELETE FROM `carritoventas` WHERE id_producto = '{id_producto}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    conn.commit()
+                        # inserto el nuevo stock en la base de datos
+                        sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+                        cursor.execute(sql)
+                        conn.commit()
 
-                return redirect("/verCrear_ventas")
+                        # borro el producto seleccionado de la tabla carrito_ventas
+                        sql = f"DELETE FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+                        cursor.execute(sql)
+                        conn.commit()
+
+                    cursor.close()
+                    conn.close()
+
+                    return redirect("/verCrear_ventas")
 
 
             # 1
