@@ -581,7 +581,29 @@ def elimina_todo_seleccionado_p():
                     cursor.close()
                     conn.close()
 
-                    return redirect("/verCrear_ventas")
+                    # Muestra el documento del operador
+                    documento_operador = session["documento_operador"]
+
+                    # consulta los productos del inventario
+                    sql = "SELECT `id_producto`, `ref_produ_1`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto`= 'ACTIVO'"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    productos_inven = cursor.fetchall()
+                    conn.commit()
+
+                    # consulta los productos seleccionados para venta
+                    sql = "SELECT `contador`, `nombre_producto`, `precio_venta`, `cantidad_adquirida`, `total` FROM `carritoventas`"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()     
+                    cursor.execute(sql)
+                    productos_carr = cursor.fetchall()
+                    conn.commit()
+
+                    mensaje_error = "Se_vaciaron_todos_los_productos_seleccionados" #¡No hay productos seleccionados para eliminar!
+                    return render_template('ventas/registrar_ventas.html', prod = productos_inven, prod_carr = productos_carr, Total = 0, operador = documento_operador, mensaje_2 = mensaje_error) 
+
+                    """ return redirect("/verCrear_ventas") """
 
 
             # 1
