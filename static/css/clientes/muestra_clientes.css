@@ -234,16 +234,19 @@ main#cuerpo {
                         }
                         i#icono_ver_mas {
                             font-size: 1.8em;
-                            color: #358cb475;
+                            color: #358CB4;
                             }i#icono_ver_mas:hover {
                                 color: #358CB4;
                             }
 
                             i#icono_2 {
                                 font-size: 1.8em;
+                                color: #358cb475;
+                            }
+                            i#icono_2:hover {
+                                font-size: 1.8em;
                                 color: #358CB4;
                             }
-
                             i#icono_3 {
                                 font-size: 1.8em;
                                 color: #358cb475;
