@@ -34,7 +34,7 @@
                 </div>
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
-                        <a href="{{url_for ('solicitarCambio_contraseña') }}" class="botones" >Cambiar Contraseña</a>
+                        <button id="abrirRecuperar" class="botones" >Cambiar Contraseña</button>
                     </div>
                 </div>
             </div>
@@ -171,6 +171,22 @@
                 </form>
             </div>
         </div>
+
+
+        <div id="recuperarContradoModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="contenedor_login">
+                    <h3>Vamos a restablecer tu contraseña</h3>
+                    <form method="POST">
+                        <label for="email"><span>Digita tu correo electrónico:</span>
+                            <input type="email" name="email" id="email"  required>
+                        </label>
+                        <button type="submit">Recuperar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="/static/javaScript/modalEmpleado.js"></script>
