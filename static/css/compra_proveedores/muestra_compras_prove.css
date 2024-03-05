@@ -275,6 +275,9 @@ main#cuerpo {
     max-width: 600px;
     margin: 0 auto;
     text-align: left;
+
+    max-height: 80vh; /* Establece la altura máxima del modal al 80% de la altura de la ventana */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
 }
 
 

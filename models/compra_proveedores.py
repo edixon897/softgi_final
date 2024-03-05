@@ -16,23 +16,11 @@ class Compras_proved:
         self.conexion.commit()
     
     def registrar_detalles_compra(self, datos_compra):
-        num_compra = datos_compra[0]
-        detalles_productos = datos_compra[1]
-
-        for i in range(len(detalles_productos['producto_compra[]'])):
-            producto_nombre = detalles_productos['producto_compra'][i]
-            cantidad = detalles_productos['cantidad_compra'][i]
-            valor_unidad = detalles_productos['valor_unidad'][i]
-            total = int(cantidad) * int(valor_unidad)
-
-            sql = "INSERT INTO detallecomprasproveedores (detallenum_compra, producto_compra, cantidad_producto_compra, valorunidad_prodcompra, valortotal_cantidadcomp) VALUES (%s, %s, %s, %s, %s)"
-            valores_producto = (num_compra, producto_nombre, cantidad, valor_unidad, total)
-
-            self.cursor.execute(sql, valores_producto)
-            print("Datos a detallecomprasproveedores:", valores_producto)
-
+        sql = "INSERT INTO detallecomprasproveedores (detallenum_compra, producto_compra, cantidad_producto_compra, valorunidad_prodcompra, valortotal_cantidadcomp) VALUES (%s, %s, %s, %s, %s)"
+        valores_producto = (datos_compra[0], datos_compra[1], datos_compra[2], datos_compra[3], datos_compra[4])
+        self.cursor.execute(sql, valores_producto)
+        print("Datos a detallecomprasproveedores:", valores_producto)
         self.conexion.commit()
-        return True
 
 
     def cacela_compra(self,num_compra):

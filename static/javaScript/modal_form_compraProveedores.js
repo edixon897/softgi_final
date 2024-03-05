@@ -13,7 +13,7 @@ $(document).ready(function () {
     });
 });
 
-/* var contadorProductos = 0;
+var contadorProductos = 0;
 
 function agregarProducto() {
     contadorProductos++;
@@ -29,9 +29,11 @@ function agregarProducto() {
                     '<input type="number" name="valor_unidad[]" id="valor_unidad_modal_'+ contadorProductos +'" placeholder="Valor por unidad" class="campo">';
 
     form.appendChild(div);
+
+    var modal = document.getElementById('modal-content');
+    modal.scrollTop = modal.scrollHeight;
     console.log(producto_compra);
     console.log(cantidad_compra);
     console.log(valor_unidad);
 
 }
- */

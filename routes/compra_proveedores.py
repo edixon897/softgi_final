@@ -49,11 +49,17 @@ def Registrar_compra_p():
         num_factura_proveedor = request.form['num_factura_proveedor']
         productos_compra = request.form.getlist('productos_compra[producto][]')
 
+        cantidad_compra = []
+        valor_unidad = []
+
         for i in range(len(productos_compra)):
             producto_nombre = request.form.getlist(f'productos_compra[producto][]')[i]
             cantidad = request.form.getlist(f'productos_compra[cantidad][]')[i]
-            valor_unidad = request.form.getlist(f'productos_compra[valor_unidad][]')[i]
-            total = int(cantidad) * int(valor_unidad)
+            valor_unidad_valor = request.form.getlist(f'productos_compra[valor_unidad][]')[i]
+            total = int(cantidad) * int(valor_unidad_valor)
+
+            cantidad_compra.append(cantidad)
+            valor_unidad.append(valor_unidad_valor)
 
 
         try:
