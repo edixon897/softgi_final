@@ -543,48 +543,45 @@ def elimina_todo_seleccionado_p():
 
 
                     # consulto el id_producto 
-                    sql = f"SELECT `id_producto` FROM `carritoventas` WHERE contador = '{contador_2[i]}'" # <---- i es el CONTADOR
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    id_pro = cursor.fetchall()
-                    conn.commit()
-                    id_producto = id_pro[0][0]
+                    for contador_tuple in contadores:
+                        contador = contador_tuple[0]
 
-                    # consulto el stock disponible que tiene el producto 
-                    sql = f"SELECT `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    stock_disponible = cursor.fetchall()
-                    conn.commit()
+                        # consulto el id_producto 
+                        sql = f"SELECT `id_producto` FROM `carritoventas` WHERE contador = '{contador}'"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        id_pro = cursor.fetchall()
+                        conn.commit()
+                        id_producto = id_pro[0][0]
 
-                    # consulto la cantidad seleccionada del producto en el carrito ventas
-                    sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    cantidad_adquirida = cursor.fetchall()
-                    conn.commit()
+                        # consulto el stock disponible que tiene el producto 
+                        sql = f"SELECT `cantidad_producto` FROM `productos` WHERE id_producto = '{id_producto}'"
+                        cursor.execute(sql)
+                        stock_disponible = cursor.fetchone()[0]
 
-                    # sumo al stock disponible la cantidad que adquirida
-                    stock_disponible = (stock_disponible[0][0] + cantidad_adquirida[0][0])
+                        # consulto la cantidad seleccionada del producto en el carrito ventas
+                        sql = f"SELECT `cantidad_adquirida` FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+                        cursor.execute(sql)
+                        cantidad_adquirida = cursor.fetchone()[0]
 
-                    # inserto el nuevo stock en la base de datos
-                    sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    conn.commit()
+                        # sumo al stock disponible la cantidad que adquirida
+                        stock_disponible += cantidad_adquirida
 
-                    # borro el producto seleccionado de la tabla carrito_ventas
-                    sql = f"DELETE FROM `carritoventas` WHERE id_producto = '{id_producto}'"
-                    conn = mysql.connect()
-                    cursor = conn.cursor()     
-                    cursor.execute(sql)
-                    conn.commit()
+                        # inserto el nuevo stock en la base de datos
+                        sql = f"UPDATE `productos` SET `cantidad_producto` = '{stock_disponible}' WHERE id_producto = '{id_producto}'"
+                        cursor.execute(sql)
+                        conn.commit()
 
-                return redirect("/verCrear_ventas")
+                        # borro el producto seleccionado de la tabla carrito_ventas
+                        sql = f"DELETE FROM `carritoventas` WHERE id_producto = '{id_producto}'"
+                        cursor.execute(sql)
+                        conn.commit()
+
+                    cursor.close()
+                    conn.close()
+
+                    return redirect("/verCrear_ventas")
 
 
             # 1
