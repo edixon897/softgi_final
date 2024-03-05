@@ -93,6 +93,15 @@ function verifica_input_2() {
             height: "20%",
             showConfirmButton: true
         });
+    } else if (valor_input == "Se_vaciaron_todos_los_productos_seleccionados") {
+        Swal.fire({
+            icon: "success",
+            text: "Se vaciaron todos los productos seleccionados",
+            width: "42%",
+            height: "20%",
+            timer: 1500,
+            showConfirmButton: false
+        });
     }
 }
 
