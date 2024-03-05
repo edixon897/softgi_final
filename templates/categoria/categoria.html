@@ -9,11 +9,6 @@
 </head>
 <body>
 
-
-
-
-
-
     <main id="cuerpo">
 
         <section id="section_1">
@@ -95,64 +90,6 @@
 
     </main>
 
-
-   <!--  <main id="inicio">
-        <section id="opciones">
-            <h2>CATEGORIAS</h2>
-            <div id="agregar_producto">
-                <a href="{{url_for('crearCategoria')}}">
-                    <p class="aviso_agregar">Crear categoria</p>
-                </a>
-            </div>
-            <div id="buscar">
-                <form  id="buscador">
-                    <i id="icono_buscar" class="lni lni-search-alt"></i>
-                    <input type="search" placeholder="Realiza una busqueda" name="buscar" id="searchCategorias" oninput="buscarCategorias()">
-                </form>
-            </div>
-        </section>
-
-        <section id="contenido">
-            <table id="TablaCategorias">
-                <thead>
-                    <tr id="tabla-productos">
-                        <th>Id Categoría</th>
-                        <th>Nombre</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for resul in resulta %}
-                        <tr>
-                            <td>{{resul[0]}}</td>
-                            <td>{{resul[1]}}</td>
-
-                            <td class="btns_centro">
-                                <a href="/editarCategorias/{{resul[0]}}" >
-                                    <i id="icono_editar" class="lni lni-pencil"></i>
-                                </a>
-                            </td>
-
-                            <td class="btns_centro">
-                                <a onclick="return confirm('Seguro que deseas eliminar la categoria?')" href="/borracategoria/{{resul[0]}}">
-                                    <i id="icono_borrar" class="lni lni-trash-can"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <p id="noResults" style="display: none;">No se encontraron resultados</p>
-        </section>
-
-        <div id="regresar">
-            <a href="{{url_for ('muestra_Productos') }}" class="campo_a">
-                <i id="atras" class="lni lni-arrow-left"></i>
-            </a>
-        </div>
-    </main>
- -->
     <script src="../../static/javaScript/buscarCategorias.js"></script>
 </body>
 </html>
