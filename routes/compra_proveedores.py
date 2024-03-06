@@ -30,7 +30,7 @@ def Registrar_compra_p():
         producto_compra = request.form['producto_compra']
         Cantidad_compra = request.form['cantidad_compra']
         cantidad_compra = int(Cantidad_compra)
-        valor_unidad = request.form['valor_unidad']
+        valor_unidad = float(request.form['valor_unidad'])
         valor_total_unidad = (valor_unidad*cantidad_compra)
         tiempo_compra = datetime.datetime.now()
 
@@ -60,7 +60,6 @@ def Registrar_compra_p():
         flash('¡Se registro con exito!')
         return redirect("/muestra_compra_proved")
 
-    
 
 
 # ------------- cancela compras -------
