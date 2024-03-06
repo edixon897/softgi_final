@@ -18,7 +18,7 @@
                 <div id="isla_3">
 
                     <table id="tabla_productos">
-                        <thead >
+                        <thead>
                             <tr>
                                 <th>numero compra</th>
                                 <th>producto</th>
@@ -30,18 +30,30 @@
                                 <th></th>
                             </tr>
                         </thead>
-
+                    
                         <tbody>
                             {% for c in resul %}
                             <tr>
-                                {% for i in range(0,5) %}
-                                    <td>{{c[i]}}</td>
+                                {% for i in range(0, 5) %}
+                                    <td {% if i in [2, 3, 4] %} class="" {% endif %}>
+                                        {% if c[i] is defined %}
+                                            {% if i in [3, 4] %}
+                                                $ {{ "{:,.0f}".format(c[i] | float) }}
+                                            {% else %}
+                                                {{ "{:,.0f}".format(c[i] | float) }}
+                                            {% endif %}
+                                        {% else %}
+                                            {{ c[i] }}
+                                        {% endif %}
+                                    </td>
                                 {% endfor %}
-
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
+                    
+                    
+                    
                     <div id="regresar">
                         <a href="{{url_for ('muestra_compra_proved') }}" id="enlace_volver">
                                 <i id="atras" class="lni lni-arrow-left"></i>
