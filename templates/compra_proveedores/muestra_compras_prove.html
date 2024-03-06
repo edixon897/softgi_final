@@ -6,7 +6,7 @@
     <title>Compras proveedores</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/compra_proveedores/muestra_compras_prove.css">
-    <link rel="stylesheet" href="../../static/css/proveedores/crear_proveedores.css">
+    <link rel="stylesheet" href="../../static/css/compra_proveedores/registrar_compra_proveedores.css">
 </head>
 <body>
 
@@ -76,7 +76,7 @@
                                             <a href="edita_compras_provee/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
                                         </td>
                                         <td class="btns_centro">
-                                            <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="cancelar_compra_proveed/{{c[0]}}">
+                                            <a onclick="return confirm('¿Seguro que deseas eliminar este registro de compra al proveedor?')" href="cancelar_compra_proveed/{{c[0]}}">
                                                 <i id=icono_2 class="lni lni-trash-can"></i>
                                             </a>
                                         </td>
@@ -103,39 +103,42 @@
 
     <div id="crearCompraModal" class="modal" style="display: none;">
         <div class="modal-content">
-            <h4>Registra compras de proveedores</h4>
-            <form id="compraForm" action="Registrar_compra_p" method="post"> 
-                <div>
-                    <label for="proveedor_compra">Proveedor</label>
-                    <select name="proveedor_compra" id="proveedor_compra" class="input_campo">
-                        <option value="">Proveedor</option>
-                        {% for c in prove %}
-                            <option value="{{c[0]}}">{{c[1]}}</option>
-                        {% endfor %}
-                    </select>
+            <form id="compraform" action="Registrar_compra_p" method="post" > 
+                <div id="pag_1" class="campos">
+                    <div id="proveedor">
+                        <label for="proveedor_compra">Proveedor</label>
+                        <select name="proveedor_compra" id="proveedor_compra" class="input_campo">
+                            <option value="">Proveedor</option>
+                            {% for c in prove %}
+                                <option value="{{c[0]}}">{{c[1]}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="num_fac">
+                        <input type="text" name="num_factura_proveedor" id="num_factura_proveedor" placeholder="Número de factura" class="campo">
+                    </div>
+                    
+                    <div>
+                        <input type="number" name="productos_compra[cantidad][]" id="cantidad_compra_modal_' + contadorProductos + '" placeholder="Cantidad" class="campo">
+                    </div>
                 </div>
-                <div>
-                    <label for="fecha_compra">Fecha</label>
-                    <input type="date" name="fecha_compra" id="fecha_compra" class="campo">
+
+                <div id="pag_2" class="campos">
+                    <div id="fecha_compra">
+                        <label for="fecha_compra">Fecha</label>
+                        <input type="date" name="fecha_compra" id="fecha_compra" class="campo">
+                    </div>
+                    <div>
+                        <input type="text" name="productos_compra[producto][]" id="producto_compra_modal_' + contadorProductos + '" placeholder="Producto" class="campo">
+                    </div>
+                    <div>
+                        <input type="number" name="productos_compra[valor_unidad][]" id="valor_unidad_modal_' + contadorProductos + '" placeholder="Valor por unidad" class="campo">
+                    </div>
                 </div>
-                <div>
-                    <label for="num_factura_proveedor">N° factura</label>
-                    <input type="text" name="num_factura_proveedor" id="num_factura_proveedor" placeholder="N° factura" class="campo">
-                </div>
-                <div>
-                    <label for="producto_compra_modal_' + contadorProductos + '">Producto</label>
-                    <input type="text" name="productos_compra[producto][]" id="producto_compra_modal_' + contadorProductos + '" placeholder="Producto" class="campo">
-                </div>
-                <div>
-                    <label for="cantidad_compra_modal_' + contadorProductos + '">Cantidad</label>
-                    <input type="number" name="productos_compra[cantidad][]" id="cantidad_compra_modal_' + contadorProductos + '" placeholder="Cantidad" class="campo">
-                </div>
-                <div>
-                    <label for="valor_unidad_modal_' + contadorProductos + '">Valor por unidad</label>
-                    <input type="number" name="productos_compra[valor_unidad][]" id="valor_unidad_modal_' + contadorProductos + '" placeholder="Valor por unidad" class="campo">
-                </div>
-                <button type="button" onclick="agregarProducto()">Agregar Producto</button>
-                <button type="submit" value="registrar">Registrar</button>
+                
+                
+                <!-- <button type="button" onclick="agregarProducto()">Agregar producto</button> -->
+                <button type="submit" value="registrar" class="btn">Registrar</button>
             </form>
         </div>
     </div>

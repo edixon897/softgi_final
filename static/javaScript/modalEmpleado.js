@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     // Cuando se hace clic en el botón para abrir el modal
-    $("#abrirRecupera").click(function () {
+    $("#abrirRecuperar").click(function () {
         $("#recuperarContradoModal").css("display", "block");
     });
 
