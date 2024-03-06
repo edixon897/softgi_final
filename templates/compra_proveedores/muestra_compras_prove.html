@@ -25,8 +25,7 @@
                         </a>
                 </div>
                 <div id="conten_btn_navegacion">
-                        <button class="botones" id="botonAbrirModalBtn">Registrar compra</button>
-                    </div> 
+                    <button class="botones" id="botonAbrirModalBtn">Registrar compra</button>
                 </div>
             </div>
 
@@ -72,9 +71,13 @@
                                             <td>{{ c[i] }}</td>
                                             
                                         {% endfor %}
+
+                                        
+                                        
                                         <td class="btns_centro">
                                             <a href="edita_compras_provee/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
                                         </td>
+
                                         <td class="btns_centro">
                                             <a onclick="return confirm('¿Seguro que deseas eliminar este registro de compra al proveedor?')" href="cancelar_compra_proveed/{{c[0]}}">
                                                 <i id=icono_2 class="lni lni-trash-can"></i>
@@ -100,6 +103,7 @@
         </section>
 
     </main>
+<!------------------------ Modal de registro compra proveedor ------------------------>
 
     <div id="crearCompraModal" class="modal" style="display: none;">
         <div class="modal-content">
@@ -142,8 +146,35 @@
         </div>
     </div>
 
+    <!-- Modal edita compra proveedor -->
+    <div id="crearCompraModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <form action="actualiza_compra_provee" method="post">
+                <input type="text" name="id_detalle_compra" value="{{resul[0]}}">
+                <label for="">Id detalle compra</label>
+                <input type="number" name="num_compra" placeholder="numero de compra"  value="{{resul[1]}}">
+                <label for="">detalle N# compra</label>
+                <input type="text" name="producto_compra" placeholder="Producto comprado" value="{{resul[2]}}">
+                <label for="">Producto</label>
+                <input type="number" name="cantidad_compra" placeholder="Cantidad" value="{{resul[3]}}">
+                <label for="">Cantidad</label>
+                <input type="number" name="valorunidad_prodcompra" placeholder="Valor por unidad"  value="{{resul[4]}}">
+                <label for="">Valor x unidad</label>
+                <input type="text" name="valortotal_cantidadcomp" value="{{resul[5]}}">
+                <label for="">Valor total</label>
+                <input type="text" name="totalpagar_compra" value="{{resul[6]}}">
+                <label for="">Total a pagar</label>
+                <input type="text" name="num_factura_proveedor" value="{{resul[7]}}">
+                <label for="">N# factura del proveedor</label>
+                <button type="submit">actualizar</button>
+            </form>
+        </div>
+    </div>
+
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../../static/javaScript/modal_form_compraProveedores.js"></script>
     <script src="../../static/javaScript/buscarCompras_prove.js"></script>
+    <script src="../../static/javaScript/modal_actualizar_proveedor.js"></script>
 </body>
 </html>
