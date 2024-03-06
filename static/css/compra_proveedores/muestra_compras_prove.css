@@ -108,7 +108,7 @@ main#cuerpo {
                 align-items: center;
             }
                 div#isla_2 {
-                    width: 90%;
+                    width: 15%;
                     height: 70%;
                     background-color: white;
                     border-radius: 1.6em;
@@ -116,6 +116,8 @@ main#cuerpo {
                     display: flex;
                     align-items: center;
                     justify-content: space-evenly;
+                    margin-left: 30px;
+                    margin-top: 16px;
                 }
         div#conten_tabla {
             width: 95%;
