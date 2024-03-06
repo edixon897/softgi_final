@@ -72,6 +72,8 @@
                                             
                                         {% endfor %}
                                         <td class="btns_centro">
+                                            <button id="iconoVerMas{{c[0]}}">
+                                            </button>
                                             <a href="/actializarProveedor/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
                                         </td>
                                         <td class="btns_centro">
@@ -134,26 +136,35 @@
     </div>
 
 
+    <div id="actualizarproveedorModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <form action="/actializarProveed" method="post" id="formu_provee_modifi">
+                <h2>Actualizar proveedores</h2>
+                <div class="cont-campos">
+    
+                    <input type="number" name="documentoProveedor" id="documentoProvedor" value="{{resul[0]}}" class="campo">
+                    <input type="text" name="nombreProveedor" id="nombreProveedor" value="{{resul[1]}}" class="campo"> 
+                    <input type="number" name="numeroProveedores" id="numeroProveedores" value="{{resul[2]}}" class="campo">
+                    <input type="email" name="correoProveedores" id="correoProveedores" value="{{resul[3]}}" class="campo">
+                    <input type="text" name="direccionProveedores" id="direccionProveedores" value="{{resul[4]}}" class="campo">
+                    <input type="text" name="ciudadProveedor" id="ciudadProveedor" value="{{resul[5]}}" class="campo">
+                    
+                </div>
+                <div id="boton-atras">
+                    <input type="submit" value="Actualizar" class="boton-atras">
+                </div>
+            </form>
+        </div>
+    </div>
+        
+
 
 
 
 
                     
 
-                <!-- <div class="campos">
-                    <input type="number" name="documentoProveedor" id="documentoProvedor" placeholder="Ingresar documento" class="campo">
-                    <input type="text" name="nombreProveedor" id="nombreProveedor" placeholder="Ingresar nombre" class="campo">
-                    <input type="number" name="numeroProveedores" id="numeroProveedores" placeholder="Ingresar numero telefonico" class="campo">
-                    <input type="email" name="correoProveedores" id="correoProveedores" placeholder="Ingresa correo electronico" class="campo">
-                    <input type="text" name="direccionProveedores" id="direccionProveedores" placeholder="Ingresar dirrecion" class="campo">
-                    <input type="text" name="ciudadProveedor" id="ciudadProveedor" placeholder="Ingresar ciudad " class="campo">
-                </div>
-                <div id="boton-atras">
-                <input type="submit" value="Registrar" class="boton-atras">
-                </div>
-            </form>
-        </div>
-    </div> -->
+                
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="/static/javaScript/modalProveedor.js"></script>
