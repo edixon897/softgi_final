@@ -123,16 +123,16 @@
                     <input type="text" name="num_factura_proveedor" id="num_factura_proveedor" placeholder="N° factura" class="campo">
                 </div>
                 <div>
-                    <label for="producto_compra_modal_' + contadorProductos + '">Producto</label>
-                    <input type="text" name="productos_compra[producto][]" id="producto_compra_modal_' + contadorProductos + '" placeholder="Producto" class="campo">
+                    <label for="producto_compra">Producto</label>
+                    <input type="text" name="producto_compra" id="producto_compra" placeholder="Producto" class="campo">
                 </div>
                 <div>
-                    <label for="cantidad_compra_modal_' + contadorProductos + '">Cantidad</label>
-                    <input type="number" name="productos_compra[cantidad][]" id="cantidad_compra_modal_' + contadorProductos + '" placeholder="Cantidad" class="campo">
+                    <label for="cantidad_compra">Cantidad</label>
+                    <input type="number" name="cantidad_compra" id="cantidad_compra" placeholder="Cantidad" class="campo">
                 </div>
                 <div>
-                    <label for="valor_unidad_modal_' + contadorProductos + '">Valor por unidad</label>
-                    <input type="number" name="productos_compra[valor_unidad][]" id="valor_unidad_modal_' + contadorProductos + '" placeholder="Valor por unidad" class="campo">
+                    <label for="valor_unidad">Valor por unidad</label>
+                    <input type="number" name="valor_unidad" id="valor_unidad" placeholder="Valor por unidad" class="campo">
                 </div>
                 <button type="button" onclick="agregarProducto()">Agregar Producto</button>
                 <button type="submit" value="registrar">Registrar</button>
