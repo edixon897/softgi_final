@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventas a credito</title>
+    <title>Ventas a credito pagadas</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/ventas/ventas_credito/muestra_ventas_credito.css">
 </head>
@@ -20,7 +20,7 @@
         </section>
 
         <section id="section_1">
-            <p>Historial de créditos</p>
+            <p>Historial de créditos pagados</p>
         </section>
 
 
@@ -37,7 +37,7 @@
                         <a class="botones" href="{{url_for('muestra_ventas')}}">Ventas efectivo</a>
                         
                         <a class="botones"  href="{{url_for('verCrear_ventas')}}">Realizar venta</a>
-                        <a class="botones" href="{{url_for('creditos_pagos')}}">Creditos pagados</a>
+                        <a class="botones" href="{{url_for('muestra_ventas_credito')}}">ventas credito</a>
                         
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <section id="section_buscador_titulo">
                         
                         <div id="conten_titulo">
-                            <p>Ventas a crédito</p>
+                            <p>Ventas a crédito pagas</p>
                         </div>
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
@@ -98,20 +98,7 @@
                                                 </a>
                                             </td>
   
-                                            <!-- Hola -->
-
-                                            <td class="btns_centro">
-                                                <a href="#" onclick="abrirModal('{{result[0]}}')"><!-- /abono_credito_2/{{result[0]}} -->
-                                                    <i id=icono_3 class="lni lni-dollar"></i>
-                                                </a>
-                                            </td>
-
-
-                                            <td class="btns_centro">
-                                                <a href="/cancela_venta_c/{{result[0]}}">
-                                                    <i id="icono_2" class="lni lni-checkmark-circle"></i>
-                                                </a>
-                                            </td>
+                                            
                                         </tr>
                                         {% endfor %}
                                     </tbody>

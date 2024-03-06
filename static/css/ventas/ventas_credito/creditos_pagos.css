@@ -274,33 +274,3 @@ main#cuerpo {
                                 }i#icono_3:hover {
                                     color: #358CB4;
                                 }
-
-
-
-
-
-        /* div#conten_btn_regresar {
-            width: 95%;
-            height: 15%;
-            background-color: red;
-        } */
-
-
-
-
-
-
-/* CLASES */
-.botones {
-    border: 1px solid #358CB4;
-    padding: 8px;
-    background-color: #ffffff;
-    text-decoration: none;
-    color: #358CB4;
-    border-radius: 0.3em;
-}
-
-.clase1 {
-    color: rgb(5, 183, 5);
-}
-
