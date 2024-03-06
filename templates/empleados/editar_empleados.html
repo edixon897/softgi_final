@@ -36,6 +36,7 @@
                         </div>
                         <div class="campo_2">
                             <input type="text" name="ape_empleado" id="ape_empleado" placeholder="Apellido" class="input_campo" value="{{resul[2]}}">
+                            <label for="apellido">Apellido</label>
                         </div>
                         <div class="campo_2">
                             <input type="datetime" name="fecha_nacimiento" id="fecha_nacimiento_empleado" placeholder="Fecha de nacimiento" class="input_campo" value="{{resul[3]}}">
@@ -65,13 +66,6 @@
                         <select id="opt" name="ciudad_empleado" >
                             <option value="">Ciudad de residencia</option>
                             <option value="{{resul[7]}}">{{resul[7]}}</option>
-                            <option value="Buga">Buga</option>
-                            <option value="Tulua">Tuluá</option>
-                            <option value="Sonso">Sonso</option>
-                            <option value="El Vinculo">El vínculo</option>
-                            <option value="Guacari">Guacarí</option>
-                            <option value="Cali">Cali</option>
-                            <option value="Restrepo">Restrepo</option>
                         </select>
                         <label for="ciudad">Ciudad</label>
                     </div>
@@ -83,6 +77,7 @@
                         <option value="vendedor">Vendedor</option>
                         <option value="almacenista">Almacenista</option>
                     </select>
+                    <label for="Rol">Cargo</label>
                     <div id="boton-atras">
                         <button type="submit" class="boton-atras">Actualizar</button>
                     </div>
