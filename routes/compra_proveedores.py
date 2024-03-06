@@ -8,28 +8,6 @@ from models.compra_proveedores import Dcompra_proveedores
 
 # ------------- registra compras  --------------
 
-""" @app.route("/Regitra_compra_prov")
-def Regitra_compra_prov():
-    if "nom_empleado" in session:
-
-        rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "almacenista":
-
-            sql = "SELECT doc_proveedor, nom_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
-            conn = mysql.connect()
-            cursor = conn.cursor()                  # consulta todos los documentos de los proveedores y los envia al select
-            cursor.execute(sql)
-            resultado1 = cursor.fetchall()  
-            print("datos del proveedor:", resultado1)       # y muestra el html registra_compras_prove
-            conn.commit()
-            return render_template("/compra_proveedores/registrar_compra_proveedores.html", resul = resultado1)
-        else:
-            return redirect("/inicio")
-
-    else:
-        flash('Por favor inicia sesion para acceder')
-        return redirect(url_for('index')) """
-
 
 @app.route("/Registrar_compra_p", methods=['POST'])
 def Registrar_compra_p():
