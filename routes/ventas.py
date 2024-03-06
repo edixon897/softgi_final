@@ -259,8 +259,8 @@ def buscador_venta_c():
 def muestra_ventas_credito():
     if "nom_empleado" in session: 
             
-        rol_usuario = session["nom_empleado"]
-        if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
 
             sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' ORDER BY fecha_venta DESC"
             conn = mysql.connect()
@@ -268,6 +268,32 @@ def muestra_ventas_credito():
             cursor.execute(sql)
             resultado = cursor.fetchall()
             return render_template("/ventas_credito/muestra_ventas.html",resul = resultado)
+
+        else:
+            return redirect("/inicio")
+
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('index'))
+
+
+
+
+#-------------------------------------------------------- Historial de ventas a credito pagadas ----------------------------------------------------------------
+
+@app.route("/creditos_pagos")
+def creditos_pagos():
+    if "nom_empleado" in session: 
+            
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+
+            sql = "SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'PAGADA' OR estado = 'pagado' ORDER BY fecha_venta DESC"
+            conn = mysql.connect()
+            cursor = conn.cursor()     #muestra toda la informacion
+            cursor.execute(sql)
+            resultado = cursor.fetchall()
+            return render_template("/ventas_credito/creditos_pagos.html",resul = resultado)
 
         else:
             return redirect("/inicio")
@@ -1088,8 +1114,8 @@ def verCrear_ventas():
         
 
         
-        rol_usuario = session["nom_empleado"]
-        if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
 
             # Muestra el documento del operador
             documento_operador = session["documento_operador"]
