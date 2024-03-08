@@ -1,181 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edita clientes</title>
+    <title>Editar Cliente</title>
+    <!-- Agregar enlaces a estilos CSS -->
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <!-- Agregar estilos locales si es necesario -->
     <link rel="stylesheet" href="../../static/css/clientes/edita_clientes.css">
 </head>
+
 <body>
+    <div id="editarClienteModal" class="modal">
+        <div class="modal-content" id="modalContent">
+            <form action="/Actualizar_clie" method="post" id="conten_formulario_2">
 
+                <div id="conten_FORM">
 
+                    <section id="lado_info_personal">
+                        <div id="conten_inputs_1">
+                            <input type="hidden" name="doc_cliente" id="documento" class="input_campo" value="{{resul[0]}}">
+                            <div class="campo_2">
+                                <input type="text" name="nom_cliente" id="nombre" class="input_campo" value="{{resul[1]}}">
+                                <label id="label_nombre" for="nombre">Nombres</label>
+                            </div>
+                            <div class="campo_2">
+                                <input type="text" name="ape_cliente" id="apellido" class="input_campo" value="{{resul[2]}}">
+                                <label id="label_apellido" for="Apellidos">Apellidos</label>
+                            </div>
+                            <div class="campo_2">
+                                <input type="date" name="fecha_nacimiento_cliente" id="fecha" class="input_campo"
+                                    value="{{resul[3]}}">
+                                <label id="label_fecha" for="fecha">Fecha de nacimiento</label>
+                            </div>
+                            <div class="campo_2">
+                                <select id="opt" name="tipo_persona" class="input_campo">
+                                    <option value="{{resul[8]}}">{{resul[8]}}</option>
+                                    <option value="natural">Natural</option>
+                                    <option value="juridica">Juridica(representante legal)</option>
+                                </select>
+                                <label id="label_otp" for="opt">tipo de persona</label>
+                            </div>
+                        </div>
 
-    <main id="inicio">
+                    </section>
 
-        <section id="conten_titulo_1">
+                    <section id="lado_info_contacto">
 
-            <h2>Editar clientes</h2>
+                        <div id="conten_titulo_div_2">
+                            <p>contacto</p>
+                        </div>
 
-        </section>
+                        <div id="content_inputs_2">
 
-        <form action="/Actualizar_clie" method="post" id="conten_formulario_2">
+                            <div class="campo_2">
+                                <input type="number" name="contacto_cliente" id="contacto" class="input_campo"
+                                    value="{{resul[4]}}">
+                                <label id="label_contacto" for="contacto">Numero de contacto</label>
+                            </div>
 
-            <div id="conten_FORM">
+                            <div class="campo_2">
+                                <input type="email" name="email_cliente" id="correo" class="input_campo"
+                                    value="{{resul[5]}}">
+                                <label id="label_correo" for="correo">Email</label>
+                            </div>
 
-            
+                            <div class="campo_2">
+                                <input type="text" name="direccion_cliente" id="direccion" class="input_campo"
+                                    value="{{resul[6]}}">
+                                <label id="label_direccion" for="direccion">Dirección</label>
+                            </div>
 
-                <section id="lado_info_personal">
+                            <div class="campo_2">
+                                <input type="text" name="ciudad_cliente" id="ciudad" class="input_campo"
+                                    value="{{resul[7]}}">
+                                <label id="label_ciudad" for="ciudad">Ciudad</label>
+                            </div>
 
-                    <div id="conten_titulo_div">
-                        <p>Info personal</p>
+                        </div>
+
+                    </section>
+
+                </div>
+                <div id="conten_buttons">
+                    <div class="conten_buttons_2">
+                        <button type="submit" id="boton_registrar" onclick="animacion_envio()">Guardar</button>
                     </div>
-
-
-                    <div id="conten_inputs_1">
-                        
-                        <input type="hidden" name="doc_cliente" id="documento"  class="input_campo" value="{{resul[0]}}" >
-
-
-                        <div class="campo_2">
-                            <input type="text" name="nom_cliente" id="nombre" class="input_campo" value="{{resul[1]}}" oninput="campo_lleno2()">
-                            <label id="label_nombre" for="nombre">Nombres</label>
-                        </div>
-
-                        <div class="campo_2">
-                            <input type="text" name="ape_cliente" id="apellido"  class="input_campo" value="{{resul[2]}}" oninput="campo_lleno3()">
-                            <label id="label_apellido" for="Apellidos">Apellidos</label>
-                        </div>
-
-                        <div class="campo_2">
-                            <input type="date" name="fecha_nacimiento_cliente" id="fecha"  class="input_campo" value="{{resul[3]}}" oninput="campo_lleno4()">
-                            <label id="label_fecha" for="fecha">Fecha de nacimiento</label>
-                        </div>
-
-                        <div class="campo_2">
-                            <select id="opt" name="tipo_persona" class="input_campo" oninput="campo_lleno5()">
-                                <option value="{{resul[8]}}">{{resul[8]}}</option>
-                                <option value="natural">Natural</option>
-                                <option value="juridica">Juridica(representante legal)</option>
-                            </select>
-                            <label id="label_otp" for="opt">tipo de persona</label>
-                        </div>
-
-                    </div>
-                    
-                </section>
-
-                <section id="lado_info_contacto">
-
-                    <div id="conten_titulo_div_2">
-                        <p>contacto</p>
-                    </div>
-
-                    <div id="content_inputs_2">
-
-                        <div class="campo_2">
-                            <input type="number" name="contacto_cliente" id="contacto"  class="input_campo" value="{{resul[4]}}"  oninput="campo_lleno6()">
-                            <label id="label_contacto" for="contacto">Numero de contacto</label>
-                        </div>
-
-                        <div class="campo_2">
-                            <input type="email" name="email_cliente" id="correo"  class="input_campo" value="{{resul[5]}}" oninput="campo_lleno7()">
-                            <label id="label_correo" for="correo">Email</label>
-                        </div>
-
-                        <div class="campo_2">
-                            <input type="text" name="direccion_cliente" id="direccion"  class="input_campo"  value="{{resul[6]}}" oninput="campo_lleno8()">
-                            <label id="label_direccion" for="direccion">Dirección</label>
-                        </div>
-
-                        <div class="campo_2">
-                            <input type="text" name="ciudad_cliente" id="ciudad" class="input_campo" value="{{resul[7]}}" oninput="campo_lleno9()">
-                            <label id="label_ciudad" for="ciudad">Ciudad</label>
-                        </div>
-
-                    </div>
-
-
-                </section>
-
-
-            </div>
-            <div id="conten_buttons">
-                <div class="conten_buttons_2">
-                    <a href="{{url_for('clientes')}}" id="enlace_regresar">Volver</a>
-                </div>
-                <div class="conten_buttons_2">
-                    <button type="submit" id="boton_registrar" onclick="animacion_envio()" >Guardar</button>
-                </div>
-            </div>
-
-        </form>
-
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../static/javaScript/color_campo_edita_clientes.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <main id="inicio">
-        <form action="/Actualizar_clie" method="post">
-            <h2>Editar clientes</h2>
-                <div class="cont-campos">
-                    <input type="number" name="doc_cliente" id="documento" placeholder="Documento" class="campo"  value="{{resul[0]}}">
-                        
-                    <input type="text" name="nom_cliente" id="nombre" placeholder="Nombres" class="campo" value="{{resul[1]}}">
-
-                    <input type="text" name="ape_cliente" id="apellido" placeholder="Apellidos" class="campo" value="{{resul[2]}}">
-
-                    <input type="date" name="fecha_nacimiento_cliente" id="contacto" placeholder="Numero de contacto" class="campo" value="{{resul[3]}}">
-
-                    <input type="text" name="contacto_cliente" id="contacto_cliente" placeholder="Numero de contacto" class="campo" value="{{resul[4]}}">
-
-                    <input type="email" name="email_cliente" id="correo" placeholder="email" class="campo" value="{{resul[5]}}">
-
-                    <input type="text" name="direccion_cliente" id="direccion" placeholder="Dirección" class="campo" value="{{resul[6]}}">
-
-                    <input type="text" name="ciudad_cliente" id="ciudad" placeholder="ciudad" class="campo" value="{{resul[7]}}">
                 </div>
 
-                <div id="contenedor_tipo" class="optiones">
-
-                    <select title="Selecionar tipo de persona" name="tipo_persona" id="opt" class="tipo_persona">
-                        <option value="{{resul[8]}}">{{resul[8]}}</option>
-                        <option value="natural">Natural</option>
-                        <option value="juridica">Juridica(representante legal)</option>
-                    </select>
-                </div>
-                <div >
-                    <button type="submit" class="boton-atras">Guardar</button>
-                </div>
-        </form>
-        <div >
-            <a href="{{url_for('clientes')}}"> Volver a clientes</a>
+            </form>
         </div>
-    </main> -->
+    </div>
+
 </body>
+
 </html>

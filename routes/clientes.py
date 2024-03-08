@@ -12,9 +12,9 @@ def clientes():
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
 
             sql = "SELECT * FROM clientes WHERE estado_cliente ='ACTIVO'"
-            conn = mysql.connect()                    
+            conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute(sql)                                          
+            cursor.execute(sql)
             resultado = cursor.fetchall()
             return render_template('clientes/clientes.html', resulta=resultado)
 
@@ -88,8 +88,8 @@ def crear_cliente():
         return redirect(url_for('index'))
     
 
-@app.route("/editarClientes/<documento>")
-def edit_cliente(documento):
+@app.route("/obtenerFormularioEditar/<documento>")
+def obtenerFormularioEditar(documento):
     if "nom_empleado" in session:
 
         rol_usuario = session["rol"]
@@ -97,7 +97,7 @@ def edit_cliente(documento):
 
             sql = f"SELECT * FROM clientes WHERE doc_cliente = '{documento}'"
             conn = mysql.connect()
-            cursor = conn.cursor()                                    
+            cursor = conn.cursor()
             cursor.execute(sql)
             resultado = cursor.fetchall()
             conn.commit()
