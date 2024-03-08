@@ -40,31 +40,31 @@ def solicitarCambio_contraseña():
 
 @app.route('/recuperar_contraseña/<token_rctsn>', methods=['GET', 'POST'])
 def recuperar_contraseña(token_rctsn):
-    if request.method == 'POST':
-        cursor = mysql.get_db().cursor()
-        cursor.execute("SELECT  fechahora_termina, codigo, usuario FROM recuperarcontrasena WHERE codigo  = %s", (token_rctsn,))
-        datos_db = cursor.fetchone()
+    cursor = mysql.get_db().cursor()
+    cursor.execute("SELECT  fechahora_termina, codigo,  usuario, utilizado FROM recuperarcontrasena WHERE codigo  = %s", (token_rctsn,))
+    datos_db = cursor.fetchone()
 
-        if not datos_db:
-            flash('El token de confirmación no es válido.', 'danger')
-            return redirect(url_for('solicitarCambio_contraseña'))
-        
-        usuario = datos_db[2]
-        codigo = datos_db[1]
-        expiration_time = datos_db[0]  
-        current_time = datetime.datetime.now()
-        if current_time > expiration_time:
-            # El token ha caducado, mostrar un mensaje de error
-            flash('El enlace de restablecimiento de contraseña ha caducado.', 'danger')
-            return redirect(url_for('solicitarCambio_contraseña'))
+    if not datos_db:
+        flash('El token de confirmación no es válido.', 'danger')
+        return redirect(url_for('solicitarCambio_contraseña'))
+    
+    usuario = datos_db[2]
+    codigo = datos_db[1]
+    expiration_time = datos_db[0]
+    utilizado = datos_db[3]
+    current_time = datetime.datetime.now()
+    if current_time > expiration_time or utilizado=='si' :
+        # El token ha caducado, mostrar un mensaje de error
+        flash('El enlace de restablecimiento de contraseña ha caducado.', 'danger')
+        return redirect(url_for('index'))
 
-        if request.method == 'POST':
-            password = request.form.get('password')
-            cifrado = hashlib.sha512(password.encode('utf-8')).hexdigest()
-            cursor.execute("UPDATE empleados SET contrasena  = %s WHERE doc_empleado = %s", (cifrado, usuario))
-            cursor.execute("UPDATE recuperarcontrasena SET utilizado='si' WHERE codigo = %s", (codigo))
-            mysql.get_db().commit()
-            flash('Tu contraseña ha sido restablecida.', 'success')
-            return redirect(url_for('index'))
+    elif request.method == 'POST':
+        password = request.form.get('password')
+        cifrado = hashlib.sha512(password.encode('utf-8')).hexdigest()
+        cursor.execute("UPDATE empleados SET contrasena  = %s WHERE doc_empleado = %s", (cifrado, usuario))
+        cursor.execute("UPDATE recuperarcontrasena SET utilizado='si' WHERE codigo = %s", (codigo))
+        mysql.get_db().commit()
+        flash('Tu contraseña ha sido restablecida.', 'success')
+        return redirect(url_for('index'))
     return render_template('envioEmail/restablecerContra.html')
 

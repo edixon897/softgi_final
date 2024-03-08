@@ -107,42 +107,42 @@
 
     <div id="crearCompraModal" class="modal" style="display: none;">
         <div class="modal-content">
-            <form id="compraform" action="Registrar_compra_p" method="post" > 
-                <div id="pag_1" class="campos">
+            <form id="compraform" action="Registrar_compra_p" method="post">
+                <!-- Campos para el primer producto -->
+                <div id="producto_1" class="producto">
+                    <div id="num_fac">
+                        <input type="text" name="num_factura_proveedor" placeholder="Número de factura" class="campo">
+                    </div>
                     <div id="proveedor">
                         <label for="proveedor_compra">Proveedor</label>
-                        <select name="proveedor_compra" id="proveedor_compra" class="input_campo">
+                        <select name="proveedor_compra" class="input_campo">
                             <option value="">Proveedor</option>
                             {% for c in prove %}
                                 <option value="{{c[0]}}">{{c[1]}}</option>
                             {% endfor %}
                         </select>
                     </div>
-                    <div id="num_fac">
-                        <input type="text" name="num_factura_proveedor" id="num_factura_proveedor" placeholder="Número de factura" class="campo">
-                    </div>
-                    
                     <div>
-                        <input type="number" name="cantidad_compra" id="cantidad_compra" placeholder="Cantidad" class="campo">
+                        <input type="text" name="producto_compra[]" placeholder="Producto" class="campo">
                     </div>
-                </div>
-
-                <div id="pag_2" class="campos">
+                    <div>
+                        <input type="number" name="cantidad_compra[]" placeholder="Cantidad" class="campo">
+                    </div>
                     <div id="fecha_compra">
                         <label for="fecha_compra">Fecha</label>
-                        <input type="date" name="fecha_compra" id="fecha_compra" class="campo">
+                        <input type="date" name="fecha_compra" class="campo">
                     </div>
                     <div>
-                        <input type="text" name="producto_compra" id="producto_compra" placeholder="Producto" class="campo">
-                    </div>
-                    <div>
-                        <input type="number" name="valor_unidad" id="valor_unidad" placeholder="Valor por unidad" class="campo">
+                        <input type="number" name="valor_unidad[]" placeholder="Valor por unidad" class="campo">
                     </div>
                 </div>
                 
-                <!-- <button type="button" onclick="agregarProducto()">Agregar producto</button> -->
+                <!-- Botón para agregar más productos -->
+                <button class="btn" type="button" onclick="agregarProducto()">Agregar producto</button>
+
                 <button type="submit" value="registrar" class="btn">Registrar</button>
             </form>
+            
         </div>
     </div>
 
@@ -177,5 +177,30 @@
     <script src="../../static/javaScript/modal_form_compraProveedores.js"></script>
     <script src="../../static/javaScript/buscarCompras_prove.js"></script>
     <script src="../../static/javaScript/modal_actualizar_proveedor.js"></script>
+<script>
+    var productoCount = 1; // Contador de productos
+
+    function agregarProducto() {
+        productoCount++; // Incrementa el contador de productos
+        var nuevoProducto = document.createElement("div");
+        nuevoProducto.id = "producto_" + productoCount;
+        nuevoProducto.classList.add("producto");
+        nuevoProducto.innerHTML = `
+            <div>
+                <input type="text" name="producto_compra[]" placeholder="Producto" class="campo">
+            </div>
+            <div>
+                <input type="number" name="cantidad_compra[]" placeholder="Cantidad" class="campo">
+            </div>
+            <div>
+                <input type="number" name="valor_unidad[]" placeholder="Valor por unidad" class="campo">
+            </div>`;
+
+        // Insertar el nuevo producto antes del botón "Agregar producto"
+        var botonAgregar = document.querySelector("button[type='button']");
+        botonAgregar.parentNode.insertBefore(nuevoProducto, botonAgregar);
+    }
+</script>
+
 </body>
 </html>
