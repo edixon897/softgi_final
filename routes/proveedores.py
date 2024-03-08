@@ -8,7 +8,7 @@ from models.proveedores import Dproveedores, Proveedores
 @app.route('/proveedores')
 def proveedores():
     if "nom_empleado" in session:
-        sql = "SELECT `doc_proveedor`, `nom_proveedor`, `contacto_proveedor`, `email_proveedor`, `direccion_proveedor` FROM `proveedores` WHERE estado_proveedor = 'ACTIVO'"
+        sql = "SELECT `doc_proveedor`, `nom_proveedor`, `contacto_proveedor`, `email_proveedor`,`ciudad_proveedor`,  `direccion_proveedor` FROM `proveedores` WHERE estado_proveedor = 'ACTIVO'"
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql)
