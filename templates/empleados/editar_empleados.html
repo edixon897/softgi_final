@@ -53,13 +53,12 @@
                             <label for="email">Correo electrónico</label>
                         </div>
                         <div class="campo_2">
-                            <input type="text" name="direccion_empleado" id="direccion_empleado" placeholder="dirección" class="input_campo" value="{{resul[6]}}">}
+                            <input type="text" name="direccion_empleado" id="direccion_empleado" placeholder="dirección" class="input_campo" value="{{resul[6]}}">
                             <label for="direccion">Dirección</label>
                         </div>
                         <div class="campo_2">
-<<<<<<< HEAD
+
                             <select id="opt" name="ciudad_empleado" >
-                                <option value="">Ciudad de residencia</option>
                                 <option value="{{resul[7]}}">{{resul[7]}}</option>
                                 <option value="Buga">Buga</option>
                                 <option value="Tulua">Tuluá</option>
@@ -70,15 +69,14 @@
                                 <option value="Restrepo">Restrepo</option>
                             </select>
                             <label for="ciudad">Ciudad</label>
-=======
+
                             <input type="text" name="ape_empleado" id="ape_empleado" placeholder="Apellido" class="input_campo" value="{{resul[2]}}">
                             <label for="apellido">Apellido</label>
->>>>>>> 389fa51647f5512e5f95573807997a22752fc09b
+
                         </div>
 
-<<<<<<< HEAD
+
                         <select name="rol" id="rol">
-                            <option value="">Rol</option>
                             <option value="{{resul[8]}}">{{resul[8]}}</option>
                             <option value="administrador">Administrador</option>
                             <option value="vendedor">Vendedor</option>
@@ -90,50 +88,6 @@
                     </section>
                 </div>
             </form>
-=======
-                </section>
-                <section id="lado_info_contacto">
-                    <div id="conten_titulo_div_2">
-                        <p>Contacto</p>
-                    </div>
-
-                    <div class="campo-2">
-                        <input type="tel" name="contacto_empleado" id="contacto_empleado" placeholder="Contacto" class="input_campo" value="{{resul[4]}}">
-                        <label for="contacto">Teléfono</label>
-                    </div>
-                    <div class="campo-2">
-                        <input type="email" name="email_empleado" id="email_empleado" placeholder="correo" class="input_campo" value="{{resul[5]}}">
-                        <label for="email">Correo electrónico</label>
-                    </div>
-                    <div class="campo_2">
-                        <input type="text" name="direccion_empleado" id="direccion_empleado" placeholder="dirección" class="input_campo" value="{{resul[6]}}">}
-                        <label for="direccion">Dirección</label>
-                    </div>
-                    <div class="campo_2">
-                        <select id="opt" name="ciudad_empleado" >
-                            <option value="">Ciudad de residencia</option>
-                            <option value="{{resul[7]}}">{{resul[7]}}</option>
-                        </select>
-                        <label for="ciudad">Ciudad</label>
-                    </div>
-
-                    <select name="rol" id="rol">
-                        <option value="">Rol</option>
-                        <option value="{{resul[8]}}">{{resul[8]}}</option>
-                        <option value="administrador">Administrador</option>
-                        <option value="vendedor">Vendedor</option>
-                        <option value="almacenista">Almacenista</option>
-                    </select>
-                    <label for="Rol">Cargo</label>
-                    <div id="boton-atras">
-                        <button type="submit" class="boton-atras">Actualizar</button>
-                    </div>
-                </section>
-            </div>
-        </form>
-        <div id="boton-atras">
-            <a class="boton-atras" href="{{url_for('empleados')}}">Regresar</a>
->>>>>>> 389fa51647f5512e5f95573807997a22752fc09b
         </div>
     </div>
 </body>
