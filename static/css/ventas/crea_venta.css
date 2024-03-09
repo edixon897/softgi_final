@@ -51,6 +51,7 @@ main#cuerpo {
     position: relative;
     z-index: 1;
 }
+
     main#cuerpo section#conten_registra_pago {
         position: absolute;
         z-index: 2;

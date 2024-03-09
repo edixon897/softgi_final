@@ -13,6 +13,14 @@
 
     <main id="cuerpo">
 
+        <section id="conten_registra_pago" onclick="cerrarModal_2()">
+
+            <div id="modalContenedor_2" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
+            
+
+        </section>
+
+
         <section id="section_1">
             <p>Productos</p>
         </section>
@@ -50,7 +58,7 @@
                     </section>
                     <section id="section_tabla_info">
                         <div id="conten_t">
-                            <div id="modalContenedor" style="display: none;"></div>
+                            <!-- <div id="modalContenedor" style="display: none;"></div> -->
                             <table id="Tabla_product">
                                 <thead>
                                     <tr>
@@ -98,7 +106,7 @@
                                             {% endif %}
                                         {% endfor %}
                                         <td class="btns_centro">
-                                            <a href="#" onclick="abrirModal('{{c[0]}}')">
+                                            <a href="#" onclick="abrirModal_2('{{c[0]}}')">
                                                 <i id=icono_3 class="lni lni-chevron-right"></i>
                                             </a>
                                         </td>
@@ -141,7 +149,7 @@
                                         {% endfor %}
                                         <td class="btns_centro">
                                             <a href="#" onclick="abrirModal('{{c[0]}}')">
-                                                <i id=icono_3 class="lni lni-chevron-right"></i><!-- lni lni-arrow-right 
+                                                <i id=icono_3 class="lni lni-chevron-right"></i> lni lni-arrow-right 
                                             </a>
                                         </td>
                                         <td class="btns_centro">
@@ -168,8 +176,12 @@
 
     </main>
 
-    
+
+    <input type="hidden" value="{{msj}}" readonly id="input_verificacion" oninput="validador_input()">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/buscarProducto.js"></script>
+
 
 </body>
 </html>
