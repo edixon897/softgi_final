@@ -260,7 +260,7 @@ main#cuerpo {
                 }
                 
 
-        div#conten_2 {
+        form#conten_2 {
             width: 95%;
             height: 35%;
             display: flex;
@@ -300,9 +300,13 @@ main#cuerpo {
                             color: #358CB4;
                             border-radius: 0.4em;
                         }
-                form#conten_form {
+                div#conten_form {
                     width: 80%;
                     height: 100%;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    justify-content: center;
                 }
                     div#lad_1_form {
                         width: 100%;
@@ -316,13 +320,6 @@ main#cuerpo {
                         height: 33.3%;
                         display: flex;
                     }
-                    div#lad_3_form {
-                        width: 100%;
-                        height: 33.3%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
 
 
 
@@ -334,12 +331,31 @@ main#cuerpo {
                 border-radius: 1.6em;
                 border: 0.5px solid #dfdede;
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                justify-content: space-between;
                 align-items: center;
             }
-                div#conten_precio_total h1 {
-                    font-size: 2.3em;
+                section#section_total_precio {
+                    width: 100%;
+                    height: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: last baseline;
                 }
+                    div#conten_precio_total section#section_total_precio h1 {
+                        font-size: 2.3em;
+                    }
+                section#section_conten_brn {
+                    width: 100%;
+                    height: 45%;
+                    border-bottom-left-radius: 1.6em;
+                    border-bottom-right-radius: 1.6em;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+
 
 
 

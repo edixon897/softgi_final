@@ -136,7 +136,7 @@
 
             </div>
 
-            <div id="conten_2">
+            <form id="conten_2" action="/confirma_venta" method="post">
 
                 <div id="conten_formulario_3">
 
@@ -148,7 +148,7 @@
                         </div>
                     </section>
 
-                    <form id="conten_form" action="/confirma_venta" method="post"> 
+                    <div id="conten_form" > 
 
                         <div id="lad_1_form">
 
@@ -194,19 +194,25 @@
 
                         </div>
 
-                        <div id="lad_3_form">
+                        <!-- <div id="lad_3_form">
                             <button id="btn_enviar" class="btn_sutmit" type="submit" onclick="valida_campos() ">Confirmar venta</button>
-                        </div>
+                        </div> -->
             
-                    </form>
+                    </div>
 
                 </div>
 
                 <div id="conten_precio_total">
-                    <h1>${{ "{:,.0f}".format(Total|int) }}</h1>
+                    <section id="section_total_precio">
+                        <h1>${{ "{:,.0f}".format(Total|int) }}</h1>
+                    </section>
+                    <section id="section_conten_brn">
+                        <button id="btn_enviar" class="btn_sutmit" type="submit" onclick="valida_campos() ">Confirmar venta</button>
+                    </section>
+                    
                 </div>
 
-            </div>
+            </form>
             
         </section>
 
