@@ -68,8 +68,8 @@
                                         <th>Ciudad</th>
                                         <th>Rol</th>
                                         <th>Fecha de registro</th>
-                                        <th>Nombre operador</th>
-                                        <th>Apellido operador</th>
+                                        <!-- <th>Nombre operador</th>
+                                        <th>Apellido operador</th> -->
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -84,13 +84,13 @@
                                             
                                         {% endfor %}
                                         <td class="btns_centro">
-                                            <button onclick="abrirModalEditarEmpleado('{{c[0]}}')">
+                                            <button onclick="abrirModalEditarEmpleado('{{c[0]}}')" class="btn_editar">
                                                 <i id="icono_2" class="lni lni-pencil"></i>
                                             </button>
                                         </td>
-                                        <td class="btns_centro">
+                                        <td >
                                             <a onclick="return confirm('¿Seguro que deseas eliminar este empleado?')" href="/borrarEmpleado/{{c[0]}}">
-                                                <i id=icono_2 class="lni lni-trash-can"></i>
+                                                <i id=icono_3 class="lni lni-trash-can"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -103,6 +103,15 @@
                 </div>
             </div>
         </section>
+        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+            {% endwith %}
 
 
          <!-- Modal -->
@@ -113,23 +122,23 @@
                         <div id="nombre" class="campo_icono">
                             <i class="lni lni-user"></i>
                             <input type="text" name="nombre" maxlength="25" minlength="2"
-                            pattern="[a-zA-Z ]{2,25}" autocomplete="given-name" placeholder="Nombre (s)">
+                            pattern="[a-zA-Z ]{2,25}" autocomplete="given-name" placeholder="Nombre (s)" tabindex="1">
                         </div>
                         <div id="contacto" class="campo_icono">
                             <i class="lni lni-mobile"></i>
-                            <input type="tel" name="contacto" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Celular">
+                            <input type="tel" name="contacto" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Celular" tabindex="3">
                         </div>
                         <div id="fecha_nac" class="fecha_nac">
                             <label for="fechaNacimiento" class="aclaracion">Fecha de nacimiento</label>
-                            <input type="date" name="nacimiento">
+                            <input type="date" name="nacimiento" tabindex="5">
                         </div>
                         <div id="ciudad" class="campo_icono">
                             <i class="lni lni-home"></i>
-                            <input type="text" name="ciudad" maxlength="14" minlength="2" pattern="[a-zA-Z]{2,14}" placeholder="Ciudad">
+                            <input type="text" name="ciudad" maxlength="14" minlength="2" pattern="[a-zA-Z]{2,14}" placeholder="Ciudad" tabindex="7">
                         </div>
                         <div id="rol">
                             <label for="" class="aclaracion">Rol</label>
-                            <select name="rol" id="rol">
+                            <select name="rol" id="rol" tabindex="9">
                                 <option value="administrador">Administrador</option>
                                 <option value="almacenista">Almacenista</option>
                                 <option value="vendedor">Vendedor</option>
@@ -141,23 +150,23 @@
                         <div id="apellido" class="campo_icono">
                             <i></i>
                             <input type="text" name="apellido" maxlength="25" minlength="2"
-                            pattern="[a-zA-Z ]{2,25}" autocomplete="family-name" placeholder="Apellido (s)">
+                            pattern="[a-zA-Z ]{2,25}" autocomplete="family-name" placeholder="Apellido (s)" tabindex="2">
                         </div>
                         <div id="correo" class="campo_icono">
                             <i class="lni lni-envelope"></i>
-                            <input type="email" name="correo" inputmode="email" maxlength="56" placeholder="Correo">
+                            <input type="email" name="correo" inputmode="email" maxlength="56" placeholder="Correo" tabindex="4">
                         </div>
                         <div id="documento" class="campo_icono">
                             <i class="lni lni-postcard"></i>
-                            <input type="number" name="documento" pattern="[0-9]{10}" maxlength="10" minlength="6" autocomplete="off" placeholder="Cédula">
+                            <input type="number" name="documento" pattern="[0-9]{10}" maxlength="10" minlength="6" autocomplete="off" placeholder="Cédula" tabindex="6">
                         </div>
                         <div id="direccion" class="campo_icono">
                             <i class="lni lni-map-marker"></i>
-                            <input type="text" name="direccion" maxlength="56" minlength="2" placeholder="Dirección">
+                            <input type="text" name="direccion" maxlength="56" minlength="2" placeholder="Dirección" tabindex="8">
                         </div>
                         <div id="Contraseña" class="campo_icono">
                             <i class="lni lni-key"></i>
-                            <input type="password" name="contrasena" placeholder="Contraseña">
+                            <input type="password" name="contrasena" placeholder="Contraseña" tabindex="10">
                         </div>
                     </div>
                     <button type="submit" class="btn">REGISTRAR</button>

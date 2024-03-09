@@ -39,7 +39,7 @@ def registro_usuario():
         resultado_1 = cursor.fetchone() 
         if resultado_1 is not None: 
             flash('Este usuario ya ha sido registrado')
-            return redirect(url_for('index'))
+            return redirect(url_for('empleados'))
         else: 
             mi_token2 = token_registro() 
             enviar_correo_confirmacion(nom_empleado, email_empleado, mi_token2)
@@ -52,8 +52,8 @@ def registro_usuario():
             cursor.execute(tok)
             conn.commit()
             conn.close()
-            flash("Se envio un correo para confirmar tu registro, revisa la bandeja de entrada o spam")
-            return redirect(url_for('index'))
+            flash("Se envió un correo para confirmar tu registro, revisa la bandeja de entrada o spam")
+            return redirect(url_for('empleados'))
     else:
         flash('la contraseña no coincide')
         return redirect(url_for('/registro_usuario'))
