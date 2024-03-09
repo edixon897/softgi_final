@@ -434,6 +434,7 @@ main#cuerpo {
 }
     .btn_sutmit:hover {
         cursor: pointer;
+        border: 0.5px solid #8EC98E;
     }
 
 
