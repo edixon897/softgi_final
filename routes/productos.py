@@ -298,7 +298,7 @@ def modificar_cantidad():
                     apellido_operador = row[2]
 
                     if request.method == 'POST':
-                        print("Contenido del formulario:", request.form)
+                        print("Contenido del formulario:", request.form)    
                         try:
                             id_producto = request.form['id_producto']
                             ref_produ_1 = request.form['ref_produ_1']
@@ -307,7 +307,18 @@ def modificar_cantidad():
                             datos_modificar = [id_producto, ref_produ_1, nombre_producto, cantidad_producto, documento_registro, nombre_operador, apellido_operador]
                             print("Datos a modificar:", datos_modificar)
                             resultado = Dproductos.modificar_cantidad(datos_modificar)
-                            return redirect('/muestra_productos')
+
+                            sql = f"SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
+                            conn = mysql.connect()
+                            cursor = conn.cursor()
+                            cursor.execute(sql)
+                            resultado = cursor.fetchall()
+                            print("resultado", resultado)
+                            conn.commit()
+
+                            mensaje = "stock_añadido_con_exito"
+
+                            return render_template("/productos/muestra_productos.html", resul=resultado, msj = mensaje) 
                         except KeyError as e:
                             print("Error KeyError:", e)
                             flash('Error al procesar el formulario, por favor, inténtalo de nuevo')
