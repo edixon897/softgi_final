@@ -36,7 +36,7 @@
                     <div id="isla_2">
                         <a class="botones" href="{{url_for('muestra_ventas')}}">Ventas efectivo</a>
                         
-                        <a class="botones"  href="{{url_for('verCrear_ventas')}}">Realizar venta</a>
+                        <a class="botones"  href="{{url_for('verCrear_ventas')}}">Nueva venta</a>
                         <a class="botones" href="{{url_for('creditos_pagos')}}">Creditos pagados</a>
                         
                     </div>
@@ -107,11 +107,11 @@
                                             </td>
 
 
-                                            <td class="btns_centro">
+                                            <!-- <td class="btns_centro">
                                                 <a onclick="return confirm('¿Seguro que se canceló la totalidad del crédito?')" href="/cancela_venta_c/{{result[0]}}">
                                                     <i id="icono_2" class="lni lni-checkmark-circle"></i>
                                                 </a>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                         {% endfor %}
                                     </tbody>
