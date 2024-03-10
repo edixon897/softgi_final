@@ -98,10 +98,7 @@ function oculta_modulos() {
         }, 55)
     }
     
-
-
 }
-
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -109,3 +106,13 @@ document.addEventListener("DOMContentLoaded", function() {
     oculta_modulos();
     
 });
+
+
+
+
+
+/* Muestra el nav laterar */
+
+/* function abrir_nav() {
+    section
+} */

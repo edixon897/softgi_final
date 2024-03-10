@@ -17,6 +17,44 @@
 </head>
 <body>
     <main id="inicio">
+
+        
+        <section id="section_sombra">
+
+            <section id="conten_desplegable">
+
+                <div id="conten_logo_user">
+                    <figure id="conten_icono_u">
+                        <img id="icono_user" src="../../static/image/circulo-de-usuario (3).png" alt="icono usuario">
+                    </figure>
+                    <div id="conten_nombre_2">
+                        <p>{{session['nom_empleado']}}</p>
+                    </div>
+                </div>
+
+                <div id="conten_info_cuerpo">
+
+                    <section id="lado_1">
+                        <p>Rol: {{rol}}</p>
+                    </section>
+                    <section id="lado_2">
+
+                       <a  href="/"><i id="icono_cerrar_session" class="lni lni-exit"></i></a>  <a id="enlace_exit" href="/">Cerrar session</a>
+
+                       <div id="conten_btn_cerrar">
+                        <i class="lni lni-close"></i>
+                       </div>
+                    </section>
+
+                </div>
+
+                
+                
+            </section>
+
+        </section>
+            
+
         <section id="opciones">
             <div id="logo">
                 <figure id="logo">
@@ -25,7 +63,15 @@
             </div>
 
             <div id="nombre">
-                <span id="usuario">Hola  {{session['nom_empleado']}}</span>
+                <div id="conten_nombre">
+                    <span id="usuario">Hola  {{session['nom_empleado']}}</span>
+                </div>
+
+                <div id="conten_menu" style="display: none;">
+                    <i id="menu" class="lni lni-menu" onclick=""></i>
+                </div>
+                
+                
             </div>
 
         </section>
