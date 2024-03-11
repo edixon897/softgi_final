@@ -85,7 +85,14 @@
                         </div>
 
                         <!-- Botón para abrir el modal para registrar proveedor -->
-                        <a href="{{url_for('crear_Proveedores')}}" id="crear-proveedor-2">Nuevo Proveedor</a>
+                        
+                        <div class="boton_modal1">
+                            <a href="#modal_inicio" rel="leanModal" id="crear-proveedor-1">Nuevo Proveedor</a>
+                        </div>
+                            
+                        
+                        
+                        <!-- <a href="{{url_for('crear_Proveedores')}}" id="crear-proveedor-2">Nuevo Proveedor</a> -->
 
                         <div class="campo_2">
                             <select id="categorias" name="categorias" class="input_campo">
@@ -96,8 +103,13 @@
                             </select>
                             <label  for="categorias">Categoría</label>
                         </div>
-                        <!-- Botón para abrir el modal para registrar proveedor -->
-                        <a href="{{url_for('crearCategoria')}}" id="crear-proveedor-2">Nueva categoría</a>
+                        <!-- Botón para abrir el modal para registrar categoria -->
+                        
+                        <div class="boton_modal1">
+                            <a href="#contenedorM_categoria" id="crear-categoria-1" rel="leanModal">Nueva categoría</a>
+                        </div>
+                        
+                        <!-- <a href="{{url_for('crearCategoria')}}" id="crear-proveedor-2">Nueva categoría</a> -->
                         
                     </div>
 
@@ -252,8 +264,114 @@
 
         </form>
 
+<!-- ----------------------------------modal de nuevo proveedor------------------------------------------------------------>
+        <div id="modal_inicio" style="display: none;"> 
+            <div class="modal-content">
+                <form action="/crearProveedores" method="post" id="formularito">
+                    <div id="pag_1" class="campos">
+                        <div id="nombre" class="campo_icono">
+                            <i class="lni lni-user"></i>
+                            <input type="text" name="nombre" maxlength="25" minlength="2"
+                            pattern="[a-zA-Z ]{2,25}" autocomplete="given-name" placeholder="Nombre">
+                        </div>
+                        <div id="contacto" class="campo_icono">
+                            <i class="lni lni-mobile"></i>
+                            <input type="tel" name="contacto" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Celular">
+                        </div>
+                        <div id="ciudad" class="campo_icono">
+                            <i class="lni lni-home"></i>
+                            <input type="text" name="ciudad" maxlength="14" minlength="2" pattern="[a-zA-Z]{2,14}" placeholder="Ciudad">
+                        </div>
+                    </div>
+                    <div id="pag_2" class="campos">
+                        <div id="documento" class="campo_icono">
+                            <i class="lni lni-postcard"></i>
+                            <input type="number" name="documento" pattern="[0-9]{10}" maxlength="10" minlength="6" autocomplete="off" placeholder="Documento">
+                        </div>
+                        <div id="correo" class="campo_icono">
+                            <i class="lni lni-envelope"></i>
+                            <input type="email" name="correo" inputmode="email" maxlength="56" placeholder="Correo">
+                        </div>
+                        <div id="direccion" class="campo_icono">
+                            <i class="lni lni-map-marker"></i>
+                            <input type="text" name="direccion" maxlength="56" minlength="2" placeholder="Dirección">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn" value="Registrar">REGISTRAR</button>
+                </form>
+            </div>
+        </div>
+
+
+<!-----------------------------------------modal del crear categoria---------------------------------------------->
+
+
+    <div id="contenedorM_categoria" style="display: none;">
+        <form action="/registrar_categorias" method="post" id="conten_formulario_2">
+
+            <div id="conten_FORM">
+
+            
+
+                <section id="lado_info_personal">
+
+                    <div id="conten_titulo_div">
+                        <p>Nombre de la categoría</p>
+                    </div>
+
+
+                    <div id="conten_inputs_1">
+                        
+
+
+                        <div class="campo_2">
+                            <input type="text" name="nom_categoria" id="nombre" class="input_campo" >
+                            <label id="label_nombre" for="nombre">Categoria</label>
+                        </div>
+
+                    </div>
+                    
+                </section>
+
+                <section id="lado_info_contacto">
+
+                    <div id="conten_titulo_div_2">
+                        <p> </p>
+                    </div>
+
+                    <div id="content_inputs_2">
+
+
+                        <p class="icono_listo"><i class="lni lni-tag"></i></p>
+                        
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+            <div id="conten_buttons">
+                <div class="conten_buttons_2">
+                    <a href="/categorias" id="enlace_regresar">Volver</a>
+                </div>
+                <div class="conten_buttons_2">
+                    <button type="submit" id="boton_registrar" onclick="animacion_envio()" >Finalizar</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+
+<!-- --------------------------------------final de modales----------------------------------------------->
     </main>
     
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/javaScript/jquery.leanModal.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/sesiones_formulario_registro_productos.js"></script>
         
