@@ -21,6 +21,9 @@ def login():
             session["nom_empleado"] = resultado[0]
             session["documento_operador"] = documento
 
+            
+        
+
             sql = f"SELECT `rol` FROM `empleados` WHERE doc_empleado = '{documento}'"
             conn = mysql.connect()                    
             cursor = conn.cursor()

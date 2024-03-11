@@ -4,7 +4,7 @@ from routes.registro import registroUsario, confirmar_correo
 from routes.recuperaContra import solicitarCambio_contraseña, recuperar_contraseña
 from routes.clientes import clientes
 from routes.productos import muestra_Productos
-from routes.ventas import muestra_ventas
+from routes.ventas import muestra_ventas,muestra_ventas_vendedor
 from routes.cotizaciones import Cotizacion
 from routes.proveedores import proveedores
 from routes.abonos import Dabonos
