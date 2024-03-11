@@ -187,7 +187,26 @@ function verifica_input() {
 }
 
 
+function verifica_input_rol() {
+    let botones_credito_pago = document.getElementsByClassName('btns_centro');
+    let input_rol = document.getElementById('input_rol');
+    let valor = input_rol.value;
+
+    if (valor === "administrador") {
+        for (let i = 0; i < botones_credito_pago.length; i++) {
+            botones_credito_pago[i].style.visibility  = "visible";
+        }
+    }/*  else {
+        for (let i = 0; i < botones_credito_pago.length; i++) {
+            botones_credito_pago[i].style.visibility = "hidden";
+        }
+    } */
+
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
     // Llama a la función para realizar la verificación inicial
     verifica_input();
+    verifica_input_rol();
 });
