@@ -12,54 +12,58 @@ from models.compra_proveedores import Dcompra_proveedores
 @app.route("/Registrar_compra_p", methods=['POST'])
 def Registrar_compra_p():
     if "nom_empleado" in session:
-
+        # Obtener datos del operador de sesión
         doc = session["nom_empleado"]
         bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE nom_empleado='{doc}'"
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute(bsq)                         # recibe la info y consulta los datos del operador
+        cursor.execute(bsq)
         resultado = cursor.fetchone()
 
         documento_operador = resultado[0]
         nombre_operador = resultado[1]
         apellido_operador = resultado[2]
 
+        # Obtener datos de la compra
+        num_factura_proveedor = request.form['num_factura_proveedor']
         proveedor_compra = request.form['proveedor_compra']
         fecha_compra = request.form['fecha_compra']
-        num_factura_proveedor = request.form['num_factura_proveedor']
-        producto_compra = request.form['producto_compra']
-        Cantidad_compra = request.form['cantidad_compra']
-        cantidad_compra = int(Cantidad_compra)
-        valor_unidad = float(request.form['valor_unidad'])
-        valor_total_unidad = (valor_unidad*cantidad_compra)
+
+        # Generar un código aleatorio para la compra
+        codigo_2 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+        
+
+        # Insertar datos de la compra en la tabla de comprasproveedores
+       
         tiempo_compra = datetime.datetime.now()
+        Dcompra_proveedores.registrar_compra([proveedor_compra, fecha_compra, documento_operador, nombre_operador, apellido_operador, tiempo_compra, num_factura_proveedor, codigo_2])
 
-        lower = string.ascii_lowercase       
-        upper = string.ascii_uppercase # generador de codigo 
-        num = string.digits 
-        chars = lower + upper + num
-        codigo = random.sample(chars, 10)
-        codigo_2 = ""  # variable que guarda el codigo
-        for c in codigo:
-            codigo_2+=c
-        print(f"\n {codigo_2} \n")
 
-        Dcompra_proveedores.registrar_compra([proveedor_compra, fecha_compra, documento_operador, nombre_operador, apellido_operador, tiempo_compra, num_factura_proveedor, codigo_2])   # se incerta los datos en la primera tabla
-        
-        
+
         sql = f"SELECT num_compra FROM comprasproveedores WHERE codigo_tabla = '{codigo_2}'"
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql)
-        num_compra = cursor.fetchall()   # consulta el numero de compra de acuerdo al  codigo de esa tabla
+        num_compra = cursor.fetchall()   
         conn.commit()
-        num = num_compra[0][0] # [[N]] ----> N 
-        total = valor_unidad * cantidad_compra
-        
-        Dcompra_proveedores.registrar_detalles_compra([num, producto_compra, cantidad_compra, valor_unidad, valor_total_unidad, total ])   # se incerta los datos en la segunda tabla
-        flash('¡Se registro con exito!')
-        return redirect("/muestra_compra_proved")
+        num = num_compra[0][0] 
 
+        productos = request.form.getlist('producto_compra[]')
+        cantidades = request.form.getlist('cantidad_compra[]')
+        valores = request.form.getlist('valor_unidad[]')
+
+        for i in range(len(productos)):
+            cantidad = cantidades[i]
+            valor = valores[i]
+            total = float(valor) * int(cantidad)
+            Dcompra_proveedores.registrar_detalles_compra([num, productos[i], cantidad, valor, total, total])
+            
+        flash('¡Se registraron los productos con éxito!')
+        
+        return redirect("/muestra_compra_proved")
+    else:
+        flash('No se ha iniciado sesión')
+        return redirect("/login")
 
 
 # ------------- cancela compras -------
@@ -137,33 +141,7 @@ def actualiza_compra_provee():
 
 
 
-# ------------- buscador --------------
 
-""" @app.route("/busca_compras_prov", methods=['POST', 'GET'])
-def busca_compras_prov():
-    if "nom_empleado" in session:
-        rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "almacenista":
-
-            if request.method == 'POST':
-                dato_busqueda = request.form['dato_busqueda']
-                sql = f"SELECT `num_compra`, `proveedor_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `date_compra`, `num_factura_proveedor` FROM `comprasproveedores` WHERE estado='activo' AND (num_compra LIKE '%{dato_busqueda}%' OR proveedor_compra LIKE '%{dato_busqueda}%')"
-                conn = mysql.connect()
-                cursor = conn.cursor()                  # muestra las compras a proveedores dependiendo de la busqueda
-                cursor.execute(sql)
-                resultado = cursor.fetchall()  
-                conn.commit()
-                return render_template("/compra_proveedores/muestra_compras_prove.html", resul=resultado)
-            return redirect('muestra_compra_proved')
-        
-        else:
-            return redirect("/inicio")
-    else:
-        flash('Porfavor inicia sesion para poder acceder')
-        return redirect(url_for('index')) """
-
-
-# --------- muestra compras a proveedores -------
 
 @app.route("/muestra_compra_proved")
 def muestra_compra_proved():

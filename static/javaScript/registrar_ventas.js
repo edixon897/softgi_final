@@ -217,6 +217,17 @@ function buscarProductos() {
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    var table = document.getElementById("tabla");
+    var rows = table.getElementsByTagName("tr");
+
+    
+    for (var i = 10; i < rows.length; i++) {
+        rows[i].style.display = "none";
+    }
+});
+
+
 
 
 // Función para abrir el modal

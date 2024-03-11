@@ -36,27 +36,69 @@ function oculta_modulos() {
     console.log(valor_input)
 
     if (valor_input == "administrador") {
+
         productos.style.display = "block";
+        setTimeout( function() {
+            productos.style.opacity = "1"
+        }, 25)
+
         ventas.style.display = "block";
+        setTimeout( function() {
+            ventas.style.opacity = "1"
+        }, 55)
+
         cotizaciones.style.display = "block";
+        setTimeout( function() {
+            cotizaciones.style.opacity = "1"
+        }, 85)
+
         compras_prove.style.display = "block";
+        setTimeout( function() {
+            compras_prove.style.opacity = "1"
+        }, 115)
+
         modulo_clientes.style.display = "block";
+        setTimeout( function() {
+            modulo_clientes.style.opacity = "1"
+        }, 145)
+
         modulo_empleados.style.display = "block";
+        setTimeout( function() {
+            modulo_empleados.style.opacity = "1"
+        }, 175)
+
+
 
     } else if (valor_input == "vendedor") {
+
         ventas.style.display = "block";
+        setTimeout( function() {
+            ventas.style.opacity = "1"
+        }, 25)
+
         cotizaciones.style.display = "block";
+        setTimeout( function() {
+            cotizaciones.style.opacity = "1"
+        }, 55)
+
         modulo_clientes.style.display = "block";
+        setTimeout( function() {
+            modulo_clientes.style.opacity = "1"
+        }, 85)
 
     } else if (valor_input == "almacenista") {
         productos.style.display = "block";
+        setTimeout( function() {
+            productos.style.opacity = "1"
+        }, 25)
+
         compras_prove.style.display = "block";
+        setTimeout( function() {
+            compras_prove.style.opacity = "1"
+        }, 55)
     }
     
-
-
 }
-
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -64,3 +106,99 @@ document.addEventListener("DOMContentLoaded", function() {
     oculta_modulos();
     
 });
+
+
+
+
+
+/* Muestra el nav laterar */
+
+function abrir_nav() {
+    let fondo = document.getElementById('section_sombra');
+    let conten_desplegable = document.getElementById('conten_desplegable');
+    let icono = document.getElementById('conten_icono_u');
+    let nombre = document.getElementById('conten_nombre_2');
+    let lado_1 = document.getElementById('lado_1');
+    let lado_2 = document.getElementById('lado_2');
+    let btn_cerrar = document.getElementById('conten_btn_cerrar');
+
+    fondo.style.display = "block";
+    setTimeout(function() {
+        fondo.style.backgroundColor = "rgba(36, 36, 36, 0.6)";
+    },50);
+
+    setTimeout(function() {
+        conten_desplegable.style.left = "85%";
+    },400);
+
+    setTimeout(function() {
+        icono.style.opacity = "1";
+    },750);
+
+    setTimeout(function() {
+        nombre.style.opacity = "1";
+    },850);
+
+    setTimeout(function() {
+        lado_1.style.opacity = "1";
+    },950);
+
+    setTimeout(function() {
+        lado_2.style.opacity = "1";
+    },1050);
+
+    setTimeout(function() {
+        btn_cerrar.style.left = "-13%";
+    },1150);
+
+}
+
+
+function cerrar_nav() {
+    let fondo = document.getElementById('section_sombra');
+    let conten_desplegable = document.getElementById('conten_desplegable');
+    let icono = document.getElementById('conten_icono_u');
+    let nombre = document.getElementById('conten_nombre_2');
+    let lado_1 = document.getElementById('lado_1');
+    let lado_2 = document.getElementById('lado_2');
+    let btn_cerrar = document.getElementById('conten_btn_cerrar');
+
+
+    setTimeout(function() {
+        btn_cerrar.style.left = "140%";
+    },50);
+
+    setTimeout(function() {
+        lado_2.style.opacity = "0";
+    },150);
+
+    setTimeout(function() {
+        lado_1.style.opacity = "0";
+    },250);
+
+    setTimeout(function() {
+        nombre.style.opacity = "0";
+    },350);
+
+    setTimeout(function() {
+        icono.style.opacity = "0";
+    },450);
+
+    setTimeout(function() {
+        conten_desplegable.style.left = "100%";
+    },700);
+
+    setTimeout(function() {
+        fondo.style.backgroundColor = "rgba(36, 36, 36, 0.0)";
+    },1050);
+
+    setTimeout(function() {
+        fondo.style.display = "none";
+    },1410);
+
+}
+
+
+function detener_Propagacion(event) {
+    event.stopPropagation();
+}

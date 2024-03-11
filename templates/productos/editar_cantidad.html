@@ -7,11 +7,45 @@
     <link rel="stylesheet" href="../../static/css/productos/editar_cantidad_prod.css">
 </head>
 <body>
-    <main>
+
+    <form action="/modificar_Cantidad" method="post" id="CONTEN_FORM_2">
+
+        <div id="div_titulo">
+            <p>Añadir stock</p>
+        </div>
+
+        <div id="div_input">
+            <input type="hidden" name="id_producto" value="{{resul[0]}}">
+            <input type="hidden" name="ref_produ_1" value="{{resul[1]}}">
+            <input type="hidden" name="nombre_producto" value="{{resul[2]}}">
+
+            <input type="number" name="cantidad_producto" required id="input_cantidad" autofocus > 
+
+        </div>
+
+        <div id="div_btns">
+            <section id="conten_btn_1" >
+                <a href="#" onclick="cerrarModal_2()">Cancelar</a>
+            </section>
+            <section id="conten_btn_2">
+                <button type="submit" onclick="valida_digitacion()">Realizar</button>
+            </section>
+            
+        </div>
+
+        
+
+        
+    </form>
+
+
+
+
+    <!-- <main>
         <div class="container-modal">
             <div class="content-modal">
                 <form action="/modificar_Cantidad" method="post">
-                    <!-- <label for="">Id producto</label> -->
+                    
                     <input type="hidden" name="id_producto" value="{{resul[0]}}">
                     <br>
                     <label for="ref_produ_1">Referencia #1: {{resul[1]}}</label>
@@ -31,13 +65,7 @@
                 </form>
             </div>
         </div>
-    </main>
-    <script>
-        // Función para cerrar el modal
-        function cerrarModal() {
-            var modalContenedor = window.parent.document.getElementById("modalContenedor");
-            modalContenedor.style.display = "none";
-        }
-    </script>
+    </main> -->
+    
 </body>
 </html>

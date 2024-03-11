@@ -232,21 +232,21 @@ main#cuerpo {
                             margin: 5px;
                             text-align: center;
                         }
-                        i#icono_ver_mas {
+                        /* i#icono_ver_mas {
                             font-size: 1.8em;
                             color: #358CB4;
                             }i#icono_ver_mas:hover {
                                 color: #358CB4;
-                            }
+                            } */
 
                             i#icono_2 {
                                 font-size: 1.8em;
-                                color: #358cb475;
+                                color: #358cb4;
                             }
-                            i#icono_2:hover {
+                           /*  i#icono_2:hover {
                                 font-size: 1.8em;
                                 color: #358CB4;
-                            }
+                            } */
                             i#icono_3 {
                                 font-size: 1.8em;
                                 color: #358cb475;
@@ -281,5 +281,10 @@ main#cuerpo {
 
 .clase1 {
     color: rgb(183, 35, 5);
+}
+
+.btn_editar{
+    background: none;
+    border: 0;
 }
 
