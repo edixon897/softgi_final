@@ -19,9 +19,9 @@
     <main id="inicio">
 
         
-        <section id="section_sombra">
+        <section id="section_sombra" onclick="cerrar_nav()">
 
-            <section id="conten_desplegable">
+            <section id="conten_desplegable" onclick="detener_Propagacion(event)">
 
                 <div id="conten_logo_user">
                     <figure id="conten_icono_u">
@@ -39,9 +39,9 @@
                     </section>
                     <section id="lado_2">
 
-                       <a  href="/"><i id="icono_cerrar_session" class="lni lni-exit"></i></a>  <a id="enlace_exit" href="/">Cerrar session</a>
+                       <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" href="/"><i id="icono_cerrar_session" class="lni lni-exit"></i></a>  <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" id="enlace_exit" href="/">Cerrar session</a>
 
-                       <div id="conten_btn_cerrar">
+                       <div id="conten_btn_cerrar" onclick="cerrar_nav()">
                         <i class="lni lni-close"></i>
                        </div>
                     </section>
@@ -67,8 +67,8 @@
                     <span id="usuario">Hola  {{session['nom_empleado']}}</span>
                 </div>
 
-                <div id="conten_menu" style="display: none;">
-                    <i id="menu" class="lni lni-menu" onclick=""></i>
+                <div id="conten_menu">
+                    <i id="menu" class="lni lni-menu" onclick="abrir_nav()"></i>
                 </div>
                 
                 
