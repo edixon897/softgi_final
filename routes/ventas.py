@@ -165,39 +165,74 @@ def confirma_abono_2():
 
 #-------------------------------------------------------- Historial de ventas ----------------------------------------------------------------
 
-@app.route("/muestra_ventas")
-def muestra_ventas():
+#----------------------------------solo vendedor-------------------------------
+
+@app.route("/muestra_ventas_vendedor")
+def muestra_ventas_vendedor():
     if "nom_empleado" in session: 
 
         rol_usuario = session["nom_empleado"]
-        if rol_usuario == "dennis" or rol_usuario == "Edixon" or rol_usuario == "Eduar":
+        cedula_empl = session["documento_operador"]
 
 
-            sql =  """
+        sql =  f"""
                 SELECT 
                     v.num_factura, 
                     v.cliente_factura, 
-                    CONCAT(c.nom_cliente, ' ', c.ape_cliente) as nombre_cliente, 
-                    CONCAT(v.nombre_operador, ' ', v.apellido_operador) as nombre_operador, 
+                    CONCAT(c.nom_cliente, ' ', c.ape_cliente) AS nombre_cliente, 
+                    CONCAT(v.nombre_operador, ' ', v.apellido_operador) AS nombre_operador, 
                     v.fechahora_venta, 
                     v.forma_pago 
                 FROM 
                     ventas v
                 JOIN 
                     clientes c ON v.cliente_factura = c.doc_cliente
+                WHERE 
+                    v.documento_operador = '{cedula_empl}'
                 ORDER BY 
-                    v.num_factura DESC
+                    v.num_factura DESC;
             """
-            conn = mysql.connect()
-            cursor = conn.cursor()     
-            cursor.execute(sql)
-            resultado = cursor.fetchall()
-            return render_template("/ventas/muestra_ventas.html", resul = resultado)
-        
-        
-        else:
-            return redirect("/inicio")
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return render_template("/ventas/muestra_ventas.html", resul = resultado)
     
+    else:
+        flash('Porfavor inicia sesion para poder acceder')
+        return redirect(url_for('index'))
+
+
+#----------------------------------solo administrado----------------------------
+@app.route("/muestra_ventas")
+def muestra_ventas():
+    if "nom_empleado" in session: 
+
+        rol_usuario = session["nom_empleado"]
+        """ if rol_usuario == "administrador" or rol_usuario == "vendedor": """
+
+
+        sql =  """
+                    SELECT 
+                        v.num_factura, 
+                        v.cliente_factura, 
+                        CONCAT(c.nom_cliente, ' ', c.ape_cliente) as nombre_cliente, 
+                        CONCAT(v.nombre_operador, ' ', v.apellido_operador) as nombre_operador, 
+                        v.fechahora_venta, 
+                    v.forma_pago 
+                FROM 
+                ventas v
+                JOIN 
+                clientes c ON v.cliente_factura = c.doc_cliente
+                ORDER BY 
+                v.num_factura DESC
+        """
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return render_template("/ventas/muestra_ventas.html", resul = resultado)
+        
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))

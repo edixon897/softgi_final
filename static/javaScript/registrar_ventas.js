@@ -105,12 +105,25 @@ function verifica_input_2() {
     }
 }
 
+function valida_rol_ventas() {
+    let Muestra_ventas = document.getElementById('Muestra_ventas');
+    let input_validador = document.getElementById('input_valida_ventas');
+    valor_input = input_validador.value;
+
+    if (valor_input == "vendedor") {
+        Muestra_ventas.href = "/muestra_ventas_vendedor"
+    }
+
+
+}
+
 
 
 document.addEventListener("DOMContentLoaded", function() {
     // Llama a la función para realizar la verificación inicial
     verifica_input();
     verifica_input_2();
+    valida_rol_ventas();
 });
 
 
@@ -215,6 +228,17 @@ function buscarProductos() {
     }
 }
 
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var table = document.getElementById("tabla");
+    var rows = table.getElementsByTagName("tr");
+
+    
+    for (var i = 10; i < rows.length; i++) {
+        rows[i].style.display = "none";
+    }
+});
 
 
 

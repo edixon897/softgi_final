@@ -36,6 +36,7 @@ p {
     margin: 0;
 }
 
+
 /* PARAMETRIZACION */
 
 main#cuerpo {
@@ -183,6 +184,11 @@ main#cuerpo {
                             position: relative;
                             z-index: 1;
                         }
+                        #tabla thead th {
+                            position: sticky;
+                            top: 0;
+                            background-color: #fff;
+                        }
                         th, td{
                             border-bottom: 0.5px solid #dfdede;
                             font-size: 15px;
@@ -246,6 +252,11 @@ main#cuerpo {
                         table#tabla_carrito {
                             border-collapse: collapse;
                             width: 95%;
+                        }
+                        #tabla_carrito thead th {
+                            position: sticky;
+                            top: 0;
+                            background-color: #fff;
                         }
                             i#icono_delete {
                                 color: #358CB4;

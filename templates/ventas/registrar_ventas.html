@@ -144,7 +144,7 @@
                         <div id="separador">
                             <a href="#" onclick="abrirModal_3()">Nuevo cliente</a>
                             <!-- <a href="{{url_for ('crearClientes_2') }}">Registrar cliente</a> -->
-                            <a href="{{url_for ('muestra_ventas') }}">Regresar</a>
+                            <a id="Muestra_ventas" href="{{url_for ('muestra_ventas') }}">Regresar</a>
                         </div>
                     </section>
 
@@ -220,6 +220,7 @@
 
     <input type="hidden" id="input_error" readonly value="{{mensaje}}" oninput="verifica_input()"> 
    <input type="hidden" id="input_error_2" readonly value="{{mensaje_2}}" oninput="verifica_input_2()">
+   <input type="hidden" value="{{session['rol']}}" id="input_valida_ventas" >
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/color_campo_lleno.js"></script>

@@ -103,9 +103,18 @@ function cerrarModal_2() {
 
 
 
-
-
-
 function detenerPropagacion(event) {
     event.stopPropagation();
 }
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var table = document.getElementById("tablaVentas");
+    var rows = table.getElementsByTagName("tr");
+
+    
+    for (var i = 10; i < rows.length; i++) {
+        rows[i].style.display = "none";
+    }
+});
