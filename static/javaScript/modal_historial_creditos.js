@@ -205,8 +205,22 @@ function verifica_input_rol() {
 }
 
 
+
+function valida_rol_ventas() {
+    let Muestra_ventas = document.getElementById('Muestra_ventas');
+    let input_validador = document.getElementById('input_valida_ventas');
+    valor_input = input_validador.value;
+
+    if (valor_input == "vendedor") {
+        Muestra_ventas.href = "/muestra_ventas_vendedor"
+    }
+
+
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     // Llama a la función para realizar la verificación inicial
     verifica_input();
     verifica_input_rol();
+    valida_rol_ventas();
 });

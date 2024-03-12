@@ -167,16 +167,15 @@ def confirma_abono_2():
 
 #----------------------------------solo vendedor-------------------------------
 
-app.route("/muestra_ventas_vendedor")
+@app.route("/muestra_ventas_vendedor")
 def muestra_ventas_vendedor():
     if "nom_empleado" in session: 
 
         rol_usuario = session["nom_empleado"]
         cedula_empl = session["documento_operador"]
-        if rol_usuario == "administrador" or rol_usuario == "vendedor":
 
 
-            sql =  f"""
+        sql =  f"""
                 SELECT 
                     v.num_factura, 
                     v.cliente_factura, 
@@ -193,15 +192,11 @@ def muestra_ventas_vendedor():
                 ORDER BY 
                     v.num_factura DESC;
             """
-            conn = mysql.connect()
-            cursor = conn.cursor()     
-            cursor.execute(sql)
-            resultado = cursor.fetchall()
-            return render_template("/ventas/muestra_ventas.html", resul = resultado)
-        
-        
-        else:
-            return redirect("/inicio")
+        conn = mysql.connect()
+        cursor = conn.cursor()     
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return render_template("/ventas/muestra_ventas.html", resul = resultado)
     
     else:
         flash('Porfavor inicia sesion para poder acceder')
