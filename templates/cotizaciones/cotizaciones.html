@@ -98,107 +98,6 @@
 
     </main>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--     <main id="inicio">
-        <section id="opciones">
-            <h2>Cotizaciones</h2>
-            <div id="agregar_cotizacion">
-                <button id="openCrearCotizacionModal">Agregar cotización</button>
-            </div>
-            <div id="buscar">
-                <form id="buscador">
-                    <i class="lni lni-search-alt"></i>
-                    <input type="text" id="searchProduct" oninput="buscarCotizacion()" placeholder="Buscar cotizacion">
-                </form>
-            </div>
-        </section>
-        
-        <section id="contenido">
-            <table id="cotizacionTable">
-                <thead>
-                    <tr>
-                        <th>C.C. cliente</th>
-                        <th>Nombre cliente</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha final</th>
-                        <th>Nombre operador</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for dato in datos %}
-                        <tr>
-                            <td>{{dato[1]}}</td>
-                            <td>{{dato[2]}}</td>
-                            <td>{{dato[3]}}</td>
-                            <td>{{dato[4]}}</td>
-                            <td>{{dato[5]}}</td>
-
-                            <td class="btns_centro">
-                                <a href="detalle/{{dato[0]}}">
-                                    ver detalle
-                                </a>
-                            </td>
-                            
-                            <td class="btns_centro">
-                                <a href="editarCotizacion/{{dato[0]}}">
-                                    <i class="lni lni-pencil"></i> 
-                                </a>
-                            </td>
-
-
-                            <td class="btns_centro">
-                                <a onclick="return confirm('Seguro que deseas eliminar el producto?')" href="/borraCotizacion/{{dato[0]}}">
-                                    <i class="lni lni-trash-can"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    {% endfor %} 
-                </tbody>
-            </table>
-        </section>
-
-        <p id="noResults" style="display: none;">No se encontraron resultados</p>
-    
-        <div id="regresar">
-            <a href="{{url_for ('inicio') }}" id="enlace_volver">
-                <i id="atras" class="lni lni-arrow-left"></i>
-            </a>
-        </div>
-    </main> -->
-
     <!-- Modal -->
     <div id="crearCotizacionModal" class="modal" style="display: none;">
         <div class="modal-content">
@@ -272,9 +171,6 @@
             </form>
         </div>
     </div>
-
-   
-
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}

@@ -100,13 +100,6 @@ function cerrarModal_2() {
 
 }
 
-
-
-
-
-
-
-
 function validador_input() {
     let input_verificacion = document.getElementById('input_verificacion');
     let valor_input = input_verificacion.value;
@@ -156,12 +149,6 @@ function valida_digitacion() {
     }
 }
 
-
-
-
-
-
-
  // Función para abrir el modal
  function abrirModal(idProducto) {
     // Cargar el contenido de editar_cantidad.html en el modalContenedor
@@ -191,3 +178,13 @@ function cerrarModal() {
 function detenerPropagacion(event) {
     event.stopPropagation();
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    var table = document.getElementById("Tabla_product");
+    var rows = table.getElementsByTagName("tr");
+
+    
+    for (var i = 11; i < rows.length; i++) {
+        rows[i].style.display = "none";
+    }
+});

@@ -11,7 +11,6 @@ from email.message import EmailMessage
 
 
 app = Flask(__name__)
-socketio = SocketIO(app)
 mysql = MySQL()
 
 app.secret_key = 'hfoy9ew87rwhdfs'
@@ -37,15 +36,6 @@ def servicion():
         app.config['MAIL_PASSWORD'] = 'laobfjwveaolryrt' 
     except Exception as e:
                 print(f"Error al intentar conectarse al servicio de envio de correo: {str(e)}")
-
-
-@socketio.on('connect')
-def handle_connect():
-    print('Cliente conectado')
-    
-@socketio.on('disconnect')
-def handle_disconnect():
-    print('Cliente desconectado')
 
 
 

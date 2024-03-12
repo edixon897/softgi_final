@@ -37,4 +37,14 @@ function buscarCategorias() {
     if (Array.from(tr).every(row => row.style.display === "none")) {
         noResults.style.display = "block";
     }
-}
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+    var table = document.getElementById("TablaCategorias");
+    var rows = table.getElementsByTagName("tr");
+
+    
+    for (var i = 10; i < rows.length; i++) {
+        rows[i].style.display = "none";
+    }
+});

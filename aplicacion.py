@@ -13,12 +13,9 @@ from routes.compra_proveedores import muestra_compra_proved
 from routes.devoluciones import muestraDevoluciones
 from routes.empleados import empleados
 from models.lector_model import Lector
-from models.vigilante_stock import Vigilante
  
 
 
 
 if __name__ == '__main__':
-    checker = Vigilante(mysql, app, socketio)
-    socketio.start_background_task(target=checker.verificar_stock)
-    socketio.run(app, host='0.0.0.0', debug=True, port="5080")
+    app.run(host='0.0.0.0', debug=True, port="5080")

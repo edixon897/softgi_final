@@ -273,6 +273,12 @@ main#cuerpo {
                                     color: #358CB4;
                                 }
 
+                                table thead th {
+                                    position: sticky;
+                                    top: 0;
+                                    background-color: #fff;
+                                }
+
 
 
 /* CLASES */
