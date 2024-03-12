@@ -75,7 +75,6 @@ main#inicio {
             
         }
             section#lado_info_personal {
-               /*  background-color: lawngreen; */
                 width: 50%;
                 height: 100%;
                 border-right: 1px solid #BBBBBB;
@@ -99,6 +98,8 @@ main#inicio {
                     flex-direction: column;
                     align-items: center;
                     justify-content: space-evenly;
+                    margin-bottom: 10px; /* Agrega espacio debajo del párrafo */
+                    margin-top: 10px; /* Agrega espacio encima del input */
                 }
 
                 
