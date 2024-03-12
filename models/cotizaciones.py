@@ -9,7 +9,7 @@ class Cotizaciones:
         
         
     def crearCotizaciones(self, registro):           
-        sql = f"INSERT INTO `cotizaciones`(`num_cotizacion`, `cliente_cotizacion`, `documento_operador`, `nombre_operador`, `apellido_operador`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion`, `nombre_cliente_cotizacion`, `estado`) VALUES ('{registro[0]}','{registro[1]}','{registro[2]}','{registro[3]}','{registro[4]}','{registro[5]}','{registro[6]}', '{registro[7]}', 'ACTIVO')"
+        sql = f"INSERT INTO `cotizaciones`(`num_cotizacion`, `cliente_cotizacion`, `documento_operador`, `nombre_operador`, `apellido_operador`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion`, `nombre_cliente_cotizacion`, `direcion_cliente`, `correo_cliente`, `cuidad_cliente`, `contacto_cliente`, `estado`) VALUES ('{registro[0]}','{registro[1]}','{registro[2]}','{registro[3]}','{registro[4]}','{registro[5]}','{registro[6]}', '{registro[7]}', '{registro[8]}', '{registro[9]}', '{registro[10]}', '{registro[11]}', 'ACTIVO')"
         self.cursor.execute(sql)
         self.conexion.commit()
         
