@@ -40,8 +40,6 @@ def crearCotizacion():
             
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
-
-
             doc = session["nom_empleado"]
             bsq = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado` FROM empleados WHERE nom_empleado='{doc}'"
             
@@ -56,12 +54,16 @@ def crearCotizacion():
             
             nombre_cliente_cotizacion = request.form['clienteCotizacion']
             if nombre_cliente_cotizacion:
-                bsqd = f"SELECT `doc_cliente` FROM clientes WHERE `nom_cliente`='{nombre_cliente_cotizacion}'"
+                bsqd = f"SELECT `doc_cliente`, `contacto_cliente`, `email_cliente`, `direccion_cliente`, `ciudad_cliente` FROM clientes WHERE `nom_cliente`='{nombre_cliente_cotizacion}'"
                 cursor.execute(bsqd)
                 resultado2 = cursor.fetchone()
 
                 if resultado2:
                     clienteCotizacion = resultado2[0]
+                    contacto_cliente = resultado2[1]
+                    correo_cliente = resultado2[2]
+                    direcion_cliente = resultado2[3]
+                    cuidad_cliente = resultado2[4]
                 else:
                     flash('Cliente no encontrado en la base de datos.')
                     return redirect(url_for('CrearCotizacion'))
@@ -72,7 +74,7 @@ def crearCotizacion():
                 
                 referenciasProductos = request.form.getlist('referenciaProducto[]')
                 cantidadesProductos = request.form.getlist('cantidadPorProducto[]')
-                Cotiza = [id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fechaInicioCotizacion, fechaFinCotizacion, nombre_cliente_cotizacion]
+                Cotiza = [id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fechaInicioCotizacion, fechaFinCotizacion, nombre_cliente_cotizacion, direcion_cliente, correo_cliente, cuidad_cliente, correo_cliente]
                 cotizaciones.crearCotizaciones(Cotiza)
                 print(Cotiza)
                 for i in range(len(referenciasProductos)):
@@ -270,14 +272,20 @@ def detalle(id_cotizacion):
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
 
             sql = f"SELECT `nombre_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion` FROM `detallecotizaciones` WHERE `num_cotizacion` = '{id_cotizacion}' AND `detalle_estado` = 'ACTIVO'"
-            conn = mysql.connect()
-            cursor = conn.cursor()                                   
-            cursor.execute(sql)
-            resultado = cursor.fetchall()
-            conn.commit()
+            bsql =f"SELECT `num_cotizacion`, `cliente_cotizacion`, `nombre_operador`, `apellido_operador`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion`, `nombre_cliente_cotizacion`, `direcion_cliente`, `correo_cliente`, `cuidad_cliente`, `contacto_cliente` FROM `cotizaciones` WHERE `num_cotizacion` = '{id_cotizacion}' AND `estado` = 'ACTIVO' "
+            with mysql.connect() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(sql)
+                    resultado = cursor.fetchall()
+
+                    cursor.execute(bsql)
+                    cotiza = cursor.fetchall()
+
+                    cursor.execute(bsql)
+                    resultado2 = cursor.fetchall()
             total_cantidad = sum(row[3] for row in resultado)
 
-            return render_template("cotizaciones/detalleCotizacion.html", datos=resultado, total_cantidad=total_cantidad)
+            return render_template("cotizaciones/detalleCotizacion.html", datos=resultado, info=cotiza, total_cantidad=total_cantidad)
         
         else:
             return redirect("/inicio")

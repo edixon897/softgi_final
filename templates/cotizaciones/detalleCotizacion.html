@@ -8,84 +8,97 @@
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 
     <title>Detalle cotización</title>
-    <style>
-        /* Agregar estilos CSS adicionales si es necesario */
-
-        @media print {
-            head{
-                visibility: hidden;
-            }
-            body * {
-                visibility: hidden;
-            }
-            
-            #tabla_productos, #tabla_productos * {
-                visibility: visible;
-            }
-            #tabla_productos {
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
-        }
-    </style>
     
 
 </head>
 <body>
-    
-    <h1>Detalle de cotizacion</h1>
-    <br>
-    <div>
-        <button onclick="imprimir()">Imprimir</button>
-        <button onclick="generarPDF()">Generar PDF</button>
-    </div>
-    <table class="content-table" id="tabla_productos">
-        <thead>
-            <tr>
-                <th>Nombre del producto</th>
-                <th>Cantidad de productos</th>
-                <th>Valor por unidad</th>
-                <th>Valor total</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dato in datos %}
+    <div class="factura">
+        <div class="encabezado">
+            <div id="logo">
+                <figure id="logo">
+                    <img src="/static/image/parabrisas_logo.png" alt="">
+                </figure>
+            </div>
+            <div class="nombre_empresa">
+                <h3>PARABRISAS DEL VALLE S.A.S</h3>
+            </div>
+        </div>
+        <div class="informacion">
+            {% for dato in info %}
+                <div class="detalles-factura">
+                    <p class="Nfactura">{{dato[0]}}</p>
+                    <p>Fecha: {{dato[5]}}</p>
+                </div>
+                <div class="info_empresa">
+                    <p>Correo: parabrisasdelvalle1@hotmail.com</p>
+                    <p>NIT: 900719464-6/DIANA IVONNE PARRA R.</p>
+                    <p>SOMOS RESPONSABLE DE IVA</p>
+                    <p>GUADALAJARA DE BUGA</p>
+                    <p>CL 18 126 TEL 316 831 8791</p>
+                </div>
+        </div>
+        <div class="descripcion_empresa">
+            <h5> MANTENIMIENTO Y REPARACIÓN DE VEHÍCULOS AUTOMOTORES</h5>
+            <h5>Compra Venta DE PARTES,PIEZAS (AUTOPARTES) Y ACCESORIOS (LUJOS) PARA VEHÍCULOS AUTOMOTORES </h5>
+        </div>
+        <div class="Informacion_cliente">
+
+                <div class="infomacio_cliente_1">
+                    <p>Cliente: {{dato[6]}}</p>
+                    <p>Dirección: {{dato[7]}}</p>
+                    <p>Ciudad: {{dato[9]}}</p>
+                </div>
+                <div class="infomoción_cliente_2">
+                
+                
+                    <p>NIT/ Cedula: {{dato[1]}}</p>
+                    <p>Teléfono: {{dato[10]}}</p>
+                    <p>Correo: {{dato[8]}}</p>
+                
+                </div>
+                
+                <div class="informacion_vendedor_1">
+                    <p>Vendedor: {{dato[2]}}  {{dato[3]}}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <table class="lista-items">
+            <thead>
                 <tr>
-                    <td>{{ dato[0] }}</td>  <!-- Columna 1: Nombre del producto -->
-                    <td>{{ dato[1] }}</td>  <!-- Columna 2: Cantidad de productos -->
-                    <td>{{ dato[2] }}</td>  <!-- Columna 3: Valor por unidad -->
-                    <td>{{ dato[3] }}</td>  <!-- Columna 4: Valor total por producto -->
+                    <th>Nombre del producto</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dato in datos %}
+                <tr>
+                    <td>{{ dato[0] }}</td>
+                    <td>{{ dato[2] }}</td>
+                    <td>{{ dato[1] }}</td>
+                    <td>{{ dato[3] }}</td>
                 </tr>
             {% endfor %}
-        </tbody>
-        <!-- Agrega una fila para mostrar el total -->
-        <tfoot>
-            <tr>
-                <td colspan="2"></td>    <!-- Columna 1-2: Espacio en blanco para mantener la estructura -->
-                <td><strong>Total:</strong></td>  <!-- Columna 3: Etiqueta "Total:" -->
-                <td><strong>{{ total_cantidad }}</strong></td>  <!-- Columna 4: Total calculado -->
-            </tr>
-        </tfoot>
-    </table>
+                
+            </tbody>
+        </table>
+        <div class="total">
+        
+            <div class="total_pagar">
+                <p>TOTAL A PAGAR: {{ total_cantidad }}</p>
+                <p>Son: veiticico dociento pesos</p>
+            </div>
+            
+        </div>
+        
+    </div>
     <div id="regresar">
         <a href="{{url_for ('Cotizacion') }}" id="enlace_volver">
             <i id="atras" class="lni lni-arrow-left"></i>
             Volver a cotizar
         </a>
     </div>
-    <script>
-        // Función para imprimir la página
-        function imprimir() {
-            window.print();
-        }
-
-        // Función para generar un archivo PDF usando html2pdf
-        function generarPDF() {
-            var element = document.getElementById("tabla_productos"); // Elemento a convertir
-            html2pdf(element);
-        }
-    </script>
     
 </body>
 </html>

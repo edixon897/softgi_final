@@ -14,36 +14,122 @@
             font-weight: 300;
         }
 
-        h1 {
-            color: #454545;
-            font-size: 2em;
-            font-weight: 500;
-            margin: 20px;
-        }
+        .factura {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
 
-        table {
+        }
+        
+        .encabezado, .informacion{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        figure img{
+            margin: 0;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
         }
+            div#logo{
+                flex-basis: 50%;
+            }
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            div#logo figure#logo{
+                margin: 10px;
+                padding: 0;
+                width: 70%;
+            }
+        
+        .nombre-empresa {
+            margin-left: 20px;
+        }
+        
+        .detalles-factura {
+            display: block;
             text-align: left;
         }
-
-        th {
+        
+        
+        
+        .info-cliente,
+        .lista-items {
+            margin-top: 20px;
+        }
+        
+        .Informacion_cliente th,
+        .lista-items-titulo th,
+        .lista-items-datos th {
             background-color: #f2f2f2;
-            color: #454545;
-            font-weight: 500;
+            padding: px;
+            text-align: left;
         }
-
-        tfoot {
+        
+        .Informacion_cliente td,
+        .lista-items-titulo td,
+        .lista-items-datos td {
+            padding: 8px;
+        }
+        
+        .total {
+            position: relative;
+            margin-top: 2px;
+            padding: 20px;
+            padding-left: 400px;
+            font-size: 20px;
+            align-items:start;
+            align-content: end;
+            
+        }
+        
+        .Unida {
+            margin-top: 10px;
+        }
+        .Informacion_cliente {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+        }
+        
+        .infomacio_cliente_1,
+        .infomoción_cliente_2,
+        .informacion_vendedor_1 {
+            flex: 1;
+            padding: 5px;
+            
+        }
+        
+        .factura p {
+            margin: 5px 0;
+        }
+        .informacion{
+            margin-bottom: 50px;
+        }
+        .Nfactura{
+            border: 1px solid #ccc;
+        }
+        
+        .lista-items {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .lista-items th,
+        .lista-items td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 25%;
+            text-align: center; /* Centra el contenido */
+        }
+        
+        .lista-items th {
             background-color: #f2f2f2;
         }
-
-        tfoot td {
-            font-weight: bold;
+        .total_pagar{
+            padding: 30px;
+            width: 89%;
+            border: 1px solid  #ccc;
         }
+        

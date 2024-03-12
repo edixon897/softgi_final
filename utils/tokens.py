@@ -13,7 +13,7 @@ def token_recuperar_contrasena(length=32):
     token02 = ''.join(secrets.choice(characters) for _ in range(length))
     return token02
 
-def generador_id(length=20):
-    characters = string.ascii_letters + string.digits  
+def generador_id(length=7):
+    characters = string.digits  # Solo dígitos
     generador = ''.join(secrets.choice(characters) for _ in range(length))
     return generador
