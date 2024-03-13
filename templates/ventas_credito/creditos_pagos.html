@@ -34,7 +34,7 @@
                 </div>
                 <div id="conten_btn_navegacion">
                     <div id="isla_2">
-                        <a class="botones" href="{{url_for('muestra_ventas')}}">Ventas efectivo</a>
+                        <a class="botones" id="Muestra_ventas" href="{{url_for('muestra_ventas')}}">Ventas efectivo</a>
                         
                         <a class="botones"  href="{{url_for('verCrear_ventas')}}">Nueva venta</a>
                         <a class="botones" href="{{url_for('muestra_ventas_credito')}}">ventas credito</a>
@@ -116,6 +116,7 @@
         </section>
 
         <input type="hidden" value="{{msj}}" id="input_error" oninput="verifica_input()">
+        <input type="hidden" value="{{session['rol']}}" id="input_valida_ventas" >
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
