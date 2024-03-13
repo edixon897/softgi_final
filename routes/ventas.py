@@ -1,6 +1,6 @@
 import random
 import string
-from flask import Flask, request, render_template, flash, redirect, url_for, session
+from flask import Flask, jsonify, request, render_template, flash, redirect, url_for, session
 from conexiondb import conexion, mysql, app
 import datetime
 from models.ventas import Dventas, Ventas
@@ -265,28 +265,27 @@ def muestra_detalles_ventas(num_factura):
 
 # -------------------------------- Buscador ventas a credito ---------------------
 
-@app.route("/buscador_venta_c", methods = ['POST'])
+@app.route("/buscador_venta_c", methods=['POST'])
 def buscador_venta_c():
-    if "nom_empleado" in session: 
-
+    if "nom_empleado" in session:
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
-
-            # recibe la info
+            # Recibe la información
             busqueda = request.form['dato_busqueda']
-            sql = f"SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito`  WHERE estado ='ACTIVO' AND cliente LIKE '%{busqueda}%' OR estado='ACTIVO' AND operador LIKE '%{busqueda}%'"
+            sql = f"SELECT `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' AND (cliente LIKE '%{busqueda}%' OR operador LIKE '%{busqueda}%')"
+
             conn = mysql.connect()
-            cursor = conn.cursor()     #muestra toda la informacion de la busqueda
+            cursor = conn.cursor()
             cursor.execute(sql)
             resultado = cursor.fetchall()
-            return render_template("/ventas_credito/muestra_ventas.html",resul = resultado)
-        
+            conn.close()  # Cierra la conexión después de obtener los resultados
+            return jsonify(result=resultado)
         else:
             return redirect("/inicio")
-        
     else:
-        flash('Porfavor inicia sesion para poder acceder')
+        flash('Por favor inicia sesión para poder acceder')
         return redirect(url_for('index'))
+
 
 #-------------------------------------------------------- Historial de ventas a credito ----------------------------------------------------------------
 
@@ -1192,3 +1191,29 @@ def verCrear_ventas():
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('home'))
+    
+    
+""" BUSCADOR """
+
+from flask import jsonify
+
+@app.route("/buscarVentas", methods=['POST'])
+def buscarVentas():
+    if "nom_empleado" in session: 
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+            busqueda = request.form['Busqueda']  # Cambiado a 'Busqueda' para que coincida con el nombre en el script JavaScript
+            sql = f"SELECT v.num_factura, v.cliente_factura, CONCAT(c.nom_cliente, ' ', c.ape_cliente) AS nombre_cliente, CONCAT(v.nombre_operador, ' ', v.apellido_operador) AS nombre_operador, v.fechahora_venta, v.forma_pago FROM ventas v JOIN clientes c ON v.cliente_factura = c.doc_cliente WHERE c.nom_cliente LIKE '%{busqueda}%' OR c.ape_cliente LIKE '%{busqueda}%' OR v.num_factura LIKE '%{busqueda}%' ORDER BY v.num_factura DESC"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            resultado = cursor.fetchall()
+            conn.close()  # Cierra la conexión después de obtener los resultados
+            return jsonify(result=resultado)  # Devuelve los resultados en formato JSON
+        else:
+            return redirect("/inicio")
+    else:
+        flash('Por favor inicia sesión para poder acceder')
+        return redirect(url_for('index'))
+
+
