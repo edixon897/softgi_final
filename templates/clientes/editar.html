@@ -14,81 +14,58 @@
 <body>
     <div id="editarClienteModal" class="modal">
         <div class="modal-content" id="modalContent">
-            <form action="/Actualizar_clie" method="post" id="conten_formulario_2">
+            <form action="/Actualizar_clie" method="post" id="campo_registro">
 
-                <div id="conten_FORM">
-
-                    <section id="lado_info_personal">
-                        <div id="conten_inputs_1">
-                            <input type="hidden" name="doc_cliente" id="documento" class="input_campo" value="{{resul[0]}}">
-                            <div class="campo_2">
-                                <input type="text" name="nom_cliente" id="nombre" class="input_campo" value="{{resul[1]}}">
-                                <label id="label_nombre" for="nombre">Nombres</label>
-                            </div>
-                            <div class="campo_2">
-                                <input type="text" name="ape_cliente" id="apellido" class="input_campo" value="{{resul[2]}}">
-                                <label id="label_apellido" for="Apellidos">Apellidos</label>
-                            </div>
-                            <div class="campo_2">
-                                <input type="date" name="fecha_nacimiento_cliente" id="fecha" class="input_campo"
-                                    value="{{resul[3]}}">
-                                <label id="label_fecha" for="fecha">Fecha de nacimiento</label>
-                            </div>
-                            <div class="campo_2">
-                                <select id="opt" name="tipo_persona" class="input_campo">
-                                    <option value="{{resul[8]}}">{{resul[8]}}</option>
-                                    <option value="natural">Natural</option>
-                                    <option value="juridica">Juridica(representante legal)</option>
-                                </select>
-                                <label id="label_otp" for="opt">tipo de persona</label>
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <section id="lado_info_contacto">
-
-                        <div id="conten_titulo_div_2">
-                            <p>contacto</p>
-                        </div>
-
-                        <div id="content_inputs_2">
-
-                            <div class="campo_2">
-                                <input type="number" name="contacto_cliente" id="contacto" class="input_campo"
-                                    value="{{resul[4]}}">
-                                <label id="label_contacto" for="contacto">Numero de contacto</label>
-                            </div>
-
-                            <div class="campo_2">
-                                <input type="email" name="email_cliente" id="correo" class="input_campo"
-                                    value="{{resul[5]}}">
-                                <label id="label_correo" for="correo">Email</label>
-                            </div>
-
-                            <div class="campo_2">
-                                <input type="text" name="direccion_cliente" id="direccion" class="input_campo"
-                                    value="{{resul[6]}}">
-                                <label id="label_direccion" for="direccion">Dirección</label>
-                            </div>
-
-                            <div class="campo_2">
-                                <input type="text" name="ciudad_cliente" id="ciudad" class="input_campo"
-                                    value="{{resul[7]}}">
-                                <label id="label_ciudad" for="ciudad">Ciudad</label>
-                            </div>
-
-                        </div>
-
-                    </section>
-
+                <div id="page_1" class="campos">
+                    <div id="documento">
+                        <input type="hidden" name="doc_cliente" id="documento" class="input_campo" value="{{resul[0]}}">
+                    </div>
+                    <div id="nombre" class="campo_icono">
+                        <i class="lni lni-user"></i>
+                        <input type="text" name="nom_cliente" id="nombre" class="input_campo" value="{{resul[1]}}">
+                    </div>
+                    <div id="contacto" class="campo_icono">
+                        <i class="lni lni-mobile"></i>
+                        <input type="number" name="contacto_cliente" id="contacto" class="input_campo"
+                            value="{{resul[4]}}">
+                    </div>
+                    <div id="fecha_nac" class="fecha_nac">
+                        <label id="label_fecha" for="fecha" class="aclaracion">Fecha de nacimiento</label>
+                        <input type="date" name="fecha_nacimiento_cliente" id="fecha" class="input_campo"
+                            value="{{resul[3]}}">
+                    </div>
+                    <div  id="ciudad" class="campo_icono">
+                        <i class="lni lni-home"></i>
+                        <input type="text" name="ciudad_cliente" id="ciudad" class="input_campo"
+                            value="{{resul[7]}}">  
+                    </div>
+                    
                 </div>
-                <div id="conten_buttons">
-                    <div class="conten_buttons_2">
-                        <button type="submit" id="boton_registrar" onclick="animacion_envio()">Guardar</button>
+
+                <div id="page_2" class="campos">
+                    <div id="apellido" class="campo_icono">
+                        <input type="text" name="ape_cliente" id="apellido" class="input_campo" value="{{resul[2]}}">
+                    </div>
+                    <div id="correo" class="campo_icono">
+                        <i class="lni lni-envelope"></i>
+                        <input type="email" name="email_cliente" id="correo" class="input_campo"
+                            value="{{resul[5]}}">
+                    </div>
+                    <div id="tipo_persona">
+                        <label id="label_otp" for="opt" class="aclaracion">Tipo de persona</label>
+                        <select id="opt" name="tipo_persona" class="select">
+                            <option value="{{resul[8]}}">{{resul[8]}}</option>
+                            <option value="natural">Natural</option>
+                            <option value="juridica">Juridica(representante legal)</option>
+                        </select>
+                    </div>
+                    <div id="direccion" class="campo_icono">
+                        <i class="lni lni-map-marker"></i>
+                        <input type="text" name="direccion_cliente" id="direccion" class="input_campo"
+                            value="{{resul[6]}}">
                     </div>
                 </div>
-
+                <button type="submit" id="btn" class="btn" onclick="animacion_envio()">Actualizar</button>
             </form>
         </div>
     </div>

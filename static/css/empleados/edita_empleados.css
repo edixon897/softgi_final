@@ -10,9 +10,10 @@
         border: solid 1px #aaa;
         border-radius: 5px;
         font-family: 'Barlow', sans-serif;
+        font-size: 14px;
         font-weight: 400;
         margin: 6px 0;
-        padding: 1.3em 1.3em 1.3em 45px;
+        padding: 10px 10px 10px 45px;
         position: relative;
         width: 100%;
         z-index: 2;
@@ -29,18 +30,24 @@
         padding: 0.6em 15px;
     }
 
-    #rol{
+    #documento{
+        margin: 14px 0 0 0;
+    }
+
+    #direccion{
+        margin: 8px 0 0 0;
+    }
+
+
+    #rol_edita_empleado{
+        margin: 0 0 5px 0;
+        width: 40%;
+    }
+
+    #ciudad{
         display: flex;
         flex-direction: column;
         margin: 5px 0 0 0;
-    }
-
-    #rol > select {
-        border-radius: 5px;
-        margin: 0;
-        padding: 0.6em;
-        border: solid 1px #aaa;
-        background: transparent;
     }
 
 
@@ -60,7 +67,7 @@ color: #358CB4;
 left: 3px;
 padding: 10px;
 position: absolute;
-transform: translateY(35%);
+transform: translateY(18%);
 z-index: 3;
 }
 
@@ -68,6 +75,16 @@ z-index: 3;
 margin: 0;
 padding: 0;
 font-size: 15px;
+}
+
+.select{
+    border-radius: 5px;
+    margin: 0;
+    padding: 0.6em 15px;
+    border: solid 1px #aaa;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
 }
 
 .btn{
@@ -78,7 +95,7 @@ color: #fff;
 font-size: 0.9em;
 margin: 10px;
 padding: 8px 17px;
-width: 80%;
+width: 60%;
 height: 15%;
 }
 
