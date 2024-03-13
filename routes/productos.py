@@ -88,7 +88,7 @@ def muestra_Productos():
     if "nom_empleado" in session:
 
         rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "almacenista":
+        if rol_usuario == "administrador" or rol_usuario == "almacenista" or rol_usuario == "vendedor":
 
             sql = f"SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
             conn = mysql.connect()

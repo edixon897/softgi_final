@@ -322,3 +322,8 @@ main#cuerpo {
 .color_td {
     color: #d7b923;
 }
+
+
+.btns_centro {
+    visibility: hidden;
+}

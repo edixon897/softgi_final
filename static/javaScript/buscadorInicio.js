@@ -71,20 +71,25 @@ function oculta_modulos() {
 
     } else if (valor_input == "vendedor") {
 
+        productos.style.display = "block";
+        setTimeout( function() {
+            productos.style.opacity = "1"
+        }, 25)
+
         ventas.style.display = "block";
         setTimeout( function() {
             ventas.style.opacity = "1"
-        }, 25)
+        }, 55)
 
         cotizaciones.style.display = "block";
         setTimeout( function() {
             cotizaciones.style.opacity = "1"
-        }, 55)
+        }, 85)
 
         modulo_clientes.style.display = "block";
         setTimeout( function() {
             modulo_clientes.style.opacity = "1"
-        }, 85)
+        }, 115)
 
     } else if (valor_input == "almacenista") {
         productos.style.display = "block";
