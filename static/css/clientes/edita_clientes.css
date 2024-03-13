@@ -31,6 +31,95 @@
 }
 
 
+#campo_registro{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+    #campo_registro input{
+        border: solid 1px #aaa;
+        border-radius: 5px;
+        font-family: 'Barlow', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        margin: 6px 0;
+        padding: 10px 10px 10px 45px;
+        position: relative;
+        width: 100%;
+        z-index: 2;
+    }
+
+    #fecha_nac{
+        display: flex;
+        flex-direction: column;
+        margin: 4px 0 6px 0;
+    }
+
+    #fecha_nac > input{
+        margin: 0;
+        padding: 0.6em 15px;
+    }
+
+    #tipo_persona{
+        display: flex;
+        flex-direction: column;
+        margin: 4px 0 6px 0;
+    }
+
+
+
+
+
+/*---------------------------CLASES----------------------------------*/
+.campos{
+    margin: 12px;
+    position: relative;
+    /* width: 100%; */
+    flex-basis: 250px;
+    
+    }
+    
+    .campo_icono > i{
+    border-radius: 10%;
+    color: #358CB4;
+    left: 3px;
+    padding: 10px;
+    position: absolute;
+    transform: translateY(18%);
+    z-index: 3;
+    }
+
+.aclaracion{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+
+.select{
+    border-radius: 5px;
+    margin: 0;
+    padding: 0.6em 15px;
+    border: solid 1px #aaa;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+}
+    
+.btn{
+background-color: #358CB4;
+border: none;
+border-radius: 5px;
+color: #fff;
+font-size: 0.9em;
+margin: 10px;
+padding: 8px 17px;
+width: 60%;
+height: 15%;
+}
+
+
+
 
 
 

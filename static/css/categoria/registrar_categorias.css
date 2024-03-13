@@ -61,7 +61,7 @@ main#inicio {
 
     form#conten_formulario_2 {
         width: 100%;
-        height: 90%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -70,12 +70,11 @@ main#inicio {
         div#conten_FORM {
             /* background-color: crimson; */
             width: 100%;
-            height: 84%;
+            height: 100%;
             display: flex;
             
         }
             section#lado_info_personal {
-               /*  background-color: lawngreen; */
                 width: 50%;
                 height: 100%;
                 border-right: 1px solid #BBBBBB;
@@ -99,6 +98,8 @@ main#inicio {
                     flex-direction: column;
                     align-items: center;
                     justify-content: space-evenly;
+                    margin-bottom: 10px; /* Agrega espacio debajo del párrafo */
+                    margin-top: 10px; /* Agrega espacio encima del input */
                 }
 
                 

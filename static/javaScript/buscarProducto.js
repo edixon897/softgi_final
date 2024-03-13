@@ -100,13 +100,6 @@ function cerrarModal_2() {
 
 }
 
-
-
-
-
-
-
-
 function validador_input() {
     let input_verificacion = document.getElementById('input_verificacion');
     let valor_input = input_verificacion.value;
@@ -125,9 +118,28 @@ function validador_input() {
     }
 }
 
+
+function verifica_input_rol() {
+    let botones_credito_pago = document.getElementsByClassName('btns_centro');
+    let input_rol = document.getElementById('input_rol');
+    let valor = input_rol.value;
+
+    if (valor === "administrador" || valor === "almacenista")  {
+        for (let i = 0; i < botones_credito_pago.length; i++) {
+            botones_credito_pago[i].style.visibility  = "visible";
+        }
+    }/*  else {
+        for (let i = 0; i < botones_credito_pago.length; i++) {
+            botones_credito_pago[i].style.visibility = "hidden";
+        }
+    } */
+
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     // Llama a la función para realizar la verificación inicial
     validador_input();
+    verifica_input_rol();
 });
 
 
@@ -155,12 +167,6 @@ function valida_digitacion() {
         form.submit();
     }
 }
-
-
-
-
-
-
 
  // Función para abrir el modal
  function abrirModal(idProducto) {
@@ -191,3 +197,13 @@ function cerrarModal() {
 function detenerPropagacion(event) {
     event.stopPropagation();
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    var table = document.getElementById("Tabla_product");
+    var rows = table.getElementsByTagName("tr");
+
+    
+    for (var i = 11; i < rows.length; i++) {
+        rows[i].style.display = "none";
+    }
+});

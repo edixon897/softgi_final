@@ -9,52 +9,24 @@
 <body>
     <div id="editarEmpleadoModal" class="modal">
         <div class="modal-content" id="modalContent">
-            <form action="/actualizar_Empleado" method="post" id="conten_formulario_2">
-                
-                <div class="conten_FORM">
+            <form action="/actualizar_Empleado" method="post" id="campo_registro">
 
-                    <section id="lado_info_personal">
-
-
-                        <div id="conten_titulo_div">
-                            <p>Informacion personal</p>
+                    <div id="page_1" class="campos">
+                        <div id="nombre" class="campo_icono">
+                            <i class="lni lni-user"></i>
+                            <input type="text" name="nom_empleado" id="nom_empleado" placeholder="Nombre" class="input_campo" value="{{resul[1]}}">
                         </div>
-
-                        <div id="conten_inputs_1">
-                            <div class="campo_2">
-                                <input type="number" name="doc_empleado" id="doc_empleado" placeholder="Documento" class="input_campo" value="{{resul[0]}}">
-                                <label for="documento">Documento</label>
-                            </div>
-                            <div class="campo_2">
-                                <input type="text" name="nom_empleado" id="nom_empleado" placeholder="Nombre" class="input_campo" value="{{resul[1]}}">
-                                <label for="nombre">Nombre</label>
-                            </div>
-                            <div class="campo_2">
-                                <input type="text" name="ape_empleado" id="ape_empleado" placeholder="Apellido" class="input_campo" value="{{resul[2]}}">
-                            </div>
-                            <div class="campo_2">
-                                <input type="datetime" name="fecha_nacimiento" id="fecha_nacimiento_empleado" placeholder="Fecha de nacimiento" class="input_campo" value="{{resul[3]}}">
-                                <label for="nacimiento">Fecha de nacimiento</label>
-                            </div>
-                        </div>
-
-                    </section>
-                    <section id="lado_info_contacto">
-                        <div class="campo-2">
+                        <div id="contacto" class="campo_icono">
+                            <i class="lni lni-mobile"></i>
                             <input type="tel" name="contacto_empleado" id="contacto_empleado" placeholder="Contacto" class="input_campo" value="{{resul[4]}}">
-                            <label for="contacto">Teléfono</label>
                         </div>
-                        <div class="campo-2">
-                            <input type="email" name="email_empleado" id="email_empleado" placeholder="correo" class="input_campo" value="{{resul[5]}}">
-                            <label for="email">Correo electrónico</label>
+                        <div id="fecha_nac" class="fecha_nac">
+                            <label for="nacimiento" class="aclaracion">Fecha de nacimiento</label>
+                            <input type="datetime" name="fecha_nacimiento" id="fecha_nacimiento_empleado" placeholder="Fecha de nacimiento" class="input_campo" value="{{resul[3]}}"> 
                         </div>
-                        <div class="campo_2">
-                            <input type="text" name="direccion_empleado" id="direccion_empleado" placeholder="dirección" class="input_campo" value="{{resul[6]}}">
-                            <label for="direccion">Dirección</label>
-                        </div>
-                        <div class="campo_2">
-
-                            <select id="opt" name="ciudad_empleado" >
+                        <div id="ciudad" class="campo_icono">
+                            <label for="" class="aclaracion">Ciudad</label>
+                            <select id="opt" name="ciudad_empleado" class="select">
                                 <option value="{{resul[7]}}">{{resul[7]}}</option>
                                 <option value="Buga">Buga</option>
                                 <option value="Tulua">Tuluá</option>
@@ -64,25 +36,39 @@
                                 <option value="Cali">Cali</option>
                                 <option value="Restrepo">Restrepo</option>
                             </select>
-                            <label for="ciudad">Ciudad</label>
-
-                            <input type="text" name="ape_empleado" id="ape_empleado" placeholder="Apellido" class="input_campo" value="{{resul[2]}}">
-                            <label for="apellido">Apellido</label>
-
                         </div>
+                        
 
+                    </div>
 
-                        <select name="rol" id="rol">
+                    <div id="page_2" class="campos">
+                        <div id="apellido" class="campo_icono">
+                            <input type="text" name="ape_empleado" id="ape_empleado" placeholder="Apellido" class="input_campo" value="{{resul[2]}}">
+                        </div>
+                        <div id="correo" class="campo_icono">
+                            <i class="lni lni-envelope"></i>
+                            <input type="email" name="email_empleado" id="email_empleado" placeholder="correo" class="input_campo" value="{{resul[5]}}">
+                        </div>
+                        <div id="documento" class="campo_icono">
+                            <i class="lni lni-postcard"></i>
+                            <input type="number" name="doc_empleado" id="doc_empleado" placeholder="Documento" class="input_campo" value="{{resul[0]}}">
+                        </div>
+                        <div id="direccion" class="campo_icono">
+                            <i class="lni lni-map-marker"></i>
+                            <input type="text" name="direccion_empleado" id="direccion_empleado" placeholder="dirección" class="input_campo" value="{{resul[6]}}">
+                        </div>
+                        
+                    </div>
+                    <div id="rol_edita_empleado">
+                        <label for="" class="aclaracion">Rol</label>
+                        <select name="rol"  class="select">
                             <option value="{{resul[8]}}">{{resul[8]}}</option>
                             <option value="administrador">Administrador</option>
                             <option value="vendedor">Vendedor</option>
                             <option value="almacenista">Almacenista</option>
                         </select>
-                        <div id="boton-atras">
-                            <button type="submit" class="boton-atras">Actualizar</button>
-                        </div>
-                    </section>
-                </div>
+                    </div>
+                    <button type="submit" class="btn">Actualizar</button>
             </form>
         </div>
     </div>

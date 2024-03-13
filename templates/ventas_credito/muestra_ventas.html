@@ -70,7 +70,6 @@
                                         <th>Fecha de venta</th>
                                         <th></th>
                                         <th></th>
-                                        <th></th>
                                         <!-- <th>Historial de pagos</th>
                                         <th>Registrar pago</th>
                                         <th>Venta cancelada</th> -->
@@ -107,11 +106,7 @@
                                             </td>
 
 
-                                            <td class="btns_centro" style="visibility: hidden;">
-                                                <a onclick="return confirm('¿Seguro que se canceló la totalidad del crédito?')" href="/cancela_venta_c/{{result[0]}}">
-                                                    <i id="icono_2" class="lni lni-checkmark-circle"></i>
-                                                </a>
-                                            </td>
+                                            
                                         </tr>
                                         {% endfor %}
                                     </tbody>

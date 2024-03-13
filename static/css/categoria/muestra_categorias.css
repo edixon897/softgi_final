@@ -254,18 +254,48 @@ main#cuerpo {
                                     color: #358CB4;
                                 }
 
+                                table thead th {
+                                    position: sticky;
+                                    top: 0;
+                                    background-color: #fff;
+                                }
+
+/*  modal */
+.modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
 
 
+.modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 200px;
+    text-align: left;
+    
+}
 
 
-        /* div#conten_btn_regresar {
-            width: 95%;
-            height: 15%;
-            background-color: red;
-        } */
+.modal-content div {
+    margin-bottom: 0px;
+    
+}
 
-
-
+/* @media (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+    }
+} */
 
 
 

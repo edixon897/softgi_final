@@ -113,8 +113,6 @@ function valida_rol_ventas() {
     if (valor_input == "vendedor") {
         Muestra_ventas.href = "/muestra_ventas_vendedor"
     }
-
-
 }
 
 
