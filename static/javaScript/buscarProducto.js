@@ -120,6 +120,8 @@ function validador_input() {
 
 
 function verifica_input_rol() {
+    let btn_crear = document.getElementById('btn_crear');
+    let isla_btns = document.getElementById('conten_btn_navegacion');
     let botones_credito_pago = document.getElementsByClassName('btns_centro');
     let input_rol = document.getElementById('input_rol');
     let valor = input_rol.value;
@@ -128,12 +130,11 @@ function verifica_input_rol() {
         for (let i = 0; i < botones_credito_pago.length; i++) {
             botones_credito_pago[i].style.visibility  = "visible";
         }
-    }/*  else {
-        for (let i = 0; i < botones_credito_pago.length; i++) {
-            botones_credito_pago[i].style.visibility = "hidden";
-        }
-    } */
 
+        btn_crear.style.display = "block"
+    } else {
+        isla_btns.style.width = "20%"
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -197,6 +198,7 @@ function cerrarModal() {
 function detenerPropagacion(event) {
     event.stopPropagation();
 }
+
 // Funcion para controlar la cantidad de items a mostrar
 document.addEventListener("DOMContentLoaded", function() {
     var table = document.getElementById("Tabla_product");

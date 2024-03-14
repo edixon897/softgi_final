@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function verifica_input_rol() {
     let botones_credito_pago = document.getElementsByClassName('btns_centro');
+    let isla_btns = document.getElementById('conten_btn_navegacion');
     let input_rol = document.getElementById('input_rol');
     let btn_crear = document.getElementById('abrirModalBtn');
     let valor = input_rol.value;
@@ -66,8 +67,11 @@ function verifica_input_rol() {
             botones_credito_pago[i].style.visibility  = "visible";
         }
         
-        btn_crear.style.visibility = "visible"
+        btn_crear.style.display = "block"
+    }else {
+        isla_btns.style.width = "20%"
     }
+    
 }
 
 

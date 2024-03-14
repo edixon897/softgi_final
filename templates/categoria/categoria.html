@@ -32,7 +32,7 @@
                         <a class="botones" href="{{url_for('muestra_Productos')}}">Productos</a>
                        <!--  <a class="botones" href="{{url_for('crearCategoria')}}">Crear categoría</a> -->
 
-                       <button class="botones" id="abrirModalBtn" style="visibility: hidden;">Crear Categoria</button>
+                       <button class="botones" id="abrirModalBtn" style="display: none;">Crear Categoria</button>
                     </div>
                 </div>
             </div>
@@ -93,6 +93,7 @@
 
         </section>
 
+    <input type="hidden" value="{{session['rol']}}" id="input_rol" oninput="verifica_input_rol()">
     </main>
 
 <!------------------------- Modal registrar cotizacion ----------------------->
