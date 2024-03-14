@@ -12,6 +12,47 @@
 
     <main id="cuerpo">
 
+
+        <section id="section_sombra" onclick="cerrar_nav()">
+
+            <section id="conten_desplegable" onclick="detener_Propagacion(event)">
+
+                <div id="conten_logo_user">
+                    <figure id="conten_icono_u">
+                        <img id="icono_user" src="../../static/image/circulo-de-usuario (3).png" alt="icono usuario">
+                    </figure>
+                    <div id="conten_nombre_2">
+                        <p>{{session['nom_empleado']}}</p>
+                    </div>
+                </div>
+
+                <div id="conten_info_cuerpo">
+
+                    <section id="lado_1">
+                        <p>Rol: {{session['rol']}}</p>
+                    </section>
+                    <section id="lado_2">
+
+                       <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" href="/"><i id="icono_cerrar_session" class="lni lni-exit"></i></a>  <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" id="enlace_exit" href="/">Cerrar session</a>
+
+                       <div id="conten_btn_cerrar" onclick="cerrar_nav()">
+                        <i class="lni lni-close"></i>
+                       </div>
+                    </section>
+
+                </div>
+
+                
+                
+            </section>
+
+        </section>
+
+
+
+
+
+
         <section id="conten_registra_pago" onclick="cerrarModal_2(), cerrarModal_3()">
 
             <div id="modalContenedor_2" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
@@ -21,6 +62,7 @@
 
         <section id="section_1">
             <p>Nueva venta</p>
+            <i id="menu" class="lni lni-menu" onclick="abrir_nav()"></i>
         </section>
 
         <section id="section_2">
