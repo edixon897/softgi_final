@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var rows = table.getElementsByTagName("tr");
 
     
-    for (var i = 10; i < rows.length; i++) {
+    for (var i = 11; i < rows.length; i++) {
         rows[i].style.display = "none";
     }
 });
@@ -426,9 +426,7 @@ function cerrarModal_3() {
         btn_enviar.style.color = "white"
         btn_enviar.style.border = "none"
 }
-
-
-
+ 
 
 function detenerPropagacion(event) {
     event.stopPropagation();
