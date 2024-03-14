@@ -11,16 +11,36 @@
     
     <div id="editarProveedorModal" class="modal">
         <div class="modal-content" id="modalContent">
-            <form action="/actializarProveed" method="post" id="formu_provee_modifi">
-                    <input type="number" name="documentoProveedor" id="documentoProvedor" value="{{resul[0]}}" class="campo">
-                    <input type="text" name="nombreProveedor" id="nombreProveedor" value="{{resul[1]}}" class="campo"> 
-                    <input type="number" name="numeroProveedores" id="numeroProveedores" value="{{resul[2]}}" class="campo">
-                    <input type="email" name="correoProveedores" id="correoProveedores" value="{{resul[3]}}" class="campo">
-                    <input type="text" name="direccionProveedores" id="direccionProveedores" value="{{resul[4]}}" class="campo">
-                    <input type="text" name="ciudadProveedor" id="ciudadProveedor" value="{{resul[5]}}" class="campo">
-                    
-                
-                    <input type="submit" value="Actualizar" class="boton-atras">
+            <form action="/actializarProveed" method="post" id="campo_registro">
+                <div id="page_1" class="campos">
+                    <div id="nombre" class="campo_icono">
+                        <i class="lni lni-user"></i>
+                        <input type="text" name="nombreProveedor" id="nombreProveedor" value="{{resul[1]}}" class="campo"> 
+                    </div>
+                    <div id="contacto" class="campo_icono">
+                        <i class="lni lni-mobile"></i>
+                        <input type="number" name="numeroProveedores" id="numeroProveedores" value="{{resul[2]}}" class="campo">
+                    </div>
+                    <div id="ciudad" class="campo_icono">
+                        <i class="lni lni-home"></i>
+                        <input type="text" name="ciudadProveedor" id="ciudadProveedor" value="{{resul[5]}}" class="campo">
+                    </div>
+                </div>
+                <div id="page_2" class="campos">
+                    <div id="documento" class="campo_icono">
+                        <i class="lni lni-postcard"></i>
+                        <input type="number" name="documentoProveedor" id="documentoProvedor" value="{{resul[0]}}" class="campo">
+                    </div>
+                    <div id="correo" class="campo_icono">
+                        <i class="lni lni-envelope"></i>
+                        <input type="email" name="correoProveedores" id="correoProveedores" value="{{resul[3]}}" class="campo">
+                    </div>
+                    <div id="direccion" class="campo_icono">
+                        <i class="lni lni-map-marker"></i>
+                        <input type="text" name="direccionProveedores" id="direccionProveedores" value="{{resul[4]}}" class="campo">
+                    </div>
+                </div>
+                    <button type="submit" value="Actualizar" class="btn" id="btn_actualizar">Actualizar</button>
             </form>
         </div>
     </div>
