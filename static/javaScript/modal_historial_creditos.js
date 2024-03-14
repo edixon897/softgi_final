@@ -128,19 +128,6 @@ function detenerPropagacion(event) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 function verifica_input() {
 
     let valor_input = document.getElementById('input_error').value;
@@ -207,3 +194,6 @@ document.addEventListener("DOMContentLoaded", function() {
     verifica_input();
     valida_rol_ventas();
 });
+
+
+

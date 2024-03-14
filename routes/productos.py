@@ -1,5 +1,5 @@
 import sys
-from flask import Flask, request, render_template, flash, redirect, url_for, session
+from flask import Flask, jsonify, request, render_template, flash, redirect, url_for, session
 from conexiondb import conexion, mysql, app
 import datetime
 from models.productos import Dproductos
@@ -111,24 +111,22 @@ def muestra_Productos():
         return redirect(url_for('index'))
     
 
-@app.route('/buscar_producto', methods=['GET', 'POST'])
-def buscar():
+@app.route('/buscar_producto', methods=['POST'])
+def buscar_producto():
     if "nom_empleado" in session:
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
-
-            busqueda = request.form['buscar']
+            busqueda = request.form['buscar_productos']
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute(f"SELECT * FROM productos WHERE estado_producto='ACTIVO' AND (nombre_producto LIKE '%{busqueda}%' OR ref_produ_1 LIKE '%{busqueda}%' OR ref_produ_2 LIKE '%{busqueda}%' OR ref_produ_3 LIKE '%{busqueda}%'  OR descripcion LIKE '%{busqueda}%')")
+            cursor.execute(f"SELECT d_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante FROM productos WHERE estado_producto='ACTIVO' AND (nombre_producto LIKE '%{busqueda}%' OR ref_produ_1 LIKE '%{busqueda}%' OR ref_produ_2 LIKE '%{busqueda}%' OR ref_produ_3 LIKE '%{busqueda}%'  OR descripcion LIKE '%{busqueda}%')")
             resultados = cursor.fetchall()
             conn.close()
-            return render_template('productos/muestra_productos', result = resultados)
-        
+            return jsonify(result=resultados)
         else:
             return redirect("/inicio")
     else:
-        flash('Por favor inicia sesion')
+        flash('Por favor inicia sesión')
         return redirect(url_for('index'))
 
 

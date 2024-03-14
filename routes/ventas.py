@@ -265,20 +265,18 @@ def muestra_detalles_ventas(num_factura):
 
 # -------------------------------- Buscador ventas a credito ---------------------
 
-@app.route("/buscador_venta_c", methods=['POST'])
+@app.route("/buscador_venta_c", methods=['POST', 'GET'])
 def buscador_venta_c():
     if "nom_empleado" in session:
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
-            # Recibe la información
             busqueda = request.form['dato_busqueda']
-            sql = f"SELECT `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' AND (cliente LIKE '%{busqueda}%' OR operador LIKE '%{busqueda}%')"
-
+            sql = f"SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' AND (cliente LIKE '%{busqueda}%' OR productos LIKE '%{busqueda}%')"
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sql)
             resultado = cursor.fetchall()
-            conn.close()  # Cierra la conexión después de obtener los resultados
+            conn.close()
             return jsonify(result=resultado)
         else:
             return redirect("/inicio")
@@ -1195,7 +1193,6 @@ def verCrear_ventas():
     
 """ BUSCADOR """
 
-from flask import jsonify
 
 @app.route("/buscarVentas", methods=['POST'])
 def buscarVentas():
@@ -1215,5 +1212,51 @@ def buscarVentas():
     else:
         flash('Por favor inicia sesión para poder acceder')
         return redirect(url_for('index'))
+    
+    
+@app.route("/buscarProductosVentas", methods=['POST'])
+def buscarProductosVentas():
+    if "nom_empleado" in session: 
+        rol_usuario = session.get("rol")
+        if rol_usuario in ("administrador", "vendedor"):
+            try:
+                busqueda = request.form.get('Busqueda')
+                if busqueda:
+                    sql = f"SELECT `id_producto`, `ref_produ_1`, `nombre_producto`, `precio_venta`, `cantidad_producto` FROM `productos` WHERE `estado_producto` = 'ACTIVO' AND (`nombre_producto` LIKE '%{busqueda}%' OR `ref_produ_1` LIKE '%{busqueda}%')"
+                    conn = mysql.connect()
+                    cursor = conn.cursor()
+                    cursor.execute(sql)
+                    resultado = cursor.fetchall()
+                    conn.close()
+                    return jsonify(result=resultado)
+                else:
+                    return jsonify(error="El campo 'id_nombre' no está presente en la solicitud"), 400
+            except Exception as e:
+                return jsonify(error=str(e)), 500
+        else:
+            return jsonify(error="No tienes permiso para acceder a esta función"), 403
+    else:
+        return jsonify(error="Inicia sesión para acceder"), 401
 
+""" BUSCADOR DE CREDITOS PAGADOS """
+
+@app.route("/buscador_creditos_pagados", methods=['POST', 'GET'])
+def buscador_creditos_pagados():
+    if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+            busqueda = request.form['dato_busqueda']
+            sql = f"SELECT contador, cliente, productos, credito_total, credito_restante, operador, fecha_venta FROM ventas_credito WHERE (estado = 'PAGADA' OR estado = 'pagado') AND (cliente LIKE '%{busqueda}%' OR productos LIKE '%{busqueda}%')"
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            resultado = cursor.fetchall()
+            conn.close()
+            return jsonify(result=resultado)
+        else:
+            return redirect("/inicio")
+    else:
+        flash('Por favor inicia sesión para poder acceder')
+        return redirect(url_for('index'))
 
