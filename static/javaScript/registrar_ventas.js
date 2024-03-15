@@ -477,6 +477,7 @@ function abrir_nav() {
 
 }
 
+/* Cierra el nav lateral */
 
 function cerrar_nav() {
     let fondo = document.getElementById('section_sombra');
