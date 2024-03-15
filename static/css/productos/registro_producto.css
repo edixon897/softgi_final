@@ -422,11 +422,12 @@ form#conten_formulario_2 {
 
 
     div#conten_buttons {
-        width: 35%;
-        height: 16%;
+        width: 40%;
+        height: 36%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 8px;
         
     }
         div.conten_buttons_2 {
