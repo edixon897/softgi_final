@@ -17,15 +17,6 @@ body{
     font-weight: 300;
 }
 
-figure{
-    margin: 0;
-    padding: 0;
-}
-
-figure img{
-    margin: 0;
-    width: 100%;
-}
 h2 {
     margin: 0;
 }
@@ -36,8 +27,8 @@ p {
 /* PARATRIZACION */
 
 main#inicio {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 85vh;
     margin: 0;
     padding: 0;
     display: flex;
@@ -46,9 +37,8 @@ main#inicio {
 }
 
     section#conten_titulo_1 {
-        width: 100%;
+        width: 70%;
         height: 10%;
-/*         background-color: aqua; */
         display: flex;
         align-items: center;
     }
@@ -71,7 +61,7 @@ main#inicio {
             justify-content: center;
             align-items: center;
         }
-            /* barra de progreso  */
+            /*------ barra de progreso ---------*/
             div#barra_progreso_1 {
                 border-top: 1px solid #358CB4;
                 border-left: 1px solid #358CB4;
@@ -138,7 +128,7 @@ main#inicio {
                     font-weight: 500;
                 }
                 div.conten_inputs_1 {
-                    width: 80%;
+                    width: 78%;
                     height: 80%;               
                     display: flex;
                     flex-direction: column;
@@ -165,7 +155,7 @@ main#inicio {
                     font-weight: 500;
                 }
                 div.content_inputs_2 {
-                    width: 80%;
+                    width: 75%;
                     height: 80%;
                     display: flex;
                     flex-direction: column;

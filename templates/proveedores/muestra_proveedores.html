@@ -75,7 +75,7 @@
                                         {% endfor %}
                                         
                                         <td>
-                                            <button onclick="abrirModalEditarProveedor('{{c[0]}}')" class="btn_editar">
+                                            <button  id="btn-modal-edit" onclick="abrirModalEditarProveedor('{{c[0]}}')" class="btn_editar">
                                                 <i id="icono_2" class="lni lni-pencil"></i>
                                             </button>
                                         <td class="btns_centro">
@@ -99,7 +99,7 @@
 
     </main>
 
-<!--  Modal crear proveedor -->
+<!-------------  Modal crear proveedor --------------->
 
     <div id="crearProveedorModal" class="modal" style="display: none;">
         <div class="modal-content">
