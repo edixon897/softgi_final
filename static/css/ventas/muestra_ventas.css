@@ -202,6 +202,11 @@ main#cuerpo {
                             padding-right: 20px;
                             font-size: 1.0em;
                         }
+                        input#buscador_ventas::placeholder {
+                            color: #e2e2e2;
+                            letter-spacing: 1.1px;
+                            font-size: 0.98em;
+                        }
                 section#section_tabla_info {
                     width: 97%;
                     height: 83%;

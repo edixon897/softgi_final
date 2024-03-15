@@ -207,3 +207,13 @@ document.addEventListener("DOMContentLoaded", function() {
     verifica_input();
     valida_rol_ventas();
 });
+
+// Funcion para controlar la cantidad de items a mostrar
+document.addEventListener("DOMContentLoaded", function() {
+    var table = document.getElementById("tablaVentas");
+    var rows = table.getElementsByTagName("tr");
+
+    for (var i = 11; i < rows.length; i++) {
+        rows[i].style.display = "none";
+    }
+});

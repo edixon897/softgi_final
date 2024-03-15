@@ -70,3 +70,26 @@ document.addEventListener("DOMContentLoaded", function() {
     // Asignar el evento de scroll a la función mostrarMasFilas
     window.addEventListener("scroll", mostrarMasFilas);
   });
+
+
+
+
+
+
+/*  Oculta funciones si es vendedor */
+function verifica_input_rol() {
+  let btn_eliminar = document.getElementsByClassName('btn_eliminar');
+  let input_rol = document.getElementById('input_rol');
+  let valor = input_rol.value;
+
+  if (valor === "administrador")  {
+      for (let i = 0; i < btn_eliminar.length; i++) {
+          btn_eliminar[i].style.visibility  = "visible";
+      }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Llama a la función para realizar la verificación inicial
+  verifica_input_rol();
+});

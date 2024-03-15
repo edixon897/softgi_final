@@ -78,7 +78,7 @@
                                             </button>
                                         </td>
                                         <!-- Otro botón para eliminar cliente -->
-                                        <td class="btns_centro">
+                                        <td class="btns_centro btn_eliminar">
 
                                             <a onclick="return confirm('Seguro que deseas eliminar el cliente?')"
                                                 href="/borracliente/{{c[0]}}">
@@ -99,6 +99,7 @@
                 </div>
             </div>
         </section>
+        <input type="hidden" value="{{session['rol']}}" id="input_rol" oninput="verifica_input_rol()">
     </main>
 
     <div id="modalContainer"></div>
@@ -106,6 +107,7 @@
     <!-- Incluir scripts al final del cuerpo del documento -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../../static/javaScript/modalEditarCliente.js"></script>
+    <script src="../../static/javaScript/buscarClientes.js"></script>
 
 </body>
 
