@@ -17,15 +17,6 @@ body{
     font-weight: 300;
 }
 
-figure{
-    margin: 0;
-    padding: 0;
-}
-
-figure img{
-    margin: 0;
-    width: 100%;
-}
 h2 {
     margin: 0;
 }
@@ -231,22 +222,17 @@ main#cuerpo {
                             margin: 5px;
                             text-align: center;
                         }
-                      /*   i#icono_ver_mas {
-                            font-size: 1.8em;
-                            color: #358CB4;
-                            }i#icono_ver_mas:hover {
-                                color: #358CB4;
-                            } */
+                     
 
                             i#icono_2 {
                                 font-size: 1.8em;
                                 color: #358cb4;
                             }
-                            /* i#icono_2:hover {
-                                font-size: 1.8em;
-                                color: #358CB4;
-                            } */
-
+                                i#icono_2:hover {
+                                    color: #358cb475;
+                                }
+                                
+                        
                             i#icono_3 {
                                 font-size: 1.8em;
                                 color: #358cb475;
