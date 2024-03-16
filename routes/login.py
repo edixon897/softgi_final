@@ -19,9 +19,7 @@ def login():
         resultado = cursor.fetchone()
         if resultado is not None:
             session["nom_empleado"] = resultado[0]
-            session["documento_operador"] = documento
-
-            
+            session["documento_operador"] = documento           
         
 
             sql = f"SELECT `rol` FROM `empleados` WHERE doc_empleado = '{documento}'"
