@@ -58,7 +58,7 @@ def Registrar_compra_p():
             total = float(valor) * int(cantidad)
             Dcompra_proveedores.registrar_detalles_compra([num, productos[i], cantidad, valor, total, total])
             
-        flash('¡Se registraron los productos con éxito!')
+        flash('¡Se registraron los productos con éxito!, estoy en que html?')
         
         return redirect("/muestra_compra_proved")
     else:
