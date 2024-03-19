@@ -175,18 +175,21 @@ def muestra_detalles_com(num_compra):
         
             sql =  f"""
                 SELECT 
-                    dc.detallenum_compra, 
-                    dc.producto_compra, 
-                    dc.cantidad_producto_compra, 
-                    dc.valorunidad_prodcompra, 
-                    dc.valortotal_cantidadcomp, 
-                    dc.totalpagar_compra 
+                    cp.num_compra,
+                    dc.detallenum_compra,
+                    dc.producto_compra,
+                    dc.cantidad_producto_compra,
+                    dc.valorunidad_prodcompra,
+                    SUM(dc.valortotal_cantidadcomp) AS total_pagar_factura
                 FROM 
                     detallecomprasproveedores dc
                 JOIN 
                     comprasproveedores cp ON dc.detallenum_compra = cp.num_compra
                 WHERE 
-                    dc.detallenum_compra = '{num_compra}' and num_compra = '{num_compra}'
+                    dc.detallenum_compra = '{num_compra}' AND cp.num_compra = '{num_compra}'
+                GROUP BY 
+                    cp.num_compra, dc.detallenum_compra;
+
             """
             conn = mysql.connect()
             cursor = conn.cursor()                  # muestra los detalles de compras a proveedores

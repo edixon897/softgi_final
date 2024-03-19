@@ -20,38 +20,33 @@
                     <table id="tabla_productos">
                         <thead>
                             <tr>
-                                <th>numero compra</th>
-                                <th>producto</th>
+                                <th>Numero Compra</th>
+                                <th># Detalle</th>
+                                <th>Nombre del Producto</th>
                                 <th>Cantidad</th>
-                                <th>Valor unidad</th>
-                                <th>valor cantidad total</th>
-                                <!-- <th>total a pagar</th> -->
+                                <th>Valor Unidad</th>
+                                <th>Valor Cantidad Total</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                     
                         <tbody>
+                            
                             {% for c in resul %}
                             <tr>
-                                {% for i in range(0, 5) %}
-                                    <td {% if i in [2, 3, 4] %} class="" {% endif %}>
-                                        {% if c[i] is defined %}
-                                            {% if i in [3, 4] %}
-                                                $ {{ "{:,.0f}".format(c[i] | float) }}
-                                            {% else %}
-                                                {{ "{:,.0f}".format(c[i] | float) }}
-                                            {% endif %}
-                                        {% else %}
-                                            {{ c[i] }}
-                                        {% endif %}
-                                    </td>
-                                {% endfor %}
-                            </tr>
+                                <td>{{c[0]}}</td>
+                                <td>{{c[1]}}</td>
+                                <td>{{c[2]}}</td>
+                                <td>{{c[3]}}</td>
+                                <td>${{ '{:,.0f}'.format(c[4]) }}</td>
+                                <td>${{ '{:,.0f}'.format(c[5]) }}</td>
                             {% endfor %}
+
                         </tbody>
+                        
                     </table>
-                    
                     
                     
                     <div id="regresar">
