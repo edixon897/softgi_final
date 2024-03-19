@@ -6,7 +6,7 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
     
             $('#buscador_ventas').on('input', function() {
                 var busqueda = $(this).val().trim();
-                if (busqueda.length > 4) {
+                if (busqueda.length > 1) {
                     buscarEnTiempoReal(busqueda);
                 } else {
                     restaurarTabla();
@@ -58,7 +58,7 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
                         $('<td>').text(value).appendTo(tr);
                     });
                     // Mantener visible el botón de "Más detalles" incluso después de la búsqueda
-                    $('<td class="btns_centro"><a href="#" class="ver_detalle"><i id="icono_ver_mas" class="lni lni-information"></i></a></td>').appendTo(tr);
+                    $('<td class="btns_centro"><a href="#" class="ver_detalle"><i id="icono_ver_mas" class="lni lni-comments-alt-2"></i></a></td>').appendTo(tr);
                     tabla.append(tr);
                 });
                 // Asignar eventos onclick después de actualizar la tabla

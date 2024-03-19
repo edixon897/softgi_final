@@ -92,7 +92,7 @@
                         </div>
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
-                            <input type="search" id="buscador_ventas" oninput="buscarVENTAS()" placeholder="">
+                            <input type="search" id="buscador_ventas" name="dato_busqueda"  placeholder="">
                         </form>
 
                     </section>
@@ -158,8 +158,21 @@
         <input type="hidden" value="{{session['rol']}}" id="input_valida_ventas" >
 
     </main>
+<<<<<<< HEAD
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+=======
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}
+>>>>>>> 310eb153f1312def8fe9cee3052ef90c3c1613b5
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/static/javaScript/buscadorVentas.js"></script>
+    <script src="/static/javaScript/buscadorPagosCreditos.js"></script>
     <script src="/static/javaScript/modal_historial_creditos.js"></script>
 </body>
 </html>

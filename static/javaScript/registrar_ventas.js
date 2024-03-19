@@ -183,11 +183,72 @@ function valida_campos() {
 }
 
 
+/* BUSCADOR */
+var tablaOriginal;  // Variable para almacenar la tabla original antes de realizar la búsqueda
+
+    $(document).ready(function() {
+        // Guardar la tabla original cuando se carga el documento
+        tablaOriginal = $('#tabla tbody').html();
+
+        $('#buscador').on('input', function() {
+            var busqueda = $(this).val().trim();
+            if (busqueda.length > 1) {
+                buscarEnTiempoReal(busqueda);
+            } else {
+                restaurarTabla();
+            }
+        });
+    });
+
+    function buscarEnTiempoReal(busqueda) {
+        $.ajax({
+            type: 'POST',
+            url: '/buscarProductosVentas',
+            data: { 'Busqueda': busqueda },
+            success: function(response) {
+                actualizarTabla(response.result);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error al realizar la búsqueda:', error);
+            }
+        });
+    }
+
+    function restaurarTabla() {
+        // Restaurar la tabla a su estado original
+        $('#tabla tbody').html(tablaOriginal);
+    }
+
+    function actualizarTabla(data) {
+        var tabla = $('#tabla tbody');
+        tabla.empty();
+        if (data.length > 1) {
+            $.each(data, function(index, row) {
+                var tr = $('<tr>');
+                $.each(row, function(key, value) {
+                    $('<td>').text(value).appendTo(tr);
+                });
+                // Agregar los enlaces y botones correspondientes a la última columna de la fila
+                $('<td>').html('<a href="#" class="abrir-modal" data-id="' + row[0] + '"><i id="icono_select_2" class="lni lni-layers"></i></a>').appendTo(tr);
+                $('<td>').html('<a href="/selector_una_cantidad/' + row[0] + '"><i id="icono_select_1" class="lni lni-select-cursor"></i></a>').appendTo(tr);
+                tabla.append(tr);
+            });
+        } else {
+            tabla.append('<tr><td colspan="6">No se encontraron resultados</td></tr>');
+        }
+
+        // Vincular eventos click a los enlaces con clase "abrir-modal"
+        $('.abrir-modal').off('click').on('click', function(e) {
+            e.preventDefault();
+            var idProducto = $(this).data('id');
+            abrirModal_2(idProducto);
+        });
+    }
 
 
 
 
-function buscarProductos() {
+/* function buscarProductos() {
     var input, filter, table, tr, td, i, j, txtValue, noResults;
 
     input = document.getElementById("buscador");
@@ -236,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (var i = 11; i < rows.length; i++) {
         rows[i].style.display = "none";
     }
-});
+}); */
 
 
 

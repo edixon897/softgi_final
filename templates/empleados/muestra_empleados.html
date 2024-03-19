@@ -7,21 +7,14 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/empleados/muestra_empleados.css">
     <link rel="stylesheet" href="../../static/css/registro/regristro.css">
-
-    
 </head>
 <body>
-
-
     <main id="cuerpo">
-
         <section id="section_1">
             <p>Empleados</p>
         </section>
 
-
         <section id="section_2">
-
             <div id="conten_botones">
                 <div id="conten_regresar">
                         <a href="{{url_for ('inicio') }}" id="isla_1">
@@ -41,19 +34,18 @@
             </div>
 
             <div id="conten_tabla">
-
                 <div id="isla_3">
                     <section id="section_buscador_titulo">
-                        
                         <div id="conten_titulo">
                             <p>Mis empleados</p>
                         </div>
+
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
                             <input type="search" id="searchClientes" oninput="buscarClientes()" placeholder="">
                         </form>
-
                     </section>
+
                     <section id="section_tabla_info">
                         <div id="conten_t">
                             <table id="TablaClientes">
@@ -102,18 +94,21 @@
                 </div>
             </div>
         </section>
-        {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                            <ul>
-                                {% for message in messages %}
-                                    <li>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-            {% endwith %}
+    </main>
 
+    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+        {% endwith %}
 
-         <!------------------- Modal Crear empleado ------------>
+    
+    <!------------------------------------- Modal Crear empleado ------------------------------------------------------------>
+
         <div id="crearEmpleadoModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <form action="/registro" method="post" id="campo_registro">
@@ -192,7 +187,7 @@
         </div>
 
 
-        <div id="modalContainer"></div>
+        <div id="modalContainer"></div> <!-- no borrar -->
     
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

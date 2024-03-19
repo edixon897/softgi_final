@@ -73,9 +73,9 @@
                             <p>Producto</p>
                         </div>
 
-                        <form id="form_conten" >
+                        <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
-                            <input type="search" placeholder="" aria-label="Search" name="id_nombre" id="buscador" oninput="buscarProductos()">
+                            <input type="search" placeholder="" aria-label="Search" name="id_nombre" id="buscador">
                         </form>
                         
                     </section>
@@ -254,11 +254,21 @@
         </section>
 
     </main>
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}
 
     <input type="hidden" id="input_error" readonly value="{{mensaje}}" oninput="verifica_input()"> 
-   <input type="hidden" id="input_error_2" readonly value="{{mensaje_2}}" oninput="verifica_input_2()">
-   <input type="hidden" value="{{session['rol']}}" id="input_valida_ventas" >
+    <input type="hidden" id="input_error_2" readonly value="{{mensaje_2}}" oninput="verifica_input_2()">
+    <input type="hidden" value="{{session['rol']}}" id="input_valida_ventas" >
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/color_campo_lleno.js"></script>
     <script src="../../static/javaScript/registrar_ventas.js"></script>

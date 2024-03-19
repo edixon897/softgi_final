@@ -10,9 +10,9 @@ def empleados():
         if rol_usuario == "administrador":
 
             sql = f"SELECT `doc_empleado`, `nom_empleado`, `ape_empleado`, `fecha_nacimiento_empleado`, `contacto_empleado`, `email_empleado`, `direccion_empleado`, `ciudad_empleado`,  `rol`, `fechahora_registroempleado`, `nombre_operador`, `apellido_operador`, `estado` FROM `empleados` WHERE estado ='ACTIVO'"
-            conn = mysql.connect()                    
+            conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute(sql)                                          
+            cursor.execute(sql)
             resultado = cursor.fetchall()
             return render_template('empleados/muestra_empleados.html', resulta=resultado)
 
