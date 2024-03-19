@@ -7,6 +7,7 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/empleados/muestra_empleados.css">
     <link rel="stylesheet" href="../../static/css/registro/regristro.css">
+    <link rel="stylesheet" href="../../static/css/registro/recuperar_contrasena.css">
 </head>
 <body>
     <main id="cuerpo">
@@ -111,7 +112,7 @@
 
         <div id="crearEmpleadoModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <form action="/registro" method="post" id="campo_registro">
+                <form action="/registro" method="post" id="campo_registrar">
                     <div id="pag_1" class="campos">
                         <div id="nombre" class="campo_icono">
                             <i class="lni lni-user"></i>
@@ -172,8 +173,8 @@
 
         <div id="recuperarContradoModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <form action="/solicitarCambio_contraseña" method="POST" id="campo_registrar">
-                    <div class="contenedor_login">
+                <form action="/solicitarCambio_contraseña" method="POST" id="recuperar_psw">
+                    <div class="contenedor_recuperar_psw">
                         <h3>Vamos a restablecer tu contraseña</h3>
                             <label for="email">
                                 <span>Digita tu correo electrónico:</span>
