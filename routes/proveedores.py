@@ -1,5 +1,5 @@
 import sys
-from flask import Flask, request, render_template, flash, redirect, url_for, session
+from flask import Flask, jsonify, request, render_template, flash, redirect, url_for, session
 from conexiondb import conexion, mysql, app
 import datetime
 from models.proveedores import Dproveedores, Proveedores
@@ -82,15 +82,36 @@ def actializar_Proveed():
         ciudad = request.form['ciudadProveedor']
         Dproveedores.modificar([documento,nombre,numero,correo,direcion,ciudad, documento_registro, nombre_operador, apellido_operador])
         return redirect('/proveedores')
+    
+@app.route("/buscador_proveedores", methods=['POST', 'GET'])
+def buscador_proveedores():
+    if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+            busqueda = request.form['buscar_proveedor']
+            sql = f"SELECT `doc_proveedor`, `nom_proveedor`, `contacto_proveedor`, `email_proveedor`,`ciudad_proveedor`,  `direccion_proveedor` FROM `proveedores` WHERE (estado_proveedor = 'ACTIVO') AND (doc_proveedor LIKE '%{busqueda}%' OR nom_proveedor LIKE '%{busqueda}%')"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            resultado = cursor.fetchall()
+            conn.close()
+            return jsonify(result=resultado)
+        else:
+            return redirect("/inicio")
+    else:
+        flash('Por favor inicia sesión para poder acceder')
+        return redirect(url_for('index'))
 
 
 
 
-@app.route('/borraProveedor/<documento>')
+
+
+@app.route('/borraProveedor/<documento>', methods=['POST'])
 def borrarProveedor(documento):
     if "nom_empleado" in session:
         Dproveedores.borrar(documento)                 
         return redirect("/proveedores")
     else:
-        flash('Porfavor inicia sesion para poder acceder')
+        flash('Por favor inicia sesión para poder acceder')
         return redirect(url_for('index'))

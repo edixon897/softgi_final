@@ -209,7 +209,7 @@ main#cuerpo {
                             background-color: #358CB4;
                         }
 
-                        #tablaVentas {
+                        #tablaProveedor {
                             border-collapse: collapse;
                             width: 90%;
                             position: relative;
@@ -302,6 +302,11 @@ main#cuerpo {
 .btn_editar{
     background: none;
     border: 0;
+}
+.btn_eliminar{
+    background: none;
+    border: 0;
+
 }
 
 
