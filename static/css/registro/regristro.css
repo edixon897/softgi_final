@@ -2,77 +2,29 @@
 /* font-family: 'Barlow', sans-serif;
 font-family: 'Lato', sans-serif; */
 
-#campo_registrar{
-    position: relative;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-.contenedor_login{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 12px;
+.modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
 }
 
-h3{
-    color: #358CB4;
-}
 
-.contenedor_login label{
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
+.modal-content div {
+    margin-bottom: 0px;
     
 }
 
-.contenedor_login input{
-    border: solid 1px #aaa;
-    border-radius: 5px;
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    margin: 6px 0;
-    padding: 10px 10px 10px 45px;
-    position: relative;
-    width: 100%;
-    z-index: 2;
+
+.btn_editar{
+    background: none;
+    border: 0;
 }
 
-
-.contenedor_login > i{
-    border-radius: 10%;
-    color: #358CB4;
-    left: 3px;
-    padding: 10px;
-    padding-left: 20px;
-    position: absolute;
-    transform: translateY(239%);
-    z-index: 3;
-
-}
-
-
-
-#btn{
-    background-color: #358CB4;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 0.9em;
-    margin: 10px;
-    padding: 8px 17px;
-    width: 60%;
-    height: 15%;
-}
-
-
-
-
-
-
-   /*  #campo_registrar{
+    #campo_registrar{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -96,8 +48,24 @@ h3{
 
 /*---------------------------CLASES----------------------------------*/
 
+.campos{
+    margin: 12px;
+    position: relative;
+    /* width: 100%; */
+    flex-basis: 250px;
+    
+    }
+    
+    .campo_icono > i{
+    border-radius: 10%;
+    color: #358CB4;
+    left: 3px;
+    padding: 10px;
+    position: absolute;
+    transform: translateY(35%);
+    z-index: 3;
+    }
 
-/*
 .recuperar_psw > i{
     border-radius: 10%;
     color: #358CB4;
@@ -127,4 +95,4 @@ height: 15%;
 }
 
 
- */
+ 

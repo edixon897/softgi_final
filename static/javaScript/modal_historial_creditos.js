@@ -128,6 +128,19 @@ function detenerPropagacion(event) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 function verifica_input() {
 
     let valor_input = document.getElementById('input_error').value;
@@ -195,10 +208,6 @@ document.addEventListener("DOMContentLoaded", function() {
     valida_rol_ventas();
 });
 
-<<<<<<< HEAD
-
-
-=======
 // Funcion para controlar la cantidad de items a mostrar
 document.addEventListener("DOMContentLoaded", function() {
     var table = document.getElementById("tablaVentas");
@@ -340,4 +349,3 @@ function cerrar_nav() {
 function detener_Propagacion(event) {
     event.stopPropagation();
 }
->>>>>>> 310eb153f1312def8fe9cee3052ef90c3c1613b5

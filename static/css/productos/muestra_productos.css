@@ -331,3 +331,8 @@ main#cuerpo {
 .btns_centro {
     visibility: hidden;
 }
+
+.btn_editar{
+    border: none;
+    background: transparent;
+}
