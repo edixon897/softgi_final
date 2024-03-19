@@ -11,11 +11,6 @@
 
     <main id="cuerpo">
 
-
-
-
-
-
         <section id="section_sombra" onclick="cerrar_nav()">
 
             <section id="conten_desplegable" onclick="detener_Propagacion(event)">
@@ -44,9 +39,7 @@
                     </section>
 
                 </div>
-
-                
-                
+   
             </section>
 
         </section>
@@ -155,6 +148,17 @@
         </section>
 
     </main>
+    
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/static/javaScript/buscadorVentas.js"></script>
 </body>

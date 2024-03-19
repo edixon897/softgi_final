@@ -239,6 +239,17 @@
         <input type="hidden" value="{{session['rol']}}" id="input_valida_ventas" >
 
     </main>
+
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <script src="/static/javaScript/modal_historial_creditos.js"></script>

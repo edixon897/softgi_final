@@ -101,6 +101,15 @@
         </section>
         <input type="hidden" value="{{session['rol']}}" id="input_rol" oninput="verifica_input_rol()">
     </main>
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}
 
     <div id="modalContainer"></div>
 

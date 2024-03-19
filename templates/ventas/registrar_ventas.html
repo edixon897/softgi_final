@@ -254,6 +254,15 @@
         </section>
 
     </main>
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}
 
     <input type="hidden" id="input_error" readonly value="{{mensaje}}" oninput="verifica_input()"> 
    <input type="hidden" id="input_error_2" readonly value="{{mensaje_2}}" oninput="verifica_input_2()">
