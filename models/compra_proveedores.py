@@ -29,7 +29,7 @@ class Compras_proved:
         self.conexion.commit()
 
     def edita_detalles_compra(self,datos_compra):
-        sql = f"UPDATE detallecomprasproveedores SET num_compra='{datos_compra[0]}' ,producto_compra='{datos_compra[1]}', cantidad_producto_compra='{datos_compra[2]}', valorunidad_prodcompra='{datos_compra[3]}',valortotal_cantidadcomp='{datos_compra[4]}'"
+        sql = f"UPDATE detallecomprasproveedores SET detallenum_compra='{datos_compra[0]}' ,producto_compra='{datos_compra[1]}', cantidad_producto_compra='{datos_compra[2]}', valorunidad_prodcompra='{datos_compra[3]}',valortotal_cantidadcomp='{datos_compra[4]}'"
         self.cursor.execute(sql)
         self.conexion.commit()
 

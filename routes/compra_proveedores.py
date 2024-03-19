@@ -116,7 +116,6 @@ def edita_compras_provee(num_compra):
         return redirect(url_for('index'))
 
 
-
 @app.route("/actualiza_compra_provee", methods=['POST'])
 def actualiza_compra_provee():
     if "nom_empleado" in session:
@@ -126,10 +125,10 @@ def actualiza_compra_provee():
             num_compra = request.form['num_compra']
             producto_compra = request.form['producto_compra']
             cantidad_compra = request.form['cantidad_compra']
-            valor_unidad = request.form['valor_unidad']
-            valor_total_unidad = (cantidad_compra*valor_unidad)
+            valorunidad_prodcompra = request.form['valorunidad_prodcompra']
+            valor_total_unidad = (cantidad_compra*valorunidad_prodcompra)
             
-            Dcompra_proveedores.edita_detalles_compra([num_compra, producto_compra, cantidad_compra, valor_unidad, valor_total_unidad])
+            Dcompra_proveedores.edita_detalles_compra([num_compra, producto_compra, cantidad_compra, valorunidad_prodcompra, valor_total_unidad])
 
             return redirect("/muestra_compra_proved")
     
@@ -149,7 +148,7 @@ def muestra_compra_proved():
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
 
-            sql ="SELECT cp.`num_compra`, cp.`proveedor_compra`,  p.`nom_proveedor`, cp.`num_factura_proveedor`, CONCAT(cp.`nombre_operador`, ' ', cp.`apellido_operador`) AS nombre_completo, cp.`fecha_compra`, `direccion_proveedor` FROM `comprasproveedores` cp JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` WHERE cp.`estado` = 'ACTIVO'"
+            sql ="SELECT cp.`num_compra`, cp.`num_factura_proveedor`, cp.`proveedor_compra`,  p.`nom_proveedor`,  CONCAT(cp.`nombre_operador`, ' ', cp.`apellido_operador`) AS nombre_completo, cp.`fecha_compra`, `direccion_proveedor` FROM `comprasproveedores` cp JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` WHERE cp.`estado` = 'ACTIVO'"
             sql_proveedor = "SELECT doc_proveedor, nom_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
             with mysql.connect() as conn:
                 with conn.cursor() as cursor:
