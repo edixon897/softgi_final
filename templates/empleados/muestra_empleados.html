@@ -7,20 +7,14 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/empleados/muestra_empleados.css">
     <link rel="stylesheet" href="../../static/css/registro/regristro.css">
-    
 </head>
 <body>
-
-
     <main id="cuerpo">
-
         <section id="section_1">
             <p>Empleados</p>
         </section>
 
-
         <section id="section_2">
-
             <div id="conten_botones">
                 <div id="conten_regresar">
                         <a href="{{url_for ('inicio') }}" id="isla_1">
@@ -40,19 +34,18 @@
             </div>
 
             <div id="conten_tabla">
-
                 <div id="isla_3">
                     <section id="section_buscador_titulo">
-                        
                         <div id="conten_titulo">
                             <p>Mis empleados</p>
                         </div>
+
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
                             <input type="search" id="searchClientes" oninput="buscarClientes()" placeholder="">
                         </form>
-
                     </section>
+
                     <section id="section_tabla_info">
                         <div id="conten_t">
                             <table id="TablaClientes">
@@ -68,8 +61,6 @@
                                         <th>Ciudad</th>
                                         <th>Rol</th>
                                         <th>Fecha de registro</th>
-                                        <!-- <th>Nombre operador</th>
-                                        <th>Apellido operador</th> -->
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -103,18 +94,21 @@
                 </div>
             </div>
         </section>
-        {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                            <ul>
-                                {% for message in messages %}
-                                    <li>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-            {% endwith %}
+    </main>
 
+    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+        {% endwith %}
 
-         <!-- Modal -->
+    
+    <!------------------------------------- Modal Crear empleado ------------------------------------------------------------>
+
         <div id="crearEmpleadoModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <form action="/registro" method="post" id="campo_registro">
@@ -178,20 +172,22 @@
 
         <div id="recuperarContradoModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <div class="contenedor_login">
-                    <h3>Vamos a restablecer tu contraseña, </h3>
-                    <form action="/solicitarCambio_contraseña" method="POST">
-                        <label for="email"><span>Digita tu correo electrónico:</span>
+                <form action="/solicitarCambio_contraseña" method="POST" id="campo_registrar">
+                    <div class="contenedor_login">
+                        <h3>Vamos a restablecer tu contraseña</h3>
+                            <label for="email">
+                                <span>Digita tu correo electrónico:</span>
+                            </label>
+                            <i class="lni lni-envelope"></i>
                             <input type="email" name="email" id="email"  required>
-                        </label>
-                        <button type="submit">Recuperar</button>
-                    </form>
-                </div>
+                        <button type="submit" id="btn">Recuperar</button>
+                    </div>
+                </form>
             </div>
         </div>
 
 
-        <div id="modalContainer"></div>
+        <div id="modalContainer"></div> <!-- no borrar -->
     
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

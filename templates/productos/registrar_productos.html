@@ -9,7 +9,7 @@
     
 </head>
 <body>
-
+    
     <main id="inicio">
 
         <section id="conten_titulo_1">
@@ -272,29 +272,29 @@
                         <div id="nombre" class="campo_icono">
                             <i class="lni lni-user"></i>
                             <input type="text" name="nombre" maxlength="25" minlength="2"
-                            pattern="[a-zA-Z ]{2,25}" autocomplete="given-name" placeholder="Nombre">
+                            pattern="[a-zA-Z ]{2,25}" autocomplete="given-name" placeholder="Nombre" required>
                         </div>
                         <div id="contacto" class="campo_icono">
                             <i class="lni lni-mobile"></i>
-                            <input type="tel" name="contacto" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Celular">
+                            <input type="tel" name="contacto" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Celular" required>
                         </div>
                         <div id="ciudad" class="campo_icono">
                             <i class="lni lni-home"></i>
-                            <input type="text" name="ciudad" maxlength="14" minlength="2" pattern="[a-zA-Z]{2,14}" placeholder="Ciudad">
+                            <input type="text" name="ciudad" maxlength="14" minlength="2" pattern="[a-zA-Z]{2,14}" placeholder="Ciudad" required>
                         </div>
                     </div>
                     <div id="pag_2" class="campos">
                         <div id="documento" class="campo_icono">
                             <i class="lni lni-postcard"></i>
-                            <input type="number" name="documento" pattern="[0-9]{10}" maxlength="10" minlength="6" autocomplete="off" placeholder="Documento">
+                            <input type="number" name="documento" pattern="[0-9]{10}" maxlength="10" minlength="6" autocomplete="off" placeholder="Documento" required>
                         </div>
                         <div id="correo" class="campo_icono">
                             <i class="lni lni-envelope"></i>
-                            <input type="email" name="correo" inputmode="email" maxlength="56" placeholder="Correo">
+                            <input type="email" name="correo" inputmode="email" maxlength="56" placeholder="Correo" required>
                         </div>
                         <div id="direccion" class="campo_icono">
                             <i class="lni lni-map-marker"></i>
-                            <input type="text" name="direccion" maxlength="56" minlength="2" placeholder="Dirección">
+                            <input type="text" name="direccion" maxlength="56" minlength="2" placeholder="Dirección" required>
                         </div>
                     </div>
                     <button type="submit" class="btn" value="Registrar">REGISTRAR</button>
@@ -325,7 +325,7 @@
 
 
                         <div class="campo_2">
-                            <input type="text" name="nom_categoria" id="nombre" class="input_campo" >
+                            <input type="text" name="nom_categoria" id="nombre" class="input_campo" required>
                             <label id="label_nombre" for="nombre">Categoria</label>
                         </div>
 

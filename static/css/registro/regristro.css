@@ -2,15 +2,83 @@
 /* font-family: 'Barlow', sans-serif;
 font-family: 'Lato', sans-serif; */
 
+#campo_registrar{
+    position: relative;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.contenedor_login{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 12px;
+}
+
+h3{
+    color: #358CB4;
+}
+
+.contenedor_login label{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    
+}
+
+.contenedor_login input{
+    border: solid 1px #aaa;
+    border-radius: 5px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 6px 0;
+    padding: 10px 10px 10px 45px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
 
 
-    #campo_registro{
+.contenedor_login > i{
+    border-radius: 10%;
+    color: #358CB4;
+    left: 3px;
+    padding: 10px;
+    padding-left: 20px;
+    position: absolute;
+    transform: translateY(239%);
+    z-index: 3;
+
+}
+
+
+
+#btn{
+    background-color: #358CB4;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9em;
+    margin: 10px;
+    padding: 8px 17px;
+    width: 60%;
+    height: 15%;
+}
+
+
+
+
+
+
+   /*  #campo_registrar{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-        #campo_registro input{
+        #campo_registrar input{
             border: solid 1px #aaa;
             border-radius: 5px;
             font-family: 'Barlow', sans-serif;
@@ -21,44 +89,16 @@ font-family: 'Lato', sans-serif; */
             width: 100%;
             z-index: 2;
         }
-
-        #fecha_nac{
-            display: flex;
-            flex-direction: column;
-            margin: 4px 0 6px 0;
-        }
-
-        #fecha_nac > input{
-            margin: 0;
-            padding: 0.6em 15px;
-        }
-
-        #rol{
-            display: flex;
-            flex-direction: column;
-            margin: 5px 0 0 0;
-        }
-    
-        #rol > select {
-            border-radius: 5px;
-            margin: 0;
-            padding: 0.6em;
-            border: solid 1px #aaa;
-            background: transparent;
-        }
+ 
+        
 
 
 
 /*---------------------------CLASES----------------------------------*/
-.campos{
-    margin: 12px;
-    position: relative;
-    /* width: 100%; */
-    flex-basis: 250px;
 
-}
 
-.campo_icono > i{
+/*
+.recuperar_psw > i{
     border-radius: 10%;
     color: #358CB4;
     left: 3px;
@@ -87,3 +127,4 @@ height: 15%;
 }
 
 
+ */

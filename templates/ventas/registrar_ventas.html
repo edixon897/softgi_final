@@ -12,6 +12,43 @@
 
     <main id="cuerpo">
 
+
+        <section id="section_sombra" onclick="cerrar_nav()">
+
+            <section id="conten_desplegable" onclick="detener_Propagacion(event)">
+
+                <div id="conten_logo_user">
+                    <figure id="conten_icono_u">
+                        <img id="icono_user" src="../../static/image/circulo-de-usuario (3).png" alt="icono usuario">
+                    </figure>
+                    <div id="conten_nombre_2">
+                        <p>{{session['nom_empleado']}}</p>
+                    </div>
+                </div>
+
+                <div id="conten_info_cuerpo">
+
+                    <section id="lado_1">
+                        <p>Rol: {{session['rol']}}</p>
+                    </section>
+                    <section id="lado_2">
+
+                       <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" href="/"><i id="icono_cerrar_session" class="lni lni-exit"></i></a>  <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" id="enlace_exit" href="/">Cerrar session</a>
+
+                       <div id="conten_btn_cerrar" onclick="cerrar_nav()">
+                        <i class="lni lni-close"></i>
+                       </div>
+                    </section>
+
+                </div>
+
+                
+                
+            </section>
+
+        </section>
+
+
         <section id="conten_registra_pago" onclick="cerrarModal_2(), cerrarModal_3()">
 
             <div id="modalContenedor_2" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
@@ -21,6 +58,7 @@
 
         <section id="section_1">
             <p>Nueva venta</p>
+            <i id="menu" class="lni lni-menu" onclick="abrir_nav()"></i>
         </section>
 
         <section id="section_2">
@@ -32,7 +70,7 @@
                     <section id="conten_busqueda">
 
                         <div id="titulo">
-                            <p>Productos</p>
+                            <p>Producto</p>
                         </div>
 
                         <form id="form_conten">
@@ -68,7 +106,6 @@
                                         {% endfor %}
                                             
                                             <td>
-                                                <!-- <a href="#" onclick="abrirModal('{{c[0]}}')" > <i id="icono_select_2" class="lni lni-layers"></i></a> -->
                                                 <a href="#" onclick="abrirModal_2('{{c[0]}}')">
                                                     <i id="icono_select_2" class="lni lni-layers"></i>
                                                 </a>
@@ -142,9 +179,9 @@
 
                     <section id="conten_btns">
                         <div id="separador">
-                            <a href="#" onclick="abrirModal_3()">Nuevo cliente</a>
+                            <a href="#" onclick="abrirModal_3()">Nuevo Cliente</a>
                             <!-- <a href="{{url_for ('crearClientes_2') }}">Registrar cliente</a> -->
-                            <a id="Muestra_ventas" href="{{url_for ('muestra_ventas') }}">Regresar</a>
+                            <a id="Muestra_ventas" href="{{url_for ('muestra_ventas') }}"><i class="lni lni-arrow-left"></i></a>
                         </div>
                     </section>
 
@@ -217,6 +254,15 @@
         </section>
 
     </main>
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}
 
     <input type="hidden" id="input_error" readonly value="{{mensaje}}" oninput="verifica_input()"> 
     <input type="hidden" id="input_error_2" readonly value="{{mensaje_2}}" oninput="verifica_input_2()">

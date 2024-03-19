@@ -75,7 +75,7 @@
                                         {% endfor %}
                                         
                                         <td>
-                                            <button onclick="abrirModalEditarProveedor('{{c[0]}}')" class="btn_editar">
+                                            <button  id="btn-modal-edit" onclick="abrirModalEditarProveedor('{{c[0]}}')" class="btn_editar">
                                                 <i id="icono_2" class="lni lni-pencil"></i>
                                             </button>
                                             <td class="btns_centro">
@@ -99,8 +99,17 @@
         </section>
 
     </main>
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}
 
-<!--  Modal crear proveedor -->
+<!-------------  Modal crear proveedor --------------->
 
     <div id="crearProveedorModal" class="modal" style="display: none;">
         <div class="modal-content">
@@ -140,7 +149,7 @@
     </div>
     <div id="modalContainer"></div>
 
-<!----------------------Modal actualizar proveedor ----------------------------->
+<!---------------------------------Modal actualizar proveedor -------------------------------------------->
 
     <div id="actualizarproveedorModal" class="modal" style="display: none;">
         <div class="modal-content">

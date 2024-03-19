@@ -9,168 +9,174 @@
    
 </head>
 <body>
-    <main id="inicio">
-        <section id="conten_titulo_1">
-            <div id="conten_titulo_lado_1">
-                <h2>Editar productos</h2>
-            </div>
-            <div id="conten_titulo_lado_2">
-                <div id="barra_progreso_1"></div>
-                <div id="barra_progreso_2"></div>
-                <div id="barra_progreso_3"></div>
-            </div>
-        </section>
 
-        <form action="/modificar_Producto" method="post" id="conten_formulario_2">
-            <div class="conten_FORM">
-                <section class="lado_info_personal">
-                    <div id="conten_titulo_div">
-                        <p>Referencias</p>
+    <div id="ModalEditProducto" class="modal">
+        <div class="modal-content" id="modalContent">
+            <main id="inicio">
+
+                <section id="conten_titulo_1">
+                    <div id="conten_titulo_lado_1">
+                        <h2>Editar productos</h2>
                     </div>
-                    <div class="conten_inputs_1">
-                        <input type="hidden" name="id_producto" id="id_producto"  value="{{resul[0]}}">
-                        <div class="campo_2">
-                            <input type="text" name="ref_produ_1" id="ref_produ_1" class="input_campo" value="{{resul[1]}}" oninput="cambia_color_1()">
-                            <label id="label_1" for="referencia_producto">Referencia #1</label>
-                        </div>
-                        <div class="campo_2">
-                            <input type="text" name="ref_produ_2" id="ref_produ_2"  class="input_campo" value="{{resul[2]}}" oninput="cambia_color_2()">
-                            <label  id="label_2" for="ref_produ_2">Referencia #2</label>
-                        </div>
-                        <div class="campo_2">
-                            <input type="text" name="ref_produ_3" id="ref_produ_3"  class="input_campo" value="{{resul[3]}}" oninput="cambia_color_3()">
-                            <label id="label_3" for="ref_produ_3">Referencia #3</label>
-                        </div>
+                    <div id="conten_titulo_lado_2">
+                        <div id="barra_progreso_1"></div>
+                        <div id="barra_progreso_2"></div>
+                        <div id="barra_progreso_3"></div>
                     </div>
                 </section>
 
-                <section class="lado_info_contacto">
-                    <div class="conten_titulo_div_2">
-                        <p>Clasificación</p>
-                    </div>
-                    <div class="content_inputs_2">
-                        <div class="campo_2">
-                            <select id="nom_proveedor" name="nom_proveedor" class="input_campo"  oninput="cambia_color_4()">
-                                <option value="{{resul[5]}}">{{resul[5]}}</option>
-                            {% for c in prove %}
-                                <option value="{{c[0]}}">{{c[0]}}</option>
-                            {% endfor %}
-                            </select>
-                            <label id="label_4"  for="nom_proveedor">Proveedor</label>
-                        </div>
-                        <div class="campo_2">
-                            <select id="nom_categoria" name="nom_categoria" class="input_campo" oninput="cambia_color_5()">
-                                <option value="{{resul[4]}}">{{resul[4]}}</option>
-                            {% for c in cate %}
-                                <option value="{{c[0]}}">{{c[0]}}</option>
-                            {% endfor %}
-                            </select>
-                            <label id="label_5"  for="nom_categoria">Categoría</label>
-                        </div>
-                    </div>
-                </section>
+                <form action="/modificar_Producto" method="post" id="conten_formulario_2">
+                    <div class="conten_FORM">
+                        <section class="lado_info_personal">
+                            <div id="conten_titulo_div">
+                                <p>Referencias</p>
+                            </div>
+                            <div class="conten_inputs_1">
+                                <input type="hidden" name="id_producto" id="id_producto"  value="{{resul[0]}}">
+                                <div class="campo_2">
+                                    <input type="text" name="ref_produ_1" id="ref_produ_1" class="input_campo" value="{{resul[1]}}" oninput="cambia_color_1()">
+                                    <label id="label_1" for="referencia_producto">Referencia #1</label>
+                                </div>
+                                <div class="campo_2">
+                                    <input type="text" name="ref_produ_2" id="ref_produ_2"  class="input_campo" value="{{resul[2]}}" oninput="cambia_color_2()">
+                                    <label  id="label_2" for="ref_produ_2">Referencia #2</label>
+                                </div>
+                                <div class="campo_2">
+                                    <input type="text" name="ref_produ_3" id="ref_produ_3"  class="input_campo" value="{{resul[3]}}" oninput="cambia_color_3()">
+                                    <label id="label_3" for="ref_produ_3">Referencia #3</label>
+                                </div>
+                            </div>
+                        </section>
 
-                <!-- sesion 2 del formulario -->
-                <section id="sesion_formulari_2">
-                    <section class="lado_info_personal">
-                        <div id="conten_titulo_div">
-                            <p>Detalles del producto</p>
-                        </div>
-                        <div class="conten_inputs_1">
-                            <div class="campo_2">
-                                <input type="text" name="nombre_producto" id="nombre_producto" class="input_campo" value="{{resul[6]}}" oninput="cambia_color_6()">
-                                <label  id="label_6" for="nombre_producto">Nombre del producto</label>
+                        <section class="lado_info_contacto">
+                            <div class="conten_titulo_div_2">
+                                <p>Clasificación</p>
                             </div>
-                            <div class="campo_2">
-                                <input type="number" name="precio_compra" id="precio_compra"  class="input_campo" value="{{resul[7]}}" oninput="cambia_color_7()">
-                                <label  id="label_7" for="precio_compra">Precio de compra</label>
+                            <div class="content_inputs_2">
+                                <div class="campo_2">
+                                    <select id="nom_proveedor" name="nom_proveedor" class="input_campo"  oninput="cambia_color_4()">
+                                        <option value="{{resul[5]}}">{{resul[5]}}</option>
+                                    {% for c in prove %}
+                                        <option value="{{c[0]}}">{{c[0]}}</option>
+                                    {% endfor %}
+                                    </select>
+                                    <label id="label_4"  for="nom_proveedor">Proveedor</label>
+                                </div>
+                                <div class="campo_2">
+                                    <select id="nom_categoria" name="nom_categoria" class="input_campo" oninput="cambia_color_5()">
+                                        <option value="{{resul[4]}}">{{resul[4]}}</option>
+                                    {% for c in cate %}
+                                        <option value="{{c[0]}}">{{c[0]}}</option>
+                                    {% endfor %}
+                                    </select>
+                                    <label id="label_5"  for="nom_categoria">Categoría</label>
+                                </div>
                             </div>
-                            <div class="campo_2">
-                                <input type="number" name="precio_venta" id="precio_venta"  class="input_campo" value="{{resul[8]}}" oninput="cambia_color_8()">
-                                <label  id="label_8" for="fecha">Precio de venta</label>
-                            </div>
-                            <div class="campo_2">
-                                <input type="text" name="descripcion" id="descripcion"  class="input_campo" value="{{resul[10]}}" oninput="cambia_color_9()">
-                                <label  id="label_9" for="descripcion">Descripción</label>
-                            </div>
-                        </div>
-                    </section>
+                        </section>
 
-                    <section class="lado_info_contacto">
-                        <div class="conten_titulo_div_2">
-                            <p>Existencia</p>
-                        </div>
-                        <div class="content_inputs_2">
-                            
-                                <input type="hidden"  name="cantidad_producto" id="cantidad_producto"  class="input_campo" value="{{resul[9]}}" oninput="cambia_color_10()">
+                        <!-- sesion 2 del formulario -->
+                        <section id="sesion_formulari_2">
+                            <section class="lado_info_personal">
+                                <div id="conten_titulo_div">
+                                    <p>Detalles del producto</p>
+                                </div>
+                                <div class="conten_inputs_1">
+                                    <div class="campo_2">
+                                        <input type="text" name="nombre_producto" id="nombre_producto" class="input_campo" value="{{resul[6]}}" oninput="cambia_color_6()">
+                                        <label  id="label_6" for="nombre_producto">Nombre del producto</label>
+                                    </div>
+                                    <div class="campo_2">
+                                        <input type="number" name="precio_compra" id="precio_compra"  class="input_campo" value="{{resul[7]}}" oninput="cambia_color_7()">
+                                        <label  id="label_7" for="precio_compra">Precio de compra</label>
+                                    </div>
+                                    <div class="campo_2">
+                                        <input type="number" name="precio_venta" id="precio_venta"  class="input_campo" value="{{resul[8]}}" oninput="cambia_color_8()">
+                                        <label  id="label_8" for="fecha">Precio de venta</label>
+                                    </div>
+                                    <div class="campo_2">
+                                        <input type="text" name="descripcion" id="descripcion"  class="input_campo" value="{{resul[10]}}" oninput="cambia_color_9()">
+                                        <label  id="label_9" for="descripcion">Descripción</label>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="lado_info_contacto">
+                                <div class="conten_titulo_div_2">
+                                    <p>Existencia</p>
+                                </div>
+                                <div class="content_inputs_2">
+                                    
+                                        <input type="hidden"  name="cantidad_producto" id="cantidad_producto"  class="input_campo" value="{{resul[9]}}" oninput="cambia_color_10()">
+                                        
+                                    
+                                    <div class="campo_2">
+                                        <input type="number" name="stockminimo" id="stockminimo"  class="input_campo" value="{{resul[11]}}"  oninput="cambia_color_11()">
+                                        <label id="label_11" for="stockminimo">Cantidad mínima</label>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+
+                        <!-- sesion 3 del formulario -->
+                        <section id="sesion_formulari_3">
+                            <section class="lado_info_personal">
+                                <div id="conten_titulo_div">
+                                    <p>Ubicación</p>
+                                </div>
+                                <div class="conten_inputs_1">
+                                    <div class="campo_2">
+                                        <select id="ubicacion" name="ubicacion" class="input_campo" oninput="cambia_color_12()">
+                                            <option value="{{resul[12]}}">{{resul[12]}}</option>
+                                            <option value="Bodega">Bodega</option>
+                                            <option value="Almacen">Almacén</option>
+                                        </select>
+                                        <label id="label_12" for="ubicacion">Ubicación</label>
+                                    </div>
+                                    <div class="campo_2">
+                                        <input type="text" name="estante" id="estante"  class="input_campo" value="{{resul[13]}}" oninput="cambia_color_13()">
+                                        <label id="label_13" for="estante">Estante</label>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="lado_info_contacto">
                                 
-                            
-                            <div class="campo_2">
-                                <input type="number" name="stockminimo" id="stockminimo"  class="input_campo" value="{{resul[11]}}"  oninput="cambia_color_11()">
-                                <label id="label_11" for="stockminimo">Cantidad mínima</label>
-                            </div>
-                        </div>
-                    </section>
-                </section>
-
-                <!-- sesion 3 del formulario -->
-                <section id="sesion_formulari_3">
-                    <section class="lado_info_personal">
-                        <div id="conten_titulo_div">
-                            <p>Ubicación</p>
-                        </div>
-                        <div class="conten_inputs_1">
-                            <div class="campo_2">
-                                <select id="ubicacion" name="ubicacion" class="input_campo" oninput="cambia_color_12()">
-                                    <option value="{{resul[12]}}">{{resul[12]}}</option>
-                                    <option value="Bodega">Bodega</option>
-                                    <option value="Almacen">Almacén</option>
-                                </select>
-                                <label id="label_12" for="ubicacion">Ubicación</label>
-                            </div>
-                            <div class="campo_2">
-                                <input type="text" name="estante" id="estante"  class="input_campo" value="{{resul[13]}}" oninput="cambia_color_13()">
-                                <label id="label_13" for="estante">Estante</label>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="lado_info_contacto">
-                        
-                        <div class="content_inputs_2">
-                            <p class="icono_listo"><i class="lni lni-pencil-alt"></i></p>
-                        </div>
-                    </section>
-                </section>
-            </div>
-
-            <div id="conten_buttons">
-                <div class="conten_buttons_2">
-                    <a id="enlace_regresar" class="stylo_btn_regresar" href="/muestra_productos"><i class="lni lni-arrow-left"></i></a><!-- <i class="lni lni-arrow-left"></i> -->
-                </div>
-                <div class="conten_buttons_2">
-                    <a id="btn-continuar_1" class="boton_registrar">Continuar</a>
-                </div>
-
-                <section id="sesion_boton_2">
-                    <div class="conten_buttons_2">
-                        <a id="btn-volver_1" class="stylo_btn_regresar"><i class="lni lni-arrow-left"></i></a>
+                                <div class="content_inputs_2">
+                                    <p class="icono_listo"><i class="lni lni-pencil-alt"></i></p>
+                                </div>
+                            </section>
+                        </section>
                     </div>
-                    <div class="conten_buttons_2">
-                        <a id="btn-continuar_2" class="boton_registrar">Continuar</i></a>
-                    </div>  
-                </section>
 
-                <section id="sesion_boton_3">
-                    <div class="conten_buttons_2">
-                        <a id="btn-volver_2" class="stylo_btn_regresar"><i class="lni lni-arrow-left"></i></a>
+                    <div id="conten_buttons">
+                        <div class="conten_buttons_2">
+                            <a id="enlace_regresar" class="stylo_btn_regresar" href="/muestra_productos"><i class="lni lni-arrow-left"></i></a><!-- <i class="lni lni-arrow-left"></i> -->
+                        </div>
+                        <div class="conten_buttons_2">
+                            <a id="btn-continuar_1" class="boton_registrar">Continuar</a>
+                        </div>
+
+                        <section id="sesion_boton_2">
+                            <div class="conten_buttons_2">
+                                <a id="btn-volver_1" class="stylo_btn_regresar"><i class="lni lni-arrow-left"></i></a>
+                            </div>
+                            <div class="conten_buttons_2">
+                                <a id="btn-continuar_2" class="boton_registrar">Continuar</i></a>
+                            </div>  
+                        </section>
+
+                        <section id="sesion_boton_3">
+                            <div class="conten_buttons_2">
+                                <a id="btn-volver_2" class="stylo_btn_regresar"><i class="lni lni-arrow-left"></i></a>
+                            </div>
+                            <div class="conten_buttons_2">
+                                <button class="boton_registrar" type="submit" onclick="animacion_envio()" >Guardar cambios</button>
+                            </div>
+                        </section>
                     </div>
-                    <div class="conten_buttons_2">
-                        <button class="boton_registrar" type="submit" onclick="animacion_envio()" >Guardar cambios</button>
-                    </div>
-                </section>
-            </div>
-        </form>
-    </main>
+                </form>
+            </main>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/sesiones_formulario_edita_productos.js"></script>

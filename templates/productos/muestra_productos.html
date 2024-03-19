@@ -17,7 +17,6 @@
 
             <div id="modalContenedor_2" onclick="detenerPropagacion(event)" style="display: none; opacity: 0;"></div>
             
-
         </section>
 
 
@@ -34,10 +33,10 @@
                             <i id="boton_back" class="lni lni-home"></i>
                         </a>
                 </div>
-                <div id="conten_btn_navegacion">
+                <div id="conten_btn_navegacion" >
                     <div id="isla_2">
                         <a class="botones" href="{{url_for('categorias')}}">Categorías</a>
-                        <a class="botones" href="{{url_for('crear_Producto')}}" >Crear producto</a>
+                        <a class="botones" id="btn_crear" style="display: none;" href="{{url_for('crear_Producto')}}" >Crear producto</a>
                     </div>
                 </div>
             </div>
@@ -110,8 +109,11 @@
                                                 <i id=icono_3 class="lni lni-chevron-right"></i>
                                             </a>
                                         </td>
+
                                         <td class="btns_centro">
-                                            <a href="/modificar_Producto/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
+                                            <button onclick="abrirModalEditCompra('{{c[0]}}')">
+                                                <i id="icono_ver_mas" class="lni lni-pencil"></i>
+                                            </button>
                                         </td>
                                         <td class="btns_centro">
                                             <a onclick="return confirm('¿Seguro que deseas eliminar este producto?')" href="/borra_produc/{{c[0]}}">
@@ -134,13 +136,27 @@
         </section>
 
     </main>
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}  
 
+    
+<div id="modalContainer"></div> <!-- no borrar -->
 
     <input type="hidden" value="{{msj}}" readonly id="input_verificacion" oninput="validador_input()">
     <input type="hidden" value="{{session['rol']}}" id="input_rol" oninput="verifica_input_rol()">
 
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/buscarProducto.js"></script>
+    <script src="../../static/javaScript/modal_edita_producto.js"></script>
 
 
 </body>

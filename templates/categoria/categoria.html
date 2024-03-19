@@ -32,7 +32,7 @@
                         <a class="botones" href="{{url_for('muestra_Productos')}}">Productos</a>
                        <!--  <a class="botones" href="{{url_for('crearCategoria')}}">Crear categoría</a> -->
 
-                       <button class="botones" id="abrirModalBtn" style="visibility: hidden;">Crear Categoria</button>
+                       <button class="botones" id="abrirModalBtn" style="display: none;">Crear Categoria</button>
                     </div>
                 </div>
             </div>
@@ -93,9 +93,20 @@
 
         </section>
 
+    <input type="hidden" value="{{session['rol']}}" id="input_rol" oninput="verifica_input_rol()">
     </main>
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    {% endwith %}
 
-<!------------------------- Modal registrar cotizacion ----------------------->
+
+<!------------------------- Modal registrar categoria ----------------------->
 
     <div id="crearEmpleadoModal"  class="modal" style="display: none;">
         <div class="modal-content">
@@ -136,9 +147,6 @@
 
                 </div>
                 <div id="conten_buttons">
-                   <!--  <div class="conten_buttons_2">
-                        <a href="/categorias" id="enlace_regresar">Volver</a>
-                    </div> -->
                     <div class="conten_buttons_2">
                         <button type="submit" id="boton_registrar" onclick="animacion_envio()" >Finalizar</button>
                     </div>

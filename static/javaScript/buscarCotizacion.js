@@ -38,3 +38,36 @@ function buscarCotizacion() {
         noResults.style.display = "block";
     }
 }
+
+
+
+
+
+
+/* Esconde los botones de eliminar y editar dependiendo el rol */
+
+function verifica_input_rol() {
+    let botones_credito_pago = document.getElementsByClassName('btn_eliminar');
+    let input_rol = document.getElementById('input_rol');
+    let btn_crear = document.getElementById('abrirModalBtn');
+    let valor = input_rol.value;
+
+    if (valor === "administrador" || valor === "almacenista")  {
+        for (let i = 0; i < botones_credito_pago.length; i++) {
+            botones_credito_pago[i].style.visibility  = "visible";
+        } 
+    }
+    
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Llama a la función para realizar la verificación inicial
+    verifica_input_rol();
+});
+
+
+
+
+
+
