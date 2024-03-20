@@ -271,6 +271,9 @@ main#cuerpo {
 }
 #enlace_volver{
     font-weight: bold;
-    
-    
+}
+
+.columna-tota{
+    color: red; /* Cambia el color del texto a rojo */
+    font-weight: bold; /* Hace que el texto esté en negrita */
 }

@@ -116,7 +116,6 @@ def edita_compras_provee(num_compra):
         return redirect(url_for('index'))
 
 
-
 @app.route("/actualiza_compra_provee", methods=['POST'])
 def actualiza_compra_provee():
     if "nom_empleado" in session:
@@ -124,12 +123,13 @@ def actualiza_compra_provee():
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
 
             num_compra = request.form['num_compra']
+            detallenum_compra = request.form['detallenum_compra']
             producto_compra = request.form['producto_compra']
-            cantidad_compra = request.form['cantidad_compra']
-            valor_unidad = request.form['valor_unidad']
-            valor_total_unidad = (cantidad_compra*valor_unidad)
+            cantidad_compra = int(request.form['cantidad_compra'])
+            valorunidad_prodcompra = float(request.form['valorunidad_prodcompra'])
+            valor_total_unidad = cantidad_compra * valorunidad_prodcompra
             
-            Dcompra_proveedores.edita_detalles_compra([num_compra, producto_compra, cantidad_compra, valor_unidad, valor_total_unidad])
+            Dcompra_proveedores.edita_detalles_compra([num_compra, detallenum_compra, producto_compra, cantidad_compra, valorunidad_prodcompra, valor_total_unidad])
 
             return redirect("/muestra_compra_proved")
     
@@ -143,13 +143,14 @@ def actualiza_compra_provee():
 
 
 
+
 @app.route("/muestra_compra_proved")
 def muestra_compra_proved():
     if "nom_empleado" in session:
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
 
-            sql ="SELECT cp.`num_compra`, cp.`proveedor_compra`,  p.`nom_proveedor`, cp.`num_factura_proveedor`, CONCAT(cp.`nombre_operador`, ' ', cp.`apellido_operador`) AS nombre_completo, cp.`fecha_compra`, `direccion_proveedor` FROM `comprasproveedores` cp JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` WHERE cp.`estado` = 'ACTIVO'"
+            sql ="SELECT cp.`num_compra`, cp.`num_factura_proveedor`, cp.`proveedor_compra`,  p.`nom_proveedor`,  CONCAT(cp.`nombre_operador`, ' ', cp.`apellido_operador`) AS nombre_completo, cp.`fecha_compra`, `direccion_proveedor` FROM `comprasproveedores` cp JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` WHERE cp.`estado` = 'ACTIVO'"
             sql_proveedor = "SELECT doc_proveedor, nom_proveedor FROM proveedores WHERE estado_proveedor = 'ACTIVO'"
             with mysql.connect() as conn:
                 with conn.cursor() as cursor:
@@ -173,28 +174,24 @@ def muestra_detalles_com(num_compra):
 
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
         
-            sql =  f"""
-                SELECT 
-                    dc.detallenum_compra, 
-                    dc.producto_compra, 
-                    dc.cantidad_producto_compra, 
-                    dc.valorunidad_prodcompra, 
-                    dc.valortotal_cantidadcomp, 
-                    dc.totalpagar_compra 
-                FROM 
-                    detallecomprasproveedores dc
-                JOIN 
-                    comprasproveedores cp ON dc.detallenum_compra = cp.num_compra
-                WHERE 
-                    dc.detallenum_compra = '{num_compra}' and num_compra = '{num_compra}'
-            """
-            conn = mysql.connect()
-            cursor = conn.cursor()                  # muestra los detalles de compras a proveedores
-            cursor.execute(sql)
-            resultado = cursor.fetchall() 
-            print("estos datos:", resultado) 
-            conn.commit()
-            return render_template("/compra_proveedores/detalles_compras/muestra_detalles.html", resul=resultado)
+            sql =  f"SELECT `num_factura_proveedor` FROM `comprasproveedores`  WHERE  num_compra = '{num_compra}' "
+
+            bsql = f"SELECT  `detallenum_compra`, `producto_compra`, `cantidad_producto_compra`, `valorunidad_prodcompra`, `valortotal_cantidadcomp` FROM `detallecomprasproveedores` WHERE `detallenum_compra` = '{num_compra}'  "
+
+            
+            with mysql.connect() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(sql)
+                    resultado = cursor.fetchall()
+
+                    cursor.execute(bsql)
+                    detalle = cursor.fetchall()
+
+                    cursor.execute(sql)
+                    compra = cursor.fetchall()
+            total_cantidad = sum(row[4] for row in detalle)
+
+            return render_template("/compra_proveedores/detalles_compras/muestra_detalles.html", resul=detalle, result1=compra, total=total_cantidad)
 
         else:
             return redirect("/inicio")

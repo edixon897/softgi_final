@@ -182,7 +182,8 @@ main#inicio {
 .campo_2 {
     position: relative;
     width: 100%;
-    height: 18%;
+    height: 50%;
+    margin-bottom: 5px; /* Ajusta el valor de acuerdo a tu preferencia */
 }
     .campo_2 .input_campo {
         width: 100%;

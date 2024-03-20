@@ -20,38 +20,45 @@
                     <table id="tabla_productos">
                         <thead>
                             <tr>
-                                <th>numero compra</th>
-                                <th>producto</th>
+                                <th>Numero Compra</th>
+                                <th>Nombre del Producto</th>
                                 <th>Cantidad</th>
-                                <th>Valor unidad</th>
-                                <th>valor cantidad total</th>
-                                <!-- <th>total a pagar</th> -->
-                                <th></th>
-                                <th></th>
+                                <th>Valor Unidad</th>
+                                <th>Valor Cantidad Total</th>
+                                
                             </tr>
                         </thead>
                     
                         <tbody>
+                            
                             {% for c in resul %}
                             <tr>
-                                {% for i in range(0, 5) %}
-                                    <td {% if i in [2, 3, 4] %} class="" {% endif %}>
-                                        {% if c[i] is defined %}
-                                            {% if i in [3, 4] %}
-                                                $ {{ "{:,.0f}".format(c[i] | float) }}
-                                            {% else %}
-                                                {{ "{:,.0f}".format(c[i] | float) }}
-                                            {% endif %}
-                                        {% else %}
-                                            {{ c[i] }}
-                                        {% endif %}
-                                    </td>
+                                {% for i in result1 %}
+                                    <td>{{i[0]}}</td>
+                                    <td>{{c[1]}}</td>
+                                    <td>{{c[2]}}</td>
+                                    <td>${{ '{:,.0f}'.format(c[3]) }}</td>
+                                    <td>${{ '{:,.0f}'.format(c[4]) }}</td>
+                                    <!-- <td>{{c[5]}}</td> -->
                                 {% endfor %}
                             </tr>
+                                
                             {% endfor %}
+                            
+
                         </tbody>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Valor Total:</td> <!-- Aquí es donde queremos agregar el total -->
+                            <td class="total-columna">${{ '{:,.0f}'.format(total) }}</td> <!-- Añadimos una clase para dar estilo -->
+                        </tr>
                     </table>
-                    
+                    <!-- <td class="columna-total">${{ '{:,.0f}'.format(total) }}</td> -->
+
+
                     
                     
                     <div id="regresar">
