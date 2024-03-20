@@ -21,6 +21,7 @@
                         <thead>
                             <tr>
                                 <th>Numero Compra</th>
+                                <th>Fecha de la factura</th>
                                 <th>Nombre del Producto</th>
                                 <th>Cantidad</th>
                                 <th>Valor Unidad</th>
@@ -35,6 +36,7 @@
                             <tr>
                                 {% for i in result1 %}
                                     <td>{{i[0]}}</td>
+                                    <td>{{i[1]}}</td>
                                     <td>{{c[1]}}</td>
                                     <td>{{c[2]}}</td>
                                     <td>${{ '{:,.0f}'.format(c[3]) }}</td>

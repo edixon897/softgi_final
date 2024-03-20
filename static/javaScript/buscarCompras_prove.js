@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var table = document.getElementById("tabla_productos");
     var rows = table.getElementsByTagName("tr");
   
-    var visibleRowCount = 10; // Número de filas visibles inicialmente
+    var visibleRowCount = 11; // Número de filas visibles inicialmente
   
     // Ocultar filas que están más allá del número de filas visibles
     for (var i = visibleRowCount; i < rows.length; i++) {
