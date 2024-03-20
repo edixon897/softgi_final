@@ -58,7 +58,7 @@ def Registrar_compra_p():
             total = float(valor) * int(cantidad)
             Dcompra_proveedores.registrar_detalles_compra([num, productos[i], cantidad, valor, total, total])
             
-        flash('¡Se registraron los productos con éxito!, estoy en que html?')
+        flash('¡Se registraron los productos con éxito!')
         
         return redirect("/muestra_compra_proved")
     else:
@@ -174,7 +174,7 @@ def muestra_detalles_com(num_compra):
 
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
         
-            sql =  f"SELECT `num_factura_proveedor` FROM `comprasproveedores`  WHERE  num_compra = '{num_compra}' "
+            sql =  f"SELECT `num_factura_proveedor`, `fecha_compra` FROM `comprasproveedores`  WHERE  num_compra = '{num_compra}' "
 
             bsql = f"SELECT  `detallenum_compra`, `producto_compra`, `cantidad_producto_compra`, `valorunidad_prodcompra`, `valortotal_cantidadcomp` FROM `detallecomprasproveedores` WHERE `detallenum_compra` = '{num_compra}'  "
 

@@ -53,7 +53,6 @@
                                         <th>Número factura del proveedor</th>
                                         <th>C.C./NIT proveedor</th>
                                         <th>Nombre proveedor</th>
-                                        
                                         <th>Nombre operador</th>
                                         <th>Fecha de compra</th>
                                         <th>Dirección</th>
@@ -116,6 +115,9 @@
                     </ul>
                 {% endif %}
     {% endwith %}
+
+
+
 <!------------------------ Modal de registro compra proveedor ------------------------>
 
     <div id="crearCompraModal" class="modal" style="display: none;">
@@ -143,7 +145,8 @@
                     </div>
                     <div id="fecha_compra">
                         <label for="fecha_compra">Fecha</label>
-                        <input type="date" name="fecha_compra" class="campo" required>
+                        <input type="date" name="fecha_compra" id="fecha_compra_input" class="campo" required>
+                        <span id="error_fecha" style="color: red; display: none;">La fecha no puede ser mayor al día de hoy.</span>
                     </div>
                     <div>
                         <input type="number" name="valor_unidad[]" placeholder="Valor por unidad" class="campo" required>
@@ -159,13 +162,14 @@
         </div>
     </div>
 
-    <div id="modalContainer"></div><!-- Modal para editar compra a proveedores -->
+    <div id="modalContainer"></div><!-- Modal para editar compra a proveedores , No Borrar-->
 
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../../static/javaScript/modal_form_compraProveedores.js"></script>
     <script src="../../static/javaScript/buscarCompras_prove.js"></script>
     <script src="../../static/javaScript/modal_actualizar_proveedor.js"></script>
+    <script src="../../static/javaScript/control_fecha_registro_compraprovee.js"></script>
 <script>
     var productoCount = 1; // Contador de productos
 

@@ -75,9 +75,9 @@
                 {% for dato in datos %}
                 <tr>
                     <td>{{ dato[0] }}</td>
-                    <td>{{ dato[2] }}</td>
+                    <td>${{ '{:,.0f}'.format(dato[2]) }}</td>
                     <td>{{ dato[1] }}</td>
-                    <td>{{ dato[3] }}</td>
+                    <td>${{ '{:,.0f}'.format(dato[3]) }}</td>
                 </tr>
             {% endfor %}
                 
@@ -86,7 +86,7 @@
         <div class="total">
         
             <div class="total_pagar">
-                <p>TOTAL A PAGAR: {{ total_cantidad }}</p>
+                <p>TOTAL A PAGAR: ${{ '{:,.0f}'.format(total_cantidad) }}</p>
                 <p>Son: veiticico dociento pesos</p>
             </div>
             
