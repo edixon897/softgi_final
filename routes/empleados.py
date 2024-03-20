@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, flash, redirect, url_for, session
+from flask import Flask, jsonify, request, render_template, flash, redirect, url_for, session
 from conexiondb import conexion, mysql, app
 from models.empleados import Dempleados
 from utils.tokens import generador_id
@@ -95,16 +95,38 @@ def actualizar_Empleado():
         flash('Por favor, inicia sesion para poder acceder')
         return redirect(url_for('index'))
     
-@app.route('/borrarEmpleado/<doc_empleado>')
+    
+@app.route("/buscador_empleados", methods=['POST', 'GET'])
+def buscador_empleados():
+    if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+            busqueda = request.form['buscadorEmpleados']
+            sql = "SELECT `doc_empleado`, `nom_empleado`, `ape_empleado`, DATE(`fecha_nacimiento_empleado`), `contacto_empleado`, `email_empleado`, `direccion_empleado`, `ciudad_empleado`,  `rol`, DATE(`fechahora_registroempleado`), `nombre_operador`, `apellido_operador`, `estado` FROM `empleados` WHERE (estado ='ACTIVO') AND (doc_empleado LIKE %s OR nom_empleado LIKE %s)"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql, ('%' + busqueda + '%', '%' + busqueda + '%'))
+            resultado = cursor.fetchall()
+            conn.close()
+            return jsonify(result=resultado)
+
+        else:
+            return redirect("/inicio")
+    else:
+        flash('Por favor inicia sesión para poder acceder')
+        return redirect(url_for('index'))
+
+    
+@app.route('/borrarEmpleado/<doc_empleado>', methods=['POST'])
 def borrarEmpleado(doc_empleado):
     if "nom_empleado" in session:
             
         rol_usuario = session["rol"]
         if rol_usuario == "administrador":
-
+            
             Dempleados.eliminar(doc_empleado)
             return redirect('/empleados')
-    
+        
         else:
             return redirect("/inicio")
         

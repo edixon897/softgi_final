@@ -43,13 +43,13 @@
 
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
-                            <input type="search" id="searchClientes" oninput="buscarClientes()" placeholder="">
+                            <input type="search" id="searchClientes" name="buscadorEmpleados" placeholder="Buscar empleado">
                         </form>
                     </section>
 
                     <section id="section_tabla_info">
                         <div id="conten_t">
-                            <table id="TablaClientes">
+                            <table id="TablaEmpleados">
                                 <thead>
                                     <tr>
                                         <th>C.C. empleado</th>
@@ -81,9 +81,9 @@
                                             </button>
                                         </td>
                                         <td >
-                                            <a onclick="return confirm('¿Seguro que deseas eliminar este empleado?')" href="/borrarEmpleado/{{c[0]}}">
-                                                <i id=icono_3 class="lni lni-trash-can"></i>
-                                            </a>
+                                            <button onclick="eliminarEmpleado('{{c[0]}}')" class="btn_eliminar">
+                                                <i id="icono_3" class="lni lni-trash-can"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -195,7 +195,7 @@
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="/static/javaScript/modalEmpleado.js"></script>
-        <script src="/static/javaScript/buscarClientes.js"></script>
+        <script src="/static/javaScript/buscadorEmpleados.js"></script>
 
         <script>
             function abrirModalEditarEmpleado(documento) {

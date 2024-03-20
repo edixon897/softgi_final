@@ -217,6 +217,8 @@ main#cuerpo {
                             position: relative;
                             z-index: 1;
                         }
+                       
+                        
                         th, td{
                             border-bottom: 0.5px solid #dfdede;
                             font-size: 16px;
@@ -289,8 +291,6 @@ main#cuerpo {
 
 
 
-
-
 /* CLASES */
 .botones {
     border: 1px solid #358CB4;
@@ -305,7 +305,8 @@ main#cuerpo {
     color: rgb(183, 35, 5);
 }
 
-.btn_editar{
+.btn_editar,
+ .btn_eliminar{
     border: none;
     background: transparent;
 }

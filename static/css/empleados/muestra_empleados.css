@@ -265,6 +265,53 @@ main#cuerpo {
 
 
 
+<<<<<<< HEAD
+=======
+/*  modal */
+.modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+
+/* .modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+
+.modal-content div {
+    margin-bottom: 0px;
+    
+}
+
+
+.btn_editar{
+    background: none;
+    border: 0;
+<<<<<<< HEAD
+}
+.btn_eliminar{
+    background: none;
+    border: 0;
+}
+=======
+} */
+>>>>>>> b2da4627e141f3d919d69a47bf48fea19840e7bc
+
+
+>>>>>>> f13a97e8445c242992d105c35131e5e9583c8efb
 .btn{
     background-color: #358CB4;
     border: none;

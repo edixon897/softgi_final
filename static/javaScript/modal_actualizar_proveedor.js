@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    // Cuando se hace clic en el botón para abrir el modal
-    $("#icono_ver_mas").click(function () {
+    // Cuando se hace clic en el ícono para abrir el modal
+    $(".icono_ver_mas").click(function () {
         console.log('ejecutado')
         $("#actualizarproveedorModal").css("display", "block");
     });
@@ -12,6 +12,13 @@ $(document).ready(function () {
         }
     });
 });
+
+
+
+
+
+
+
 
 
 

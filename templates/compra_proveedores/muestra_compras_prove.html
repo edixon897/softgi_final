@@ -41,19 +41,18 @@
                         </div>
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
-                            <input type="search" id="buscador_2" oninput="buscarCompras_prove()" placeholder="">
+                            <input type="search" id="buscador_2" name="BuscaCompraProveedores" placeholder="">
                         </form>
 
                     </section>
                     <section id="section_tabla_info">
                         <div id="conten_t">
-                            <table id="tabla_productos">
+                            <table id="tabla_compraProveedor">
                                 <thead>
                                     <tr>
-                                        <th>Número compra</th>
+                                        <th>Número factura del proveedor</th>
                                         <th>C.C./NIT proveedor</th>
                                         <th>Nombre proveedor</th>
-                                        <th>Número factura del proveedor</th>
                                         <th>Nombre operador</th>
                                         <th>Fecha de compra</th>
                                         <th>Dirección</th>
@@ -68,7 +67,7 @@
                                 <tbody>
                                     {% for c in resul %}
                                     <tr>
-                                        {% for i in range(0,8) %}
+                                        {% for i in range(1,8) %}
                                             
                                             <td>{{ c[i] }}</td>
                                             
@@ -80,10 +79,12 @@
                                             </button>
                                         </td>
 
+                                        
+
                                         <td class="btns_centro">
-                                            <a onclick="return confirm('¿Seguro que deseas eliminar este registro de compra al proveedor?')" href="cancelar_compra_proveed/{{c[0]}}">
-                                                <i id=icono_2 class="lni lni-trash-can"></i>
-                                            </a>
+                                            <button onclick="eliminarCompraAproveedor('{{c[0]}}')" class="btn_eliminar">
+                                                <i id="icono_3" class="lni lni-trash-can"></i>
+                                            </button>
                                         </td>
                                         <td class="btns_centro">
                                             <a  href="muestra_detalles_com/{{c[0]}}">
@@ -114,6 +115,9 @@
                     </ul>
                 {% endif %}
     {% endwith %}
+
+
+
 <!------------------------ Modal de registro compra proveedor ------------------------>
 
     <div id="crearCompraModal" class="modal" style="display: none;">
@@ -122,11 +126,11 @@
                 <!-- Campos para el primer producto -->
                 <div id="producto_1" class="producto">
                     <div id="num_fac">
-                        <input type="text" name="num_factura_proveedor" placeholder="Número de factura" class="campo">
+                        <input type="text" name="num_factura_proveedor" placeholder="Número de factura" class="campo" required>
                     </div>
                     <div id="proveedor">
                         <label for="proveedor_compra">Proveedor</label>
-                        <select name="proveedor_compra" class="input_campo">
+                        <select name="proveedor_compra" class="input_campo" required>
                             <option value="">Proveedor</option>
                             {% for c in prove %}
                                 <option value="{{c[0]}}">{{c[1]}}</option>
@@ -134,17 +138,18 @@
                         </select>
                     </div>
                     <div>
-                        <input type="text" name="producto_compra[]" placeholder="Producto" class="campo">
+                        <input type="text" name="producto_compra[]" placeholder="Producto" class="campo" required>
                     </div>
                     <div>
-                        <input type="number" name="cantidad_compra[]" placeholder="Cantidad" class="campo">
+                        <input type="number" name="cantidad_compra[]" placeholder="Cantidad" class="campo" required>
                     </div>
                     <div id="fecha_compra">
                         <label for="fecha_compra">Fecha</label>
-                        <input type="date" name="fecha_compra" class="campo">
+                        <input type="date" name="fecha_compra" id="fecha_compra_input" class="campo" required>
+                        <span id="error_fecha" style="color: red; display: none;">La fecha no puede ser mayor al día de hoy.</span>
                     </div>
                     <div>
-                        <input type="number" name="valor_unidad[]" placeholder="Valor por unidad" class="campo">
+                        <input type="number" name="valor_unidad[]" placeholder="Valor por unidad" class="campo" required>
                     </div>
                 </div>
                 
@@ -157,13 +162,14 @@
         </div>
     </div>
 
-    <div id="modalContainer"></div>
+    <div id="modalContainer"></div><!-- Modal para editar compra a proveedores , No Borrar-->
 
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../../static/javaScript/modal_form_compraProveedores.js"></script>
     <script src="../../static/javaScript/buscarCompras_prove.js"></script>
     <script src="../../static/javaScript/modal_actualizar_proveedor.js"></script>
+    <script src="../../static/javaScript/control_fecha_registro_compraprovee.js"></script>
 <script>
     var productoCount = 1; // Contador de productos
 

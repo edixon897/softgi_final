@@ -36,4 +36,5 @@ function agregarProducto() {
     console.log(cantidad_compra);
     console.log(valor_unidad);
 
-}
+};
+
