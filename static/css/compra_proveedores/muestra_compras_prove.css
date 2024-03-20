@@ -305,7 +305,8 @@ main#cuerpo {
     color: rgb(183, 35, 5);
 }
 
-.btn_editar{
+.btn_editar,
+ .btn_eliminar{
     border: none;
     background: transparent;
 }

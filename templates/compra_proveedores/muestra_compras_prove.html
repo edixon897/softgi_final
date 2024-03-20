@@ -41,13 +41,13 @@
                         </div>
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
-                            <input type="search" id="buscador_2" oninput="buscarCompras_prove()" placeholder="">
+                            <input type="search" id="buscador_2" name="BuscaCompraProveedores" placeholder="">
                         </form>
 
                     </section>
                     <section id="section_tabla_info">
                         <div id="conten_t">
-                            <table id="tabla_productos">
+                            <table id="tabla_compraProveedor">
                                 <thead>
                                     <tr>
                                         <th>Número factura del proveedor</th>
@@ -83,9 +83,9 @@
                                         
 
                                         <td class="btns_centro">
-                                            <a onclick="return confirm('¿Seguro que deseas eliminar este registro de compra al proveedor?')" href="cancelar_compra_proveed/{{c[0]}}">
-                                                <i id=icono_2 class="lni lni-trash-can"></i>
-                                            </a>
+                                            <button onclick="eliminarCompraAproveedor('{{c[0]}}')" class="btn_eliminar">
+                                                <i id="icono_3" class="lni lni-trash-can"></i>
+                                            </button>
                                         </td>
                                         <td class="btns_centro">
                                             <a  href="muestra_detalles_com/{{c[0]}}">
