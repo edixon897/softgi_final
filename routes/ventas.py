@@ -91,6 +91,14 @@ def confirma_abono_2():
                         cursor = conn.cursor()     
                         cursor.execute(sql)
                         conn.commit()
+
+                        # se incerta en el historial el abono realizado
+                        """ Ventas.insert_historial_abn([contador, abono, documento_operador, tiempo_venta]) """
+                        sql = f"INSERT INTO `historial_credito`(`contador_ventacredito`, `abono`, `operador`, `fecha_abono`) VALUES ('{contador}','{abono}','{documento_operador}','{tiempo_venta}')"
+                        conn = mysql.connect()
+                        cursor = conn.cursor()     
+                        cursor.execute(sql)
+                        conn.commit()
                         
                         mensaj = "El_credito_fue_pagado_exitosamente_por_completo"
 
