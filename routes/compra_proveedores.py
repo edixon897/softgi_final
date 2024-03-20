@@ -98,7 +98,7 @@ def edita_compras_provee(num_compra):
             f"WHERE d.`detallenum_compra` = '{num_compra}'"
         )
         conn = mysql.connect()
-        cursor = conn.cursor()                  
+        cursor = conn.cursor()
         cursor.execute(sql)
         resultado = cursor.fetchall()
         print("Resultado de la consulta:", resultado)
@@ -199,3 +199,24 @@ def muestra_detalles_com(num_compra):
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
     
+
+
+@app.route("/buscador_compraproveedor", methods=['POST', 'GET'])
+def buscador_compraproveedor():
+    if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+            busqueda = request.form['buscadorEmpleados']
+            sql = "ELECT cp.`num_compra`, cp.`proveedor_compra`,  p.`nom_proveedor`, cp.`num_factura_proveedor`, CONCAT(cp.`nombre_operador`, ' ', cp.`apellido_operador`) AS nombre_completo, cp.`fecha_compra`, `direccion_proveedor` FROM `comprasproveedores` cp JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` WHERE (cp.`estado`='ACTIVO') AND (p.`nom_proveedor` LIKE %s OR cp.`num_factura_proveedor` LIKE %s)"
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql, ('%' + busqueda + '%', '%' + busqueda + '%'))
+            resultado = cursor.fetchall()
+            conn.close()
+            return jsonify(result=resultado)
+
+        else:
+            return redirect("/inicio")
+    else:
+        flash('Por favor inicia sesión para poder acceder')
+        return redirect(url_for('index'))
