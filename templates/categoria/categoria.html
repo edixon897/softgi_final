@@ -110,47 +110,23 @@
 
     <div id="crearEmpleadoModal"  class="modal" style="display: none;">
         <div class="modal-content">
-            <form action="/registrar_categorias" method="post" id="conten_formulario_2">
-
-                <div id="conten_FORM">
-
-                    <section id="lado_info_personal">
-
-                        <div id="conten_titulo_div">
+            <form action="/registrar_categorias" method="post" id="registrar_categorias">
+                <div id="conten_form">
+                    <section id="lado_categoria">
                             <p>Nombre de la categoría</p>
-                        </div>
-
-                        <div id="conten_inputs_1">
-                            
-                            <div class="campo_2">
+                            <div class="campo_2" id="campo_input">
                                 <label id="label_nombre" for="nombre">Categoria</label>
                                 <input type="text" name="nom_categoria" id="nombre" class="input_campo" >
                             </div>
-
-                        </div>
-                        
+                            <div id="conten_buttons">
+                                <button type="submit" id="boton_registrar" onclick="animacion_envio()" >Finalizar</button>
+                            </div>
                     </section>
-
-                    <section id="lado_info_contacto">
-
-                        <div id="conten_titulo_div_2">
-                            <p> </p>
-                        </div>
-
-                        <div id="content_inputs_2">
-
-                            <p class="icono_listo"><i class="lni lni-tag"></i></p>
-                        
-                        </div>
-
+                    <section id="lado_img">
+                            <i class="lni lni-tag"></i> <!-- icono listo -->
                     </section>
-
                 </div>
-                <div id="conten_buttons">
-                    <div class="conten_buttons_2">
-                        <button type="submit" id="boton_registrar" onclick="animacion_envio()" >Finalizar</button>
-                    </div>
-                </div>
+                
 
             </form>
         </div>

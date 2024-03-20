@@ -112,27 +112,27 @@
 
         <div id="crearEmpleadoModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <form action="/registro" method="post" id="campo_registrar">
-                    <div id="pag_1" class="campos">
-                        <div id="nombre" class="campo_icono">
+                <form action="/registro" method="post" id="registro_empleado">
+                    <div id="pag_1" class="campo_registro_empl">
+                        <div id="nombre_empl" class="campo_empleado">
                             <i class="lni lni-user"></i>
                             <input type="text" name="nombre" maxlength="25" minlength="2"
                             pattern="[a-zA-Z ]{2,25}" autocomplete="given-name" placeholder="Nombre (s)" tabindex="1">
                         </div>
-                        <div id="contacto" class="campo_icono">
+                        <div id="contacto_empl" class="campo_empleado">
                             <i class="lni lni-mobile"></i>
                             <input type="tel" name="contacto" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Celular" tabindex="3">
                         </div>
-                        <div id="fecha_nac" class="fecha_nac">
-                            <label for="fechaNacimiento" class="aclaracion">Fecha de nacimiento</label>
+                        <div id="campo_nac" class="campo_nac">
+                            <label for="fechaNacimiento" class="letras">Fecha de nacimiento</label>
                             <input type="date" name="nacimiento" tabindex="5">
                         </div>
-                        <div id="ciudad" class="campo_icono">
+                        <div id="ciudad_empl" class="campo_empleado">
                             <i class="lni lni-home"></i>
                             <input type="text" name="ciudad" maxlength="14" minlength="2" pattern="[a-zA-Z]{2,14}" placeholder="Ciudad" tabindex="7">
                         </div>
-                        <div id="rol">
-                            <label for="" class="aclaracion">Rol</label>
+                        <div id="rol_empl">
+                            <label for="" class="letras">Rol</label>
                             <select name="rol" id="rol" tabindex="9">
                                 <option value="administrador">Administrador</option>
                                 <option value="almacenista">Almacenista</option>
@@ -141,30 +141,30 @@
                         </div>
                     </div>
 
-                    <div id="pag_2" class="campos">
-                        <div id="apellido" class="campo_icono">
+                    <div id="pag_2" class="campo_registro_empl">
+                        <div id="apellido_empl" class="campo_empleado">
                             <i></i>
                             <input type="text" name="apellido" maxlength="25" minlength="2"
                             pattern="[a-zA-Z ]{2,25}" autocomplete="family-name" placeholder="Apellido (s)" tabindex="2">
                         </div>
-                        <div id="correo" class="campo_icono">
+                        <div id="correo_empl" class="campo_empleado">
                             <i class="lni lni-envelope"></i>
                             <input type="email" name="correo" inputmode="email" maxlength="56" placeholder="Correo" tabindex="4">
                         </div>
-                        <div id="documento" class="campo_icono">
+                        <div id="documento_empl" class="campo_empleado">
                             <i class="lni lni-postcard"></i>
                             <input type="number" name="documento" pattern="[0-9]{10}" maxlength="10" minlength="6" autocomplete="off" placeholder="Cédula" tabindex="6">
                         </div>
-                        <div id="direccion" class="campo_icono">
+                        <div id="direccion_empl" class="campo_empleado">
                             <i class="lni lni-map-marker"></i>
                             <input type="text" name="direccion" maxlength="56" minlength="2" placeholder="Dirección" tabindex="8">
                         </div>
-                        <div id="Contraseña" class="campo_icono">
+                        <div id="contrasena_empl" class="campo_empleado">
                             <i class="lni lni-key"></i>
-                            <input type="password" name="contrasena" placeholder="Contraseña" tabindex="10">
+                            <input type="password" id="input_psw" name="contrasena" placeholder="Contraseña" tabindex="10">
                         </div>
                     </div>
-                    <button type="submit" class="btn">REGISTRAR</button>
+                    <button type="submit" class="btn_empl">REGISTRAR</button>
                    
                 </form>
             </div>
@@ -176,11 +176,13 @@
                 <form action="/solicitarCambio_contraseña" method="POST" id="recuperar_psw">
                     <div class="contenedor_recuperar_psw">
                         <h3>Vamos a restablecer tu contraseña</h3>
+                        <div id="recuperar_contrasena">
                             <label for="email">
                                 <span>Digita tu correo electrónico:</span>
                             </label>
                             <i class="lni lni-envelope"></i>
                             <input type="email" name="email" id="email"  required>
+                        </div>
                         <button type="submit" id="btn">Recuperar</button>
                     </div>
                 </form>

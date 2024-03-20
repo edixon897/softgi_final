@@ -83,15 +83,15 @@
 
 
 /*---------------------------CLASES----------------------------------*/
-.campos{
+.campo_act_empl{
 margin: 8px;
 position: relative;
 /* width: 100%; */
-/* flex-basis: 250px; */
+flex-basis: 250px;
 
 }
 
-.campo_icono > i{
+.campo_actualizar > i{
 border-radius: 10%;
 color: #358CB4;
 left: 3px;
@@ -117,7 +117,7 @@ font-size: 15px;
     font-size: 14px;
 }
 
-.btn{
+.btn_act_empl{
 background-color: #358CB4;
 border: none;
 border-radius: 5px;

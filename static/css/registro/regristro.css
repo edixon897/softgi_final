@@ -2,6 +2,17 @@
 /* font-family: 'Barlow', sans-serif;
 font-family: 'Lato', sans-serif; */
 
+.modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
 .modal-content {
     background-color: #fff;
     border-radius: 10px;
@@ -24,23 +35,64 @@ font-family: 'Lato', sans-serif; */
     border: 0;
 }
 
-    #campo_registrar{
+    #registro_empleado{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-        #campo_registrar input{
+        #registro_empleado input{
             border: solid 1px #aaa;
             border-radius: 5px;
             font-family: 'Barlow', sans-serif;
             font-weight: 400;
-            margin: 6px 0;
-            padding: 1.3em 1.3em 1.3em 45px;
+            margin: 8px 0;
+            padding: 10px 10px 10px 45px;
             position: relative;
             width: 100%;
             z-index: 2;
         }
+
+    #campo_nac{
+        display: flex;
+        flex-direction: column;
+        margin: 6px 0 8px 0;
+    }
+        
+        #campo_nac > input{
+            margin: 0;
+            padding: 0.6em 15px;
+        }
+    
+
+    #rol_empl{
+        margin: 4px 0 3px 0;
+    }
+
+        #rol_empl select {
+            border: solid 1px #aaa;
+            border-radius: 5px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            margin: 0;
+            padding: 0.6em 15px;
+            position: relative;
+            width: 100%;
+            background: transparent;
+        }
+
+
+    #documento_empl{
+        margin: 14px 0 0 0;
+    }
+
+    #contrasena_empl{
+        margin: 14px 0 0 0;
+    }
+
+    
+        
+    
  
         
 
@@ -48,21 +100,20 @@ font-family: 'Lato', sans-serif; */
 
 /*---------------------------CLASES----------------------------------*/
 
-.campos{
+.campo_registro_empl{
     margin: 12px;
     position: relative;
     /* width: 100%; */
     flex-basis: 250px;
-    
     }
     
-    .campo_icono > i{
+    .campo_empleado > i{
     border-radius: 10%;
     color: #358CB4;
     left: 3px;
     padding: 10px;
     position: absolute;
-    transform: translateY(35%);
+    transform: translateY(18%);
     z-index: 3;
     }
 
@@ -76,13 +127,13 @@ font-family: 'Lato', sans-serif; */
     z-index: 3;
 }
 
-.aclaracion{
+.letras{
     margin: 0;
     padding: 0;
     font-size: 15px;
 }
 
-.btn{
+.btn_empl{
 background-color: #358CB4;
 border: none;
 border-radius: 5px;

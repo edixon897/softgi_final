@@ -31,13 +31,13 @@
 }
 
 
-#campo_registro{
+#editar_cliente{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-    #campo_registro input{
+    #editar_cliente input{
         border: solid 1px #aaa;
         border-radius: 5px;
         font-family: 'Barlow', sans-serif;
@@ -50,13 +50,13 @@
         z-index: 2;
     }
 
-    #fecha_nac{
+    #nac_cliente{
         display: flex;
         flex-direction: column;
         margin: 4px 0 6px 0;
     }
 
-    #fecha_nac > input{
+    #nac_cliente > input{
         margin: 0;
         padding: 0.6em 15px;
     }
@@ -72,7 +72,7 @@
 
 
 /*---------------------------CLASES----------------------------------*/
-.campos{
+.pag_edit_cliente{
     margin: 12px;
     position: relative;
     /* width: 100%; */
@@ -80,7 +80,7 @@
     
     }
     
-    .campo_icono > i{
+    .campo_edit_clie > i{
     border-radius: 10%;
     color: #358CB4;
     left: 3px;
