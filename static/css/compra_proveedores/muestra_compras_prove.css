@@ -310,3 +310,7 @@ main#cuerpo {
     border: none;
     background: transparent;
 }
+
+.btn_editar:hover {
+    cursor: pointer;
+}

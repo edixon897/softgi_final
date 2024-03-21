@@ -51,7 +51,7 @@ def registrar_categorias():
     
 
 @app.route("/editarCategorias/<id_categoria>")  
-def editarctegorias(id_categoria):
+def editarCategorias(id_categoria):
     if "nom_empleado" in session:
         idcategoria = id_categoria
         sql = f"SELECT * FROM categorias WHERE id_categoria = '{idcategoria}'"

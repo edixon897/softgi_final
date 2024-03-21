@@ -263,6 +263,24 @@ main#cuerpo {
     color: rgb(183, 35, 5);
 }
 
+.btn_editar{
+    border: none;
+    background: transparent;
+}
+.btn_editar:hover {
+    cursor: pointer;
+}
+
+.btn_eliminar{
+    border: none;
+    background: transparent;
+}
+.btn_eliminar{
+    cursor: pointer;
+}
+
+
+
 
 
 <<<<<<< HEAD

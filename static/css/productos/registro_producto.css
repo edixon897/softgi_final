@@ -293,6 +293,7 @@ main#inicio {
         padding-left: 4%;
         padding-right: 4%;
         border: 1px solid #BBBBBB;
+        background: transparent;
 
     }
     .campo_2 label {

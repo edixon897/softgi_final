@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../../static/css/categoria/muestra_categorias.css">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/categoria/registrar_categorias.css">
-    <script src="../../static/javaScript/modal_crea_categoria.js"></script>
+    <link rel="stylesheet" href="../../static/css/categoria/editar_categorias.css">
+    
 </head>
 <body>
 
@@ -72,7 +73,10 @@
                                             
                                         {% endfor %}
                                         <td class="btns_centro" style="visibility: hidden;">
-                                            <a href="/editarCategorias/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
+                                            
+                                            <button onclick="abrirModaledit_categoria('{{c[0]}}')" class="btn_editar">
+                                                <i id="icono_ver_mas" class="lni lni-pencil"></i>
+                                            </button>
                                         </td>
                                         <td class="btns_centro" style="visibility: hidden;">
                                             <a onclick="return confirm('¿Seguro que deseas eliminar esta categoría?')" href="/borracategoria/{{c[0]}}">
@@ -105,7 +109,7 @@
                 {% endif %}
     {% endwith %}
 
-
+ <div id="modalContainer"></div>
 <!------------------------- Modal registrar categoria ----------------------->
 
     <div id="crearEmpleadoModal"  class="modal" style="display: none;">
@@ -131,7 +135,14 @@
             </form>
         </div>
     </div>
+<!-----------------------Editar categoria Modal---------------------------------------------->
+    
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../static/javaScript/animacion_envio_edita_categoria.js"></script>
     <script src="../../static/javaScript/buscarCategorias.js"></script>
+    <script src="../../static/javaScript/modal_crea_categoria.js"></script>
+    <script src="../../static/javaScript/modalEditaCategoria.js"></script>
+
 </body>
 </html>

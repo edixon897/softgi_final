@@ -332,7 +332,11 @@ main#cuerpo {
     visibility: hidden;
 }
 
+
 .btn_editar{
     border: none;
     background: transparent;
+}
+.btn_editar:hover {
+    cursor: pointer;
 }

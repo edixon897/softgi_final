@@ -228,9 +228,6 @@ main#cuerpo {
                                 font-size: 1.8em;
                                 color: #358cb4;
                             }
-                                i#icono_2:hover {
-                                    color: #358cb475;
-                                }
                                 
                         
                             i#icono_3 {
@@ -286,8 +283,11 @@ main#cuerpo {
 }
 
 .btn_editar{
-    background: none;
-    border: 0;
+    border: none;
+    background: transparent;
+}
+.btn_editar:hover {
+    cursor: pointer;
 }
 .btn_eliminar{
     background: none;
