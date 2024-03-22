@@ -75,9 +75,11 @@
                                         {% endfor %}
                                         
                                         <td>
-                                            <button  id="btn-modal-edit" onclick="abrirModalEditarProveedor('{{c[0]}}')" class="btn_editar">
-                                                <i id="icono_2" class="lni lni-pencil"></i>
-                                            </button>
+                                            <td class="btns_centro">
+                                                <button  id="btn-modal-edit" onclick="abrirModalEditarProveedor('{{c[0]}}')" class="btn_editar">
+                                                    <i id="icono_2" class="lni lni-pencil"></i>
+                                                </button>
+                                            </td>
                                             <td class="btns_centro">
                                                 <button onclick="eliminarProveedor('{{c[0]}}')" class="btn_eliminar">
                                                     <i id="icono_3" class="lni lni-trash-can"></i>
@@ -95,6 +97,8 @@
                 </div>
 
             </div>
+
+            <input type="hidden" value="{{session['rol']}}" id="input_rol" >
 
         </section>
 

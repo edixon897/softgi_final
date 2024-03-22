@@ -12,3 +12,24 @@ $(document).ready(function () {
         }
     });
 });
+
+
+/* Funcion que oculta el editar y eliminar para el rol almacenista */
+
+function verifica_input_rol() {
+    let botones = document.getElementsByClassName('btns_centro');
+    let input_rol = document.getElementById('input_rol');
+    let valor = input_rol.value;
+
+    if (valor === "administrador")  {
+        for (let i = 0; i < botones.length; i++) {
+            botones[i].style.visibility  = "visible";
+        }
+
+        btn_crear.style.display = "block"
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    verifica_input_rol()
+})

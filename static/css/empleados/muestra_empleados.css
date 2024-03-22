@@ -283,8 +283,7 @@ main#cuerpo {
 
 
 
-<<<<<<< HEAD
-=======
+
 /*  modal */
 .modal {
     display: block;
@@ -296,6 +295,8 @@ main#cuerpo {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
+
+
 
 
 /* .modal-content {
@@ -318,18 +319,7 @@ main#cuerpo {
 .btn_editar{
     background: none;
     border: 0;
-<<<<<<< HEAD
-}
-.btn_eliminar{
-    background: none;
-    border: 0;
-}
-=======
-} */
->>>>>>> b2da4627e141f3d919d69a47bf48fea19840e7bc
 
-
->>>>>>> f13a97e8445c242992d105c35131e5e9583c8efb
 .btn{
     background-color: #358CB4;
     border: none;
