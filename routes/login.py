@@ -34,7 +34,7 @@ def login():
             
             return redirect(url_for('inicio'))
         else:
-            flash('Algo está mal en tus credenciales o tu correo no ha sido confirmado.', 'success')
+            flash('Algo está mal en tus datos; comunícate con gerencia.', 'success')
             return redirect(url_for('index'))
     return  redirect(url_for('index'))
 

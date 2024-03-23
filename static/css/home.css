@@ -91,6 +91,7 @@ main#inicio{
                     font-size: 1.3em;
                     font-weight: 500;
                     opacity: 0;
+                    text-transform: capitalize;
                 }
             div#conten_info_cuerpo {
                 width: 100%;
@@ -108,6 +109,7 @@ main#inicio{
                     justify-content: center;
                     font-size: 1.1em;
                     opacity: 0;
+                    text-transform: capitalize;
                 }
                 section#lado_2 {
                     width: 70%;
@@ -176,16 +178,27 @@ main#inicio{
             height: 100%;
         }
             div#conten_nombre {
-                width: 20%;
+                width: 16%;
                 height: 100%;
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
                 color: #595959;
-                font-size: 1.8em;
-                font-weight: 500;
-                
             }
+
+                #conten_nombre span{
+                    margin: 0;
+                    font-weight: 500;
+                    font-size: 1.4em;
+                }
+
+                #conten_nombre p{
+                    margin: 0;
+                    font-size: 1.5em;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                }
+
             div#conten_menu {
                 width: 10%;
                 height: 100%;
@@ -222,13 +235,13 @@ section#buscar{
         }
 
 section#modulos{
-    /* display: grid;
-    grid-template-columns: 1fr 1fr; */
     gap: 20px;
     padding: 0 20px; 
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin: 3em auto 0 auto;
+    width: clamp(320px, 92%, 1024px);
 }
 
     #modulos figure{
@@ -263,7 +276,8 @@ section#modulos{
 .titulo{
     font-family: 'Barlow', sans-serif;
     color: #454545;
-    margin: 5px;
+    padding: 10px;
+    margin: 10px;
 }
 
 .campo_a{

@@ -35,11 +35,11 @@
                 <div id="conten_info_cuerpo">
 
                     <section id="lado_1">
-                        <p>Rol: {{rol}}</p>
+                        <p>{{rol}}</p>
                     </section>
                     <section id="lado_2">
 
-                       <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" href="/"><i id="icono_cerrar_session" class="lni lni-exit"></i></a>  <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" id="enlace_exit" href="/">Cerrar session</a>
+                       <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" href="/"><i id="icono_cerrar_session" class="lni lni-exit"></i></a>  <a onclick="return confirm('¿Seguro que deseas cerrar la session?')" id="enlace_exit" href="/">Cerrar sesión</a>
 
                        <div id="conten_btn_cerrar" onclick="cerrar_nav()">
                         <i class="lni lni-close"></i>
@@ -64,11 +64,12 @@
 
             <div id="nombre">
                 <div id="conten_nombre">
-                    <span id="usuario">Hola  {{session['nom_empleado']}}</span>
+                    <span id="usuario">Hola</span>
+                    <p>{{session['nom_empleado']}}</p>
                 </div>
 
                 <div id="conten_menu">
-                    <i id="menu" class="lni lni-menu" onclick="abrir_nav()"></i>
+                    <i id="menu" class="lni lni-user" onclick="abrir_nav()"></i>
                 </div>
                 
                 
@@ -77,12 +78,13 @@
         </section>
 
         <section id="modulos">
-            <a href="{{url_for('muestra_Productos')}}" class="campo_a" id="modulo_productos" style="display: none; opacity: 0;" >
-                <div id="producto" class="modulos">
-                    <figure><img src="/static/image/modulos/producto.png" alt=""></figure>
-                    <p class="titulo">Productos</p>
+            <a href="{{url_for('clientes')}}" class="campo_a" id="modulo_clientes" style="display: none; opacity: 0;">
+                <div id="clientes" class="modulos">
+                    <figure><img src="/static/image/modulos/clientes.png" alt=""></figure>
+                    <p class="titulo">Clientes</p>
                 </div>
             </a>
+            
             <a href="{{url_for('muestra_ventas')}}" class="campo_a" id="modulo_ventas" style="display: none; opacity: 0;">
                 <div id="ventas" class="modulos">
                     <figure><img src="/static/image/modulos/ventas.png" alt=""></figure>
@@ -105,14 +107,16 @@
                 <div id="devoluciones" class="modulos">
                     <figure><img src="/static/image/modulos/devoluciones.png" alt=""></figure>
                     <p class="titulo">Devoluciones</p>
-                </div> -->
-            </a>
-            <a href="{{url_for('clientes')}}" class="campo_a" id="modulo_clientes" style="display: none; opacity: 0;">
-                <div id="clientes" class="modulos">
-                    <figure><img src="/static/image/modulos/clientes.png" alt=""></figure>
-                    <p class="titulo">Clientes</p>
+                </div> 
+            </a> -->
+            
+            <a href="{{url_for('muestra_Productos')}}" class="campo_a" id="modulo_productos" style="display: none; opacity: 0;" >
+                <div id="producto" class="modulos">
+                    <figure><img src="/static/image/modulos/producto.png" alt=""></figure>
+                    <p class="titulo">Productos</p>
                 </div>
-                </a>
+            </a>
+            
             <a href="{{url_for('empleados')}}" class="campo_a" id="modulo_empleados" style="display: none; opacity: 0;">
                 <div id="empleados" class="modulos">
                     <figure><img src="/static/image/modulos/empleados.png" alt=""></figure>
