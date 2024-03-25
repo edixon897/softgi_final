@@ -92,7 +92,7 @@ def crearCotizacion():
                     cotizaciones.crearDetalleCotizacion(datos)
                     print(datos)
                 
-                flash('Tu cliente fue creado con éxito')
+                flash('Tu cotizacion fue creada con exito')
                 return redirect(url_for('Cotizacion'))
             
             flash('Por favor, selecciona un cliente.')
@@ -167,7 +167,7 @@ def editarCotizacion(id_cotizacion):
                     if resultado2:
                         clienteCotizacion = resultado2[0]
                     else:
-                        flash('Cliente no encontrado en la base de datos.')
+                        flash('Su cotizacion fue editada con exito.')
                         return redirect(url_for('CrearCotizacion'))
                 
                 productos_seleccionados = []

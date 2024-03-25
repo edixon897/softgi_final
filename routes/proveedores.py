@@ -34,12 +34,12 @@ def crear_Proveedores():
             documento_registro = resultado[0]
             nombre_operador = resultado[1]
             apellido_operador = resultado[2]
-            documento = request.form['documentoProveedor']
-            nombre = request.form['nombreProveedor']
-            numero = request.form['numeroProveedores']
-            correo = request.form['correoProveedores']
-            direcion = request.form['direccionProveedores']
-            ciudad = request.form['ciudadProveedor']
+            documento = request.form['documento']
+            nombre = request.form['nombre']
+            numero = request.form['contacto']
+            correo = request.form['correo']
+            direcion = request.form['direccion']
+            ciudad = request.form['ciudad']
             tiempo = datetime.datetime.now()
 
             Dproveedores.crear([documento,nombre,numero,correo,direcion,ciudad, tiempo, documento_registro, nombre_operador, apellido_operador])
