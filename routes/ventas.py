@@ -4,6 +4,7 @@ from flask import Flask, jsonify, request, render_template, flash, redirect, url
 from conexiondb import conexion, mysql, app
 import datetime
 from models.ventas import Dventas, Ventas
+from num2words import num2words
 
 
 
@@ -1268,3 +1269,54 @@ def buscador_creditos_pagados():
         flash('Por favor inicia sesión para poder acceder')
         return redirect(url_for('index'))
 
+""" ----- Factura de Venta ------------- """
+
+@app.route("/factura/<num_factura>")
+def factura(num_factura):
+    if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+
+            sql = f"""SELECT 
+                            v.`num_factura`,
+                            CONCAT( c.`nom_cliente`, '',c.`ape_cliente`) AS cliente, 
+                            CONCAT(v.`nombre_operador`, ' ', v.`apellido_operador`) AS vendedor,  
+                            DATE_FORMAT(v.`fechahora_venta`, '%d/%m/%Y %H:%i:%s') AS fechahora_venta,
+                            v.`forma_pago`, 
+                            v.`medio_pago`, 
+                            v.`cliente_factura`,
+                            d.`id_detalle_factura`, 
+                            d.`producto_factura`, 
+                            d.`cantidad_productos_factura`, 
+                            d.`precio_productofactura`, 
+                            d.`valortotal_productos_factura`, 
+                            d.`total_pagar_factura`, 
+                            c.`contacto_cliente`, 
+                            c.`email_cliente`, 
+                            c.`direccion_cliente`, 
+                            c.`ciudad_cliente`, 
+                            c.`tipo_persona`, 
+                            c.`estado_cliente` 
+                        FROM 
+                            `ventas` AS v
+                        JOIN 
+                            `detalleventas` AS d ON v.`num_factura` = d.`num_factura_venta`
+                        JOIN 
+                            `clientes` AS c ON v.`cliente_factura` = c.`doc_cliente`
+                        WHERE num_factura_venta = '{num_factura}'"""
+            
+            with mysql.connect() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(sql)
+                    resultadoF = cursor.fetchall()
+
+                    #Aca convierto los numeros que vienen en d.`total_pagar_factura`,  a letras
+            total_a_pagar_numero = resultadoF[0][12]
+            total_a_pagar_palabras = num2words(total_a_pagar_numero, lang='es')
+
+            return render_template("ventas/imprimir_factura.html", datos = resultadoF, total_a_pagar_palabras=total_a_pagar_palabras)
+        else:
+            return redirect("/inicio")
+    else:
+        flash('Algo esta mal en los datos')
+        return redirect(url_for('index'))

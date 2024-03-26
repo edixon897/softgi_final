@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Lato:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.factura {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.encabezado, .informacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+figure img {
+    margin: 0;
+    width: 100%;
+}
+
+div#logo {
+    flex-basis: 50%;
+}
+
+div#logo figure#logo {
+    margin: 10px;
+    padding: 0;
+    width: 70%;
+}
+
+.nombre-empresa {
+    margin-left: 20px;
+}
+
+.detalles-factura {
+    display: block;
+    text-align: left;
+}
+.detalles-factura {
+    display: block;
+    text-align: left;
+}
+
+.detalles-factura .Nfactura {
+    font-size: inherit; /* Hereda el tamaño de fuente del contenedor */
+    max-width: 120px; /* Aca se puede ajustar el ancho máximo según las necesidades */
+    overflow: hidden; /* Aca sirve para recortar el contenido que excede el ancho máximo */
+    white-space: nowrap; /* Aca sirve para evitar que el contenido se divida en varias líneas */
+    padding-left: 8px; /* Se puede ajustar el valor según cuánto quiera que se desplace hacia la derecha el conteido que esta adentro */
+}
+
+
+.informacion p {
+    color: black; /* Cambiar el color del texto a negro */
+    font-weight:500; /* Hacer el texto más grueso */
+}
+
+.factura-info,
+.Nfactura {
+    color: black; /* Cambiar el color del texto a negro */
+    font-weight: 500; /* Hacer el texto más grueso */
+}
+
+.fecha-info {
+    color: black; /* Cambiar el color del texto a negro */
+    font-weight: normal; /* Restablecer el grosor de la fuente a la normalidad */
+}
+
+
+
+.info-cliente,
+.lista-items {
+    margin-top: 20px;
+}
+
+.Informacion_cliente th,
+.lista-items-titulo th,
+.lista-items-datos th {
+    background-color: #f2f2f2;
+    padding: px;
+    text-align: left;
+}
+
+.Informacion_cliente td,
+.lista-items-titulo td,
+.lista-items-datos td {
+    padding: 8px;
+}
+
+.total {
+    position: relative;
+    margin-top: 2px;
+    padding: 20px;
+    padding-left: 400px;
+    font-size: 20px;
+    align-items:start;
+    align-content: end;
+}
+
+.Unida {
+    margin-top: 10px;
+}
+
+.Informacion_cliente {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
+
+.infomacio_cliente_1,
+.infomoción_cliente_2,
+.informacion_vendedor_1 {
+    flex: 1;
+    padding: 5px;
+}
+
+.factura p {
+    margin: 5px 0;
+}
+
+.informacion {
+    margin-bottom: 50px;
+}
+    
+
+.Nfactura {
+    border: 1px solid #ccc;
+}
+
+.lista-items {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-items th,
+.lista-items td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 25%;
+    text-align: center; /* Centra el contenido */
+}
+
+.lista-items td {
+    border-left: none;
+    border-right: none;
+}
+
+.lista-items th {
+    background-color: #f5f5f5;
+}
+
+.total_pagar {
+    padding: 10px 10px 10px 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.total_pagar > p {
+    color: black;
+    font-weight: bold;
+}
+
+@media print {
+    /* Estilos específicos para la impresión */
+    body {
+        font-size: 14px; /* Reducir el tamaño de la fuente para la impresión */
+    }
+
+    .factura {
+        max-width: none; /* Ancho máximo sin restricción para la impresión */
+        margin: 0; /* Eliminar márgenes para la impresión */
+        padding: 0; /* Eliminar relleno para la impresión */
+    }
+
+    /* Otros estilos específicos para la impresión según tus necesidades */
+}
+
+#enlace_volver{
+    font-size: 1.5em;
+}
