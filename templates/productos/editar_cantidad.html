@@ -9,20 +9,15 @@
 <body>
 
     <form action="/modificar_Cantidad" method="post" id="CONTEN_FORM_2">
-
         <div id="div_titulo">
             <p>Añadir stock</p>
         </div>
-
         <div id="div_input">
             <input type="hidden" name="id_producto" value="{{resul[0]}}">
             <input type="hidden" name="ref_produ_1" value="{{resul[1]}}">
             <input type="hidden" name="nombre_producto" value="{{resul[2]}}">
-
             <input type="number" name="cantidad_producto" required id="input_cantidad" autofocus > 
-
         </div>
-
         <div id="div_btns">
             <section id="conten_btn_1" >
                 <a href="#" onclick="cerrarModal_2()">Cancelar</a>
@@ -30,12 +25,7 @@
             <section id="conten_btn_2">
                 <button type="submit" onclick="valida_digitacion()">Realizar</button>
             </section>
-            
         </div>
-
-        
-
-        
     </form>
     
 </body>

@@ -17,15 +17,6 @@ body{
     font-weight: 300;
 }
 
-figure{
-    margin: 0;
-    padding: 0;
-}
-
-figure img{
-    margin: 0;
-    width: 100%;
-}
 h2 {
     margin: 0;
 }
@@ -278,6 +269,20 @@ main#cuerpo {
                                     top: 0;
                                     background-color: #fff;
                                 }
+
+                                
+/* ----- Estilos de los td de Precio de Compra y Precio de Venta ------------- */
+
+td.campo_dinero1:before {
+    content: attr(data-currency); /* Agrega el signo "$" antes del número */
+    margin-right: 0.2em; /* Añade un pequeño espacio entre el signo "$" y el número */
+}
+
+td.campo_dinero1 {
+    white-space: nowrap; /* Evita que el texto se envuelva */
+}
+
+                                
 
 /* ------ CSS del modal Editar producto------ */
 

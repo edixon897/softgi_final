@@ -47,18 +47,8 @@
 
                         <div class="campo_2">
                             
-                            <input type="text" name="ref_produ_1" id="ref_produ_1" class="input_campo"> 
-                            <label id="ref_produ_1" for="nombre">Referencia #1</label>
-                        </div>
-
-                        <div class="campo_2">
-                            <input type="text" name="ref_prod_2" id="ref_prod_2"  class="input_campo">
-                            <label id="ref_prod_2" for="Apellidos">Referencia #2</label>
-                        </div>
-
-                        <div class="campo_2">
-                            <input type="text" name="ref_prod_3" id="ref_prod_3"  class="input_campo" >
-                            <label id="ref_prod_3" for="fecha">Referencia #3</label>
+                            <input type="text" name="ref_produ_1" id="ref_produ_1" class="input_campo" maxlength="50" required> 
+                            <label id="ref_produ_1" for="nombre">Referencia</label>
                         </div>
 
                     </div>
@@ -75,7 +65,7 @@
 
                         
                         <div class="campo_2">
-                            <select id="proveedor" name="proveedor" class="input_campo">
+                            <select id="proveedor" name="proveedor" class="input_campo" required>
                                 <option value="" disabled selected>Seleccione el proveedor</option>
                                 {% for proveedor in proveedores %}
                                 <option value="{{ proveedor[0] }}">{{ proveedor[1] }}</option>
@@ -90,12 +80,8 @@
                             <a href="#modal_inicio" rel="leanModal" id="crear-proveedor-1">Nuevo Proveedor</a>
                         </div>
                             
-                        
-                        
-                        <!-- <a href="{{url_for('crear_Proveedores')}}" id="crear-proveedor-2">Nuevo Proveedor</a> -->
-
                         <div class="campo_2">
-                            <select id="categorias" name="categorias" class="input_campo">
+                            <select id="categorias" name="categorias" class="input_campo" required>
                                 <option value="" disabled selected>Seleccione la categoria</option>
                                 {% for categoria in categorias %}
                                     <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
@@ -108,8 +94,6 @@
                         <div class="boton_modal1">
                             <a href="#contenedorM_categoria" id="crear-categoria-1" rel="leanModal">Nueva categoría</a>
                         </div>
-                        
-                        <!-- <a href="{{url_for('crearCategoria')}}" id="crear-proveedor-2">Nueva categoría</a> -->
                         
                     </div>
 
@@ -129,22 +113,22 @@
     
     
                             <div class="campo_2">
-                                <input type="text" name="nombre_producto" id="nombre_producto" class="input_campo">
+                                <input type="text" name="nombre_producto" id="nombre_producto" class="input_campo" maxlength="50"  required>
                                 <label for="nombre_producto">Nombre del producto</label>
                             </div>
     
                             <div class="campo_2">
-                                <input type="number" name="precio_compra" id="precio_compra"  class="input_campo" >
+                                <input type="number" name="precio_compra" id="precio_compra"  class="input_campo" maxlength="10" required>
                                 <label  for="precio_compra">Precio de compra</label>
                             </div>
     
                             <div class="campo_2">
-                                <input type="number" name="precio_venta" id="precio_venta"  class="input_campo" >
-                                <label  for="fecha">Precio de venta</label>
+                                <input type="number" name="precio_venta" id="precio_venta"  class="input_campo" maxlength="10" required>
+                                <label  for="precio_venta">Precio de venta</label>
                             </div>
     
                             <div class="campo_2">
-                                <input type="text" name="descripcion" id="descripcion"  class="input_campo"  >
+                                <input type="text" name="descripcion" id="descripcion"  class="input_campo" maxlength="100" required>
                                 <label  for="descripcion">Descripción</label>
                             </div>
     
@@ -161,12 +145,12 @@
                         <div class="content_inputs_2">
     
                             <div class="campo_2">
-                                <input type="number" name="cantidad_producto" id="cantidad_producto"  class="input_campo" >
-                                <label cantidad_producto for="cantidad_producto">Cantidad de productos</label>
+                                <input type="number" name="cantidad_producto" id="cantidad_producto"  class="input_campo" maxlength="3" required>
+                                <label cantidad_producto for="cantidad_producto">Cantidad de producto</label>
                             </div>
     
                             <div class="campo_2">
-                                <input type="number" name="stockminimo" id="stockminimo"  class="input_campo">
+                                <input type="number" name="stockminimo" id="stockminimo"  class="input_campo" maxlength="2" required>
                                 <label  for="stockminimo">Cantidad mínima</label>
                             </div>
     
@@ -190,7 +174,7 @@
                         <div class="conten_inputs_1">
                             
                             <div class="campo_2">
-                                <select id="ubicacion" name="ubicacion" class="input_campo">
+                                <select id="ubicacion" name="ubicacion" class="input_campo" required>
                                     <option value="Ninguna">Seleccione el lugar</option>
                                     <option value="Bodega">Bodega</option>
                                     <option value="Almacen">Almacén</option>
@@ -199,7 +183,7 @@
                             </div>
     
                             <div class="campo_2">
-                                <input type="text" name="estante" id="estante"  class="input_campo" >
+                                <input type="text" name="estante" id="estante"  class="input_campo" maxlength="10" required>
                                 <label  for="estante">Número de estante</label>
                             </div>
     
@@ -254,7 +238,7 @@
                         <a id="btn-volver_2" class="stylo_btn_regresar"><i class="lni lni-arrow-left"></i></a>
                     </div>
                     <div class="conten_buttons_2">
-                        <button class="boton_registrar" onclick="animacion_envio()" >Registrar</button>
+                        <button class="boton_registrar" id="btn-registrar" onclick="animacion_envio()" >Registrar</button>
                     </div>
 
                     
@@ -374,6 +358,18 @@
     <script type="text/javascript" src="../../static/javaScript/jquery.leanModal.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/sesiones_formulario_registro_productos.js"></script>
+
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
         
 </body>
 </html>
