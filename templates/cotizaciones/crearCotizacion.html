@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/css/cotizaciones/muestra_cotizaciones.css">
+</head>
+<style>
+    #productTable {
+    display: none;
+}
+
+</style>
+<body>
+     <!-- Modal -->
+     <div id="crearCotizacionModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <form action="/crearCotizacion" method="POST">
+
+                <div class="form-group">
+                    <div class="ini">
+                        <label for="fechaInicioNuevoCliente">Fecha de Inicio:</label>
+                        <input type="date" name="fechaInicioNuevoCliente" id="fechaInicio" required>
+                    </div>
+                    <div class="fin">
+                        <label for="fechaFinNuevoCliente">Fecha de Fin:</label>
+                        <input type="date" name="fechaFinNuevoCliente" id="fechaFin" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="search" name="busqueda" id="searchProductos" placeholder="Buscar productos">
+                    
+                    <div class="sele">
+                        <label for="clienteCotizacion">Selecciona un cliente:</label>
+                        <select name="clienteCotizacion" id="clienteCotizacion" required>
+                            <option value="" disabled selected>Selecciona un cliente</option>
+                            {% for client in resulta %}
+                                <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group-n">
+                    <div class="table-container">
+                        <div class="table-wrapper">
+                            <table id="productTable">
+                                <thead>
+                                    <th>Nombre del Producto</th>
+                                    <th>Seleccionar</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+
+                    <div class="table-container">
+                        <div class="table-wrapper">
+                                <table id="productosSeleccionados" name="referenciaProductos[]">
+                                    <thead>
+                                        <th>Nombre del Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Eliminar</th>
+                                    </thead>
+                                    <tbody >
+                                        
+                                    </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="select-button" value="Registrar">Crear Cotización</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <script src="/static/javaScript/modalcotiza.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/static/javaScript/buscadoProCotizacion.js"></script>
+</body>
+</html>

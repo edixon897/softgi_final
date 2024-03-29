@@ -168,7 +168,7 @@ main#cuerpo {
                             transform: translateY(-50%);
                             color: #358CB4;
                         }
-                        form#form_conten input#searchProduct {
+                        form#form_conten input#searchCotizacion {
                             width: 100%;
                             height: 60%;
                             border-radius: 1.0em;
@@ -344,6 +344,7 @@ main#cuerpo {
 
 #productTable, #productosSeleccionados {
     margin-top: 15px;
+    width: 100%;
 }
 
 #productTable th, #productTable td, #productosSeleccionados th, #productosSeleccionados td {
@@ -411,14 +412,20 @@ main#cuerpo {
 
 
 button[type="submit"] {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
     background-color: #3498db;
     color: #fff;
     cursor: pointer;
-    width: 100%;
-    padding: 10px;
+    width: 50%;
+    padding: 10px; 
     border: none;
     border-radius: 5px;
+    font-size: 20px; 
+    margin: 0 auto; 
 }
+
 
 .table-container {
     overflow-y: auto; 
@@ -427,4 +434,10 @@ button[type="submit"] {
 
 .table-wrapper {
     width: 100%;
+}
+
+
+button{
+    border: none;
+    background: transparent;
 }
