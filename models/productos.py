@@ -1,5 +1,6 @@
 import time
 from conexiondb import conexion, mysql, app
+from flask import flash, jsonify, redirect, url_for
 
 class Productos:
     def __init__(self, DB, app):
@@ -10,40 +11,45 @@ class Productos:
 
     
     def crearProductos(self, producto):
-        
-        # Validar que el precio de venta no sea inferior al precio de compra
-        precio_compra = float(producto[8])
-        precio_venta = float(producto[9])
+
+        try:
+            precio_compra = float(producto[6])
+            precio_venta = float(producto[7])
+        except ValueError:
+            print("Error: El precio de compra o el precio de venta no son valores numéricos válidos.")
+            return
+
         print(f"Precio de compra: {precio_compra}, Precio de venta: {precio_venta}")
 
-
+        # Validar que el precio de venta no sea inferior al precio de compra
         if precio_venta <= precio_compra:
-            # Mostrar un mensaje de error o manejar la situación según tus necesidades
-            print("Error: El precio de venta no puede ser igual o inferior al precio de compra.")
-            return  
+            error_mensaje = "Error: El precio de venta no puede ser igual o inferior al precio de compra."
+            return jsonify({'error': error_mensaje})
 
-        sql = f"INSERT INTO `productos`(`ref_produ_1`, `ref_produ_2`, `ref_produ_3`, `categoria`, `nom_categoria`, `proveedor`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante`, `fechahora_registro`, `documento_operador`, `nombre_operador`, `apellido_operador`, `estado_producto`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        valores = (producto[0], producto[1], producto[2], producto[3], producto[4], producto[5], producto[6], producto[7], producto[8], producto[9], producto[10], producto[11], producto[12], producto[13], producto[14], producto[15], producto[16], producto[17], producto[18], 'ACTIVO')
+        sql = f"INSERT INTO `productos`(`ref_produ_1`, `categoria`, `nom_categoria`, `proveedor`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante`, `fechahora_registro`, `documento_operador`, `nombre_operador`, `apellido_operador`, `estado_producto`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        valores = (producto[0], producto[1], producto[2], producto[3], producto[4], producto[5], producto[6], producto[7], producto[8], producto[9], producto[10], producto[11], producto[12], producto[13], producto[14], producto[15], producto[16],  'ACTIVO')
         self.cursor.execute(sql, valores)
         self.conexion.commit()
 
 
     
 
-    def producto_existe_en_db(self, ref_produ_1, ref_produ_2, ref_produ_3):
+    def producto_existe_en_db(self, ref_produ_1, nombre_producto):
         condiciones = []
 
         if ref_produ_1 is not None:
             condiciones.append("ref_produ_1 = %s")
-        if ref_produ_2 is not None:
-            condiciones.append("ref_produ_2 = %s")
-        if ref_produ_3 is not None:
-            condiciones.append("ref_produ_3 = %s")
+        if nombre_producto is not None:
+            condiciones.append("nombre_producto = %s")
 
         condiciones_str = " AND ".join(condiciones)
 
         sql = f"SELECT COUNT(*) FROM productos WHERE {condiciones_str}"
-        valores = [ref_produ_1, ref_produ_2, ref_produ_3]
+        valores = []
+        if ref_produ_1 is not None:
+            valores.append(ref_produ_1)
+        if nombre_producto is not None:
+            valores.append(nombre_producto)
 
         print("SQL:", sql)
         print("Valores:", valores)
@@ -57,10 +63,11 @@ class Productos:
             return False  # El producto no existe en la base de datos
 
 
+
         
 
     def buscar_productos(self, id_producto):
-        sql = f"SELECT nombre_producto, ref_produ_1, ref_produ_2, ref_produ_3,  cantidad_producto,  descripcion, FROM productos WHERE ref_prod_1 = '{id_producto}'"
+        sql = f"SELECT nombre_producto, ref_produ_1,  cantidad_producto,  descripcion, FROM productos WHERE ref_prod_1 = '{id_producto}'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         self.conexion.commit()
@@ -71,11 +78,11 @@ class Productos:
 
     
     def modificar(self, productos):
-        sql = "UPDATE productos SET id_producto=%s, ref_produ_1=%s, ref_produ_2=%s, ref_produ_3=%s, nom_categoria=%s, nom_proveedor=%s, nombre_producto=%s, precio_compra=%s, precio_venta=%s, cantidad_producto=%s, descripcion=%s, stockminimo=%s, ubicacion=%s, estante=%s WHERE id_producto=%s"
+        sql = "UPDATE productos SET id_producto=%s, ref_produ_1=%s, nom_categoria=%s, nom_proveedor=%s, nombre_producto=%s, precio_compra=%s, precio_venta=%s, cantidad_producto=%s, descripcion=%s, stockminimo=%s, ubicacion=%s, estante=%s WHERE id_producto=%s"
         self.cursor.execute(sql, (
             productos[0], productos[1], productos[2], productos[3], productos[4],
             productos[5], productos[6], productos[7], productos[8], productos[9],
-            productos[10], productos[11], productos[12], productos[13], productos[0]
+            productos[10], productos[11], productos[0]
         ))
         self.conexion.commit()
 

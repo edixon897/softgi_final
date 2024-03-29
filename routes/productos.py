@@ -40,8 +40,7 @@ def crear_Producto():
                 categorias = cursor.fetchall()
                 nom_categoria = categorias[0]
                 ref_produ_1 = request.form['ref_produ_1']
-                ref_produ_2 = request.form['ref_prod_2']
-                ref_produ_3 = request.form['ref_prod_3']
+               
             
                 nombre_producto = request.form['nombre_producto']
                 precio_compra = request.form['precio_compra']
@@ -53,13 +52,17 @@ def crear_Producto():
                 estante = request.form['estante']
                 tiempoRegistro = datetime.datetime.now()
 
+                if precio_venta <= precio_compra:
+                    flash("Error: EL precio de Venta no puede ser menor al Precio de Compra.")
+                    return render_template('productos/registrar_productos.html',  error_precio_venta="El precio de Venta no puede ser menor al Precio de Compra")
+
                 # Antes de realizar la inserción, verifica si el producto ya existe
-                if Dproductos.producto_existe_en_db(ref_produ_1, ref_produ_2, ref_produ_3):
+                if Dproductos.producto_existe_en_db(ref_produ_1, nombre_producto):
                     flash("Error: El producto ya existe en la base de datos.")
                     return redirect(url_for('muestra_Productos'))
 
                 
-                Dproductos.crearProductos([ref_produ_1, ref_produ_2, ref_produ_3, categorias_activas, nom_categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
+                Dproductos.crearProductos([ref_produ_1, categorias_activas, nom_categoria, proveedores_activos, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, tiempoRegistro, documento_registro, nombre_operador, apellido_operador])
                 return redirect(url_for('muestra_Productos'))
                 
             conn = mysql.connect()
@@ -90,7 +93,15 @@ def muestra_Productos():
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "almacenista" or rol_usuario == "vendedor":
 
-            sql = f"SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
+            sql = fsql = """
+                            SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor,
+                                nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion,
+                                stockminimo, ubicacion, estante  
+                            FROM productos 
+                            WHERE estado_producto = 'ACTIVO'
+                            ORDER BY cantidad_producto ASC  -- Ordena por cantidad de productos en orden ascendente (menos vendidos primero)
+                            LIMIT 10  -- Limita los resultados a 10 productos
+                        """ 
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sql)
@@ -196,8 +207,6 @@ def modificar_Producto():
                 try:
                     id_producto = request.form['id_producto']
                     ref_produ_1 = request.form['ref_produ_1']
-                    ref_produ_2 = request.form['ref_produ_2']
-                    ref_produ_3 = request.form['ref_produ_3']
                     nom_categoria = request.form['nom_categoria']
                     nom_proveedor = request.form['nom_proveedor']
                     nombre_producto = request.form['nombre_producto']
@@ -209,7 +218,7 @@ def modificar_Producto():
                     ubicacion = request.form['ubicacion']
                     estante = request.form['estante']
 
-                    datos_modificar = [id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, documento_registro, nombre_operador, apellido_operador]
+                    datos_modificar = [id_producto, ref_produ_1, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante, documento_registro, nombre_operador, apellido_operador]
 
                     # Imprime los datos que estás pasando a Dproductos.modificar
                     print("Datos a modificar:", datos_modificar)
@@ -252,25 +261,28 @@ def borra_produc(id_producto):
         flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
 
-@app.route("/editar_Cantidad/<int:id_producto>")
+@app.route("/editar_Cantidad/<int:id_producto>", methods=['GET', 'POST'])
 def editar_Cantidad(id_producto):
     if "nom_empleado" in session:
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "almacenista":
-
-            sql = "SELECT id_producto, ref_produ_1, nombre_producto, cantidad_producto FROM productos WHERE id_producto=%s"
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute(sql, (id_producto,))
-            resultado = cursor.fetchall()
-            print("Este es el resultado", resultado)
-            conn.commit()
-            return render_template("productos/editar_cantidad.html", resul = resultado[0])
-        
+            if request.method == 'GET':
+                sql = "SELECT id_producto, ref_produ_1, nombre_producto, cantidad_producto FROM productos WHERE id_producto=%s"
+                conn = mysql.connect()
+                cursor = conn.cursor()
+                cursor.execute(sql, (id_producto,))
+                resultado = cursor.fetchall()
+                conn.commit()
+                return render_template("productos/editar_cantidad.html", resul=resultado[0])
+            elif request.method == 'POST':
+                cantidad_nueva = request.form['cantidad_producto']
+                producto = (id_producto, None, None, cantidad_nueva)
+                modificar_cantidad(producto)
+                return redirect(url_for('muestra_productos'))  # Redirigir a una nueva URL después de procesar el formulario
         else:
             return redirect("/inicio")
     else:
-        flash("No se encontro la cantidad")
+        flash("No se encontró la cantidad")
             
     return redirect(url_for('index'))
 
@@ -314,7 +326,7 @@ def modificar_cantidad():
                             print("resultado", resultado)
                             conn.commit()
 
-                            mensaje = "stock_añadido_con_exito"
+                            mensaje = "cantidad_añadida_con_exito"
 
                             return render_template("/productos/muestra_productos.html", resul=resultado, msj = mensaje) 
                         except KeyError as e:

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/ventas/factura.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+    <title>Imprimir Venta</title>
+    
+
+</head>
+<body>
+    <div class="factura">
+        <div class="encabezado">
+            <div id="logo">
+                <figure id="logo">
+                    <img src="../../static/image/parabrisas_logo.png" alt="">
+                </figure>
+            </div>
+            <div class="nombre_empresa">
+                <h3 >PARABRISAS DEL VALLE S.A.S</h3>
+            </div>
+        </div>
+        <div class="informacion">
+            {% for dato in datos %}
+                <div class="detalles-factura">
+                    <p class="factura-info">Factura Número</p>
+                    <p class="Nfactura">{{dato[0]}}</p>
+                    <p class="fecha-info">Fecha de Venta: {{dato[3]}}</p>
+                </div>
+                <div class="info_empresa">
+                    <p>Correo: parabrisasdelvalle1@hotmail.com</p>
+                    <p>NIT: 900719464-6/DIANA IVONNE PARRA R.</p>
+                    <p>SOMOS RESPONSABLE DE IVA</p>
+                    <p>GUADALAJARA DE BUGA</p>
+                    <p>CL 18 126 TEL 316 831 8791</p>
+                </div>
+        </div>
+        <div class="descripcion_empresa">
+            <h5> MANTENIMIENTO Y REPARACIÓN DE VEHÍCULOS AUTOMOTORES</h5>
+            <h5>Compra Venta DE PARTES,PIEZAS (AUTOPARTES) Y ACCESORIOS (LUJOS) PARA VEHÍCULOS AUTOMOTORES </h5>
+        </div>
+        <div class="Informacion_cliente">
+
+                <div class="infomacio_cliente_1">
+                    <p><strong>Cliente:</strong>  {{dato[1]}}</p>
+                    <p><strong>Dirección:</strong>  {{dato[14]}}</p>
+                    <p><strong>Ciudad:</strong>  {{dato[15]}}</p>
+                    
+                </div>
+                <div class="infomoción_cliente_2">
+                
+                
+                    <p><strong>NIT/ Cedula:</strong>  {{dato[6]}}</p>
+                    <p><strong>Teléfono:</strong>  {{dato[13]}}</p>
+                    <p><strong>Correo:</strong>  {{dato[14]}}</p>
+                    <p><strong>Contribuyente:</strong>  {{dato[17]}}</p>
+                
+                </div>
+                
+                <div class="informacion_vendedor_1">
+                    <p><strong>Régimen Fiscal:</strong>  R-99-PN</p>
+                    <p><strong>Vendedor:</strong>  {{dato[2]}}</p>
+                </div>
+            
+        </div>
+        <table class="lista-items">
+            <thead>
+                <tr>
+                    <!-- <th>REF/COD</th> -->
+                    <!-- <th>DETALLE</th> -->
+                    <th>PRODUCTO</th>
+                    <!-- <th>IVA</th> -->
+                    <th>CANTIDAD</th>
+                    <th>VALOR/TOTAL</th>
+                    <th>TOTAL A PAGAR</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr>
+                    <!-- <td>{{dato[8]}}</td> -->
+                    <td>{{dato[8]}}</td>
+                    <!-- <td>19%</td> -->
+                    <td>{{dato[9]}}</td>
+                    <td>{{ '{:,.0f}'.format(dato[11]) }}</td>
+                    <td>{{ '{:,.0f}'.format(dato[12]) }}</td>
+                </tr>
+           
+                
+            </tbody>
+        </table>
+        <div>
+            <p><strong>Total Items:</strong>  {{dato[9]}}</p>
+        </div>
+
+        
+
+        <div class="total">
+        
+            <div class="total_pagar">
+                <p>TOTAL A PAGAR: {{ '{:,.0f}'.format(dato[12]) }}</p>
+                <p>Son: {{ total_a_pagar_palabras}} pesos. COP</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+    <div id="regresar">
+        <a href="{{url_for ('muestra_ventas') }}" id="enlace_volver">
+            <i id="atras" class="lni lni-arrow-left"></i>
+            Volver a ventas
+        </a>
+    </div>
+    
+</body>
+</html>

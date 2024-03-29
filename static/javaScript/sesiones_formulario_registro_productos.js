@@ -58,11 +58,6 @@ boton_volver_2.addEventListener("click", function() {
 });
 
 
-
-
-
-
-
 /*  animaciones envio formulario */
 
 function animacion_envio() {
@@ -77,44 +72,104 @@ function animacion_envio() {
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
-    });
 
-    if (nombre_producto && precio_venta && precio_compra && cantidad_producto && stockminimo && categorias && ubicacion) {
-        if (precio_compra >= 0 && precio_venta >= 0 && cantidad_producto > 0 && stockminimo >= 0) {
-            Swal.fire({
-                icon: "success",
-                text: "Registrando producto",
-                width: "42%",
-                height: "20%",
-                timer: 1000,
-                showConfirmButton: false
-            });
-            setTimeout(function() {
-                form.submit();
-            }, 1100);
-        } else {
+        // Verificar si el precio de venta es menor o igual al precio de compra
+        if (precio_venta <= precio_compra){
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: "Valor negativo digitado",
+                text : "El precio de Venta No puede ser igual o inferior al precio de Compra",
                 width: "50%",
                 height: "20%",
                 showConfirmButton: true
             });
+            document.getElementById('precio_venta').focus();
+            return; // Detiene el envío del formulario
         }
-    } else {
+
+        // Si la validación pasa, mostrar el mensaje de éxito
+        Swal.fire({
+            icon: "success",
+            text: "Registrando producto",
+            width: "42%",
+            height: "20%",
+            timer: 1000, // Tiempo de duración del mensaje
+            showConfirmButton: false
+        });
+
+        // Enviar el formulario después de un tiempo
+        setTimeout(function() {
+            form.submit();
+        }, 1100);
+    });
+
+    // Si hay campos obligatorios que faltan o valores incorrectos, mostrar mensajes de error
+    if (!nombre_producto || !precio_venta || !precio_compra || !cantidad_producto || !stockminimo || !categorias || !ubicacion ||
+        precio_compra < 0 || precio_venta < 0 || cantidad_producto <= 0 || stockminimo < 0) {
         Swal.fire({
             icon: "error",
             title: "Error",
-            text: "Faltan campos por completar",
+            text: "Por favor, verifique los campos y corrija cualquier error antes de enviar el formulario.",
             width: "50%",
             height: "20%",
             showConfirmButton: true
         });
+        return; // Detiene el envío del formulario
     }
-};
+}
 
+ // Función para formatear un número como moneda colombiana
+ function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
+// Función para formatear el valor del input cuando cambia
+/* function formatInputValue(inputId) {
+    let input = document.getElementById(inputId);
+    let value = input.value.replace(/\./g, ''); // Eliminar puntos existentes
+    input.value = formatNumber(value);
+}
+
+// Event listener para formatear el valor del input cuando cambia
+document.getElementById('precio_venta').addEventListener('input', function() {
+    formatInputValue('precio_venta');
+});
+
+document.getElementById('precio_compra').addEventListener('input', function() {
+    formatInputValue('precio_compra');
+}); */
+
+/* ----- Control para no ingresar numeros negativos ---------------- */
+
+document.getElementById('estante').addEventListener('input', function(event) {
+    let estante_input = event.target;
+    let valor = parseInt(estante_input.value);
+    if (valor < 0) {
+        estante_input.setCustomValidity('No se permiten números negativos');
+    } else {
+        estante_input.setCustomValidity('');
+    }
+});
+
+document.getElementById('stockminimo').addEventListener('input', function(event) {
+    let estante_input = event.target;
+    let valor = parseInt(estante_input.value);
+    if (valor < 0) {
+        estante_input.setCustomValidity('No se permiten números negativos, en el campo cantidad minima');
+    } else {
+        estante_input.setCustomValidity('');
+    }
+});
+
+document.getElementById('cantidad_producto').addEventListener('input', function(event) {
+    let estante_input = event.target;
+    let valor = parseInt(estante_input.value);
+    if (valor < 0) {
+        estante_input.setCustomValidity('No se permiten números negativos, en el campo cantidad de producto');
+    } else {
+        estante_input.setCustomValidity('');
+    }
+});
 
 
 
