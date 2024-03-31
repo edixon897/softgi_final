@@ -16,14 +16,14 @@ class Cotizaciones:
         
         
     def editarCotizacion(self,editar):
-        bsql = f"UPDATE `cotizaciones` SET num_cotizacion='{editar[0]}', documento_operador='{editar[1]}', documento_operador='{editar[2]}', nombre_operador='{editar[3]}', apellido_operador='{editar[4]}', fecha_inicio_cotizacion='{editar[5]}', fecha_fin_cotizacion='{editar[6]}', nombre_cliente_cotizacion='{editar[7]}' WHERE num_cotizacion='{editar[0]}'"
+        bsql = f"UPDATE `cotizaciones` SET `num_cotizacion`='{editar[0]}', `cliente_cotizacion`='{editar[1]}', `documento_operador`='{editar[2]}', `nombre_operador`='{editar[3]}', `apellido_operador`='{editar[4]}', `fecha_inicio_cotizacion`='{editar[5]}', `fecha_fin_cotizacion`='{editar[6]}', `nombre_cliente_cotizacion`='{editar[7]}', `direcion_cliente`='{editar[8]}', `correo_cliente`='{editar[9]}', `cuidad_cliente`='{editar[10]}', `contacto_cliente`='{editar[11]}' WHERE num_cotizacion='{editar[0]}'"
         self.cursor.execute(bsql)
         self.conexion.commit()
         
 
     def eliminarCotizacion(self,id_cotizaciones):
         try:
-            sql = F"UPDATE cotizaciones  SET cotizaciones.estado = 'INACTIVO'  WHERE cotizaciones.num_cotizacion='{id_cotizaciones}'"
+            sql = F"UPDATE cotizaciones  SET estado = 'INACTIVO'  WHERE num_cotizacion='{id_cotizaciones}'"
             self.cursor.execute(sql)
             self.conexion.commit()
             
@@ -43,13 +43,14 @@ class Cotizaciones:
             print(f"Error al insertar datos: {e}")
 
     def editarDetalleCotizaciones(self, editar):
-        bsql =f"UPDATE `detallecotizaciones` SET `id_detalle_cotizacion`='{editar[0]}',`num_cotizacion`='{editar[1]}',`producto_cotizacion`='{editar[2]}',`cantidad_productos_cotizacion`='{editar[3]}',`valorunidad_prodcotizacion`='{editar[4]}',`valortotal_cantidaproductos_cotizacion`='{editar[5]}' WHERE `id_detalle_cotizacion`='{editar[0]}'"
+        bsql = f"UPDATE `detallecotizaciones` SET `id_detalle_cotizacion`='{editar[0]}',  `producto_cotizacion`='{editar[1]}', `nombre_producto`='{editar[2]}', `cantidad_productos_cotizacion`='{editar[3]}', `valorunidad_prodcotizacion`='{editar[4]}', `valortotal_cantidaproductos_cotizacion`='{editar[5]}', `totalpagar_cotizacion`='{editar[6]}' WHERE `id_detalle_cotizacion`='{editar[0]}'"
         self.cursor.execute(bsql)
         self.conexion.commit()
+
         
     def eliminarDetalleCotizacion(self,id_cotizaciones):
         try:
-            sql = "UPDATE `detalledevoluciones` SET `estado` = 'INACTIVO' WHERE `num_cotizacion` = %s"
+            sql = "UPDATE `detallecotizaciones` SET `detalle_estado` = 'INACTIVO' WHERE `id_detalle_cotizacion` = %s"
             self.cursor.execute(sql, (id_cotizaciones,))
             self.conexion.commit()
         except Exception as e:

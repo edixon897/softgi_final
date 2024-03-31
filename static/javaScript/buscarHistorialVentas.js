@@ -45,7 +45,11 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
                         var tr = $('<tr>');
                         // Comenzamos desde 1 para omitir el primer campo
                         for (var i = 1; i < row.length; i++) {
-                            $('<td>').text(row[i]).appendTo(tr);
+                            var value = row[i];
+                            if (isDate(value)) {
+                                value = formatDate(value);
+                            }
+                            $('<td>').text(value).appendTo(tr);
                         }
                         // Agregar los botones a la fila
                         var verDetalleBtn = $('<td class="btns_centro"><a href="#" onclick="abrirModal_2(\'' + row[0] + '\')"><i id="icono_3" class="lni lni-stats-up"></i></a></td>');
@@ -57,4 +61,18 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
                 } else {
                     tabla.append('<tr><td colspan="8">No se encontraron resultados</td></tr>');
         }
+}
+
+// Función para verificar si un valor es una fecha
+function isDate(value) {
+    return !isNaN(Date.parse(value));
+}
+
+// Función para formatear la fecha 
+function formatDate(dateString) {
+    var date = new Date(dateString);
+    var year = date.getFullYear();
+    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+    var day = ('0' + date.getDate()).slice(-2);
+    return year + '-' + month + '-' + day;
 }

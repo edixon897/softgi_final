@@ -1,19 +1,3 @@
-$(document).ready(function () {
-    // Cuando se hace clic en el botón para abrir el modal
-    $("#openCrearCotizacionModal").click(function () {
-        $("#crearCotizacionModal").css("display", "block");
-    });
-
-    // Cuando se hace clic fuera del modal, se cierra
-    $(window).click(function (e) {
-        if (e.target.id === "crearCotizacionModal") {
-            $("#crearCotizacionModal").css("display", "none");
-        }
-    });
-});
-
-
-
 
 function loadDataForEdit(cotizacionId) {
     fetch(`/editarCotizacion/${cotizacionId}`)
@@ -72,15 +56,15 @@ function loadDataForEdit(cotizacionId) {
         .catch(error => console.error('Error:', error));
 }
 
-function filterProducts() {
-    // Obtener el valor del campo de búsqueda
+/* function filterProducts() {
+
     var searchTerm = searchProductosEditar.value.toLowerCase();
 
-    // Filtrar las filas de la tabla
+    
     $('.product-rows').each(function() {
         var productName = $(this).find('td:first').text().toLowerCase();
 
-        // Mostrar u ocultar la fila según si coincide con el término de búsqueda
+        
         if (productName.includes(searchTerm)) {
             $(this).show();
         } else {
@@ -88,7 +72,7 @@ function filterProducts() {
         }
     });
 }
-
+ */
 function eliminarFila(button) {
     var row = button.parentNode.parentNode;
     row.parentNode.removeChild(row);

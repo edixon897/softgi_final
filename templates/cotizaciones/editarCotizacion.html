@@ -7,6 +7,12 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/cotizaciones/editar_cotizacion.css">
 </head>
+<style>
+    #productTable {
+    display: none;
+}
+
+</style>
 <body>
 
     <main id="inicio">
@@ -15,31 +21,34 @@
         </div>
         <div id="editarCotizacion" class="Editar" >
             <div class="modal-content">
-                <form action="/editarCotizacion" method="POST">
-
+                <form action="/atualizarCotizacion" method="POST">
                     <div class="form-group">
+
+                            <input type="hidden" name="id_cotizacion" value="{{ datos[0][7] }}">
+
                         <div class="ini">
                             <label for="fechaInicioEditarCliente">Fecha de Inicio:</label>
-                            <input type="date" name="fechaInicioEditarCliente"  id="fechaInicioEditar" value="{{datos[1]}}">
+                            <input type="date" name="fechaInicioEditarCliente"  id="fechaInicioEditar" value="{{ datos[0][0] }}">
                         </div>
                         <div class="fin">
                             <label for="fechaFinEditarCliente">Fecha de Fin:</label>
-                            <input type="date" name="fechaFinEditarCliente" id="fechaFinEditar" value="{{datos[0]}}">
+                            <input type="date" name="fechaFinEditarCliente" id="fechaFinEditar" value="{{ datos[0][1] }}">
                         </div>
                     </div>
-
+                    
                     <div class="form-group">
-                        <input type="text" id="searchProductosEditar" oninput="filterProductss()" placeholder="Buscar productos">
-
+                        <input type="search" name="busqueda" id="searchProductos" placeholder="Buscar productos">
+                        
                         <div class="sele">
                             <label for="clienteCotizacionEditar">Selecciona un cliente:</label>
                             <select name="clienteCotizacionEditar" id="clienteCotizacionEditar" required>
-                                <option value="{{datos[2]}}" disabled selected>Selecciona un cliente</option>
+                                <option value="{{ datos[0][2] }}" disabled selected>{{ datos[0][2] }}</option>
                                 {% for client in cliente %}
                                     <option value="{{ client[0] }}">{{ client[0] }} {{ client[1] }}</option>
                                 {% endfor %}
                             </select>
                         </div>
+
                     </div>
 
                     <div class="form-group-n">
@@ -51,12 +60,6 @@
                                         <th>Seleccionar</th>
                                     </thead>
                                     <tbody>
-                                        {% for i in prod %}
-                                            <tr class="product-rows">
-                                                <td>{{ i[0] }}</td>
-                                                <td><button type="button" class="select-button" onclick="selectProducts('{{ i[0] }}')">Seleccionar</button></td>
-                                            </tr>
-                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -71,17 +74,14 @@
                                     <th>Cantidad</th>
                                     <th>Eliminar</th>
                                 </thead>
-                                <tbody>
-                                    {% for p in dato %}
-                                    <tr class="filaProducto">
-                                        <td><input readonly type="text" name="nombreProd[]"
-                                            value="{{p[4]}}"/></td>
-                                        <td><input type="number" name="cantidadProd[]" value="{{p[5]}}"/></td>
-                                        <td><button type="button" class="btn btn-default eliminarFila">Eliminar</button></td>
+                                <tbody id="productosSeleccionados">
+                                    {% for producto in datos %}
+                                    <tr class="filaProducto" id="fila{{ producto[4] }}">
+                                        <td><input readonly type="text" name="nombreProd[]" value="{{ producto[4] }}"/></td>
+                                        <td><input type="number" name="cantidadProd[]" value="{{ producto[5] }}"/></td>
+                                        <td><button type="button" class="btn btn-default eliminarFila" onclick="eliminarProducto('{{ producto[8] }}')">Eliminar</button></td>
                                     </tr>
                                     {% endfor %}
-                                    
-
                                 </tbody>
                             </table>
                         </div>
@@ -97,8 +97,76 @@
     </main>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/static/javaScript/buscadoProCotizacion.js"></script>
 <script>
+ function eliminarProducto(idProducto) {
+    fetch(`/borraDetallleCotizacion/${idProducto}`, { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idProducto: idProducto })
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Producto eliminado correctamente'+ idProducto);
+            
+        } else {
+            console.error('Error al eliminar el producto');
+            
+        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
+}
 
-</script>
+
+
+
+    function selectProduct(nombreProducto) {
+        // Obtener la cantidad seleccionada por el usuario
+        var cantidad = prompt("Ingrese la cantidad:");
+    
+        // Verificar si el usuario ingresó una cantidad válida
+        if (cantidad !== null && cantidad !== "") {
+            var productosSeleccionados = document.querySelectorAll("#productosSeleccionados input[name='nombreProd[]']");
+            var cantidadInputs = document.querySelectorAll("#productosSeleccionados input[name='cantidadProd[]']");
+    
+            // Verificar si el producto ya está seleccionado
+            var productoExistente = false;
+            for (var i = 0; i < productosSeleccionados.length; i++) {
+                if (productosSeleccionados[i].value === nombreProducto) {
+                    // Sumar la nueva cantidad a la cantidad existente
+                    cantidadInputs[i].value = parseInt(cantidadInputs[i].value) + parseInt(cantidad);
+                    productoExistente = true;
+                    break;
+                }
+            }
+    
+            if (!productoExistente) {
+                // Crear una nueva fila en la tabla de productos seleccionados
+                var newRow = "<tr class='filaProducto'>";
+                newRow += "<td><input readonly type='text' name='nombreProd[]' value='" + nombreProducto + "'/></td>";
+                newRow += "<td><input type='number' name='cantidadProd[]' value='" + cantidad + "'/></td>";
+                newRow += "<td><button type='button' class='btn btn-default eliminarFila'>Eliminar</button></td>";
+                newRow += "</tr>";
+    
+                // Agregar la nueva fila a la tabla de productos seleccionados
+                document.getElementById("productosSeleccionados").innerHTML += newRow;
+            }
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+    var eliminarBotones = document.querySelectorAll('.eliminarFila');
+    eliminarBotones.forEach(function(boton) {
+        boton.addEventListener('click', function() {
+            var fila = this.closest('tr');
+            fila.remove();
+        });
+    });
+});
+    </script>
+    
 </body>
 </html>

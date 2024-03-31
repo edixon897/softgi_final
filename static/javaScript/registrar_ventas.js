@@ -225,9 +225,12 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
         if (data.length > 1) {
             $.each(data, function(index, row) {
                 var tr = $('<tr>');
-                $.each(row, function(key, value) {
+                for (var i = 1; i < row.length; i++) {
+                    // Verificamos si el valor es una fecha y la formateamos
+                    var value = row[i];
                     $('<td>').text(value).appendTo(tr);
-                });
+                
+                }
                 // Agregar los enlaces y botones correspondientes a la última columna de la fila
                 $('<td>').html('<a href="#" class="abrir-modal" data-id="' + row[0] + '"><i id="icono_select_2" class="lni lni-layers"></i></a>').appendTo(tr);
                 $('<td>').html('<a href="/selector_una_cantidad/' + row[0] + '"><i id="icono_select_1" class="lni lni-select-cursor"></i></a>').appendTo(tr);
@@ -248,95 +251,7 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
 
 
 
-/* function buscarProductos() {
-    var input, filter, table, tr, td, i, j, txtValue, noResults;
 
-    input = document.getElementById("buscador");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("tabla");
-    tr = table.getElementsByTagName("tr");
-    noResults = document.getElementById("noResults");
-
-    noResults.style.display = "none";
-
-    for (i = 0; i < tr.length; i++) {
-        if (!tr[i].getElementsByTagName("td").length) {
-            // Si no hay celdas td, es decir, es un encabezado, se salta la iteración.
-            continue;
-        }
-        td = tr[i].getElementsByTagName("td");
-        var encontrado = false;
-
-        for (j = 0; j < td.length; j++) {
-            if (td[j]) {
-                txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    encontrado = true;
-                    break;
-                }
-            }
-        }
-
-        // Ocultar o mostrar la fila según si se encontró o no la coincidencia.
-        tr[i].style.display = encontrado ? "" : "none";
-    }
-
-    // Mostrar el mensaje de "No se encontraron resultados" si todas las filas están ocultas.
-    if (Array.from(tr).every(row => row.style.display === "none")) {
-        noResults.style.display = "block";
-    }
-}
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    var table = document.getElementById("tabla");
-    var rows = table.getElementsByTagName("tr");
-
-    
-    for (var i = 11; i < rows.length; i++) {
-        rows[i].style.display = "none";
-    }
-}); */
-
-
-
-
-// Función para abrir el modal
-/* function abrirModal(idProducto) {
-    // Cargar el contenido de editar_cantidad.html en el modalContenedor
-    var modalContenedor = document.getElementById("modalContenedor");
-    modalContenedor.innerHTML = "";
-
-    var btn_enviar = document.getElementById('btn_enviar');
-    btn_enviar.style.backgroundColor = "white"
-    btn_enviar.style.color = "#358CB4"
-    btn_enviar.style.border = "1px solid #358CB4"
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            modalContenedor.innerHTML = this.responseText;
-
-            // Mostrar el modal
-            modalContenedor.style.display = "block";
-        }
-    };
-
-    xhttp.open("GET", "/m_selector_cantidad_p/" + idProducto, true);
-    xhttp.send();
-} */
-
-// Función para cerrar el modal
-/* function cerrarModal() {
-    var modalContenedor = document.getElementById("modalContenedor");
-    modalContenedor.style.display = "none";
-
-    var btn_enviar = document.getElementById('btn_enviar');
-    btn_enviar.style.backgroundColor = "#358CB4"
-    btn_enviar.style.color = "white"
-    btn_enviar.style.border = "none"
-} */
 
 
 

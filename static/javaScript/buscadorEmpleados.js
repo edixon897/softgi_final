@@ -59,7 +59,11 @@ function actualizarTabla(data) {
                     var tr = $('<tr>');
                     // Comenzamos desde 1 para omitir el primer campo
                     for (var i =0; i < row.length; i++) {
-                        $('<td>').text(row[i]).appendTo(tr);
+                        var value = row[i];
+                        if (isDate(value)) {
+                            value = formatDate(value);
+                        }
+                        $('<td>').text(value).appendTo(tr);
                     }
                     // Agregar los botones a la fila
                     var verDetalleBtn = $('<td class="btns_centro"><button onclick="abrirModalEditarEmpleado(\'' + row[0] + '\')" class="btn_editar"><i id="icono_2" class="lni lni-pencil"></i></button></td>');
@@ -71,6 +75,18 @@ function actualizarTabla(data) {
             } else {
                 tabla.append('<tr><td colspan="8">No se encontraron resultados</td></tr>');
     }
+}
+function isDate(value) {
+    return !isNaN(Date.parse(value));
+}
+
+// Función para formatear la fecha en el formato AAAA-MM-DD
+function formatDate(dateString) {
+    var date = new Date(dateString);
+    var year = date.getFullYear();
+    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+    var day = ('0' + date.getDate()).slice(-2);
+    return year + '-' + month + '-' + day;
 }
 
 

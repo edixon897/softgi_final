@@ -55,8 +55,12 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
                 $.each(data, function(index, row) {
                     var tr = $('<tr>');
                     $.each(row, function(key, value) {
+                        if (isDate(value)) {
+                            value = formatDate(value);
+                        }
                         $('<td>').text(value).appendTo(tr);
                     });
+                    
                     // Mantener visible el botón de "Más detalles" incluso después de la búsqueda
                     $('<td class="btns_centro"><a href="#" class="ver_detalle"><i id="icono_ver_mas" class="lni lni-comments-alt-2"></i></a></td>').appendTo(tr);
                     tabla.append(tr);
@@ -75,6 +79,20 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
                 abrirModal_2(num_factura);
             });
         }
+
+// Función para verificar si un valor es una fecha
+function isDate(value) {
+    return !isNaN(Date.parse(value));
+}
+
+// Función para formatear la fecha 
+function formatDate(dateString) {
+    var date = new Date(dateString);
+    var year = date.getFullYear();
+    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+    var day = ('0' + date.getDate()).slice(-2);
+    return year + '-' + month + '-' + day;
+}
 
 
 
