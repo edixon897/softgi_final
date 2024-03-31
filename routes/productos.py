@@ -93,15 +93,7 @@ def muestra_Productos():
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "almacenista" or rol_usuario == "vendedor":
 
-            sql = fsql = """
-                            SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor,
-                                nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion,
-                                stockminimo, ubicacion, estante  
-                            FROM productos 
-                            WHERE estado_producto = 'ACTIVO'
-                            ORDER BY cantidad_producto ASC  -- Ordena por cantidad de productos en orden ascendente (menos vendidos primero)
-                            LIMIT 10  -- Limita los resultados a 10 productos
-                        """ 
+            sql = fsql = f"SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO' " 
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sql)
@@ -286,62 +278,42 @@ def editar_Cantidad(id_producto):
             
     return redirect(url_for('index'))
 
+
 @app.route('/modificar_Cantidad', methods=['POST'])
 def modificar_cantidad():
     if "nom_empleado" in session:
-        rol_usuario = session["rol"]
-        if rol_usuario == "administrador" :
-            
+        rol_usuario = session.get("rol")
+        if rol_usuario == "administrador":
             doc = session["nom_empleado"]
             sql = f"SELECT doc_empleado, nom_empleado, ape_empleado FROM empleados WHERE nom_empleado='{doc}'"
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sql)
             resultado = cursor.fetchall()
-            print("Resultado de la consulta:", resultado)
 
-            if resultado and len(resultado) > 0:
-                # Iterar sobre las filas y acceder a los elementos dentro de cada tupla
-                for row in resultado:
-                    documento_registro = row[0]
-                    nombre_operador = row[1]
-                    apellido_operador = row[2]
+            if resultado:
+                documento_registro, nombre_operador, apellido_operador = resultado[0]
 
-                    if request.method == 'POST':
-                        print("Contenido del formulario:", request.form)    
-                        try:
-                            id_producto = request.form['id_producto']
-                            ref_produ_1 = request.form['ref_produ_1']
-                            nombre_producto = request.form['nombre_producto']
-                            cantidad_producto = request.form['cantidad_producto']
-                            datos_modificar = [id_producto, ref_produ_1, nombre_producto, cantidad_producto, documento_registro, nombre_operador, apellido_operador]
-                            print("Datos a modificar:", datos_modificar)
-                            resultado = Dproductos.modificar_cantidad(datos_modificar)
+                if request.method == 'POST':
+                    id_producto = request.form['id_producto']
+                    ref_produ_1 = request.form['ref_produ_1']
+                    nombre_producto = request.form['nombre_producto']
+                    cantidad_producto = request.form['cantidad_producto']
+                    datos_modificar = [id_producto, ref_produ_1, nombre_producto, cantidad_producto, documento_registro, nombre_operador, apellido_operador]
 
-                            sql = f"SELECT id_producto, ref_produ_1, ref_produ_2, ref_produ_3, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante  FROM productos WHERE estado_producto = 'ACTIVO'" 
-                            conn = mysql.connect()
-                            cursor = conn.cursor()
-                            cursor.execute(sql)
-                            resultado = cursor.fetchall()
-                            print("resultado", resultado)
-                            conn.commit()
+                    resultado = Dproductos.modificar_cantidad(datos_modificar)
 
-                            mensaje = "cantidad_añadida_con_exito"
+                    if resultado:
+                        flash("Cantidad modificada exitosamente")
+                    else:
+                        flash("Error al modificar la cantidad")
 
-                            return render_template("/productos/muestra_productos.html", resul=resultado, msj = mensaje) 
-                        except KeyError as e:
-                            print("Error KeyError:", e)
-                            flash('Error al procesar el formulario, por favor, inténtalo de nuevo')
-                            return redirect(url_for('index'))
-                else:
-                    # Manejar la situación en la que no hay resultados
-                    flash("No se encontraron resultados para la consulta SQL")
+                    return redirect(url_for('muestra_Productos'))  # Redirige a la página de muestra de productos
 
-            return render_template('muestra_productos.html')
-        else:
-            return redirect("/inicio")
-    else:
-        flash('Por favor, inicia sesión para poder acceder')
-        return redirect(url_for('index'))
-            
+            flash("No se encontraron resultados para la consulta SQL o no se han enviado datos POST")
+            return redirect(url_for('index'))  # Redirige a la página de inicio
+
+    flash('Por favor, inicia sesión para poder acceder')
+    return redirect(url_for('index'))
+
 

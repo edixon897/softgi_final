@@ -1,3 +1,24 @@
+/* 
+function abrirModal_cantidad(idProducto) {
+    // Se asignan los valores del id_producto a los campos ocultos del formulario
+    document.querySelector("input[name='id_producto']").value = idProducto;
+    // Se muestra el modal
+    document.getElementById("modal-añadir-cantidad").style.display="block";
+}
+// Funcion para cerrar el modal
+function cerrarModal_cantidad() {
+    document.getElementById("modal-añadir-cantidad").style.display="none";
+
+    //Limpia los campos del formulario
+    document.getElementById("CONTEN_FORM_2").reset();
+}
+
+//Cuando se hace click en el boton para cerrar el modal
+document.getElementById("btnCerrarModal").addEventListener("click", function(event) {
+    event.preventDefault(); // Se previene el comportamiento predeterminado del enlace
+    cerrarModal_cantidad();
+}); */
+
 /* ---------- Funciones del Modal Editar Cantidad de Porducto */
 
 function abrirModal_2(idProducto) {
@@ -56,4 +77,3 @@ function valida_digitacion() {
         form.submit();
     }
 }
-
