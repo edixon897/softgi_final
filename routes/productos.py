@@ -4,9 +4,6 @@ from conexiondb import conexion, mysql, app
 import datetime
 from models.productos import Dproductos
 
-
-
-
 @app.route('/crear_Producto', methods=['GET', 'POST'])
 def crear_Producto():
     global codigo_barras_global
