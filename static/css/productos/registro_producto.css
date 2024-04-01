@@ -525,6 +525,18 @@ div#contenedorM_categoria{
     text-align: left;
 }
 
+label#label_docu{
+    position: absolute;
+    left: 4%;
+    top: 8;
+    font-size: 0.9em;
+    transform: translateY(-85%);
+    color: #BBBBBB;
+    pointer-events: none;
+    font-weight: 200;
+    background-color: #fff;
+}
+
 /* -------------------apartado------------------- */
 
 #lean_overlay {

@@ -13,29 +13,29 @@
                 <div id="pagina1" class="pgs_edi_compraprovee">
 
                     <div>
-                        <input type="number" name="num_compra" value="{{resul[0]}}" style="display: none;">
+                        <input type="number" name="num_compra" value="{{resul[0]}}" style="display: none;" required>
                     </div>
                     <div id="num_compra">
                         <label for="num_compra" class="titulos">Numero compra</label>
-                        <input type="number" id="detallenum_compra" name="detallenum_compra" placeholder="numero de compra"  value="{{resul[7]}}">
+                        <input type="number" id="detallenum_compra" name="detallenum_compra" placeholder="numero de compra"  value="{{resul[7]}}" required>
                     </div>
                     <div id="producto_compra">
                         <label for="producto_compra" class="titulos">Producto</label>
-                        <input type="text" id="producto_compra" name="producto_compra" placeholder="Producto comprado" value="{{resul[2]}}">
+                        <input type="text" id="producto_compra" name="producto_compra" placeholder="Producto comprado" value="{{resul[2]}}" required>
                     </div>
                     <div id="cantidad_compra">
                         <label for="cantidad_compra" class="titulos">Cantidad</label>
-                        <input type="number" id="cantidad_compra" name="cantidad_compra" placeholder="Cantidad" value="{{resul[3]}}">
+                        <input type="number" id="cantidad_compra" name="cantidad_compra" placeholder="Cantidad" value="{{resul[3]}}" required>
                     </div>
                 </div>
                 <div id="pagina2" class="pgs_edi_compraprovee">
                     <div id="valorunidad_prodcompra">
                         <label for="valortotal_cantidadcomp" class="titulos">Valor x unidad</label>
-                        <input type="number" id="valorunidad_prodcompra" name="valorunidad_prodcompra" placeholder="Valor por unidad"  value="{{resul[4]}}">
+                        <input type="number" id="valorunidad_prodcompra" name="valorunidad_prodcompra" placeholder="Valor por unidad"  value="{{resul[4]}}" required>
                     </div>
                     <div id="valortotal_cantidadcomp">
                         <label for="valortotal_cantidadcomp" class="titulos">Valor total</label>
-                        <input type="text" id="valortotal_cantidadcomp" name="valortotal_cantidadcomp" value="{{resul[5]}}">
+                        <input type="text" id="valortotal_cantidadcomp" name="valortotal_cantidadcomp" value="{{resul[5]}}" required>
                     </div>
                 </div>
                 

@@ -12,9 +12,9 @@ function abrirModaledit_categoria(id_categoria) {
         }
     });
     
-    $(window).click(function (e) {
+    /* $(window).click(function (e) {
         if (e.target.id === "editarCategoriaModal") {
             $("#editarCategoriaModal").hide();
         }
-    });
+    }); */
 }
