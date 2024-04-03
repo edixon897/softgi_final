@@ -248,6 +248,12 @@ main#cuerpo {
                                 }i#icono_3:hover {
                                     color: #358CB4;
                                 }
+    /* ------Este CSS ayuda a que los titulos de las columnas de la tabla no se oculten ----- */
+    table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+}
 
 
 /* CLASES */

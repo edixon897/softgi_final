@@ -163,9 +163,15 @@ def atualizarCotizacion():
         apellido_operador = resultado[2]
         fecha_inicio = request.form['fechaInicioEditarCliente']
         fecha_fin = request.form['fechaFinEditarCliente']
-        cliente_seleccionado = request.form['clienteCotizacionEditar']
+        cliente_seleccionado = request.form.get('clienteCotizacionEditar')
         id_cotizacion = request.form['id_cotizacion']
-        
+
+        clienteCotizacion = None  # Inicializar las variables con un valor predeterminado
+        contacto_cliente = None
+        correo_cliente = None 
+        direcion_cliente = None  
+        cuidad_cliente = None
+
         if cliente_seleccionado:
             bsqd = f"SELECT `doc_cliente`, `contacto_cliente`, `email_cliente`, `direccion_cliente`, `ciudad_cliente` FROM clientes WHERE `nom_cliente`='{cliente_seleccionado}'"
             cursor.execute(bsqd)
@@ -184,16 +190,7 @@ def atualizarCotizacion():
         
         editarCotiza = [id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fecha_inicio, fecha_fin, cliente_seleccionado, direcion_cliente, correo_cliente, cuidad_cliente, contacto_cliente]
         cotizaciones.editarCotizacion(editarCotiza)
-        
-        """ productos_eliminar = request.form.getlist('productosEliminados[]')
-        for producto in productos_eliminar:
-            cotizaciones.eliminarDetalleCotizacion(producto)
-
-        # Utilizar la variable productos_eliminar
-        if productos_eliminar:
-            print("Se eliminaron los siguientes productos:", productos_eliminar) """
-        
-
+    
         referenciasProductos = request.form.getlist('nombreProd[]')
         cantidadesProductos = request.form.getlist('cantidadProd[]')
 
@@ -301,13 +298,12 @@ def detalle(id_cotizacion):
             total_cantidad = sum(row[3] for row in resultado)
 
             return render_template("cotizaciones/detalleCotizacion.html", datos=resultado, info=cotiza, total_cantidad=total_cantidad)
-        
         else:
             return redirect("/inicio")
-
     else:
         flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
+    
 
 @app.route('/buscar_ProductoCotizacion', methods=['POST'])
 def buscar_ProductoCotizacion():

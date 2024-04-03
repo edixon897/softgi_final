@@ -85,8 +85,8 @@
                     <td>{{dato[8]}}</td>
                     <!-- <td>19%</td> -->
                     <td>{{dato[9]}}</td>
-                    <td>{{ '{:,.0f}'.format(dato[11]) }}</td>
-                    <td>{{ '{:,.0f}'.format(dato[12]) }}</td>
+                    <td>${{ '{:,.0f}'.format(dato[11]) }}</td>
+                    <td>${{ '{:,.0f}'.format(dato[12]) }}</td>
                 </tr>
            
                 
@@ -101,7 +101,7 @@
         <div class="total">
         
             <div class="total_pagar">
-                <p>TOTAL A PAGAR: {{ '{:,.0f}'.format(dato[12]) }}</p>
+                <p>TOTAL A PAGAR: ${{ '{:,.0f}'.format(dato[12]) }}</p>
                 <p>Son: {{ total_a_pagar_palabras}} pesos. COP</p>
             </div>
             {% endfor %}

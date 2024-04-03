@@ -17,15 +17,6 @@ body{
     font-weight: 300;
 }
 
-figure{
-    margin: 0;
-    padding: 0;
-}
-
-figure img{
-    margin: 0;
-    width: 100%;
-}
 h2 {
     margin: 0;
 }
@@ -259,15 +250,12 @@ main#cuerpo {
                             font-size: 1.8em;
                             color: #358CB4;
                         }
-
-
-
-
-        /* div#conten_btn_regresar {
-            width: 95%;
-            height: 15%;
-            background-color: red;
-        } */
+ /* ------Este CSS ayuda a que los titulos de las columnas de la tabla no se oculten ----- */
+ table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+}
 
 
 

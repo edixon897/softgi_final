@@ -15,10 +15,28 @@ class Cotizaciones:
         
         
         
-    def editarCotizacion(self,editar):
+    """ def editarCotizacion(self,editar):
         bsql = f"UPDATE `cotizaciones` SET `num_cotizacion`='{editar[0]}', `cliente_cotizacion`='{editar[1]}', `documento_operador`='{editar[2]}', `nombre_operador`='{editar[3]}', `apellido_operador`='{editar[4]}', `fecha_inicio_cotizacion`='{editar[5]}', `fecha_fin_cotizacion`='{editar[6]}', `nombre_cliente_cotizacion`='{editar[7]}', `direcion_cliente`='{editar[8]}', `correo_cliente`='{editar[9]}', `cuidad_cliente`='{editar[10]}', `contacto_cliente`='{editar[11]}' WHERE num_cotizacion='{editar[0]}'"
         self.cursor.execute(bsql)
-        self.conexion.commit()
+        self.conexion.commit() """
+    
+    def editarCotizacion(self, editar):
+        id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fecha_inicio, fecha_fin, cliente_seleccionado, direcion_cliente, correo_cliente, cuidad_cliente, contacto_cliente = editar
+
+        # Verificar valores y asignar valor predeterminado si es necesario
+        clienteCotizacion = clienteCotizacion if clienteCotizacion is not None else ''
+        direcion_cliente = direcion_cliente if direcion_cliente is not None else ''
+        correo_cliente = correo_cliente if correo_cliente is not None else ''
+        cuidad_cliente = cuidad_cliente if cuidad_cliente is not None else ''
+        contacto_cliente = contacto_cliente if contacto_cliente is not None else ''
+
+        bsql = f"UPDATE `cotizaciones` SET `num_cotizacion`='{id_cotizacion}', `cliente_cotizacion`='{clienteCotizacion}', `documento_operador`='{documento_registro}', `nombre_operador`='{nombre_operador}', `apellido_operador`='{apellido_operador}', `fecha_inicio_cotizacion`='{fecha_inicio}', `fecha_fin_cotizacion`='{fecha_fin}', `nombre_cliente_cotizacion`='{cliente_seleccionado}', `direcion_cliente`='{direcion_cliente}', `correo_cliente`='{correo_cliente}', `cuidad_cliente`='{cuidad_cliente}', `contacto_cliente`='{contacto_cliente}' WHERE num_cotizacion='{id_cotizacion}'"
+        
+        try:
+            self.cursor.execute(bsql)
+            self.conexion.commit()
+        except Exception as e:
+            print("Error al ejecutar la consulta SQL:", e)
         
 
     def eliminarCotizacion(self,id_cotizaciones):
