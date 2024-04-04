@@ -7,7 +7,7 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 
-    <title>Detalle cotización</title>
+    <title>Cotización a Imprimir</title>
     
 
 </head>
@@ -87,17 +87,11 @@
         
             <div class="total_pagar">
                 <p>TOTAL A PAGAR: ${{ '{:,.0f}'.format(total_cantidad) }}</p>
-                <p>Son: veiticico dociento pesos</p>
+                <p>Son: {{ total_cantidad_palabras }} pesos. COP</p>
             </div>
             
         </div>
         
-    </div>
-    <div id="regresar">
-        <a href="{{url_for ('Cotizacion') }}" id="enlace_volver">
-            <i id="atras" class="lni lni-arrow-left"></i>
-            Volver a cotizar
-        </a>
     </div>
     
 </body>

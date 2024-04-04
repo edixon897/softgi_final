@@ -31,7 +31,7 @@
             margin: 0;
             width: 100%;
         }
-            div#logo{
+           /*  div#logo{
                 flex-basis: 50%;
             }
 
@@ -39,6 +39,24 @@
                 margin: 10px;
                 padding: 0;
                 width: 70%;
+            } */
+
+            .encabezado {
+                display: flex;
+                align-items: center;
+            }
+            
+            div#logo {
+                flex-shrink: 0; /* Evita que el logo se contraiga */
+                margin-right: 20px; /* Ajusta el margen derecho para separar el logotipo del nombre de la empresa */
+            }
+            
+            div#logo figure#logo {
+                margin: 0; /* Elimina el margen para que la imagen se coloque más cerca del borde */
+                padding: 0;
+                width: auto; /* Deja que el ancho de la imagen sea automático */
+                max-width: 250px; /* Establece un ancho máximo para la imagen */
+                height: auto; /* Deja que la altura de la imagen sea automática */
             }
         
         .nombre-empresa {
@@ -131,12 +149,29 @@
         .lista-items th {
             background-color: #f5f5f5;
         }
-        .total_pagar{
-            padding: 30px;
-            width: 89%;
-            border: 1px solid  #ccc;
+
+        .total_pagar {
+            padding: 10px 10px 10px 10px;
+            width: 100%;
+            border: 1px solid #ccc;
         }
         
-#enlace_volver{
-    font-size: 1.5em;
+        .total_pagar > p {
+            color: black;
+            font-weight: bold;
+        }
+        
+@media print {
+    /* Estilos específicos para la impresión */
+    body {
+        font-size: 14px; /* Reducir el tamaño de la fuente para la impresión */
+    }
+
+    .factura {
+        max-width: none; /* Ancho máximo sin restricción para la impresión */
+        margin: 0; /* Eliminar márgenes para la impresión */
+        padding: 0; /* Eliminar relleno para la impresión */
+    }
+
+    /* Otros estilos específicos para la impresión según lass necesidades */
 }

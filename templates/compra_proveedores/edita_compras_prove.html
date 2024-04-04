@@ -11,38 +11,51 @@
         <div class="modal-content" id="modalContent">
             <form id="form-editar-com-provee" action="actualiza_compra_provee" method="post">
                 <div id="pagina1" class="pgs_edi_compraprovee">
-
                     <div>
-                        <input type="number" name="num_compra" value="{{resul[0]}}" style="display: none;" required>
+                        <input type="number" name="num_compra" value="{{resul[0]}}" style="display: none;">
                     </div>
-                    <div id="num_compra">
-                        <label for="num_compra" class="titulos">Numero compra</label>
-                        <input type="number" id="detallenum_compra" name="detallenum_compra" placeholder="numero de compra"  value="{{resul[7]}}" required>
+                    <div id="detallenum_compra">
+                        <label for="detallenum_compra" class="titulos">Numero Detalle Compra</label>
+                        <input type="number" id="detallenum_compra" name="detallenum_compra" placeholder="Nummero Detalle Compra"  value="{{resul[7]}}" readonly>
                     </div>
-                    <div id="producto_compra">
-                        <label for="producto_compra" class="titulos">Producto</label>
-                        <input type="text" id="producto_compra" name="producto_compra" placeholder="Producto comprado" value="{{resul[2]}}" required>
+                    <div id="proveedor_compra">
+                        <label for="proveedor_compra" class="titulos">Documento Proveedor</label>
+                        <input type="number" id="proveedor_compra" name="proveedor_compra" placeholder="Documento Proveedor"  value="{{resul[1]}}" readonly>
                     </div>
-                    <div id="cantidad_compra">
-                        <label for="cantidad_compra" class="titulos">Cantidad</label>
-                        <input type="number" id="cantidad_compra" name="cantidad_compra" placeholder="Cantidad" value="{{resul[3]}}" required>
+                    <div id="nom_proveedor">
+                        <label for="nom_proveedor" class="titulos">Nombre Proveedor</label>
+                        <input type="text" id="nom_proveedor" name="nom_proveedor" placeholder="Nombre Proveedor"  value="{{resul[2]}}" readonly>
+                    </div>
+                    <div id="fecha_compra">
+                        <label for="fecha_compra" class="titulos">Fecha de Compra</label>
+                        <input type="date" id="fecha_compra" name="fecha_compra" value="{{resul[3]}}">
+                    </div>
+                    <div id="num_factura_proveedor">
+                        <label for="num_factura_proveedor" class="titulos">Numero Factura Proveedor</label>
+                        <input type="number" id="num_factura_proveedor" name="num_factura_proveedor" placeholder="Numero Factura Proveedor"  value="{{resul[4]}}">
                     </div>
                 </div>
                 <div id="pagina2" class="pgs_edi_compraprovee">
+                    <div id="producto_compra">
+                        <label for="producto_compra" class="titulos">Producto</label>
+                        <input type="text" id="producto_compra" name="producto_compra" placeholder="Producto comprado" value="{{resul[8]}}">
+                    </div>
+                    <div id="cantidad_compra">
+                        <label for="cantidad_compra" class="titulos">Cantidad</label>
+                        <input type="number" id="cantidad_compra" name="cantidad_compra" placeholder="Cantidad" value="{{resul[9]}}">
+                    </div>
                     <div id="valorunidad_prodcompra">
-                        <label for="valortotal_cantidadcomp" class="titulos">Valor x unidad</label>
-                        <input type="number" id="valorunidad_prodcompra" name="valorunidad_prodcompra" placeholder="Valor por unidad"  value="{{resul[4]}}" required>
+                        <label for="valortotal_cantidadcomp" class="titulos">Valor por unidad</label>
+                        <input type="number" id="valorunidad_prodcompra" name="valorunidad_prodcompra" placeholder="Valor por unidad"  value="{{resul[10]}}">
                     </div>
                     <div id="valortotal_cantidadcomp">
-                        <label for="valortotal_cantidadcomp" class="titulos">Valor total</label>
-                        <input type="text" id="valortotal_cantidadcomp" name="valortotal_cantidadcomp" value="{{resul[5]}}" required>
+                        <label for="valortotal_cantidadcomp" class="titulos">Valor Total Pago</label>
+                        <input type="number" id="valortotal_cantidadcomp" name="valortotal_cantidadcomp" placeholder="Valor por unidad"  value="{{resul[11]}}" readonly>
                     </div>
                 </div>
-                
                 <button type="submit" id="btn-actualizar" class="btn">Actualizar</button>
             </form>
         </div>
     </div>
-
 </body>
 </html>

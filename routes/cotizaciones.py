@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template, flash, redirect, url
 from conexiondb import conexion, mysql, app
 from models.cotizaciones import cotizaciones
 from utils.tokens import generador_id
-
+from num2words import num2words
 
 
 @app.route("/Cotizacion")
@@ -188,7 +188,21 @@ def atualizarCotizacion():
                 flash('El cliente seleccionado no existe.')
                 return redirect(url_for('CrearCotizacion'))
         
-        editarCotiza = [id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fecha_inicio, fecha_fin, cliente_seleccionado, direcion_cliente, correo_cliente, cuidad_cliente, contacto_cliente]
+        editarCotiza = [
+            id_cotizacion, 
+            clienteCotizacion, 
+            documento_registro, 
+            nombre_operador, 
+            apellido_operador, 
+            fecha_inicio, 
+            fecha_fin, 
+            cliente_seleccionado, 
+            direcion_cliente, 
+            correo_cliente, 
+            cuidad_cliente, 
+            contacto_cliente
+            ]
+        
         cotizaciones.editarCotizacion(editarCotiza)
     
         referenciasProductos = request.form.getlist('nombreProd[]')
@@ -233,8 +247,6 @@ def atualizarCotizacion():
                             cotizaciones.crearDetalleCotizacion(datos)
                             print('Registro de datos', datos)
 
-
-
         flash('La cotización ha sido actualizada exitosamente.')
         return redirect(url_for('Cotizacion'))
         
@@ -275,16 +287,14 @@ def borraDetallleCotizacion(id_cotizacion):
         return redirect(url_for('index'))
     
 
-
 @app.route("/detalle/<id_cotizacion>")
 def detalle(id_cotizacion):
     if "nom_empleado" in session:
-            
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
-
             sql = f"SELECT `nombre_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion` FROM `detallecotizaciones` WHERE `num_cotizacion` = '{id_cotizacion}' AND `detalle_estado` = 'ACTIVO'"
-            bsql =f"SELECT `num_cotizacion`, `cliente_cotizacion`, `nombre_operador`, `apellido_operador`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion`, `nombre_cliente_cotizacion`, `direcion_cliente`, `correo_cliente`, `cuidad_cliente`, `contacto_cliente` FROM `cotizaciones` WHERE `num_cotizacion` = '{id_cotizacion}' AND `estado` = 'ACTIVO' "
+            bsql = f"SELECT `num_cotizacion`, `cliente_cotizacion`, `nombre_operador`, `apellido_operador`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion`, `nombre_cliente_cotizacion`, `direcion_cliente`, `correo_cliente`, `cuidad_cliente`, `contacto_cliente` FROM `cotizaciones` WHERE `num_cotizacion` = '{id_cotizacion}' AND `estado` = 'ACTIVO' "
+
             with mysql.connect() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute(sql)
@@ -293,11 +303,14 @@ def detalle(id_cotizacion):
                     cursor.execute(bsql)
                     cotiza = cursor.fetchall()
 
-                    cursor.execute(bsql)
-                    resultado2 = cursor.fetchall()
+            # Aca se convertir el total de la cantidad a palabras
             total_cantidad = sum(row[3] for row in resultado)
+            # Se asegúra de que total_cantidad sea un entero antes de pasarlo a num2words
+            total_cantidad_entero = int(total_cantidad)
+            total_cantidad_palabras = num2words(total_cantidad_entero, lang='es')
+  
 
-            return render_template("cotizaciones/detalleCotizacion.html", datos=resultado, info=cotiza, total_cantidad=total_cantidad)
+            return render_template("cotizaciones/detalleCotizacion.html", datos=resultado, info=cotiza, total_cantidad=total_cantidad, total_cantidad_palabras=total_cantidad_palabras)
         else:
             return redirect("/inicio")
     else:
