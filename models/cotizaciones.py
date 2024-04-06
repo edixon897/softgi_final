@@ -21,7 +21,7 @@ class Cotizaciones:
         self.conexion.commit() """
     
     def editarCotizacion(self, editar):
-        id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fecha_inicio_cotizacion, fecha_fin_cotizacion, cliente_seleccionado, direcion_cliente, correo_cliente, cuidad_cliente, contacto_cliente = editar
+        """ id_cotizacion, clienteCotizacion, documento_registro, nombre_operador, apellido_operador, fecha_inicio_cotizacion= editar, fecha_fin_cotizacion= editar, cliente_seleccionado, direcion_cliente, correo_cliente, cuidad_cliente, contacto_cliente = editar
 
         # Verificar valores y asignar valor predeterminado si es necesario
         fecha_inicio_cotizacion = fecha_inicio_cotizacion if fecha_inicio_cotizacion is not None else ''
@@ -30,9 +30,10 @@ class Cotizaciones:
         direcion_cliente = direcion_cliente if direcion_cliente is not None else ''
         correo_cliente = correo_cliente if correo_cliente is not None else ''
         cuidad_cliente = cuidad_cliente if cuidad_cliente is not None else ''
-        contacto_cliente = contacto_cliente if contacto_cliente is not None else ''
+        contacto_cliente = contacto_cliente if contacto_cliente is not None else '' """
 
-        bsql = f"UPDATE `cotizaciones` SET `num_cotizacion`='{id_cotizacion}', `cliente_cotizacion`='{clienteCotizacion}', `documento_operador`='{documento_registro}', `nombre_operador`='{nombre_operador}', `apellido_operador`='{apellido_operador}', `fecha_inicio_cotizacion`='{fecha_inicio_cotizacion}', `fecha_fin_cotizacion`='{fecha_fin_cotizacion}', `nombre_cliente_cotizacion`='{cliente_seleccionado}', `direcion_cliente`='{direcion_cliente}', `correo_cliente`='{correo_cliente}', `cuidad_cliente`='{cuidad_cliente}', `contacto_cliente`='{contacto_cliente}' WHERE num_cotizacion='{id_cotizacion}'"
+        bsql = f"UPDATE `cotizaciones` SET `num_cotizacion`='{editar[0]}', `cliente_cotizacion`='{editar[1]}', `documento_operador`='{editar[2]}', `nombre_operador`='{editar[3]}', `apellido_operador`='{editar[4]}', `fecha_inicio_cotizacion`='{editar[5]}', `fecha_fin_cotizacion`='{editar[6]}', `nombre_cliente_cotizacion`='{editar[7]}', `direcion_cliente`='{editar[8]}', `correo_cliente`='{editar[9]}', `cuidad_cliente`='{editar[10]}', `contacto_cliente`='{editar[11]}' WHERE num_cotizacion='{editar[0]}'"
+        print('datos ')
         
         try:
             self.cursor.execute(bsql)
@@ -62,8 +63,17 @@ class Cotizaciones:
             print(f"Error al insertar datos: {e}")
 
     def editarDetalleCotizaciones(self, editar):
-        bsql = f"UPDATE `detallecotizaciones` SET `id_detalle_cotizacion`='{editar[0]}',  `producto_cotizacion`='{editar[1]}', `nombre_producto`='{editar[2]}', `cantidad_productos_cotizacion`='{editar[3]}', `valorunidad_prodcotizacion`='{editar[4]}', `valortotal_cantidaproductos_cotizacion`='{editar[5]}', `totalpagar_cotizacion`='{editar[6]}', `fecha_inicio`='{editar[7]}', `fecha_fin`='{editar[8]}'  WHERE `id_detalle_cotizacion`='{editar[0]}'"
+        bsql = f"UPDATE `detallecotizaciones` SET `id_detalle_cotizacion`='{editar[0]}',  `producto_cotizacion`='{editar[1]}', `nombre_producto`='{editar[2]}', `cantidad_productos_cotizacion`='{editar[3]}', `valorunidad_prodcotizacion`='{editar[4]}', `valortotal_cantidaproductos_cotizacion`='{editar[5]}', `totalpagar_cotizacion`='{editar[6]}'  WHERE `id_detalle_cotizacion`='{editar[0]}'"
+        print("Valores antes de la actualización en detallecotizaciones:", bsql)
         self.cursor.execute(bsql)
+        self.conexion.commit()
+        
+        print("Valores antes de la actualización en cotizaciones:", editar[7], editar[8])
+        # Actualizar los campos en la tabla cotizaciones
+        sql2 = f"UPDATE `cotizaciones` SET `fecha_inicio_cotizacion`='{editar[7]}', `fecha_fin_cotizacion`='{editar[8]}' WHERE `num_cotizacion`='{editar[0]}'"
+        self.cursor.execute(sql2)
+        
+        # Confirmar los cambios en la base de datos
         self.conexion.commit()
 
         

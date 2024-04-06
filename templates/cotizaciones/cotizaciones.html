@@ -111,8 +111,8 @@
                                             <a href="/editarCotizacion/{{c[0]}}"><i id="icono_ver_mas" class="lni lni-pencil"></i></a>
                                         </td>
                                         <td class="btns_centro">
-                                            <a  href="muestra_detalles_cotiz/{{c[0]}}">
-                                                <i id=icono_3 class="lni lni-circle-plus"></i>
+                                            <a href="{{ url_for('nuevo_detalle', id_cotizacion=c[0]) }}">
+                                                <i id="icono_3" class="lni lni-circle-plus"></i>
                                             </a>
                                         </td>
                                         <td class="btns_centro btn_eliminar" style="visibility: hidden;">

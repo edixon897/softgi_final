@@ -137,11 +137,8 @@ def editarCotizacion(id_cotizacion):
                     cliente = cursor.fetchall()
 
             return render_template('/cotizaciones/editarCotizacion.html', datos=datos, productos=productos, cliente=cliente)
-
-            
         else:
             return redirect("/inicio")
-        
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
@@ -166,7 +163,7 @@ def atualizarCotizacion():
         cliente_seleccionado = request.form.get('clienteCotizacionEditar')
         id_cotizacion = request.form['id_cotizacion']
 
-        clienteCotizacion = None  # Inicializar las variables con un valor predeterminado
+        clienteCotizacion = ""  # Inicializar las variables con un valor predeterminado
         contacto_cliente = None
         correo_cliente = None 
         direcion_cliente = None  
@@ -220,25 +217,21 @@ def atualizarCotizacion():
                     # Consulta para obtener la información del producto
                     cursor.execute(bsqd)
                     resultadoReferencia = cursor.fetchone()
-
                     if resultadoReferencia:
                         producto_cotizacion = resultadoReferencia[0]
                         valorunidadProdcotizacion = resultadoReferencia[1]
-
                         # Consulta para obtener el ID de detalle de cotización del producto en la cotización actual
                         cursor.execute(mylsql)
                         detalle_cotizacion = cursor.fetchone()
-
                         # Verificar si se encontró un detalle de cotización para el producto actual
                         if detalle_cotizacion:
                             id_detalle_cotizacion = detalle_cotizacion[0]
                             valortotalCantidaproductosCotizacion = cantidad_producto * valorunidadProdcotizacion
                             total = valortotalCantidaproductosCotizacion
-
                             # Actualizar el detalle de cotización existente
-                            datos = [id_detalle_cotizacion, producto_cotizacion, nombre_producto, cantidad_producto, valorunidadProdcotizacion, valortotalCantidaproductosCotizacion, total, id_detalle_cotizacion]
+                            datos = [id_detalle_cotizacion, producto_cotizacion, nombre_producto, cantidad_producto, valorunidadProdcotizacion, valortotalCantidaproductosCotizacion, total, fecha_inicio, fecha_fin]
                             cotizaciones.editarDetalleCotizaciones(datos)
-                            print('Actualizacion de datos', datos)
+                            print('Actualizacion de datos 1ra linea', datos)
                         else:
                             # Insertar un nuevo detalle de cotización
                             valortotalCantidaproductosCotizacion = cantidad_producto * valorunidadProdcotizacion
@@ -246,13 +239,22 @@ def atualizarCotizacion():
                             datos = [id_cotizacion, producto_cotizacion, nombre_producto, cantidad_producto, valorunidadProdcotizacion, valortotalCantidaproductosCotizacion, total]
                             cotizaciones.crearDetalleCotizacion(datos)
                             print('Registro de datos', datos)
+                if detalle_cotizacion:
+                    id_detalle_cotizacion = detalle_cotizacion[0]
+                    valortotalCantidaproductosCotizacion = cantidad_producto * valorunidadProdcotizacion
+                    total = valortotalCantidaproductosCotizacion
 
+                    # Actualizar el detalle de cotización existente
+                    datos = [id_detalle_cotizacion, producto_cotizacion, nombre_producto, cantidad_producto, valorunidadProdcotizacion, valortotalCantidaproductosCotizacion, total, id_detalle_cotizacion, clienteCotizacion, fecha_inicio, fecha_fin]
+                    cotizaciones.editarDetalleCotizaciones(datos)
+                    print('Actualizacion de datos 2da linea', datos)
+                else:
+                    print("No se encontró detalle de cotización para el producto actual")
         flash('La cotización ha sido actualizada exitosamente.')
         return redirect(url_for('Cotizacion'))
-        
     else:
         flash('Por favor inicia sesión para poder acceder')
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 
 @app.route('/borraCotizacion/<id_cotizacion>', methods=['POST'])
@@ -264,13 +266,12 @@ def borraCotizacion(id_cotizacion):
 
             cotizaciones.eliminarCotizacion(id_cotizacion)                 
             return redirect("/Cotizacion")
-        
         else:
             return redirect("/inicio")
-
     else:
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
+    
 
 @app.route('/borraDetallleCotizacion/<int:id_cotizacion>', methods=['POST'])
 def borraDetallleCotizacion(id_cotizacion):
@@ -299,23 +300,62 @@ def detalle(id_cotizacion):
                 with conn.cursor() as cursor:
                     cursor.execute(sql)
                     resultado = cursor.fetchall()
-
                     cursor.execute(bsql)
                     cotiza = cursor.fetchall()
-
             # Aca se convertir el total de la cantidad a palabras
             total_cantidad = sum(row[3] for row in resultado)
             # Se asegúra de que total_cantidad sea un entero antes de pasarlo a num2words
             total_cantidad_entero = int(total_cantidad)
             total_cantidad_palabras = num2words(total_cantidad_entero, lang='es')
-  
-
             return render_template("cotizaciones/detalleCotizacion.html", datos=resultado, info=cotiza, total_cantidad=total_cantidad, total_cantidad_palabras=total_cantidad_palabras)
         else:
             return redirect("/inicio")
     else:
         flash('Algo está mal en los datos digitados')
         return redirect(url_for('index'))
+    
+@app.route("/nuevo_detalle/<id_cotizacion>")
+def nuevo_detalle(id_cotizacion):
+    if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "vendedor":
+            sql = f"""
+               SELECT 
+                    dc.num_cotizacion,
+                    dc.producto_cotizacion,
+                    dc.nombre_producto, 
+                    dc.cantidad_productos_cotizacion, 
+                    dc.valorunidad_prodcotizacion, 
+                    dc.valortotal_cantidaproductos_cotizacion,
+                    dc.totalpagar_cotizacion,
+                    c.fecha_inicio_cotizacion, 
+                    c.fecha_fin_cotizacion
+                FROM 
+                    detallecotizaciones dc
+                JOIN 
+                    cotizaciones c ON dc.num_cotizacion = c.num_cotizacion
+                WHERE 
+                    dc.num_cotizacion = '{id_cotizacion}' 
+                    AND dc.detalle_estado = 'ACTIVO'
+                    AND c.estado = 'ACTIVO'
+            """
+
+            with mysql.connect() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(sql)
+                    detalles_cotizacion = cursor.fetchall()
+
+            total_cantidad = sum(row[5] for row in detalles_cotizacion)
+
+            return render_template("cotizaciones/muestra_detalles_cotiz.html", detalles_cotizacion=detalles_cotizacion, total=total_cantidad)
+        else:
+            return redirect("/inicio")
+    else:
+        flash('Algo está mal en los datos digitados')
+        return redirect(url_for('index'))
+
+
+
     
 
 @app.route('/buscar_ProductoCotizacion', methods=['POST'])
