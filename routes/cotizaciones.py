@@ -160,7 +160,10 @@ def atualizarCotizacion():
         apellido_operador = resultado[2]
         fecha_inicio = request.form['fechaInicioEditarCliente']
         fecha_fin = request.form['fechaFinEditarCliente']
+        print("Fecha de inicio recibida:", fecha_inicio)
+        print("Fecha de fin recibida:", fecha_fin)
         cliente_seleccionado = request.form.get('clienteCotizacionEditar')
+        print("Este es el cliente desde el formulario", cliente_seleccionado)
         id_cotizacion = request.form['id_cotizacion']
 
         clienteCotizacion = ""  # Inicializar las variables con un valor predeterminado
@@ -200,7 +203,7 @@ def atualizarCotizacion():
             contacto_cliente
             ]
         
-        cotizaciones.editarCotizacion(editarCotiza)
+        cotizaciones.editarCotizaciones(editarCotiza)
     
         referenciasProductos = request.form.getlist('nombreProd[]')
         cantidadesProductos = request.form.getlist('cantidadProd[]')
@@ -250,11 +253,25 @@ def atualizarCotizacion():
                     print('Actualizacion de datos 2da linea', datos)
                 else:
                     print("No se encontró detalle de cotización para el producto actual")
-        flash('La cotización ha sido actualizada exitosamente.')
+        
+        # Después de obtener las fechas originales de la cotización
+        fecha_inicio_original = fecha_inicio
+        fecha_fin_original = fecha_fin
+
+        # Luego, antes de ejecutar la actualización en la base de datos
+        if fecha_inicio != fecha_inicio_original or fecha_fin != fecha_fin_original:
+            # Si las fechas han cambiado, proceder con la actualización
+            flash('La cotización ha sido actualizada exitosamente.')
+        else:
+            # Si las fechas no han cambiado, mostrar un mensaje indicando que no se han realizado cambios en las fechas
+            flash('No se han realizado cambios en las fechas de la cotización.')
+
         return redirect(url_for('Cotizacion'))
     else:
         flash('Por favor inicia sesión para poder acceder')
         return redirect(url_for('index'))
+
+
 
 
 @app.route('/borraCotizacion/<id_cotizacion>', methods=['POST'])
