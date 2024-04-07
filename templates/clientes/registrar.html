@@ -13,7 +13,6 @@
 
         <section id="conten_titulo_1">
 
-
             <div id="conten_titulo_lado_1">
                 <h2>Registrar cliente</h2>
             </div>
@@ -32,38 +31,31 @@
 
             <div id="conten_FORM">
 
-            
-
                 <section class="lado_info_personal">
 
                     <div class="conten_titulo_div">
                         <p>Info personal</p>
                     </div>
 
-
                     <div class="conten_inputs_1">
                         
                         <input type="hidden" value="{{mensaje}}" id="input_error" oninput="verifica_input()" readonly>
 
-
-
                         <div class="campo_2">
-                            <input type="number" name="doc_cliente" id="documento" class="input_campo" oninput="campo_lleno1()">
+                            <input type="number" name="doc_cliente" id="documento" class="input_campo" oninput="campo_lleno1()" pattern="[0-9]{6,10}" title="El documento debe tener entre 6 y 10 dígitos numéricos" required>
                             <label for="documento">Documento</label>
                         </div>
                         
                         <div class="campo_2">
-                            <input type="text" name="nom_cliente" id="nombre"  class="input_campo" oninput="campo_lleno2()">
+                            <input type="text" name="nom_cliente" id="nombre"  class="input_campo" oninput="campo_lleno2()" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s.'-]{2,50}" required>
                             <label for="nombre">Nombres</label>
                         </div>
                        
-
                         <div class="campo_2">
-                            <input type="text" name="ape_cliente" id="apellido" class="input_campo" oninput="campo_lleno3()">
+                            <input type="text" name="ape_cliente" id="apellido" class="input_campo" oninput="campo_lleno3()" pattern="[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s.'-]{2,50}" required>
                             <label for="apellido">Apellidos</label>
                         </div>
                         
-
                     </div>
                     
                 </section>
@@ -77,13 +69,12 @@
                     <div class="content_inputs_2">
 
                         <div class="campo_2">
-                            <input type="date" name="fecha_nacimiento_cliente" id="fecha" class="input_campo" oninput="campo_lleno4()">
+                            <input type="date" name="fecha_nacimiento_cliente" id="fecha" class="input_campo" oninput="campo_lleno4()" required>
                             <label for="fecha">Fecha de nacimiento</label>
                         </div>
                         
-
                         <div class="campo_2">
-                            <select id="opt" name="tipopersona" class="input_campo" oninput="campo_lleno5()">
+                            <select id="opt" name="tipopersona" class="input_campo" oninput="campo_lleno5()" required>
                                 <option value="">seleciona tipo de persona</option>
                                 <option value="natural">Natural</option>
                                 <option value="juridica">Juridica(representante legal)</option>
@@ -91,12 +82,9 @@
                             <label for=""></label>
                         </div>
                         
-
-
                     </div>
 
                 </section>
-
 
                 <div id="conten_FORM_2">
 
@@ -109,28 +97,27 @@
                         <div class="conten_inputs_1">
     
                             <div class="campo_2">
-                                <input type="number" name="contacto_cliente" id="contacto" placeholder="" class="input_campo" oninput="campo_lleno6()">
+                                <input type="number" name="contacto_cliente" id="contacto" placeholder="Telefono" class="input_campo" oninput="campo_lleno6()" required>
                                 <label for="contacto">Telefono</label>
                             </div>
                             
-    
                             <div class="campo_2">
-                                <input type="email" name="email_cliente" id="correo" placeholder="" class="input_campo" oninput="campo_lleno7()">
+                                <input type="email" name="email_cliente" id="correo" placeholder="Correo Electronico" class="input_campo" oninput="campo_lleno7()" required>
                                 <label for="correo">Email</label>
                             </div>
                             
-    
                             <div class="campo_2">
-                                <input type="text" name="direccion_cliente" id="direccion" placeholder="" class="input_campo" oninput="campo_lleno8()">
+                                <input type="text" name="direccion_cliente" id="direccion" placeholder="Dirección" class="input_campo" oninput="campo_lleno8()" required>
                                 <label for="dirección">Dirección</label>
                             </div>
                             
                             <div class="campo_2">
-                                <input type="text" name="ciudad_cliente" id="ciudad" placeholder="ciudad" class="input_campo"  oninput="campo_lleno9()">
+                                <input type="text" name="ciudad_cliente" id="ciudad" placeholder="Ciudad" class="input_campo"
+                                  oninput="campo_lleno9()" pattern="[a-zA-Z\s]{2,14}"
+                                required>
                                 <label for="ciudad">Ciudad</label>
                             </div>
                             
-    
                         </div>
                         
                     </section>
@@ -147,15 +134,11 @@
     
                         </div>
     
-    
                     </section>
 
                 </div>
 
-
             </div>
-
-
 
             <div id="conten_buttons">
                 <div class="conten_buttons_2">
@@ -165,8 +148,6 @@
                     <a onclick="desplaza_form()" class="boton_registrar">Continuar</i></a>
                 </div>
 
-
-
                 <div id="sesion_buttons_2">
                     <div class="conten_buttons_2">
                         <a onclick="desplaza_form_regreso()" class="enlace_regresar"><i class="lni lni-arrow-left"></i></a>
@@ -175,17 +156,12 @@
                         <button type="submit" class="boton_registrar" onclick="animacion_envio()">registrar</button>
                     </div>
                 </div>
-                
-                
             </div>
-
         </form>
-
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../static/javaScript/color_campo_lleno.js"></script>
     
-
 </body>
 </html>

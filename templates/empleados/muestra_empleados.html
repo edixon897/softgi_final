@@ -117,23 +117,24 @@
                         <div id="nombre_empl" class="campo_empleado">
                             <i class="lni lni-user"></i>
                             <input type="text" name="nombre" maxlength="25" minlength="2"
-                            pattern="[a-zA-Z ]{2,25}" autocomplete="given-name" placeholder="Nombre (s)" tabindex="1">
+                            pattern="[a-zA-Z ]{2,25}" autocomplete="given-name" placeholder="Nombre (s)" tabindex="1" required>
                         </div>
                         <div id="contacto_empl" class="campo_empleado">
                             <i class="lni lni-mobile"></i>
-                            <input type="tel" name="contacto" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Celular" tabindex="3">
+                            <input type="tel" name="contacto" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Celular" tabindex="3" required>
                         </div>
                         <div id="campo_nac" class="campo_nac">
                             <label for="fechaNacimiento" class="letras">Fecha de nacimiento</label>
-                            <input type="date" name="nacimiento" tabindex="5">
+                            <input type="date" name="nacimiento" id="fechaNacimiento" tabindex="5" required>
                         </div>
                         <div id="ciudad_empl" class="campo_empleado">
                             <i class="lni lni-home"></i>
-                            <input type="text" name="ciudad" maxlength="14" minlength="2" pattern="[a-zA-Z]{2,14}" placeholder="Ciudad" tabindex="7">
+                            <input type="text" name="ciudad" maxlength="14" minlength="2" pattern="[a-zA-Z\s]{2,14}"
+                            placeholder="Ciudad" tabindex="7" required>
                         </div>
                         <div id="rol_empl">
                             <label for="" class="letras">Rol</label>
-                            <select name="rol" id="rol" tabindex="9">
+                            <select name="rol" id="rol" tabindex="9" required>
                                 <option value="administrador">Administrador</option>
                                 <option value="almacenista">Almacenista</option>
                                 <option value="vendedor">Vendedor</option>
@@ -145,31 +146,31 @@
                         <div id="apellido_empl" class="campo_empleado">
                             <i></i>
                             <input type="text" name="apellido" maxlength="25" minlength="2"
-                            pattern="[a-zA-Z ]{2,25}" autocomplete="family-name" placeholder="Apellido (s)" tabindex="2">
+                            pattern="[a-zA-Z ]{2,25}" autocomplete="family-name" placeholder="Apellido (s)" tabindex="2" required>
                         </div>
                         <div id="correo_empl" class="campo_empleado">
                             <i class="lni lni-envelope"></i>
-                            <input type="email" name="correo" inputmode="email" maxlength="56" placeholder="Correo" tabindex="4">
+                            <input type="email" name="correo" inputmode="email" maxlength="56" placeholder="Correo" tabindex="4" required>
                         </div>
                         <div id="documento_empl" class="campo_empleado">
                             <i class="lni lni-postcard"></i>
-                            <input type="number" name="documento" pattern="[0-9]{10}" maxlength="10" minlength="6" autocomplete="off" placeholder="Cédula" tabindex="6">
+                            <input type="number" name="documento" pattern="[0-9]{6,10}" title="El documento debe tener entre 6 y 10 dígitos numéricos" maxlength="10" minlength="6" autocomplete="off" placeholder="Cédula/Documento" tabindex="6" required>
                         </div>
                         <div id="direccion_empl" class="campo_empleado">
                             <i class="lni lni-map-marker"></i>
-                            <input type="text" name="direccion" maxlength="56" minlength="2" placeholder="Dirección" tabindex="8">
+                            <input type="text" name="direccion" maxlength="56" minlength="2" placeholder="Dirección" tabindex="8" required>
                         </div>
                         <div id="contrasena_empl" class="campo_empleado">
                             <i class="lni lni-key"></i>
-                            <input type="password" id="input_psw" name="contrasena" placeholder="Contraseña" tabindex="10">
+                            <input type="password" id="input_psw" name="contrasena" placeholder="Contraseña" tabindex="10" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn_empl">REGISTRAR</button>
+                    <button type="submit" class="btn_empl" id="btnEnviar">REGISTRAR</button>
                    
                 </form>
             </div>
         </div>
-
+        <!-------- Modal para Recuperar Contraseña --------------->
 
         <div id="recuperarContradoModal" class="modal" style="display: none;">
             <div class="modal-content">
@@ -181,7 +182,7 @@
                                 <span>Digita tu correo electrónico:</span>
                             </label>
                             <i class="lni lni-envelope"></i>
-                            <input type="email" name="email" id="email"  required>
+                            <input type="email" name="email" id="email" placeholder="Correo" required>
                         </div>
                         <button type="submit" id="btn">Recuperar</button>
                     </div>
@@ -218,5 +219,38 @@
                 });
             }
         </script>
+
+        <!-- Script para controlar fecha de nacimiento -->
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Obtener el elemento del campo de fecha
+                var fechaNacimientoInput = document.getElementById('fechaNacimiento');
+    
+                // Escuchar el evento de cambio en el campo de fecha
+                fechaNacimientoInput.addEventListener('change', function() {
+                    // Convertir el valor del campo de fecha a un objeto Date
+                    var fechaNacimiento = new Date(this.value);
+    
+                    // Obtener fecha actual
+                    var fechaActual = new Date();
+    
+                    // Calcular la diferencia en milisegundos entre las fechas
+                    var diferenciaMilisegundos = fechaActual - fechaNacimiento;
+    
+                    // Calcular la edad del usuario en años
+                    var edadAnios = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60 * 24 * 365.25));
+    
+                    // Verificar si la edad es menor de 18 años
+                    if (edadAnios < 18) {
+                        alert('Debe ser mayor de 18 años para registrarse.');
+                        this.value = ''; // Limpiar el valor del campo de fecha
+                    }
+                });
+            });
+        </script>
+        
+        
+        
 </body>
 </html>
