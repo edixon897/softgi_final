@@ -25,22 +25,10 @@
                             <input type="datetime" name="fecha_nacimiento" id="fecha_nacimiento_empleado" placeholder="Fecha de nacimiento" class="input_campo" value="{{resul[3]}}" tabindex="5" required> 
                         </div>
                         <div id="ciudad" class="campo_actualizar">
-                            <label for="" class="aclaracion">Ciudad</label>
-                            <select id="opt" name="ciudad_empleado" class="select" tabindex="7">
-                                <option value="{{resul[7]}}">{{resul[7]}}</option>
-                                <option value="Buga">Buga</option>
-                                <option value="Tulua">Tuluá</option>
-                                <option value="Sonso">Sonso</option>
-                                <option value="El Vinculo">El vínculo</option>
-                                <option value="Guacari">Guacarí</option>
-                                <option value="Cali">Cali</option>
-                                <option value="Restrepo">Restrepo</option>
-                            </select>
+                            <label for="ciudad_empleado" class="aclaracion">Ciudad</label>
+                            <input type="text" id="ciudad_empleado" name="ciudad_empleado" class="input_campo" value="{{resul[7]}}" tabindex="7" required>
                         </div>
-                        
-
                     </div>
-
                     <div id="page_2" class="campo_act_empl">
                         <div id="apellido" class="campo_actualizar">
                             <input type="text" name="ape_empleado" id="ape_empleado" placeholder="Apellido" class="input_campo" value="{{resul[2]}}" tabindex="2" required>
@@ -59,7 +47,7 @@
                         </div>
                         
                     </div>
-                    <!-- <div id="rol_edita_empleado">
+                    <div id="rol_edita_empleado">
                         <label for="" class="aclaracion">Rol</label>
                         <select name="rol"  class="select">
                             <option value="{{resul[8]}}">{{resul[8]}}</option>
@@ -67,7 +55,7 @@
                             <option value="vendedor">Vendedor</option>
                             <option value="almacenista">Almacenista</option>
                         </select>
-                    </div> -->
+                    </div>
                     <button type="submit" class="btn_act_empl">Actualizar</button>
             </form>
         </div>
