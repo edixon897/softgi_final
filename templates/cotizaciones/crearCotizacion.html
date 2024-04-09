@@ -16,6 +16,7 @@
      <!-- Modal -->
      <div id="crearCotizacionModal" class="modal" style="display: none;">
         <div class="modal-content">
+            
             <form action="/crearCotizacion" method="POST">
 
                 <div class="form-group">
@@ -23,6 +24,7 @@
                         <label for="fechaInicioNuevoCliente">Fecha de Inicio:</label>
                         <input type="date" name="fechaInicioNuevoCliente" id="fechaInicio" required>
                     </div>
+
                     <div class="fin">
                         <label for="fechaFinNuevoCliente">Fecha de Fin:</label>
                         <input type="date" name="fechaFinNuevoCliente" id="fechaFin" required>
@@ -43,7 +45,6 @@
                     </div>
                 </div>
 
-
                 <div class="form-group-n">
                     <div class="table-container">
                         <div class="table-wrapper">
@@ -59,7 +60,6 @@
                     </div>
                 </div>
                 
-
                     <div class="table-container">
                         <div class="table-wrapper">
                                 <table id="productosSeleccionados" name="referenciaProductos[]">
@@ -76,13 +76,15 @@
 
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="select-button" value="Registrar">Crear Cotización</button>
+                        <button type="submit" class="select-button" value="Registrar" id="bnt-crear-cotizacion">Crear Cotización</button>
                     </div>
             </form>
         </div>
     </div>
+   
     <script src="/static/javaScript/modalcotiza.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="/static/javaScript/buscadoProCotizacion.js"></script>
+
 </body>
 </html>

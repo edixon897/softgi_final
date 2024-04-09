@@ -257,6 +257,7 @@ def atualizarCotizacion():
         # Después de obtener las fechas originales de la cotización
         fecha_inicio_original = fecha_inicio
         fecha_fin_original = fecha_fin
+        
 
         # Luego, antes de ejecutar la actualización en la base de datos
         if fecha_inicio != fecha_inicio_original or fecha_fin != fecha_fin_original:

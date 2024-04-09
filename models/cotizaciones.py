@@ -15,18 +15,6 @@ class Cotizaciones:
         self.conexion.commit()
         
     
-    """ def editarCotizaciones(self, editar):
-        # Asegúrate de que las fechas estén entre comillas simples en la consulta SQL
-        bsql = f"UPDATE `cotizaciones` SET `num_cotizacion`='{editar[0]}', `cliente_cotizacion`='{editar[1]}', `documento_operador`='{editar[2]}', `nombre_operador`='{editar[3]}', `apellido_operador`='{editar[4]}', `fecha_inicio_cotizacion`='{editar[5]}', `fecha_fin_cotizacion`='{editar[6]}', `nombre_cliente_cotizacion`='{editar[7]}', `direcion_cliente`='{editar[8]}', `correo_cliente`='{editar[9]}', `cuidad_cliente`='{editar[10]}', `contacto_cliente`='{editar[11]}' WHERE num_cotizacion='{editar[0]}'"
-        
-        print('datos que van en editarCotizaciones: ', bsql)
-        
-        try:
-            self.cursor.execute(bsql)
-            self.conexion.commit()
-        except Exception as e:
-            print("Error al ejecutar la consulta SQL:", e) """
-    
     def editarCotizaciones(self, editar):
         # Verificar si el cliente seleccionado existe en la tabla clientes
         cliente_existente = None
@@ -55,8 +43,6 @@ class Cotizaciones:
         except Exception as e:
             print("Error al ejecutar la consulta SQL:", e)
 
-
-        
 
     def eliminarCotizacion(self,id_cotizaciones):
         try:
