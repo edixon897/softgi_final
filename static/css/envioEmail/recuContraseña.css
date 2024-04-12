@@ -14,7 +14,7 @@ body, html {
     width: 450px; /* Ancho máximo del formulario */
     margin: 0 auto; /* Centrar el formulario en la página */
     margin-top: 50px; /*distancia en el contenido de ariba entre el formulario*/
-    background-color:#50a4e4; /* Color de fondo del formulario */
+    background-color:#8fb6d3; /* Color de fondo del formulario */
     padding: 20px; /* Espacio interno del formulario */
     border-radius: 8px; /* Borde redondeado del formulario */
     text-align: center;
