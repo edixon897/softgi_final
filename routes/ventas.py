@@ -1209,7 +1209,7 @@ def buscarVentas():
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
             busqueda = request.form['Busqueda']  # Cambiado a 'Busqueda' para que coincida con el nombre en el script JavaScript
-            sql = f"SELECT v.num_factura, v.cliente_factura, CONCAT(c.nom_cliente, ' ', c.ape_cliente) AS nombre_cliente, CONCAT(v.nombre_operador, ' ', v.apellido_operador) AS nombre_operador, v.fechahora_venta, v.forma_pago FROM ventas v JOIN clientes c ON v.cliente_factura = c.doc_cliente WHERE c.nom_cliente LIKE '%{busqueda}%' OR c.ape_cliente LIKE '%{busqueda}%' OR v.num_factura LIKE '%{busqueda}%' ORDER BY v.num_factura DESC"
+            sql = f"SELECT num_factura, v.cliente_factura, CONCAT(c.nom_cliente, ' ', c.ape_cliente) AS nombre_cliente, CONCAT(v.nombre_operador, ' ', v.apellido_operador) AS nombre_operador, v.fechahora_venta, v.forma_pago FROM ventas v JOIN clientes c ON v.cliente_factura = c.doc_cliente WHERE c.nom_cliente LIKE '%{busqueda}%' OR c.ape_cliente LIKE '%{busqueda}%' OR v.num_factura LIKE '%{busqueda}%' ORDER BY v.num_factura DESC"
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sql)

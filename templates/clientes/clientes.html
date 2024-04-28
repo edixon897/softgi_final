@@ -42,7 +42,7 @@
                         </div>
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
-                            <input type="search" id="searchClientes" oninput="buscarClientes()" placeholder="">
+                            <input type="search" id="searchClientes" name="searchClientes" placeholder="Buscar...">
                         </form>
                     </section>
                     <section id="section_tabla_info">
@@ -77,16 +77,11 @@
                                                 <i id="icono_2" class="lni lni-pencil"></i>
                                             </button>
                                         </td>
-                                        <!-- Otro botón para eliminar cliente -->
+                                        <!-- Botón para eliminar cliente -->
                                         <td class="btns_centro btn_eliminar">
-
-                                            <a onclick="return confirm('Seguro que deseas eliminar el cliente?')"
-                                                href="/borracliente/{{c[0]}}">
-
-                                            <a onclick="return confirm('¿Seguro que deseas eliminar este cliente?')" href="/borracliente/{{c[0]}}">
-
-                                                <i id=icono_3 class="lni lni-trash-can"></i>
-                                            </a>
+                                            <button onclick="eliminarPruducto('{{c[0]}}')">
+                                                <i id="icono_2" class="lni lni-trash-can"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     {% endfor %}

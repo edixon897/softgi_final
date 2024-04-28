@@ -1,50 +1,101 @@
-function buscarProductos() {
-    var input, filter, table, tr, td, i, j, txtValue, noResults;
+var tablaOriginal;  // Variable para almacenar la tabla original antes de realizar la búsqueda
 
-    input = document.getElementById("searchProductos");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("Tabla_product");
-    tr = table.getElementsByTagName("tr");
-    noResults = document.getElementById("noResults");
+$(document).ready(function() {
+    // Guardar la tabla original cuando se carga el documento
+    tablaOriginal = $('#Tabla_product tbody').html();
 
-
-    noResults.style.display = "none";
-
-
-    for (i = 0; i < tr.length; i++) {
-        if (!tr[i].getElementsByTagName("td").length) {
-            // Si no hay celdas td, es decir, es un encabezado, se salta la iteración.
-            continue;
+    $('#searchProductos').on('input', function() {
+        var busqueda = $(this).val().trim();
+        if (busqueda.length > 1) {
+            buscarEnTiempoReal(busqueda);
+        } else {
+            restaurarTabla();
         }
-        td = tr[i].getElementsByTagName("td");
-        var encontrado = false;
+    });
 
-        for (j = 0; j < td.length; j++) {
-            if (td[j]) {
-                txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    encontrado = true;
-                    break;
-                }
+    // Manejar el evento cuando el campo de búsqueda se vacía
+    $('#searchProductos').on('keyup', function(event) {
+        if (event.keyCode === 8 && $(this).val().length === 0) {
+            restaurarTabla();
+        }
+    });
+});
+
+function buscarEnTiempoReal(busqueda) {
+    $.ajax({
+        type: 'POST',
+        url: '/buscador_productos',
+        data: { 'searchProductos': busqueda },
+        success: function(response) {
+            actualizarTabla(response.result);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error al realizar la búsqueda:', error);
+        }
+    });
+}
+
+function restaurarTabla() {
+    var tabla = $('#Tabla_product tbody');
+    tabla.empty();
+    tabla.append(tablaOriginal);
+    // Asignar eventos onclick de nuevo después de restaurar la tabla
+    asignarEventosClick();
+}
+function eliminarPruducto(doc_producto) {
+    if (confirm('¿Seguro que deseas eliminar este producto?')) {
+        $.ajax({
+            type: 'POST',
+            url: '/borra_produc/' + doc_producto,
+            success: function(response) {
+                // Si la eliminación es exitosa, actualiza la tabla
+                var busqueda = $('#Tabla_product').val().trim();
+                buscarEnTiempoReal(busqueda);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error al eliminar el proveedor:', error);
             }
-        }
-
-        // Ocultar o mostrar la fila según si se encontró o no la coincidencia.
-        tr[i].style.display = encontrado ? "" : "none";
+        });
     }
+}
+function eliminarFilasDuplicadas(tabla) {
+    var seen = {};
+    tabla.find('tr').each(function() {
+        var id = $(this).attr('id');
+        if (seen[id]) $(this).remove();
+        else seen[id] = true;
+    });
+}
 
+function actualizarTabla(data) {
+    var tabla = $('#Tabla_product tbody');
+    tabla.empty();
+    if (data.length > 0) {
+        $.each(data, function(index, row) {
+            var tr = $('<tr>'); // Crear una nueva fila para cada elemento en los datos
+            $.each(row, function(key, value) {
+                $('<td>').text(value).appendTo(tr); // Agregar cada valor como un elemento de celda a la fila
+            });
 
-    
-    if (Array.from(tr).every(row => row.style.display === "none")) {
-        noResults.style.display = "block";
+            // Agregar botones a la fila
+            var verDetalleBtn = $('<td class="btns_centr"><button onclick="abrirModal_2(\'' + row[0] + '\')"><i id="icono_3" class="lni lni-plus"></i></button></td>');
+            tr.append(verDetalleBtn);
+
+            var editarBtn = $('<td class="btns_centr"><button onclick="abrirModalEditCompra(\'' + row[0] + '\')" class="btn_editar"><i id="icono_ver_mas" class="lni lni-pencil"></i></button></td>');
+            tr.append(editarBtn);
+
+            var eliminarBtn = $('<td class="btns_centr"><button onclick="eliminarPruducto(\'' + row[0] + '\')"><i id="icono_2" class="lni lni-trash-can"></i></button></td>');
+            tr.append(eliminarBtn);
+            
+            // Agregar la fila a la tabla
+            tabla.append(tr);
+        });
+        // Asignar eventos onclick después de actualizar la tabla
+        asignarEventosClick();
+    } else {
+        tabla.append('<tr><td colspan="7">No se encontraron resultados</td></tr>');
     }
-};
-
-
-
-
-
-
+}
 
 
 

@@ -6,14 +6,10 @@ from email.mime.text import MIMEText
 from email.message import EmailMessage
 
 
-
-
-
-
 app = Flask(__name__)
 mysql = MySQL()
 
-app.secret_key = 'hfoy9ew87rwhdfs'
+app.secret_key = 'hfoy9ew87rwhdfsjerwojoafodsheurow843742rhw7298r3285962942tr8bds8834hwe683hiws73i2hi3r64eugsa8742k2'
 def conexion():
     try:
         app.config['MYSQL_DATABASE_SECRET_KEY'] = app.secret_key
@@ -23,7 +19,6 @@ def conexion():
         app.config['MYSQL_DATABASE_HOST'] = 'localhost'
         app.config['MYSQL_DATABASE_PORT'] = 3306
         app.config['MYSQL_DATABASE_CHARSET'] = 'utf8mb4'
-        print('Conexion de la base de datos exitosa')
     except Exception as e:
                 print(f"Error al conectar a la base de datos: {str(e)}")
 

@@ -345,3 +345,7 @@ td.campo_dinero1 {
 .btn_editar:hover {
     cursor: pointer;
 }
+button{
+    border: none;
+    background: transparent;
+}

@@ -152,10 +152,10 @@ def buscar_cliente():
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
 
             if request.method == 'POST':
-                busqueda = request.form['busqueda']
+                busqueda = request.form['searchClientes']
                 conn = mysql.connect()
                 cursor = conn.cursor()
-                cursor.execute(f"SELECT * FROM clientes WHERE estado_cliente='ACTIVO' AND (nom_cliente LIKE '%{busqueda}%' OR doc_cliente LIKE '%{busqueda}%' OR ape_cliente LIKE '%{busqueda}%')")
+                cursor.execute(f"SELECT * FROM clientes WHERE estado_cliente='ACTIVO' AND (doc_cliente LIKE '%{busqueda}%' OR nom_cliente LIKE '%{busqueda}%' OR ape_cliente LIKE '%{busqueda}%')")
                 resultados = cursor.fetchall()
                 conn.close()
                 return render_template('clientes/clientes.html', resulta=resultados) 

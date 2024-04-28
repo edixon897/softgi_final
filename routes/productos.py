@@ -345,3 +345,22 @@ def modificar_cantidad():
         return redirect(url_for('index'))
             
 
+@app.route("/buscador_productos", methods=['POST', 'GET'])
+def buscador_productos():
+    if "nom_empleado" in session:
+        rol_usuario = session["rol"]
+        if rol_usuario == "administrador" or rol_usuario == "almacenista":
+            busqueda = request.form['searchProductos']
+            sql = f"""SELECT id_producto, ref_produ_1, nom_categoria, nom_proveedor, nombre_producto, precio_compra, precio_venta, cantidad_producto, descripcion, stockminimo, ubicacion, estante FROM productos  WHERE (estado_producto = 'ACTIVO') AND (nom_categoria LIKE '%{busqueda}%' OR ref_produ_1 LIKE '%{busqueda}%' OR id_producto LIKE '%{busqueda}%' OR nombre_producto LIKE '%{busqueda}%' OR descripcion LIKE '%{busqueda}%')"""
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql)
+            resultado = cursor.fetchall()
+            conn.close()
+            return jsonify(result=resultado)
+        else:
+            return redirect("/inicio")
+    else:
+        flash('Por favor inicia sesión para poder acceder')
+        return redirect(url_for('index'))

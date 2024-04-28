@@ -51,9 +51,8 @@
                         </div>
                         <form id="form_conten">
                             <i id="icono_busqueda" class="lni lni-search-alt"></i>
-                            <input type="search" id="searchProductos" oninput="buscarProductos()" placeholder="">
+                            <input type="search" id="searchProductos" name="searchProductos" placeholder="Buscar..."/>
                         </form>
-
                     </section>
                     <section id="section_tabla_info">
                         <div id="conten_t">
@@ -82,7 +81,7 @@
                                 <tbody>
                                     {% for c in resul %}
                                     <tr>
-                                        <td>{{ c[0]}}</td> <!-- codigo(id) -->
+                                        <td id="{{ c[0] }}">{{ c[0]}}</td> <!-- codigo(id) -->
                                         <td>{{ c[1] }}</td> <!-- Referencia #1 -->
                                         <td>{{ c[4] }}</td> <!-- Categoría -->
                                         <td>{{ c[5] }}</td> <!-- Proveedor -->
@@ -99,20 +98,21 @@
                                         <td></td> <!-- Esta columna está vacía -->
 
                                         <td class="btns_centro">
-                                            <a href="#" onclick="abrirModal_2('{{c[0]}}')"> <!-- Abre modal para Actualizar la Cantidad del Producto Seleccioando-->
-                                                <i id=icono_3 class="lni lni-plus"></i> 
-                                            </a>
+                                            <button onclick="abrirModal_2('{{c[0]}}')">
+                                                <i id="icono_3" class="lni lni-plus"></i>
+                                            </button>
                                         </td>
-
+                                        
                                         <td class="btns_centro">
                                             <button onclick="abrirModalEditCompra('{{c[0]}}')" class="btn_editar">
                                                 <i id="icono_ver_mas" class="lni lni-pencil"></i>
                                             </button>
                                         </td>
+                                        
                                         <td class="btns_centro">
-                                            <a onclick="return confirm('¿Seguro que deseas eliminar este producto?')" href="/borra_produc/{{c[0]}}">
-                                                <i id=icono_2 class="lni lni-trash-can"></i>
-                                            </a>
+                                            <button onclick="eliminarPruducto('{{c[0]}}')">
+                                                <i id="icono_2" class="lni lni-trash-can"></i>
+                                            </button>
                                         </td>
                                     </tr>
 

@@ -76,6 +76,7 @@ function actualizarTabla(data) {
                 tabla.append('<tr><td colspan="8">No se encontraron resultados</td></tr>');
     }
 }
+
 function isDate(value) {
     return !isNaN(Date.parse(value));
 }

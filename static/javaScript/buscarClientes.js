@@ -1,43 +1,107 @@
-function buscarClientes() {
-    var input, filter, table, tr, td, i, j, txtValue, noResults;
 
-    input = document.getElementById("searchClientes");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("TablaClientes");
-    tr = table.getElementsByTagName("tr");
-    noResults = document.getElementById("noResults");
-
-
-    noResults.style.display = "none";
-
-
-    for (i = 0; i < tr.length; i++) {
-        if (!tr[i].getElementsByTagName("td").length) {
-            // Si no hay celdas td, es decir, es un encabezado, se salta la iteración.
-            continue;
-        }
-        td = tr[i].getElementsByTagName("td");
-        var encontrado = false;
-
-        for (j = 0; j < td.length; j++) {
-            if (td[j]) {
-                txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    encontrado = true;
-                    break;
-                }
-            }
-        }
-
-        // Ocultar o mostrar la fila según si se encontró o no la coincidencia.
-        tr[i].style.display = encontrado ? "" : "none";
-    }
-
+var tablaOriginal;  // Variable para almacenar la tabla original antes de realizar la búsqueda
     
-    if (Array.from(tr).every(row => row.style.display === "none")) {
-        noResults.style.display = "block";
-    }
+        $(document).ready(function() {
+            // Guardar la tabla original cuando se carga el documento
+            tablaOriginal = $('#TablaClientes tbody').html();
+    
+            $('#searchClientes').on('input', function() {
+                var busqueda = $(this).val().trim();
+                if (busqueda.length > 1) {
+                    buscarEnTiempoReal(busqueda);
+                } else {
+                    restaurarTabla();
+                }
+            });
+        });
+        
+        function buscarEnTiempoReal(busqueda) {
+          $.ajax({
+              type: 'POST',
+              url: '/buscar_cliente',
+              data: { 'searchClientes': busqueda },
+              dataType: 'json', // Especifica que esperas una respuesta JSON
+              success: function(response) {
+                  console.log('Respuesta del servidor:', response);
+                  if (response.result) {
+                      actualizarTabla(response.result);
+                  } else if (response.error) {
+                      console.error('Error en la respuesta del servidor:', response.error);
+                      // Maneja el error de forma adecuada
+                  } else {
+                      console.warn('Respuesta inesperada del servidor');
+                  }
+              },
+              error: function(xhr, status, error) {
+                  console.error('Error al realizar la búsqueda:', error);
+              }
+          });
+      }
+        
+        function restaurarTabla() {
+            // Eliminar filas duplicadas antes de restaurar la tabla original
+            var tabla = $('#TablaClientes tbody');
+            eliminarFilasDuplicadas(tabla);
+
+            // Restaurar la tabla a su estado original
+            tabla.empty();
+            tabla.append(tablaOriginal);
+            // Asignar eventos onclick de nuevo después de restaurar la tabla
+            asignarEventosClick();
+        }
+        function eliminarFilasDuplicadas(tabla) {
+            var seen = {};
+            tabla.find('tr').each(function() {
+                var txt = $(this).text();
+                if (seen[txt]) $(this).remove();
+                else seen[txt] = true;
+            });
+        }
+        
+        function actualizarTabla(data) {
+          var tabla = $('#TablaClientes tbody');
+          tabla.empty();
+          if (data.length > 0) {
+              $.each(data, function(index, row) {
+                  var tr = $('<tr>');
+                  $.each(row, function(key, value) {
+                      $('<td>').text(value).appendTo(tr);
+                  });
+                  // Botones de editar y eliminar
+                  var editarBtn = $('<td><button onclick="abrirModalEditar(\'' + row[0] + '\')"><i class="lni lni-pencil"></i></button></td>');
+                  tr.append(editarBtn);
+                  var eliminarBtn = $('<td><button onclick="eliminarProducto(\'' + row[0] + '\')"><i class="lni lni-trash-can"></i></button></td>');
+                  tr.append(eliminarBtn);
+                  tabla.append(tr);
+              });
+              asignarEventosClick();
+          } else {
+              tabla.append('<tr><td colspan="7">No se encontraron resultados</td></tr>');
+          }
+      }
+    
+
+// Función para verificar si un valor es una fecha
+function isDate(value) {
+    return !isNaN(Date.parse(value));
 }
+
+// Función para formatear la fecha 
+function formatDate(dateString) {
+    var date = new Date(dateString);
+    var year = date.getFullYear();
+    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+    var day = ('0' + date.getDate()).slice(-2);
+    return year + '-' + month + '-' + day;
+}
+
+
+
+
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     var table = document.getElementById("TablaClientes");
