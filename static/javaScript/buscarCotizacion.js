@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     $('#searchCotizacion').on('input', function() {
         var busqueda = $(this).val().trim();
-        if (busqueda.length > 4) {
+        if (busqueda.length > 2) {
             buscarCotizacionesEnTiempoReal(busqueda);
         } else {
             restaurarTabla();
@@ -74,6 +74,9 @@ function actualizarTabla(data) {
             }
             // Botón para editar (ver detalle)
             var verDetalleBtn = $('<td class="btns_centro"><a href="/editarCotizacion/' + row[0] + '"><i id="icono_ver_mas" class="lni lni-pencil"></i></a></td>');
+            tr.append(verDetalleBtn);
+            //Boton para detalle cotizacion
+            var verDetalleBtn = $('<td class="btns_centro"><a href="/nuevo_detalle/' + row[0] + '"> <i id="icono_3" class="lni lni-circle-plus"></i></a></td>');
             tr.append(verDetalleBtn);
             // Botón para eliminar
             var eliminarEmpleadoBtn = $('<td class="btns_centro btn_eliminar"><button onclick="eliminarCotizacion(\'' + row[0] + '\')" ><i id="icono_3" class="lni lni-trash-can"></i></button></td>');

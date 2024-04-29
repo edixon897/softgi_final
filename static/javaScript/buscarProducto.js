@@ -169,35 +169,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-
-
-
-/*  // Función para abrir el modal para aumentar cantidad de producto Cantidady no dejarlo cerrar al poner el cursor dentro del input
- function abrirModal(idProducto) {
-    // Cargar el contenido de editar_cantidad.html en el modalContenedor
-    var modalContenedor = document.getElementById("modalContenedor");
-    modalContenedor.innerHTML = "";
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            modalContenedor.innerHTML = this.responseText;
-
-            // Mostrar el modal
-            modalContenedor.style.display = "block";
-        }
-    };
-
-    xhttp.open("GET", "/editar_Cantidad/" + idProducto, true);
-    xhttp.send();
-}
-
-// Función para cerrar el modal
-function cerrarModal() {
-    var modalContenedor = document.getElementById("modalContenedor");
-    modalContenedor.style.display = "none";
-}; */
-
 function detenerPropagacion(event) {
     event.stopPropagation();
 }

@@ -39,7 +39,6 @@ main#inicio {
     section#conten_titulo_1 {
         width: 100%;
         height: 10%;
-/*         background-color: aqua; */
         display: flex;
         align-items: center;
     }
@@ -524,6 +523,18 @@ div#contenedorM_categoria{
     max-width: 600px;
     margin: 0 auto;
     text-align: left;
+}
+
+label#label_docu{
+    position: absolute;
+    left: 4%;
+    top: 8;
+    font-size: 0.9em;
+    transform: translateY(-85%);
+    color: #BBBBBB;
+    pointer-events: none;
+    font-weight: 200;
+    background-color: #fff;
 }
 
 /* -------------------apartado------------------- */

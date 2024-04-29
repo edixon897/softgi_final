@@ -85,14 +85,14 @@
                     <td>{{dato[8]}}</td>
                     <!-- <td>19%</td> -->
                     <td>{{dato[9]}}</td>
-                    <td>{{ '{:,.0f}'.format(dato[11]) }}</td>
-                    <td>{{ '{:,.0f}'.format(dato[12]) }}</td>
+                    <td>${{ '{:,.0f}'.format(dato[11]) }}</td>
+                    <td>${{ '{:,.0f}'.format(dato[12]) }}</td>
                 </tr>
            
                 
             </tbody>
         </table>
-        <div>
+        <div class="lista-items"> 
             <p><strong>Total Items:</strong>  {{dato[9]}}</p>
         </div>
 
@@ -101,19 +101,23 @@
         <div class="total">
         
             <div class="total_pagar">
-                <p>TOTAL A PAGAR: {{ '{:,.0f}'.format(dato[12]) }}</p>
+                <p>TOTAL A PAGAR: ${{ '{:,.0f}'.format(dato[12]) }}</p>
                 <p>Son: {{ total_a_pagar_palabras}} pesos. COP</p>
             </div>
             {% endfor %}
         </div>
         
     </div>
-    <div id="regresar">
+    <!-- <div id="regresar">
         <a href="{{url_for ('muestra_ventas') }}" id="enlace_volver">
             <i id="atras" class="lni lni-arrow-left"></i>
             Volver a ventas
         </a>
-    </div>
+    </div> -->
+
+
+    <script src="../../static/javaScript/modal_info_imprecion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </body>
 </html>

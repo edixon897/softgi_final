@@ -14,7 +14,6 @@ class Empleados:
 
     def emp_existe_en_db(self, empleado):
             sql = f"SELECT COUNT(*) FROM empleados WHERE doc_cliente = '{empleado}'"
-
             self.cursor.execute(sql)
             resultado = self.cursor.fetchone()
 
@@ -24,7 +23,6 @@ class Empleados:
                 return False
         
     def eliminar(self,doc_empleado):
-        
         sql = f"UPDATE empleados SET estado = 'INACTIVO' WHERE doc_empleado ='{doc_empleado}'"
         try:
             self.cursor.execute(sql)

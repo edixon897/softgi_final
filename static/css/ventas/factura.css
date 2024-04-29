@@ -31,15 +31,24 @@ figure img {
     width: 100%;
 }
 
+.encabezado {
+    display: flex;
+    align-items: center;
+}
+
 div#logo {
-    flex-basis: 50%;
+    flex-shrink: 0; /* Evita que el logo se contraiga */
+    margin-right: 20px; /* Ajusta el margen derecho para separar el logotipo del nombre de la empresa */
 }
 
 div#logo figure#logo {
-    margin: 10px;
+    margin: 0; /* Elimina el margen para que la imagen se coloque más cerca del borde */
     padding: 0;
-    width: 70%;
+    width: auto; /* Deja que el ancho de la imagen sea automático */
+    max-width: 250px; /* Establece un ancho máximo para la imagen */
+    height: auto; /* Deja que la altura de la imagen sea automática */
 }
+
 
 .nombre-empresa {
     margin-left: 20px;
@@ -187,9 +196,9 @@ div#logo figure#logo {
         padding: 0; /* Eliminar relleno para la impresión */
     }
 
-    /* Otros estilos específicos para la impresión según tus necesidades */
+    /* Otros estilos específicos para la impresión según lass necesidades */
 }
 
-#enlace_volver{
+/* #enlace_volver{
     font-size: 1.5em;
-}
+} */

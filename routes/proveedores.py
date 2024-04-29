@@ -104,9 +104,6 @@ def buscador_proveedores():
 
 
 
-
-
-
 @app.route('/borraProveedor/<documento>', methods=['POST'])
 def borrarProveedor(documento):
     if "nom_empleado" in session:

@@ -1,4 +1,4 @@
-/* ---------- Funciones del Modal Editar Cantidad de Porducto */
+/* ---------- Funciones del Modal Editar Cantidad de Productos */
 
 function abrirModal_2(idProducto) {
     // Cargar el contenido de editar_cantidad.html en el modalContenedor
@@ -56,4 +56,3 @@ function valida_digitacion() {
         form.submit();
     }
 }
-

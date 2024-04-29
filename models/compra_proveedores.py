@@ -28,15 +28,29 @@ class Compras_proved:
         self.cursor.execute(sql)
         self.conexion.commit()
 
-    def edita_detalles_compra(self,datos_compra):
-        sql = f"UPDATE detallecomprasproveedores SET detallenum_compra='{datos_compra[0]}' ,producto_compra='{datos_compra[1]}', cantidad_producto_compra='{datos_compra[2]}', valorunidad_prodcompra='{datos_compra[3]}',valortotal_cantidadcomp='{datos_compra[4]}'"
+    def edita_detalles_compra(self, datos_compra):
+        num_compra, detallenum_compra, producto_compra, cantidad_compra, valorunidad_prodcompra, valor_total_unidad, fecha_compra, num_factura_proveedor = datos_compra
+        sql = (
+            f"UPDATE detallecomprasproveedores "
+            f"SET producto_compra='{producto_compra}', "
+            f"cantidad_producto_compra='{cantidad_compra}', "
+            f"valorunidad_prodcompra='{valorunidad_prodcompra}', "
+            f"valortotal_cantidadcomp='{valor_total_unidad}' "
+            f"WHERE detallenum_compra='{detallenum_compra}'"
+        )
         self.cursor.execute(sql)
         self.conexion.commit()
-    
-    """ def edita_detalles_compra(self, datos_compra):
-        sql = f"UPDATE detallecomprasproveedores SET producto_compra='{datos_compra[1]}', cantidad_producto_compra='{datos_compra[2]}', valorunidad_prodcompra='{datos_compra[3]}', valortotal_cantidadcomp='{datos_compra[4]}' WHERE id_detalle_compra='{datos_compra[0]}'"
-        self.cursor.execute(sql)
-        self.conexion.commit() """
+
+        sql_compra = (
+            "UPDATE comprasproveedores "
+            "SET fecha_compra = %s, "
+            "num_factura_proveedor = %s "
+            "WHERE num_compra = %s"
+        )
+        valores_compra = (fecha_compra, num_factura_proveedor, num_compra)
+        self.cursor.execute(sql_compra, valores_compra)
+        self.conexion.commit()
+
 
 
 Dcompra_proveedores = Compras_proved(mysql, app)

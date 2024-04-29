@@ -178,7 +178,7 @@ main#inicio{
             height: 100%;
         }
             div#conten_nombre {
-                width: 16%;
+                width: 20%;
                 height: 100%;
                 display: flex;
                 justify-content: space-between;
@@ -193,6 +193,7 @@ main#inicio{
                 }
 
                 #conten_nombre p{
+                    margin-bottom: 15px;
                     margin: 0;
                     font-size: 1.5em;
                     font-weight: 500;

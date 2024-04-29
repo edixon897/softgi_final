@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles Cotizacion</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../static/css/compra_proveedores/detalles_compras/detalles_compra_proveedores.css">
+</head>
+<body>
+    
+    <main id="cuerpo">
+        <section id="section-1">
+            <p>Detalles de la compra</p>
+        </section>
+        <section id="section_2">
+            <div id="conten_tabla">
+                <div id="isla_3">
+
+                    <table id="tabla_productos">
+                        <thead>
+                            <tr>
+                                <th>Número Cotizacion</th>
+                                <th>Inicio Cotizacion</th>
+                                <th>Fin Cotizacion</th>
+                                <th>Nombre/Producto</th>
+                                <th>Cantidad</th>
+                                <th>Valor Unidad</th>
+                                <th>Valor total</th>
+                                <th>Total a Pagar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cotizacion in detalles_cotizacion %}
+                                <tr>
+                                    <td>{{ cotizacion[0]}}</td>
+                                    <td>{{ cotizacion[7]}}</td>
+                                    <td>{{ cotizacion[8]}}</td>
+                                    <td>{{ cotizacion[2]}}</td>
+                                    <td>{{ cotizacion[3]}}</td>
+                                    <td> $ {{ '{:,.0f}'.format(cotizacion[4]) }}</td>
+                                    <td> $ {{ '{:,.0f}'.format(cotizacion[5]) }}</td>
+                                    <td> $ {{ '{:,.0f}'.format(cotizacion[6]) }}</td>
+                                    
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Valor Total:</strong></td> <!-- Aquí es donde queremos agregar el total -->
+                                <td class="total-columna">$ {{ '{:,.0f}'.format(total) }}</td> <!-- Añadimos una clase para dar estilo -->
+                            </tr>
+                        </tbody>
+                       
+                    </table>
+                    <div id="regresar">
+                        <a href="{{url_for ('Cotizacion') }}" id="enlace_volver">
+                                <i id="atras" class="lni lni-arrow-left"></i>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
+

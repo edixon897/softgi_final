@@ -221,24 +221,35 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
 
     function actualizarTabla(data) {
         var tabla = $('#tabla tbody');
-        tabla.empty();
+        tabla.empty();  // Limpiamos la tabla completamente antes de añadir nuevo contenido.
+    
         if (data.length > 1) {
             $.each(data, function(index, row) {
-                var tr = $('<tr>');
+                var tr = $('<tr>');  // Creamos una nueva fila para cada elemento de los datos.
+    
                 for (var i = 1; i < row.length; i++) {
-                    // Verificamos si el valor es una fecha y la formateamos
                     var value = row[i];
-                    $('<td>').text(value).appendTo(tr);
-                
+                    var td = $('<td>').text(value);  // Creamos una nueva celda y le asignamos el valor.
+    
+                    // Aplicamos estilos específicos a la columna 2.
+                    if (i === 3) {
+                        td.css({'color': '#6ad46a'});  
+                    }
+    
+                    tr.append(td);  // Añadimos la celda ya configurada a la fila.
                 }
-                // Agregar los enlaces y botones correspondientes a la última columna de la fila
+    
+                // Agregamos los enlaces y botones correspondientes a las últimas columnas de la fila.
                 $('<td>').html('<a href="#" class="abrir-modal" data-id="' + row[0] + '"><i id="icono_select_2" class="lni lni-layers"></i></a>').appendTo(tr);
                 $('<td>').html('<a href="/selector_una_cantidad/' + row[0] + '"><i id="icono_select_1" class="lni lni-select-cursor"></i></a>').appendTo(tr);
-                tabla.append(tr);
+                tabla.append(tr);  // Finalmente, añadimos la fila completa a la tabla.
             });
         } else {
+            // Si no hay suficientes datos, mostramos un mensaje indicativo.
             tabla.append('<tr><td colspan="6">No se encontraron resultados</td></tr>');
         }
+    
+    
 
         // Vincular eventos click a los enlaces con clase "abrir-modal"
         $('.abrir-modal').off('click').on('click', function(e) {
@@ -248,7 +259,17 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
         });
     }
 
-
+    $(document).ready(function() {
+        // Guardar el valor cuando cambie
+        $('#doc_cliente').change(function() {
+            localStorage.setItem('docCliente', $(this).val());
+        });
+    
+        // Recuperar y establecer el valor cuando la página se carga
+        if (localStorage.getItem('docCliente')) {
+            $('#doc_cliente').val(localStorage.getItem('docCliente'));
+        }
+    });
 
 
 

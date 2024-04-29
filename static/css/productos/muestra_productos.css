@@ -52,10 +52,6 @@ main#cuerpo {
         display: none;
     }
 
-
-    
-
-
     main#cuerpo section#section_1 {
         background-color: white;
         width: 100%;
@@ -345,6 +341,7 @@ td.campo_dinero1 {
 .btn_editar:hover {
     cursor: pointer;
 }
+
 button{
     border: none;
     background: transparent;

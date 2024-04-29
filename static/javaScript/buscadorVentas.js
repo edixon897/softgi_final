@@ -3,10 +3,10 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
         $(document).ready(function() {
             // Guardar la tabla original cuando se carga el documento
             tablaOriginal = $('#tablaVentas tbody').html();
-    
+            
             $('#buscador_ventas').on('input', function() {
                 var busqueda = $(this).val().trim();
-                if (busqueda.length > 1) {
+                if (busqueda.length > 0) {
                     buscarEnTiempoReal(busqueda);
                 } else {
                     restaurarTabla();
@@ -29,16 +29,12 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
         }
         
         function restaurarTabla() {
-            // Eliminar filas duplicadas antes de restaurar la tabla original
             var tabla = $('#tablaVentas tbody');
-            eliminarFilasDuplicadas(tabla);
-
-            // Restaurar la tabla a su estado original
-            tabla.empty();
-            tabla.append(tablaOriginal);
-            // Asignar eventos onclick de nuevo después de restaurar la tabla
-            asignarEventosClick();
+            tabla.empty();  // Limpiar el contenido actual de la tabla
+            tabla.html(tablaOriginal);  // Restaurar el HTML original guardado
+            asignarEventosClick();  // Reasignar los eventos
         }
+
         function eliminarFilasDuplicadas(tabla) {
             var seen = {};
             tabla.find('tr').each(function() {
@@ -54,15 +50,21 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
             if (data.length > 0) {
                 $.each(data, function(index, row) {
                     var tr = $('<tr>');
-                    $.each(row, function(key, value) {
-                        if (isDate(value)) {
+                    for (var i = 0; i < row.length; i++) {
+                        var value = row[i];
+                        // Comprueba si el valor es una fecha antes de formatear
+                          // Aplicar formato de fecha solo a las columnas conocidas que contienen fechas
+                        if ((i === 4) && isDate(value)) {  // Asume que las columnas 1 y 3 contienen fechas
                             value = formatDate(value);
                         }
                         $('<td>').text(value).appendTo(tr);
-                    });
-                    
+                    }
                     // Mantener visible el botón de "Más detalles" incluso después de la búsqueda
                     $('<td class="btns_centro"><a href="#" class="ver_detalle"><i id="icono_ver_mas" class="lni lni-comments-alt-2"></i></a></td>').appendTo(tr);
+                    tabla.append(tr);
+                    var facturaBtn = $('<td class="btns_centro"><a href="/factura/' + row[0] + '"><i id="icono_ver_mas" class="lni lni-printer"></i></a></td>');
+                    tr.append(facturaBtn);
+
                     tabla.append(tr);
                 });
                 // Asignar eventos onclick después de actualizar la tabla
@@ -80,19 +82,26 @@ var tablaOriginal;  // Variable para almacenar la tabla original antes de realiz
             });
         }
 
+
 // Función para verificar si un valor es una fecha
 function isDate(value) {
     return !isNaN(Date.parse(value));
 }
 
-// Función para formatear la fecha 
+
+// Función para formatear la fecha y hora
 function formatDate(dateString) {
     var date = new Date(dateString);
     var year = date.getFullYear();
     var month = ('0' + (date.getMonth() + 1)).slice(-2);
     var day = ('0' + date.getDate()).slice(-2);
-    return year + '-' + month + '-' + day;
+    var hours = ('0' + date.getHours()).slice(-2);
+    var minutes = ('0' + date.getMinutes()).slice(-2);
+    var seconds = ('0' + date.getSeconds()).slice(-2);
+    // Formato de fecha y hora YYYY-MM-DD HH:MM:SS
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
+
 
 
 

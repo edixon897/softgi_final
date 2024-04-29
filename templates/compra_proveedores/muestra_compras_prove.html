@@ -78,19 +78,19 @@
                                                 <i id="icono_ver_mas" class="lni lni-pencil"></i>
                                             </button>
                                         </td>
-
                                         
+                                        <td class="btns_centro">
+                                            <a  href="muestra_detalles_com/{{c[0]}}">
+                                                <i id=icono_3 class="lni lni-circle-plus"></i>
+                                            </a>
+                                        </td>
 
                                         <td class="btns_centro">
                                             <button onclick="eliminarCompraAproveedor('{{c[0]}}')" class="btn_eliminar">
                                                 <i id="icono_3" class="lni lni-trash-can"></i>
                                             </button>
                                         </td>
-                                        <td class="btns_centro">
-                                            <a  href="muestra_detalles_com/{{c[0]}}">
-                                                <i id=icono_3 class="lni lni-circle-plus"></i>
-                                            </a>
-                                        </td>
+                                        
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -122,11 +122,17 @@
 
     <div id="crearCompraModal" class="modal" style="display: none;">
         <div class="modal-content">
+            <p><strong>REGISTRAR COMPRA</strong></p>
             <form id="compraform" action="Registrar_compra_p" method="post">
                 <!-- Campos para el primer producto -->
                 <div id="producto_1" class="producto">
                     <div id="num_fac">
                         <input type="text" name="num_factura_proveedor" placeholder="Número de factura" class="campo" required>
+                    </div>
+                    <div id="fecha_compra">
+                        <label for="fecha_compra">Fecha</label>
+                        <input type="date" name="fecha_compra" id="fecha_compra_input" class="campo" required>
+                        <span id="error_fecha" style="color: red; display: none;">La fecha no puede ser mayor al día de hoy.</span>
                     </div>
                     <div id="proveedor">
                         <label for="proveedor_compra">Proveedor</label>
@@ -141,13 +147,9 @@
                         <input type="text" name="producto_compra[]" placeholder="Producto" class="campo" required>
                     </div>
                     <div>
-                        <input type="number" name="cantidad_compra[]" placeholder="Cantidad" class="campo" required>
+                        <input type="number" name="cantidad_compra[]" placeholder="Cantidad" class="campo" min="0" required>
                     </div>
-                    <div id="fecha_compra">
-                        <label for="fecha_compra">Fecha</label>
-                        <input type="date" name="fecha_compra" id="fecha_compra_input" class="campo" required>
-                        <span id="error_fecha" style="color: red; display: none;">La fecha no puede ser mayor al día de hoy.</span>
-                    </div>
+                    
                     <div>
                         <input type="number" name="valor_unidad[]" placeholder="Valor por unidad" class="campo" required>
                     </div>

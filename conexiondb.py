@@ -28,7 +28,7 @@ def servicion():
         app.config['MAIL_PORT'] = 587  
         app.config['MAIL_USE_TLS'] = True 
         app.config['MAIL_USERNAME'] = 'jenasoft05@gmail.com'  
-        app.config['MAIL_PASSWORD'] = 'laobfjwveaolryrt' 
+        app.config['MAIL_PASSWORD'] = 'moex wipe qghd ixuw' 
     except Exception as e:
                 print(f"Error al intentar conectarse al servicio de envio de correo: {str(e)}")
 

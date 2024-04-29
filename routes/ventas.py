@@ -279,8 +279,8 @@ def buscador_venta_c():
     if "nom_empleado" in session:
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
-            busqueda = request.form['dato_busqueda']
-            sql = f"SELECT `contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' AND (cliente LIKE '%{busqueda}%' OR productos LIKE '%{busqueda}%')"
+            busqueda = request.form.get('dato_busqueda')
+            sql = f"SELECT  `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta` FROM `ventas_credito` WHERE estado = 'ACTIVO' AND (cliente LIKE '%{busqueda}%' OR productos LIKE '%{busqueda}%')"
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sql)
@@ -1208,8 +1208,8 @@ def buscarVentas():
     if "nom_empleado" in session: 
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
-            busqueda = request.form['Busqueda']  # Cambiado a 'Busqueda' para que coincida con el nombre en el script JavaScript
-            sql = f"SELECT num_factura, v.cliente_factura, CONCAT(c.nom_cliente, ' ', c.ape_cliente) AS nombre_cliente, CONCAT(v.nombre_operador, ' ', v.apellido_operador) AS nombre_operador, v.fechahora_venta, v.forma_pago FROM ventas v JOIN clientes c ON v.cliente_factura = c.doc_cliente WHERE c.nom_cliente LIKE '%{busqueda}%' OR c.ape_cliente LIKE '%{busqueda}%' OR v.num_factura LIKE '%{busqueda}%' ORDER BY v.num_factura DESC"
+            busqueda = request.form['Busqueda']  
+            sql = f"SELECT num_factura, v.cliente_factura, CONCAT(c.nom_cliente, ' ', c.ape_cliente) AS nombre_cliente, CONCAT(v.nombre_operador, ' ', v.apellido_operador) AS nombre_operador, v.fechahora_venta, v.forma_pago FROM ventas v JOIN clientes c ON v.cliente_factura = c.doc_cliente WHERE c.nom_cliente LIKE '%{busqueda}%' OR c.ape_cliente LIKE '%{busqueda}%' OR v.num_factura LIKE '%{busqueda}%' OR v.cliente_factura LIKE '%{busqueda}%' ORDER BY v.num_factura DESC"
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sql)
@@ -1255,7 +1255,7 @@ def buscador_creditos_pagados():
         rol_usuario = session["rol"]
         if rol_usuario == "administrador" or rol_usuario == "vendedor":
             busqueda = request.form['dato_busqueda']
-            sql = f"SELECT contador, cliente, productos, credito_total, credito_restante, operador, fecha_venta FROM ventas_credito WHERE (estado = 'PAGADA' OR estado = 'pagado') AND (cliente LIKE '%{busqueda}%' OR productos LIKE '%{busqueda}%')"
+            sql = f"SELECT cliente, productos, credito_total, credito_restante, operador, fecha_venta FROM ventas_credito WHERE (estado = 'PAGADA' OR estado = 'pagado') AND (cliente LIKE '%{busqueda}%' OR productos LIKE '%{busqueda}%')"
 
             conn = mysql.connect()
             cursor = conn.cursor()

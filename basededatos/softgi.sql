@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-02-2024 a las 02:09:17
+-- Tiempo de generación: 01-04-2024 a las 17:11:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -57,7 +57,7 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id_categoria`, `nom_categoria`, `fechahora_creacion`, `documento_operador`, `nombre_operador`, `apellido_operador`, `estado_categorias`) VALUES
-(1, 'Parabrisas', '2023-09-27 23:41:14', '94447540', '', '', 'activo'),
+(1, 'parabrisas', '2023-09-27 23:41:14', '94447540', '', '', 'activo'),
 (2, 'Manijas', '2023-10-03 01:31:55', '94447540', 'Eduar', 'Corrales', 'ACTIVO'),
 (3, 'chapas', '2023-10-03 01:31:55', '94447540', 'Eduar', 'Corrales', 'ACTIVO'),
 (4, 'empaques', '2023-10-03 01:33:37', '94447540', 'Eduar', 'Corrales', 'ACTIVO'),
@@ -65,8 +65,7 @@ INSERT INTO `categorias` (`id_categoria`, `nom_categoria`, `fechahora_creacion`,
 (6, 'PC', '2023-10-18 20:19:00', '94447540', 'Eduar', 'Corrales', 'INACTIVO'),
 (7, 'motor llimpia parabrisas', '2024-02-03 16:04:58', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
 (8, 'vidrio puerta toyota hilux', '2024-02-05 10:57:49', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(9, 'topes capo kia', '2024-02-12 15:51:20', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
-(10, 'Tapete Automovil', '2024-02-27 11:29:10', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO');
+(9, 'Miona Chevrolet', '2024-03-19 10:35:06', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -96,18 +95,15 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`doc_cliente`, `nom_cliente`, `ape_cliente`, `fecha_nacimiento_cliente`, `contacto_cliente`, `email_cliente`, `direccion_cliente`, `ciudad_cliente`, `tipo_persona`, `fechahora_registro`, `documento_operador`, `nombre_operador`, `apellido_operador`, `estado_cliente`) VALUES
-('1213145566', 'Nicol Maria sebastian', 'Velasco Posada', '1981-09-28', '3155127771', 'nicoafpos@gmail.com', 'Tulua Centro', 'Tulua ', 'natural', '0000-00-00 00:00:00', '16385007', 'Hernan', 'Corrales', 'INACTIVO'),
-('1616161616', 'cliente1', 'clientecliente', '2004-09-28', '3171717172', 'cliente1@gmail.com', 'cra1nb#77', 'Buguitaa', 'natural', '2023-09-26 05:02:11', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
+('1213145566', 'Nicol Maria ', 'Velasco Posada', '1981-09-28', '3155127771', 'nicoafpos@gmail.com', 'Tulua Centro', 'Tulua ', 'natural', '0000-00-00 00:00:00', '1089000896', 'Edixon', 'Payan Hurtado', 'ACTIVO'),
+('1616161616', 'Luis esteban', 'pelo pintado', '2004-09-28', '3171717172', 'cliente1@gmail.com', 'cra1nb#aurescity', 'buguita', 'natural', '2023-09-26 05:02:11', '1089000896', 'Edixon', 'Payan Hurtado', 'ACTIVO'),
 ('1818181818', 'felipe', 'Velasco Posada', '2004-09-28', '3161616161', 'velasco@gmail.com', 'cra12#45-70', 'Buga', 'juridica', '0000-00-00 00:00:00', '1112388921', '', '', 'ACTIVO'),
 ('1919191919', 'cliente3', 'cliente3', '0000-00-00', '3161616161', 'cliente3@gmail.com', 'cra4#21-62', 'Buga', 'natural', '0000-00-00 00:00:00', '1112388921', '', '', 'ACTIVO'),
-('26262626', 'NICOL', 'ICOL', '2004-09-28', '123456987', 'DAHYA@GMAILXOM', 'CRA 56#54-66', 'Pasto', 'juridica', '2023-10-18 20:13:20', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-('33750741', 'Diana ', 'Holguin', '1980-02-10', '33750741', 'diana@gamil.com', 'calle 21 # 4-88', 'Tulua', 'natural', '2024-02-10 12:05:20', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+('26262626', 'NICOL', 'ICOL', '2004-09-28', '123456987', 'DAHYA@GMAILXOM', 'CRA56#5455', 'BIHA', '', '2023-10-18 20:13:20', '94447540', 'Eduar', 'Corrales', 'ACTIVO'),
 ('33750742', 'kelly', 'Garzon Velasquez', '2024-02-12', '3186941522', 'kelly@gmail.com', 'diagonal 13 # 11-22', 'Bogota', 'natural', '2024-02-03 15:27:15', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
 ('33750747', 'Adan', 'Segundo', '2002-02-09', '3005667744', 'adan@hotmail.com', 'diagonal 23 # 45-66', 'Tulua', 'juridica', '2024-02-05 15:54:25', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
 ('44337765', 'Antanas ', 'Mocus Urrego', '2024-02-16', '3122214455', 'juanafvela@gmail.com', 'calle 13a #13-11', 'Cartagena', 'natural', '2024-02-02 20:12:27', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-('44556677', 'Maria', 'Pumpurria', '1984-02-12', '2445521299', 'maria@hotmail.com', 'calle 21#44-22', 'Tunja', 'natural', '2024-02-12 16:17:12', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-('4455778899', 'Armando', 'Casas', '1995-02-11', '3145566778', 'armandoksas@gmail.com', 'diagonal 45#55-66', 'Bogota', 'juridica', '2024-02-27 20:06:40', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-('7576758756', 'elver', 'galarga', '2006-01-12', '3125563465', 'bfdhfhfhg', 'fsdfsdfd', 'Tulua', 'natural', '2024-02-10 13:07:28', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO');
+('53442612', 'Luis sebastia', 'pelo pintado', '2001-03-21', '352634223', 'luissebastian0@gmail.com', 'carrera 7 #98-76', 'buga', 'juridica', '2024-03-08 09:45:44', '1089000896', 'Edixon', 'Payan Hurtado', 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -133,27 +129,12 @@ CREATE TABLE `comprasproveedores` (
 --
 
 INSERT INTO `comprasproveedores` (`num_compra`, `proveedor_compra`, `fecha_compra`, `documento_operador`, `nombre_operador`, `apellido_operador`, `tiempo_registro`, `num_factura_proveedor`, `estado`, `codigo_tabla`) VALUES
-(33, '1133445570', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 13:32:51', '001', 'CANCELAD', 'jOWX7SBfis'),
-(34, '1133872732', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 13:45:59', '002', 'ACTIVO', 'QyNWrcVPDu'),
-(35, '1133872732', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 13:50:58', '002', 'ACTIVO', 'V0cxbs8GDo'),
-(36, '1133872732', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 14:00:34', '002', 'ACTIVO', 'LYyXmj5TEQ'),
-(37, '1133872732', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 14:14:09', '002', 'ACTIVO', 'ZlABMLspWw'),
-(38, '1133872732', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 14:20:25', '002', 'ACTIVO', 'fqJBy4NGAz'),
-(39, '2323232323', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 14:23:35', '002', 'ACTIVO', 'uK5NPYzLxo'),
-(40, '1717171717', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 14:25:25', '003', 'ACTIVO', 'vgXmkKOaqp'),
-(41, '1515151515', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 14:26:15', '004', 'ACTIVO', 'MyvUdgH4Fj'),
-(42, '1212121212', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 14:28:25', '005', 'ACTIVO', 'VFWKCd5fcl'),
-(43, '11338787', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 14:40:04', '006', 'ACTIVO', 'gJ0ILzZTkV'),
-(44, '1133445570', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 14:41:02', '007', 'ACTIVO', 'x7JhneNsd2'),
-(45, '1133445570', '2024-02-26', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 11:27:49', '007', 'ACTIVO', 'wnj6UkLG8u'),
-(46, '1133445570', '2024-02-27', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 18:12:55', '007', 'ACTIVO', 'fzNd2FVq9r'),
-(47, '1133445570', '2024-02-27', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 18:25:57', '007', 'ACTIVO', 'Q9Mwoem2ri'),
-(48, '1133445570', '2024-02-27', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 18:26:53', '007', 'ACTIVO', 'NEnmFB7Os2'),
-(49, '2323232323', '2024-02-27', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 18:27:45', '008', 'ACTIVO', '67BV8UkmGI'),
-(50, '2323232323', '2024-02-27', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 19:36:29', '011', 'ACTIVO', 'BV8SoYNKmf'),
-(51, '1717171717', '2024-02-27', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 19:39:27', '012', 'ACTIVO', 'oLFfVkSC49'),
-(52, '1133872738', '2024-02-22', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 19:49:31', '632623', 'ACTIVO', 'p1fXxRLWer'),
-(53, '113387876', '2024-02-27', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 19:50:56', '2323512', 'ACTIVO', 'elJXV19z6H');
+(63, '1133445566', '2024-03-29', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-31 18:00:56', '0100', 'ACTIVO', '7NU8TJFKYT'),
+(64, '1133445570', '2024-03-28', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-31 18:24:41', '0033', 'ACTIVO', '2FK08MZHVH'),
+(65, '1133445572', '2024-03-29', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-31 23:23:35', '003', 'ACTIVO', '2TF30OAJC4'),
+(66, '2323232323', '2024-03-29', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-31 23:24:35', '004', 'ACTIVO', 'FT3HYK5XUL'),
+(67, '1133445570', '2024-03-29', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-31 23:46:38', '005', 'ACTIVO', 'O2Q087Q2YL'),
+(68, '1717171717', '2024-03-30', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-31 23:47:25', '007', 'ACTIVO', '2MHOIFBB90');
 
 -- --------------------------------------------------------
 
@@ -162,7 +143,7 @@ INSERT INTO `comprasproveedores` (`num_compra`, `proveedor_compra`, `fecha_compr
 --
 
 CREATE TABLE `cotizaciones` (
-  `num_cotizacion` int(6) NOT NULL,
+  `num_cotizacion` varchar(20) NOT NULL,
   `cliente_cotizacion` varchar(10) NOT NULL,
   `documento_operador` varchar(10) NOT NULL,
   `nombre_operador` varchar(25) NOT NULL,
@@ -170,21 +151,25 @@ CREATE TABLE `cotizaciones` (
   `fecha_inicio_cotizacion` date NOT NULL,
   `fecha_fin_cotizacion` date NOT NULL,
   `nombre_cliente_cotizacion` varchar(50) DEFAULT NULL,
-  `estado` varchar(8) NOT NULL
+  `estado` varchar(8) NOT NULL,
+  `direcion_cliente` varchar(90) DEFAULT NULL,
+  `correo_cliente` varchar(60) DEFAULT NULL,
+  `cuidad_cliente` varchar(40) DEFAULT NULL,
+  `contacto_cliente` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cotizaciones`
 --
 
-INSERT INTO `cotizaciones` (`num_cotizacion`, `cliente_cotizacion`, `documento_operador`, `nombre_operador`, `apellido_operador`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion`, `nombre_cliente_cotizacion`, `estado`) VALUES
-(0, '1213145566', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-11', '2024-02-16', 'Nicol Maria sebastian', 'INACTIVO'),
-(1, '1213145566', '193838362', 'Edixon', 'Payan', '2023-10-26', '2024-12-05', 'cliente1', 'INACTIVO'),
-(2, '1818181818', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-12', '2024-02-19', 'felipe', 'INACTIVO'),
-(3, '1213145566', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-12', '2024-02-19', 'Nicol Maria sebastian', 'INACTIVO'),
-(7, '1213145566', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-12', '2024-02-23', 'Nicol Maria sebastian', 'INACTIVO'),
-(9, '1213145566', '94447540', 'Eduar', 'Corrales', '2023-10-10', '2023-10-27', 'Nicol ', 'INACTIVO'),
-(379, '7576758756', '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-12', '2024-02-29', 'elver', 'ACTIVO');
+INSERT INTO `cotizaciones` (`num_cotizacion`, `cliente_cotizacion`, `documento_operador`, `nombre_operador`, `apellido_operador`, `fecha_inicio_cotizacion`, `fecha_fin_cotizacion`, `nombre_cliente_cotizacion`, `estado`, `direcion_cliente`, `correo_cliente`, `cuidad_cliente`, `contacto_cliente`) VALUES
+('0873798', '26262626', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-16', '2024-03-22', 'NICOL', 'ACTIVO', 'CRA56#5455', 'DAHYA@GMAILXOM', 'BIHA', 'DAHYA@GMAILXOM'),
+('1357983', '26262626', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-14', '2024-03-21', 'NICOL', 'ACTIVO', 'CRA56#5455', 'DAHYA@GMAILXOM', 'BIHA', 'DAHYA@GMAILXOM'),
+('3034922', '1213145566', '1089000896', 'Edixon', 'Payan Hurtado', '2024-03-11', '2024-03-29', 'Nicol Maria ', 'ACTIVO', 'Tulua Centro', 'nicoafpos@gmail.com', 'Tulua ', 'nicoafpos@gmail.com'),
+('5868983', '1616161616', '1089000896', 'Edixon', 'Payan Hurtado', '2024-03-11', '2024-03-29', 'Luis esteban', 'ACTIVO', 'cra1nb#aurescity', 'cliente1@gmail.com', 'buguita', 'cliente1@gmail.com'),
+('7087853', '1213145566', '16385007', 'Hernan', 'Corrales Grisalez', '2024-04-01', '2024-04-06', 'Nicol Maria ', 'ACTIVO', 'Tulua Centro', 'nicoafpos@gmail.com', 'Tulua ', '3155127771'),
+('7773072', '1213145566', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-14', '2024-03-21', 'Nicol Maria ', 'ACTIVO', 'Tulua Centro', 'nicoafpos@gmail.com', 'Tulua ', 'nicoafpos@gmail.com'),
+('8528706', '33750742', '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-16', '2024-03-22', 'kelly', 'ACTIVO', 'diagonal 13 # 11-22', 'kelly@gmail.com', 'Bogota', 'kelly@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -197,9 +182,9 @@ CREATE TABLE `detallecomprasproveedores` (
   `detallenum_compra` int(6) NOT NULL,
   `producto_compra` varchar(50) DEFAULT NULL,
   `cantidad_producto_compra` int(6) NOT NULL,
-  `valorunidad_prodcompra` int(11) NOT NULL,
-  `valortotal_cantidadcomp` int(11) NOT NULL,
-  `totalpagar_compra` int(11) NOT NULL
+  `valorunidad_prodcompra` float NOT NULL,
+  `valortotal_cantidadcomp` float NOT NULL,
+  `totalpagar_compra` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -207,12 +192,14 @@ CREATE TABLE `detallecomprasproveedores` (
 --
 
 INSERT INTO `detallecomprasproveedores` (`id_detalle_compra`, `detallenum_compra`, `producto_compra`, `cantidad_producto_compra`, `valorunidad_prodcompra`, `valortotal_cantidadcomp`, `totalpagar_compra`) VALUES
-(22, 48, 'Manija', 10, 2147483647, 20000, 0),
-(23, 49, 'Motor ', 10, 2147483647, 5000, 0),
-(24, 50, 'Empaqu', 100, 2147483647, 5000, 0),
-(25, 51, 'Manih¿ja elevavidrios renault', 20, 2147483647, 200000, 0),
-(26, 52, 'prueba', 20, 2000, 40000, 0),
-(27, 53, 'pruaba2', 10, 3000, 30000, 0);
+(57, 63, 'Manija Ford Fiesta', 20, 10, 11, 200),
+(58, 64, 'Motor elevavidrios original Kia', 11, 2000, 15000, 22000),
+(59, 65, 'Tornillo exagonal alen', 20, 500, 10000, 0),
+(60, 66, 'Manija INT LDD Hiunday 23', 22, 3000, 60000, 66000),
+(61, 66, 'Manija INT LDD Hiunday 23', 22, 3000, 50000, 66000),
+(62, 67, 'Motor elevavidrios original Kia', 20, 4000, 80000, 0),
+(63, 68, 'Manija interna Chrevrolet LDD', 20, 2000, 20000, 40000),
+(64, 68, 'Manija interna Chrevrolet LDD', 20, 2000, 3000, 40000);
 
 -- --------------------------------------------------------
 
@@ -222,16 +209,12 @@ INSERT INTO `detallecomprasproveedores` (`id_detalle_compra`, `detallenum_compra
 
 CREATE TABLE `detallecotizaciones` (
   `id_detalle_cotizacion` int(6) NOT NULL,
-  `num_cotizacion` int(6) NOT NULL,
+  `num_cotizacion` varchar(20) NOT NULL,
   `producto_cotizacion` varchar(6) DEFAULT NULL,
   `nombre_producto` varchar(90) NOT NULL,
   `cantidad_productos_cotizacion` int(3) NOT NULL,
   `valorunidad_prodcotizacion` float NOT NULL,
   `valortotal_cantidaproductos_cotizacion` float NOT NULL,
-  `servicio_cotizacion` int(6) NOT NULL,
-  `cantidad_servicios_cotizacion` int(2) NOT NULL,
-  `valorunidad_servicioscotizacion` float NOT NULL,
-  `valortotal_cantidadservicios_cotizacion` float NOT NULL,
   `totalpagar_cotizacion` float NOT NULL,
   `detalle_estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -240,19 +223,18 @@ CREATE TABLE `detallecotizaciones` (
 -- Volcado de datos para la tabla `detallecotizaciones`
 --
 
-INSERT INTO `detallecotizaciones` (`id_detalle_cotizacion`, `num_cotizacion`, `producto_cotizacion`, `nombre_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion`, `servicio_cotizacion`, `cantidad_servicios_cotizacion`, `valorunidad_servicioscotizacion`, `valortotal_cantidadservicios_cotizacion`, `totalpagar_cotizacion`, `detalle_estado`) VALUES
-(1, 1, '123233', '0', 1, 430, 67, 200, 230, 539, 56, 58, 'ACTIVO'),
-(2, 1, '123233', '0', 1, 430, 6743, 200, 230, 539, 56, 58, 'ACTIVO'),
-(5, 1, '632737', '0', 32, 645, 323, 421, 42, 4211, 34234, 43213, 'ACTIVO'),
-(6, 1, '474747', '0', 76, 2000, 3500, 789, 1, 45000, 45000, 200000, 'ACTIVO'),
-(13, 0, '123233', '0', 1, 250, 250, 0, 0, 0, 0, 250, 'ACTIVO'),
-(14, 0, '123233', '0', 1, 450000, 450000, 0, 0, 0, 0, 450000, 'ACTIVO'),
-(15, 3, '123233', '0', 1, 300000, 300000, 0, 0, 0, 0, 300000, 'ACTIVO'),
-(16, 7, '123233', '0', 1, 120, 120, 0, 0, 0, 0, 120, 'ACTIVO'),
-(17, 7, '123233', '0', 7, 200000, 1400000, 0, 0, 0, 0, 1400000, 'ACTIVO'),
-(18, 7, '123233', '0', 1, 300000, 300000, 0, 0, 0, 0, 300000, 'ACTIVO'),
-(19, 379, '123233', 'motor limpia parabrisas para chevrolet', 1, 200000, 200000, 0, 0, 0, 0, 200000, 'ACTIVO'),
-(20, 379, '123233', 'manija prueba stock', 1, 120, 120, 0, 0, 0, 0, 120, 'ACTIVO');
+INSERT INTO `detallecotizaciones` (`id_detalle_cotizacion`, `num_cotizacion`, `producto_cotizacion`, `nombre_producto`, `cantidad_productos_cotizacion`, `valorunidad_prodcotizacion`, `valortotal_cantidaproductos_cotizacion`, `totalpagar_cotizacion`, `detalle_estado`) VALUES
+(65, '3034922', '474747', 'manija', 1, 5200, 5200, 5200, 'ACTIVO'),
+(66, '3034922', '632737', 'motor limpia parabrisas kia', 1, 18000, 18000, 18000, 'ACTIVO'),
+(67, '5868983', '123233', 'probando', 1, 2500, 2500, 2500, 'ACTIVO'),
+(68, '5868983', '632737', 'motor limpia parabrisas kia', 1, 18000, 18000, 18000, 'ACTIVO'),
+(69, '5868983', '474747', 'manija', 1, 5200, 5200, 5200, 'ACTIVO'),
+(70, '1357983', '123233', 'motor limpia parabrisas para chevrolet', 1, 20000, 20000, 20000, 'ACTIVO'),
+(71, '7773072', '123233', 'motor limpia parabrisas para chevrolet', 1, 20000, 20000, 20000, 'ACTIVO'),
+(72, '0873798', '474747', 'manija', 1, 5200, 5200, 5200, 'ACTIVO'),
+(73, '8528706', '123233', 'probando', 1, 2500, 2500, 2500, 'ACTIVO'),
+(74, '7087853', '123233', 'parabrisas kia', 1, 30000, 30000, 30000, 'ACTIVO'),
+(75, '7087853', '123233', 'motor limpia parabrisas para chevrolet', 1, 20000, 20000, 20000, 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -295,29 +277,28 @@ CREATE TABLE `detalleventas` (
 --
 
 INSERT INTO `detalleventas` (`id_detalle_factura`, `num_factura_venta`, `producto_factura`, `cantidad_productos_factura`, `precio_productofactura`, `valortotal_productos_factura`, `servicio_factura`, `cantidad_servicios_factura`, `precio_serviciosfactura`, `valortotal_servicios_factura`, `total_pagar_factura`) VALUES
-(1, 5, 'tornil', 2, 0, 450, 0, 0, 0, 0, 450),
-(2, 6, 'tornil', 3, 0, 502, 0, 0, 0, 0, 502),
-(3, 7, 'tornil', 2, 0, 450, 0, 0, 0, 0, 450),
-(4, 8, 'tornil', 2, 0, 450, 0, 0, 0, 0, 450),
-(5, 9, 'proban', 1, 0, 250, 0, 0, 0, 0, 250),
-(6, 10, 'proban', 2, 0, 450, 0, 0, 0, 0, 450),
-(7, 11, 'tornil', 3, 0, 902, 0, 0, 0, 0, 902),
-(8, 12, 'probando, tornillos, probando', 3, 0, 700, 0, 0, 0, 0, 700),
-(9, 13, 'probando, tornillos, probando', 3, 0, 700, 0, 0, 0, 0, 700),
-(10, 14, 'probando - 1,   tornillos - 1,   probando - 1', 3, 0, 700, 0, 0, 0, 0, 700),
-(11, 15, 'manija prueba stock - 4', 4, 0, 480, 0, 0, 0, 0, 480),
-(12, 16, 'manija prueba stock - 1,   Empaque puerta delanteras - 1', 2, 0, 450120, 0, 0, 0, 0, 450120),
-(13, 17, 'manija - 1,   Empaque puerta doble canal Renault - 1', 2, 0, 33052, 0, 0, 0, 0, 33052),
-(14, 18, 'manija prueba stock - 6', 6, 0, 720, 0, 0, 0, 0, 720),
-(15, 19, 'motor limpia parabrisas para chevrolet - 5', 5, 0, 700, 0, 0, 0, 0, 700),
-(16, 20, 'motor limpia parabrisas para chevrolet - 1', 1, 0, 140, 0, 0, 0, 0, 140),
-(17, 21, 'motor limpia parabrisas para chevrolet - 1', 1, 0, 140, 0, 0, 0, 0, 140),
-(18, 22, 'manija - 2', 2, 0, 104, 0, 0, 0, 0, 104),
-(19, 23, 'motor limpia parabrisas kia - 7', 7, 0, 1260000, 0, 0, 0, 0, 1260000),
-(20, 24, 'probando - 4', 4, 0, 1000, 0, 0, 0, 0, 1000),
-(21, 25, 'probando - 1,   parabrisas kia - 3,   Empaque puerta delanteras - 6', 10, 0, 3600250, 0, 0, 0, 0, 3600250),
-(22, 26, 'parabrisas kia - 1', 1, 0, 300000, 0, 0, 0, 0, 300000),
-(23, 27, 'parabrisas kia - 13', 13, 0, 3900000, 0, 0, 0, 0, 3900000);
+(32, 36, 'motor limpia parabrisas kia - 100,   parabrisas kia - 21', 101, 0, 2430000, 0, 0, 0, 0, 2430000),
+(33, 37, 'chapa derecha trasera chery y chevrolet - 90', 90, 0, 4950000, 0, 0, 0, 0, 4950000),
+(34, 38, 'Chapa de seguridad Sandero - 1,   Empaque puerta delanteras - 38,   motor limpia parabrisas para chevrolet - 5', 44, 0, 251000, 0, 0, 0, 0, 251000),
+(35, 39, 'motor limpia parabrisas para chevrolet - 1,   Empaque puerta delanteras - 2,   parabrisas kia - 6,   probando - 15', 24, 0, 246500, 0, 0, 0, 0, 246500),
+(36, 40, 'parabrisas GT Ford - 2,   Empaque puerta delanteras - 1,   parabrisas kia - 30,   motor limpia parabrisas para chevrolet - 2,   parabrisas GMC - 12', 47, 0, 1116500, 0, 0, 0, 0, 1116500),
+(37, 41, 'motor limpia parabrisas kia - 100', 100, 0, 1800000, 0, 0, 0, 0, 1800000),
+(38, 42, 'motor limpia parabrisas kia - 30', 30, 0, 540000, 0, 0, 0, 0, 540000),
+(39, 43, 'manija - 1,   motor limpia parabrisas kia - 31,   chapas puertas traseras chery q - 23', 55, 0, 1713200, 0, 0, 0, 0, 1713200),
+(40, 44, 'manija - 40,   motor limpia parabrisas kia - 47', 87, 0, 1054000, 0, 0, 0, 0, 1054000),
+(41, 45, 'Empaque puerta delanteras - 42', 42, 0, 189000, 0, 0, 0, 0, 189000),
+(42, 46, 'parabrisas kia - 43', 43, 0, 1290000, 0, 0, 0, 0, 1290000),
+(43, 47, 'manija - 21,   motor limpia parabrisas kia - 30,   parabrisas kia - 34', 85, 0, 1669200, 0, 0, 0, 0, 1669200),
+(44, 48, 'manija - 2,   motor limpia parabrisas kia - 4,   probando - 2,   parabrisas kia - 3,   chapas puertas traseras chery q - 1,   manija hiunday - 1', 13, 0, 242400, 0, 0, 0, 0, 242400),
+(45, 49, 'motor limpia parabrisas kia - 1,   motor limpia parabrisas para chevrolet - 1,   motor limpia parabrisas para chevrolet - 1', 3, 0, 39000, 0, 0, 0, 0, 39000),
+(46, 50, 'probando - 1', 1, 0, 2500, 0, 0, 0, 0, 2500),
+(47, 51, 'motor limpia parabrisas kia - 28,   parabrisas kia - 1,   Empaque puerta delanteras - 1,   manija - 2', 32, 0, 548900, 0, 0, 0, 0, 548900),
+(48, 52, 'probando - 32,   parabrisas GT Ford - 1,   parabrisas kia - 5', 38, 0, 245000, 0, 0, 0, 0, 245000),
+(49, 53, 'probando - 24,   motor limpia parabrisas kia - 3', 27, 0, 114000, 0, 0, 0, 0, 114000),
+(50, 54, 'manija - 17', 17, 0, 88400, 0, 0, 0, 0, 88400),
+(51, 55, 'manija hiunday - 96', 96, 0, 1440000, 0, 0, 0, 0, 1440000),
+(52, 56, 'parabrisas GMC - 31,   parabrisas GT Ford - 41,   parabrisas kia - 20', 92, 0, 1649000, 0, 0, 0, 0, 1649000),
+(53, 57, 'deposito de tres - 1', 1, 0, 140000, 0, 0, 0, 0, 140000);
 
 -- --------------------------------------------------------
 
@@ -365,14 +346,15 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`doc_empleado`, `nom_empleado`, `ape_empleado`, `fecha_nacimiento_empleado`, `contacto_empleado`, `email_empleado`, `direccion_empleado`, `ciudad_empleado`, `contrasena`, `rol`, `huelladactilar`, `fechahora_registroempleado`, `documento_operador`, `nombre_operador`, `apellido_operador`, `estado`) VALUES
-('1086358507', 'dennis', 'echeverri', '2023-11-17', '3006888872', 'dennisecheverri46@gmail.com', 'Cajuijio', 'pasto', 'a459867974f1bcc8fc7f1ef07d6373355cfeba01241778822f09127726073b5d98daeb5fc174861fbd2738de2c535d78abe92249e04abb6e7a3bb7b75f98e3b5', ' administrado', NULL, '2023-11-14 18:30:07', '', '', '', 'ACTIVO'),
-('1111035245', 'Herney', 'Grisalez', '2024-02-15', '3041144554', 'herney@gamil.com', 'Calle 21 #4-09', 'Buga', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', 'vendedor', NULL, '2024-02-02 20:22:10', '', '', '', 'ACTIVO'),
-('1112388921', 'Nicol', 'Motoa', '0000-00-00', 'None', 'dahyanna.me@gmail.com', 'carrera 56# 55-66', 'Buga', '3b1c2ae69435c86e2982ab43b8e580b4041c67ff7c1717a0f508a958ce0dba52320c2373b77212cbdd5c8302b4498121fc6fd28da611382b94684e2d9085b591', 'almacenista', NULL, '0000-00-00 00:00:00', '', '', '', 'ACTIVO'),
-('16161616', 'Andres', 'Velasco', '1970-12-19', '3003003003', 'afvelasco@gmail.com', 'Calle 6 # 6-6', 'Buga', 'Abcde+12345', ' administrador', NULL, '2023-10-26 19:39:44', '', '', '', 'INACTIVO'),
-('16385007', 'Hernan', 'Corrales Grisalez', '1981-09-04', '3122175402', 'edcorgriz@hotmail.com', 'Carrera 8 #13-11', '', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', 'administrador', NULL, '2023-12-26 17:23:47', '', '', '', 'ACTIVO'),
-('193838362', 'Edixon', 'Payan', '2003-03-28', '3162532732', 'edixonpayan5@gmail.com', 'barrio tamarindo calle 1 #24-65', 'buga', 'Ed123456789@', ' administrador', NULL, '2023-10-09 09:13:44', '', '', '', 'ACTIVO'),
+('1086358507', 'dennis', 'echeverri', '2023-11-17', '3006888865', 'dennisecheverri46@gmail.com', 'Cajuijio', 'pasto', 'a459867974f1bcc8fc7f1ef07d6373355cfeba01241778822f09127726073b5d98daeb5fc174861fbd2738de2c535d78abe92249e04abb6e7a3bb7b75f98e3b5', ' administrado', NULL, '2023-11-14 18:30:07', '', '', '', 'ACTIVO'),
+('1089000896', 'Edixon De Nataly', 'Payan Hurtado', '2003-03-02', '3145241834', 'edixonpayan8@gmail.com', 'Calle 6 # 6-89', 'buga', 'ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413', 'administrador', NULL, '2024-03-01 18:08:06', '', '', '', 'ACTIVO'),
+('1111035245', 'Herney', 'Grisalez', '2024-02-15', '3041144554', 'herney@gamil.com', 'Calle 21 #4-09', 'Buga', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', 'vendedor', NULL, '2024-02-02 20:22:10', '', '', '', 'INACTIVO'),
+('1112388921', 'Nicol', 'Motoa', '0000-00-00', NULL, 'dahyanna.me@gmail.com', '', '', '3b1c2ae69435c86e2982ab43b8e580b4041c67ff7c1717a0f508a958ce0dba52320c2373b77212cbdd5c8302b4498121fc6fd28da611382b94684e2d9085b591', ' administrador', NULL, '0000-00-00 00:00:00', '', '', '', 'INACTIVO'),
+('16161616', 'Andres', 'Velasco', '1970-12-19', '3003003003', 'afvelasco@gmail.com', 'Calle 6 # 6-6', 'Buga', 'Abcde+12345', ' administrador', NULL, '2023-10-26 19:39:44', '', '', '', 'ACTIVO'),
+('16385007', 'Hernan', 'Corrales Grisalez', '1981-09-04', '3122175402', 'edcorgriz@hotmail.com', 'Carrera 8 #13-11', 'Buga', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', 'administrador', NULL, '2023-12-26 17:23:47', '', '', '', 'ACTIVO'),
+('193838362', 'Edixon', 'Payan', '2003-03-28', '3162532732', 'edixonpayan5@gmail.com', 'barrio tamarindo calle 1 #24-65', 'buga', 'ecc768c8f4b939f0bd5d4ba36a07723d5cf4064a3c9124496a255cc5013de04b1370d16bb9f1e8bab7daec84a447ca95e5e4d9a002aa74bf36399c41209d9c5c', 'administrador', NULL, '2023-10-09 09:13:44', '', '', '', 'ACTIVO'),
 ('312244556', 'Nicol de De', 'Sebas2', '2004-09-28', '316553344', 'nicolmotoa.28@gmail.com', 'Carrera 33 # 66-66', '', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', '', NULL, '2023-12-26 19:25:03', '', '', '', 'ACTIVO'),
-('94447540', 'Eduar', 'Corrales', '0000-00-00', NULL, 'edcorgris@gmail.com', '', '', '394919744eb6de1aee9a0fa0fa4330f9c13db999379f93b5e4ae7dd5e715972d90b3920213c52a0f24acb8675321a865aef38146cb2f2ce0e30952f10321ea61', ' administrador', NULL, '0000-00-00 00:00:00', '', '', '', 'ACTIVO');
+('94447540', 'Eduar', 'Corrales', '0000-00-00', 'None', 'edcorgris@gmail.com', 'Carrera 50 #4-09', 'Sonso', '394919744eb6de1aee9a0fa0fa4330f9c13db999379f93b5e4ae7dd5e715972d90b3920213c52a0f24acb8675321a865aef38146cb2f2ce0e30952f10321ea61', ' administrador', NULL, '0000-00-00 00:00:00', '', '', '', 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -387,6 +369,14 @@ CREATE TABLE `historial_credito` (
   `operador` int(11) DEFAULT NULL,
   `fecha_abono` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historial_credito`
+--
+
+INSERT INTO `historial_credito` (`contador`, `contador_ventacredito`, `abono`, `operador`, `fecha_abono`) VALUES
+(1, 12, 700, 193838362, '2024-03-05 20:01:11'),
+(2, 12, 20000, 193838362, '2024-03-05 20:01:37');
 
 -- --------------------------------------------------------
 
@@ -439,24 +429,34 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id_producto`, `ref_produ_1`, `ref_produ_2`, `ref_produ_3`, `categoria`, `nom_categoria`, `proveedor`, `nom_proveedor`, `nombre_producto`, `precio_compra`, `precio_venta`, `cantidad_producto`, `descripcion`, `stockminimo`, `ubicacion`, `estante`, `fechahora_registro`, `documento_operador`, `nombre_operador`, `apellido_operador`, `estado_producto`) VALUES
-(474747, 'manija original renault', 'manija renault modelo 2000-2010', 'manija renault modelo 2020-2024', 2, 'Manijas', '1133445560', 'Posad FVELA', 'manija', 25, 52, 14, 'fjoierfjajflas', 12, 'Bodega', 7, '2023-10-18 20:22:17', '94447540', 'Eduar', 'Corrales', 'INACTIVO'),
-(6327372, 'mot lim kia', 'mot lim kia rio', 'mot lim kia space', 3, 'motor llimpia parabrisas kia', '1133445566', 'oto', 'motor limpia parabrisas kia', 120000, 180000, 15, 'motor limpia parabrisas marca kia todos los modelos del 2022-2024', 14, 'Bodega', 66, '2023-10-03 12:28:50', '94447540', 'Eduar', 'Corrales', 'INACTIVO'),
-(12323334, 'udhs', '', '', 1, '', '1133445560', '', 'probando', 200, 250, 6, 'algo nuevo', 3, 'Bodega', 3, '2023-10-03 12:19:48', '94447540', 'Eduar', 'Corrales', 'INACTIVO'),
-(12323335, 'parabrisa kia sportage', 'parabrisa kia rio', 'parabrisa kia ', 1, 'parabrisas', '02020202', 'oto', 'parabrisas kia', 200000, 300000, 2, 'Prabrisas Kia sportage, rio, soul modelo 2016-2024', 4, 'Bodega', 8, '2024-01-22 16:28:15', '16385007', 'Hernan', 'Corrales', 'INACTIVO'),
-(12323336, 'empaque puerta delantera ford', 'empaque puerta dodge', 'empaque puerta chevrolet', 4, 'empaques', '1717171717', 'Prueba1', 'Empaque puerta delanteras', 350000, 450000, 10, 'Empaque para puerta doble canal original ford', 8, 'Bodega', 5, '2024-01-24 20:37:48', '16385007', 'Hernan', 'Corrales', 'ACTIVO'),
-(12323338, '94477540', '23f', '24r', 1, 'parabrisas', '02020202', 'oto', 'parabrisas GMC', 12000, 140000, 40, 'parabrias GMC modelo 2000-2023', 2, 'Bodega', 1, '2024-02-01 19:38:35', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
-(12323339, 'parab1', 'parab2', 'parab3', 1, 'parabrisas', '1133445566', 'AFV ECHEVERI', 'parabrisas GT Ford', 120000, 150000, 20, 'parabrisas para Ford Gt', 2, 'Bodega', 2, '2024-02-02 16:09:01', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323340, '1PCBA\'U01\'S07ZAR', '94477540', 'Q1', 2, 'Manijas', '1717171717', 'Prueba1', 'manija hiunday', 10000, 150000, 39, 'manija hiunday original', 4, 'Almacen', 3, '2024-02-02 19:15:30', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323341, '97895856771669786073133333', '9786073133333', '2PD', 3, 'chapas', '11338787', 'Posad FVELASCO', 'chapas puertas traseras chery q', 30000, 50000, 60, 'chapa chery q puertas traseras lado derecho', 3, 'Bodega', 34, '2024-02-02 19:20:35', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323342, 'chapa rb24', 'chapa chery 2000', 'chapa chevrolet rb', 3, 'chapas', '02020202', 'oto', 'chapa derecha trasera chery y chevrolet', 35000, 55000, 60, 'chapa puerta trasera derecha para chery chevrolet modelo 2020-2024', 10, 'Bodega', 45, '2024-02-02 19:24:45', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323343, '2PDCN', '1PCBA\'U01\'S07ZAR', '94477540eh', 1, 'parabrisas', '02020202', 'oto', 'Empaque puerta doble canal Renault', 20000, 33000, 29, 'Empaque para puerta doble canal original ford', 2, 'Bodega', 2, '2024-02-02 20:03:17', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323344, 'motor limpia parabrisas chevrolet', 'motor limpia parabrisas chery', 'motor gm', 7, 'motor llimpia parabrisas', '1717171717', 'Prueba1', 'motor limpia parabrisas para chevrolet', 150000, 200000, 60, 'motor limpia parabrisas para chevrolet, chery modelos 2010-2024', 4, 'Bodega', 5, '2024-02-05 08:29:44', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323345, '864904050363710', '31802-k2qu00633', '77024411', 3, 'chapas', '1133445560', 'Posad FVELA', 'Chapa de seguridad Sandero', 50000, 1000, 20, 'jlksjf lkasj lk alskdjkasljl', 2, 'Bodega', 0, '2024-02-05 20:28:49', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323346, 'motor limpia parabrisas chevrolet', 'Motor chevy 111', 'motor chevrolet', 7, 'motor llimpia parabrisas', '1133445566', 'AFV ECHEVERI', 'motor limpia parabrisas para chevrolet', 100, 70, 42, 'motor limpia parabrisas para chevrolet, chery modelos 2010-2024', 40, 'Bodega', 4, '2024-02-08 16:00:32', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323347, ' motor limpia parabrisas chevrolet', 'motor limpia parabrisas chery', 'motor gm', 7, 'motor llimpia parabrisas', '2323232323', 'DAHYANNA', 'motor limpia parabrisas para chevrolet', 100, 140, 12, 'motor limpia parabrisas para chevrolet, chery modelos 2010-2024', 10, 'Bodega', 44, '2024-02-08 16:49:30', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323348, 'prueba stock1', 'pb2', 'pb3', 2, 'Manijas', '1717171717', 'Prueba1', 'manija prueba stock', 100, 120, 7, 'manija de pueba del stockminimo', 5, 'Bodega', 1, '2024-02-10 12:01:28', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323349, 'tope capo kia', 'tope capo kia sorento', 'tope capo kia sportage', 9, 'topes capo kia', '1133445570', 'Posad FVELASCO', 'tope capo kia', 100, 120, 13, 'topes para capo kia modelo 2000-2024 para sorento y sportage', 10, 'Bodega', 33, '2024-02-12 15:57:30', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
-(12323350, 'Tapete R-2024', 'Tapete R-2022', 'Tapete R-2000', 10, 'Tapete Automovil', '2323232323', 'DAHYANNA', 'Tapete para automovil modelo Renault 2000-2024', 120, 180, 30, 'Tapete para automovil modelo Renault Simbol, Duster 2000-2024', 10, 'Almacen', 5, '2024-02-27 11:34:12', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO');
+(474747, 'manija original renault2', 'mani renault 2000', 'listados', 2, 'Manijas', '1133445560', 'Posad FVELA', 'manija', 25, 5200, 15, 'fjoierfjajflas', 10, 'Bodega', 7, '2023-10-18 20:22:17', '94447540', 'Eduar', 'Corrales', 'ACTIVO'),
+(6327372, 'mot lim kia', 'mot lim kia rio', 'mot lim kia space', 3, 'motor llimpia parabrisas kia', '1133445566', 'oto', 'motor limpia parabrisas kia', 12000, 18000, 13, 'motor limpia parabrisas marca kia todos los modelos del 2022-2024', 10, 'Bodega', 66, '2023-10-03 12:28:50', '94447540', 'Eduar', 'Corrales', 'ACTIVO'),
+(12323334, 'udhs', '', '', 1, '', '1133445560', 'oto', 'probando', 2000, 2500, 212, 'algo nuevo', 3, '1', 3, '2023-10-03 12:19:48', '94447540', 'Eduar', 'Corrales', 'ACTIVO'),
+(12323335, 'parabrisa kia sportage', 'parabrisa kia rio', 'parabrisa kia ', 1, 'parabrisas', '02020202', 'oto', 'parabrisas kia', 20000, 30000, 351, 'Prabrisas Kia sportage, rio, soul modelo 2016-2024', 4, 'Bodega', 8, '2024-01-22 16:28:15', '16385007', 'Hernan', 'Corrales', 'ACTIVO'),
+(12323336, 'empaque puerta delantera ford', 'empaque puerta dodge', 'empaque puerta chevrolet', 4, 'empaques', '1717171717', 'Prueba1', 'Empaque puerta delanteras', 35000, 4500, 202, 'Empaque para puerta doble canal original ford', 30, 'Bodega', 5, '2024-01-24 20:37:48', '16385007', 'Hernan', 'Corrales', 'ACTIVO'),
+(12323338, '94477540', '23f', '24r', 1, 'parabrisas', '02020202', 'oto', 'parabrisas GMC', 12000, 14000, 315, 'parabrias GMC modelo 2000-2023', 2, 'Bodega', 1, '2024-02-01 19:38:35', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323339, 'parab1', 'parab2', 'parab3', 1, 'parabrisas', '1133445566', 'AFV ECHEVERI', 'parabrisas GT Ford', 120000, 15000, 155, 'parabrisas para Ford Gt', 2, 'Bodega', 2, '2024-02-02 16:09:01', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323340, '1PCBA\'U01\'S07ZAR', '94477540', 'Q1', 2, 'Manijas', '1717171717', 'Prueba1', 'manija hiunday', 10000, 15000, 301, 'manija hiunday original', 4, 'Almacen', 3, '2024-02-02 19:15:30', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323341, '97895856771669786073133333', '9786073133333', '2PD', 3, 'chapas', '11338787', 'Posad FVELASCO', 'chapas puertas traseras chery q', 30000, 50000, 576, 'chapa chery q puertas traseras lado derecho', 3, 'Bodega', 34, '2024-02-02 19:20:35', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323342, 'chapa rb24', 'chapa chery qrb', 'chapa chevrolet rb', 3, 'chapas', '02020202', 'oto', 'chapa derecha trasera chery y chevrolet', 35000, 55000, 530, 'chapa puerta trasera derecha para chery chevrolet modelo 2020-2024', 10, 'Bodega', 45, '2024-02-02 19:24:45', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323343, '2PDCN', '1PCBA\'U01\'S07ZAR', '94477540eh', 1, 'parabrisas', '02020202', 'oto', 'Empaque puerta doble canal Renault', 20000, 33000, 290, 'Empaque para puerta doble canal original ford', 2, 'Bodega', 2, '2024-02-02 20:03:17', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323344, 'motor limpia parabrisas chevrolet', 'motor limpia parabrisas chery', 'motor gm', 7, 'motor llimpia parabrisas', '1717171717', 'Prueba1', 'motor limpia parabrisas para chevrolet', 150000, 20000, 569, 'motor limpia parabrisas para chevrolet, chery modelos 2010-2024', 4, 'Bodega', 5, '2024-02-05 08:29:44', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323345, '864904050363710', '31802-k2qu00633', '77024411', 3, 'chapas', '1133445560', 'Posad FVELA', 'Chapa de seguridad Sandero', 5000000, 100000, 179, 'jlksjf lkasj lk alskdjkasljl', 2, 'Bodega', 0, '2024-02-05 20:28:49', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323346, 'motor limpia parabrisas chevrolet', 'Motor chevy 111', 'motor chevrolet', 7, 'motor llimpia parabrisas', '1133445566', 'AFV ECHEVERI', 'motor limpia parabrisas para chevrolet', 100, 7000, 297, 'motor limpia parabrisas para chevrolet, chery modelos 2010-2024', 40, 'Bodega', 4, '2024-02-08 16:00:32', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323347, ' motor limpia parabrisas chevrolet', 'motor limpia parabrisas chery', 'motor gm', 7, 'motor llimpia parabrisas', '2323232323', 'DAHYANNA', 'motor limpia parabrisas para chevrolet', 100, 14000, 294, 'motor limpia parabrisas para chevrolet, chery modelos 2010-2024', 10, 'Bodega', 44, '2024-02-08 16:49:30', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323348, 'MNCH2024', '', '', 9, 'Miona Chevrolet', '1133445566', 'Juan Fernando Echeverry', 'Miona CH Aveo', 120000, 150000, 20, 'Miona Chevrolet Aveo 2020-2024', 5, 'Bodega', 4, '2024-03-27 11:43:10', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
+(12323349, 'Motor Limpia Parabrisas Chevrolet Aveo', '', '', 7, 'motor llimpia parabrisas', '1133445566', 'Juan Fernando Echeverry', 'motor limpia parabrisas para chevrolet ', 12000, 15000, 34, 'Motor limpia parabrisas Chevrolet Aveo modelo 2000', 5, 'Bodega', 7, '2024-03-27 12:59:16', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323350, 'Radio11', '', '', 2, 'Manijas', '1133445572', 'AFNICOL', 'Radio Better', 15000, 15001, 51, 'Radio vehicular marca Better', 5, 'Bodega', 5, '2024-03-28 11:09:47', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323351, 'man1', '', '', 2, 'Manijas', '2323232323', 'DAHYANNA', 'Manija plastica Kia', 1200, 1300, 50, 'Manija Kia plastica modelos Sportage Cerato 2000-2024', 7, 'Bodega', 9, '2024-03-28 11:11:46', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323352, 'cha2', '', '', 3, 'chapas', '1133445566', 'Juan Fernando Echeverry', 'chapa dos', 120000, 130000, 30, 'chapados de dos', -5, 'Bodega', 5, '2024-03-28 11:15:46', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
+(12323353, 'deposito', '', '', 1, 'parabrisas', '1133445569', 'Posada Juan FVELA', 'deposito de tres', 130000, 140000, 5, 'depsoito de dos y tres', 5, 'Bodega', 8, '2024-03-28 11:19:37', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
+(12323354, 'tronillof2', '', '', 2, 'Manijas', '1133445572', 'AFNICOL', 'tornilo f2 y f3', 1.5, 1.501, 50, 'tornilo que aprietta todo', 5, 'Bodega', 5, '2024-03-28 11:56:44', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
+(12323355, 'tor', '', '', 3, 'chapas', '2323232323', 'DAHYANNA', 'tortugados', 14000, 15000, 55, 'tortugas para dos', 5, 'Bodega', 6, '2024-03-28 12:28:43', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323356, 'TB13a', '', '', 5, 'eleva vidrio', '1133445572', 'AFNICOL', 'Tubo de 13\"', 35000, 35002, 400, 'tubo de 13\" galvanizado', -10, 'Bodega', 7, '2024-03-28 12:30:44', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323357, 'rtf23', '', '', 1, 'parabrisas', '1133445570', 'Posad FVELASCO', 'retfefefefe', 12000, 13000, 44, 'retefe y mas fe', 5, 'Almacen', 5, '2024-03-28 12:40:08', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323358, 'tr23', '', '', 1, 'parabrisas', '1133445566', 'Juan Fernando Echeverry', 'tr23-2024', 155000, 155001, 55, 'tre23-2024 y mas', -6, 'Bodega', 8, '2024-03-28 12:43:43', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323359, 'toro2', '', '', 1, 'parabrisas', '1133445572', 'AFNICOL', 'toro2 en 1', 1000, 1200, 20, 'toro dos en uno', 4, 'Bodega', 8, '2024-03-28 12:51:01', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+(12323360, 'torre1', '', '', 1, 'parabrisas', '1133445572', 'AFNICOL', 'torre1 parabrisa', 350000, 420000, 45, 'parabrisas torre 1', 7, 'Bodega', 4, '2024-03-28 15:21:22', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -484,11 +484,11 @@ CREATE TABLE `proveedores` (
 
 INSERT INTO `proveedores` (`doc_proveedor`, `nom_proveedor`, `contacto_proveedor`, `email_proveedor`, `direccion_proveedor`, `ciudad_proveedor`, `registro_proveedor`, `documento_operador`, `nombre_operador`, `apellido_operador`, `estado_proveedor`) VALUES
 ('02020202', 'oto', '41414144', 'dfffafafa@gmail.com', 'carrera 14 #34-25', 'Buga', '2023-10-18 19:55:54', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
-('1133445560', 'Posad FVELA', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:25:22', '1112388921', '', '', 'INACTIVO'),
-('1133445566', 'AFV ECHEVERI', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:21:41', '1112388921', '', '', 'INACTIVO'),
-('1133445569', 'Posad FVELA', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:24:34', '1112388921', '', '', 'INACTIVO'),
-('1133445570', 'Posad FVELASCO', '3144455678', 'edccor@hotmail.com', 'Calle 6sur #13b40', 'Cucuta', '2023-09-27 16:26:08', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
-('1133445572', 'AFNICOL', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:27:02', '1112388921', '', '', 'INACTIVO'),
+('1133445560', 'Posad ', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Santiago de Ca', '2023-09-27 16:25:22', '16385007', 'Hernan', 'Corrales Grisalez', 'INACTIVO'),
+('1133445566', 'Juan Fernando Echeverry', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:21:41', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+('1133445569', 'Noelia Rivas ', '3133355678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:24:34', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
+('1133445570', 'Posad FVELASCO', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:26:08', '1112388921', '', '', 'ACTIVO'),
+('1133445572', 'AFNICOL', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:27:02', '1112388921', '', '', 'ACTIVO'),
 ('1133872732', 'Posad FVELASCOe', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:36:55', '1112388921', '', '', 'ACTIVO'),
 ('1133872738', 'Posad FVELASCOe', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:37:52', '1112388921', '', '', 'ACTIVO'),
 ('11338787', 'Posad FVELASCO', '3144455678', 'edccor@hotmail.om', 'Calle 6sur #13b40', 'Cali', '2023-09-27 16:27:56', '1112388921', '', '', 'ACTIVO'),
@@ -502,6 +502,7 @@ INSERT INTO `proveedores` (`doc_proveedor`, `nom_proveedor`, `contacto_proveedor
 ('1515151515', 'afproveedor1', '3151515151', 'proveedor1@gmail.com', 'cra13#bugacity', 'buguita', '2023-09-26 04:59:29', '1112388921', '', '', 'ACTIVO'),
 ('1717171717', 'Prueba1', '3151515151', 'pruebas@gmail.com', 'cra12#bugacity', 'Buga', '2023-09-27 15:40:17', '1112388921', '', '', 'ACTIVO'),
 ('2323232323', 'DAHYANNA', '1548796542', 'dahy@gmail.com', 'cra45#45-89', 'BUGA', '2023-10-18 20:12:03', '94447540', 'Eduar', 'Corrales', 'ACTIVO'),
+('90056458', 'Vidrios del Valle', '3105674546', 'vidriosvalle@gmail.com', 'Carrera 5 # 16-88', 'Cali', '2024-03-31 16:40:05', '16385007', 'Hernan', 'Corrales Grisalez', 'ACTIVO'),
 ('9345678911', 'AF Posada S.A', '3212122245', 'edccor@hotmail.om', 'carrera 25 #5-10', 'Buga', '2023-09-26 22:24:46', '1112388921', '', '', 'ACTIVO');
 
 -- --------------------------------------------------------
@@ -526,7 +527,12 @@ CREATE TABLE `recuperarcontrasena` (
 
 INSERT INTO `recuperarcontrasena` (`id_solicitud`, `email_usuario`, `fechahora_solicitud`, `fechahora_termina`, `codigo`, `usuario`, `utilizado`) VALUES
 (1, 'dennisecheverri46@gmail.com', '2023-11-14 18:34:14', '2023-11-14 18:37:14', 'N007W4JTSuXDiXj2MhvNBSAxrsZ447Ol', '1086358507', 'si'),
-(2, 'edcorgris@gmail.com', '2023-12-23 20:36:15', '2023-12-23 20:39:15', '49nLo83UBdzPZcV3ofZ9H9OO785CYuqW', '94447540', 'si');
+(2, 'edcorgris@gmail.com', '2023-12-23 20:36:15', '2023-12-23 20:39:15', '49nLo83UBdzPZcV3ofZ9H9OO785CYuqW', '94447540', 'si'),
+(4, 'edixonpayan5@gmail.com', '2024-02-10 17:37:37', '2024-02-10 17:40:37', 'fOTB3Tzv5Fzida9RjjrdgJt8DfGMqpRC', '193838362', 'si'),
+(5, 'edixonpayan5@gmail.com', '2024-03-01 18:19:51', '2024-03-01 18:22:51', 'fYnYCBvkDTVyJBAdbN5Qnw9fxHZzTvEl', '193838362', 'si'),
+(6, 'dahyanna.me@gmail.com', '2024-03-04 17:41:32', '2024-03-04 17:44:32', 'ABYMKccbcpJ2iGDkMnsGRxslkUGipK7I', '1112388921', 'no'),
+(7, 'edixonpayan5@gmail.com', '2024-03-08 12:08:43', '2024-03-08 12:11:43', 'ipWfqC8AweoJEIPsGbdcFxZbfyn0WT1n', '193838362', 'si'),
+(8, 'edixonpayan5@gmail.com', '2024-03-08 12:41:32', '2024-03-08 12:44:32', 'PyOUGSgXoP9Wrn7IkDwzd5jak9Ym4XnY', '193838362', 'si');
 
 -- --------------------------------------------------------
 
@@ -556,7 +562,7 @@ CREATE TABLE `tokens` (
   `id_token` int(11) NOT NULL,
   `doc_empleado` varchar(10) NOT NULL,
   `nom_empleado` varchar(25) NOT NULL,
-  `email_empleado` varchar(8) NOT NULL,
+  `email_empleado` varchar(50) NOT NULL,
   `token` varchar(32) NOT NULL,
   `confir_user` varchar(13) NOT NULL,
   `tiempo_registro` datetime NOT NULL
@@ -574,7 +580,8 @@ INSERT INTO `tokens` (`id_token`, `doc_empleado`, `nom_empleado`, `email_emplead
 (5, '1086358507', 'dennis', 'dennisec', '1vxpV69GWcMXkohj7t47OTpmPm4QJuna', 'confirmado', '2023-11-14 18:30:07'),
 (17, '16385007', 'Hernan', 'edcorgri', 'X0bNZpY2imxwk9c6fFiY3ACFv2nQ4eaB', 'confirmado', '2023-12-26 17:23:47'),
 (23, '312244556', 'Nicol de D', 'nicolmot', 'jCBJvP5wz2yVrPvnTzL2LX6xpEYydObK', 'no confirmado', '2023-12-26 19:25:03'),
-(24, '1111035245', 'Herney', 'herney@g', 'y18puDuaGuuunGYhDvivSqx1H9V9TFdE', 'no confirmado', '2024-02-02 20:22:10');
+(24, '1111035245', 'Herney', 'herney@g', 'y18puDuaGuuunGYhDvivSqx1H9V9TFdE', 'no confirmado', '2024-02-02 20:22:10'),
+(27, '1089000896', 'Edixon', 'edixonpayan8@gmail.com', 'BPvcHW1ZGG1acs2J2YbEvOCKllbpVtSC', 'confirmado', '2024-03-01 18:08:06');
 
 -- --------------------------------------------------------
 
@@ -613,29 +620,28 @@ CREATE TABLE `ventas` (
 --
 
 INSERT INTO `ventas` (`num_factura`, `cliente_factura`, `numero_cotizacion`, `documento_operador`, `nombre_operador`, `apellido_operador`, `fechahora_venta`, `forma_pago`, `medio_pago`, `codigo_tabla`, `operador_factura`) VALUES
-(5, '1213145566', 0, NULL, '', '', '2023-11-14 19:33:33', 'efectivo', NULL, '2UKQ3q5Jx1lebk0FwCpa', '1086358507'),
-(6, '1213145566', 0, NULL, '', '', '2023-11-14 19:35:16', 'Bancolombia', NULL, 'MQkqNXdh9bjOfLs6Txgz', '1086358507'),
-(7, '1213145566', 0, NULL, '', '', '2023-11-14 19:48:03', 'efectivo', NULL, 'tpgz46LK7iHFrNR5qsew', '1086358507'),
-(8, '1213145566', 0, NULL, '', '', '2023-11-14 19:51:04', 'efectivo', NULL, '7EQqdNjpMtOlSGz6vY8W', '1086358507'),
-(9, '1213145566', 0, NULL, '', '', '2023-11-14 19:51:52', 'efectivo', NULL, '9yWhFX6jVT5HswcQ8El1', '1086358507'),
-(10, '1213145566', 0, NULL, '', '', '2023-11-14 19:53:14', 'efectivo', NULL, 'B8yOePEXKY9L6JQCrtVi', '1086358507'),
-(11, '1213145566', 0, NULL, '', '', '2023-11-14 19:56:46', 'Daviplata', NULL, 'lPzBGbX7a6oh5uFJtenO', '1086358507'),
-(12, '1213145566', 0, NULL, '', '', '2023-11-14 20:01:01', 'efectivo', NULL, '7ND6ZaFqCjokgx0TYMRB', '1086358507'),
-(13, '1213145566', 0, NULL, '', '', '2023-11-14 21:28:27', 'Daviplata', NULL, 'T678PMpSVouCKLfUXxRw', '1086358507'),
-(14, '1213145566', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-09 18:08:25', 'efectivo', NULL, '7S2Nc4mqaM9QVZdWfOF0', NULL),
-(15, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-10 12:06:06', 'efectivo', NULL, 'TdJrBgNOuEiU9L6c1h0K', NULL),
-(16, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-10 12:07:11', 'efectivo', NULL, 'IxYBHy5pu8a0v2rX4WEm', NULL),
-(17, '7576758756', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-10 13:09:28', 'efectivo', NULL, 'XbpJaOD1fo9r8mIexq6n', NULL),
-(18, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-10 13:23:17', 'efectivo', NULL, 'T1taQSEGy8kpC7rmiejZ', NULL),
-(19, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-10 13:31:41', 'efectivo', NULL, '0rsAVz5XfMGNh9FYlBkj', NULL),
-(20, '33750742', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-10 13:32:52', 'efectivo', NULL, 'xm7tgWP0NuzwCoSMRKZ8', NULL),
-(21, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-10 13:46:38', 'efectivo', NULL, 'J0bU4iac8LrzmyGRNCpf', NULL),
-(22, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-10 13:57:44', 'efectivo', NULL, 'VH5yTgYCtJFv7bU19Il2', NULL),
-(23, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-11 10:37:14', 'efectivo', NULL, 'AyedkGKIn9pVic24D8wT', NULL),
-(24, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-11 10:43:57', 'efectivo', NULL, 'ldVq0zgvIEC3QseKF7c5', NULL),
-(25, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-11 10:53:58', 'efectivo', NULL, '8w7xUsdokQb0cCWA5EDF', NULL),
-(26, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-26 13:43:12', 'efectivo', NULL, 'fIHCxP54GE8Omo6aUdup', NULL),
-(27, '33750741', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-02-27 11:37:32', 'efectivo', NULL, 'goEtZfHIujFdV25e9wQr', NULL);
+(36, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-02-26 14:46:37', 'efectivo', NULL, 'WSFPL6uhyx3HGCqfgJE4', NULL),
+(37, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-01 14:47:48', 'efectivo', NULL, 'yhgW8p7rGXVxicYDlsQZ', NULL),
+(38, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-02-26 14:48:14', 'efectivo', NULL, 'KQvjNLmebMYfk13TIUia', NULL),
+(39, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-02-29 14:48:45', 'Tarjeta cred', NULL, 'GxpwaYDvhIZ5U7nK0eXS', NULL),
+(40, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-02-28 14:49:34', 'Daviplata', NULL, 'R8pA1ZDdojKUvS6MuPit', NULL),
+(41, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-02-27 18:19:01', 'Bancolombia', NULL, 'dVjh2B4W5qEsOy9kCPFf', NULL),
+(42, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-02-27 19:11:34', 'efectivo', NULL, 'zTaI84pCU15xPMKOGVBD', NULL),
+(43, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-05 19:47:54', 'Tarjeta debi', NULL, 'LEXq4lZ71aMny8eW59Jd', NULL),
+(44, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-05 23:59:38', 'efectivo', NULL, 'Swlyh8Z5UIHR0pXuBs6g', NULL),
+(45, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-06 00:01:48', 'efectivo', NULL, 'o67bheYdkqpLDv3wJVE0', NULL),
+(46, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-06 00:23:42', 'efectivo', NULL, 'nbuv7Ct5gHr8NBIh1lAF', NULL),
+(47, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-12 02:31:51', 'efectivo', NULL, '0zR6yq1rWiJxOVkLMaDT', NULL),
+(48, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-12 02:53:55', 'efectivo', NULL, 'ZpYeqy7mFHdtn9TVrbL6', NULL),
+(49, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-11 02:58:13', 'efectivo', NULL, '3MdBHIAcCrU2ObJqThP8', NULL),
+(50, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-11 02:58:40', 'efectivo', NULL, '8iHyCNVJdS7rpgxZB9ID', NULL),
+(51, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-12 15:35:27', 'efectivo', NULL, 'ts5Elp9VKgTeHU13F4aO', NULL),
+(52, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-11 15:37:00', 'efectivo', NULL, 'yE2CDrxoSWcjtz506l9e', NULL),
+(53, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-12 17:18:58', 'efectivo', NULL, 'LZNnsJmD5uCFQVIEHhto', NULL),
+(54, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-11 17:19:52', 'efectivo', NULL, 'RjuC6NvdhKMS3g2Q5lfm', NULL),
+(55, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-11 17:21:12', 'efectivo', NULL, 'czWYKhNa97o0PGl4Vu5A', NULL),
+(56, '33750742', 0, '193838362', 'Edixon', 'Payan', '2024-03-11 17:37:01', 'efectivo', NULL, 'OIXdEu93y4s8lQwKfkPz', NULL),
+(57, '1213145566', 0, '16385007', 'Hernan', 'Corrales Grisalez', '2024-03-28 11:43:46', 'efectivo', NULL, '9djh753GMbasPUuI0Tn1', NULL);
 
 -- --------------------------------------------------------
 
@@ -659,16 +665,19 @@ CREATE TABLE `ventas_credito` (
 --
 
 INSERT INTO `ventas_credito` (`contador`, `cliente`, `productos`, `credito_total`, `credito_restante`, `operador`, `fecha_venta`, `estado`) VALUES
-(1, '1213145566', 'probando, tornillos, probando', 700, 700, 1086358507, '2023-11-14 21:21:09', 'PAGADA'),
-(2, '1213145566', 'probando - 2,   manija - 1', 552, 552, 16385007, '2024-02-09 20:14:47', 'PAGADA'),
-(3, '33750741', 'manija - 1', 52, 52, 16385007, '2024-02-10 13:53:29', 'PAGADA'),
-(4, '33750741', 'manija - 2', 104, 104, 16385007, '2024-02-10 14:21:04', 'PAGADA'),
-(5, '33750741', 'manija - 3,   probando - 2', 656, 656, 16385007, '2024-02-10 14:39:45', 'ACTIVO'),
-(6, '33750741', 'manija - 2,   motor limpia parabrisas kia - 4', 720104, 720104, 16385007, '2024-02-10 19:55:07', 'ACTIVO'),
-(7, '33750741', 'manija - 2,   motor limpia parabrisas kia - 4,   probando - 3', 720854, 720854, 16385007, '2024-02-10 20:05:57', 'ACTIVO'),
-(8, '33750741', 'manija - 3,   motor limpia parabrisas kia - 3,   probando - 2,   parab', 1740656, 1740656, 16385007, '2024-02-10 20:15:28', 'ACTIVO'),
-(9, '33750741', 'manija - 3', 156, 156, 16385007, '2024-02-11 10:33:41', 'ACTIVO'),
-(10, '33750741', 'tope capo kia - 2,   manija hiunday - 1', 150240, 150240, 16385007, '2024-02-12 16:00:27', 'PAGADA');
+(1, '1213145566', 'probando, tornillos, probando', 700, 700, 1086358507, '2023-11-14 21:21:09', 'ACTIVO'),
+(2, '1213145566', 'manija - 3', 15600, 15600, 193838362, '2024-02-22 22:04:57', 'ACTIVO'),
+(3, '1213145566', 'manija - 1,   motor limpia parabrisas kia - 1,   probando - 1', 25700, 25700, 193838362, '2024-02-22 22:57:32', 'ACTIVO'),
+(4, '1213145566', 'Empaque puerta delanteras - 1,   probando - 1,   motor limpia parabris', 25000, 25000, 193838362, '2024-02-22 22:58:01', 'ACTIVO'),
+(5, '1213145566', 'parabrisas kia - 1,   Empaque puerta delanteras - 1,   parabrisas GMC ', 71700, 71700, 193838362, '2024-02-22 22:58:23', 'ACTIVO'),
+(6, '1213145566', 'probando - 1,   parabrisas kia - 1', 32500, 32500, 193838362, '2024-02-23 00:21:24', 'ACTIVO'),
+(7, '1213145566', 'probando - 1,   parabrisas kia - 1', 32500, 32500, 193838362, '2024-02-23 00:23:14', 'ACTIVO'),
+(8, '1213145566', 'manija - 1,   parabrisas kia - 1', 35200, 35200, 193838362, '2024-02-23 00:43:34', 'ACTIVO'),
+(9, '1213145566', 'probando - 1', 2500, 2500, 193838362, '2024-02-23 00:45:27', 'ACTIVO'),
+(10, '33750742', 'manija - 1,   motor limpia parabrisas kia - 1,   probando - 1,   parab', 55700, 55700, 193838362, '2024-03-05 19:16:53', 'ACTIVO'),
+(11, '33750742', 'manija - 1,   motor limpia parabrisas kia - 1,   parabrisas kia - 1', 53200, 53200, 193838362, '2024-03-05 19:32:07', 'ACTIVO'),
+(12, '33750742', 'manija - 1,   probando - 1,   parabrisas kia - 1', 37700, 0, 193838362, '2024-03-05 19:46:00', 'ACTIVO'),
+(13, '44337765', 'manija - 1,   motor limpia parabrisas kia - 1', 23200, 23200, 193838362, '2024-03-06 02:10:41', 'ACTIVO');
 
 --
 -- Índices para tablas volcadas
@@ -834,31 +843,31 @@ ALTER TABLE `ventas_credito`
 -- AUTO_INCREMENT de la tabla `carritoventas`
 --
 ALTER TABLE `carritoventas`
-  MODIFY `contador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `contador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_categoria` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `comprasproveedores`
 --
 ALTER TABLE `comprasproveedores`
-  MODIFY `num_compra` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `num_compra` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de la tabla `detallecomprasproveedores`
 --
 ALTER TABLE `detallecomprasproveedores`
-  MODIFY `id_detalle_compra` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_detalle_compra` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `detallecotizaciones`
 --
 ALTER TABLE `detallecotizaciones`
-  MODIFY `id_detalle_cotizacion` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_detalle_cotizacion` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `detalledevoluciones`
@@ -870,31 +879,31 @@ ALTER TABLE `detalledevoluciones`
 -- AUTO_INCREMENT de la tabla `detalleventas`
 --
 ALTER TABLE `detalleventas`
-  MODIFY `id_detalle_factura` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_detalle_factura` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `devoluciones`
 --
 ALTER TABLE `devoluciones`
-  MODIFY `id_devolucion` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_devolucion` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_credito`
 --
 ALTER TABLE `historial_credito`
-  MODIFY `contador` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `contador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12323351;
+  MODIFY `id_producto` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12323361;
 
 --
 -- AUTO_INCREMENT de la tabla `recuperarcontrasena`
 --
 ALTER TABLE `recuperarcontrasena`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
@@ -906,7 +915,7 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicacion`
@@ -918,13 +927,13 @@ ALTER TABLE `ubicacion`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `num_factura` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `num_factura` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas_credito`
 --
 ALTER TABLE `ventas_credito`
-  MODIFY `contador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `contador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas

@@ -83,26 +83,33 @@ def cancelar_compra_proveed(num_compra):
 
 # ------- editar detalles de compras a proveedores -----
 
-@app.route("/edita_compras_provee/<num_compra>") 
+@app.route("/edita_compras_provee/<num_compra>")
 def edita_compras_provee(num_compra):
     if "nom_empleado" in session:
         sql = (
-            f"SELECT d.`id_detalle_compra`, d.`detallenum_compra`, d.`producto_compra`, "
-            f"d.`cantidad_producto_compra`, "
-            f"d.`valorunidad_prodcompra`, "
-            f"d.`valortotal_cantidadcomp`, "
-            f"d.`totalpagar_compra`, "
-            f"cp.`num_factura_proveedor` "
-            f"FROM `detallecomprasproveedores` d "
-            f"JOIN `comprasproveedores` cp ON d.`detallenum_compra` = cp.`num_compra` "
-            f"WHERE d.`detallenum_compra` = '{num_compra}'"
+            f"SELECT cp.`num_compra`, "
+            f"cp.`proveedor_compra`, "
+            f"p.`nom_proveedor`, "
+            f"cp.`fecha_compra`, "
+            f"cp.`num_factura_proveedor`, "
+            f"cp.`estado`, "
+            f"dcp.`id_detalle_compra`, "
+            f"dcp.`detallenum_compra`, "
+            f"dcp.`producto_compra`, "
+            f"dcp.`cantidad_producto_compra`, "
+            f"dcp.`valorunidad_prodcompra`, "
+            f"dcp.`valortotal_cantidadcomp`, "
+            f"dcp.`totalpagar_compra` "
+            f"FROM `comprasproveedores` cp "
+            f"INNER JOIN `detallecomprasproveedores` dcp ON cp.`num_compra` = dcp.`detallenum_compra` "
+            f"INNER JOIN `proveedores` p ON cp.`proveedor_compra` = p.`doc_proveedor` "
+            f"WHERE cp.`num_compra` = '{num_compra}'"
         )
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(sql)
         resultado = cursor.fetchall()
         print("Resultado de la consulta:", resultado)
-
 
         if resultado:  # Verifica si la tupla no está vacía
             conn.commit()
@@ -114,6 +121,7 @@ def edita_compras_provee(num_compra):
     else:
         flash('Por favor, inicia sesión para poder acceder')
         return redirect(url_for('index'))
+
 
 
 @app.route("/actualiza_compra_provee", methods=['POST'])
@@ -128,8 +136,15 @@ def actualiza_compra_provee():
             cantidad_compra = int(request.form['cantidad_compra'])
             valorunidad_prodcompra = float(request.form['valorunidad_prodcompra'])
             valor_total_unidad = cantidad_compra * valorunidad_prodcompra
+
+            fecha_compra = request.form['fecha_compra']
+            num_factura_proveedor = request.form['num_factura_proveedor']
             
-            Dcompra_proveedores.edita_detalles_compra([num_compra, detallenum_compra, producto_compra, cantidad_compra, valorunidad_prodcompra, valor_total_unidad])
+            Dcompra_proveedores.edita_detalles_compra((num_compra, detallenum_compra, producto_compra, cantidad_compra, valorunidad_prodcompra, valor_total_unidad, fecha_compra, num_factura_proveedor))
+
+
+
+            return redirect("/muestra_compra_proved")
 
             return redirect("/muestra_compra_proved")
     

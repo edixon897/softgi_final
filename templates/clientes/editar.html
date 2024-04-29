@@ -18,38 +18,38 @@
 
                 <div id="page_1" class="pag_edit_cliente">
                     <div id="documento">
-                        <input type="hidden" name="doc_cliente" id="documento" class="input_campo" value="{{resul[0]}}">
+                        <input type="hidden" name="doc_cliente" id="documento" class="input_campo" value="{{resul[0]}}" placeholder="Documento" required>
                     </div>
                     <div id="nombre" class="campo_edit_clie">
                         <i class="lni lni-user"></i>
-                        <input type="text" name="nom_cliente" id="nombre" class="input_campo" value="{{resul[1]}}" tabindex="1">
+                        <input type="text" name="nom_cliente" id="nombre" class="input_campo" value="{{resul[1]}}" tabindex="1" placeholder="Nombre" required>
                     </div>
                     <div id="contacto" class="campo_edit_clie">
                         <i class="lni lni-mobile"></i>
                         <input type="number" name="contacto_cliente" id="contacto" class="input_campo"
-                            value="{{resul[4]}}" tabindex="3">
+                            value="{{resul[4]}}" tabindex="3" placeholder="Telefono" pattern=".{10}" required>
                     </div>
                     <div id="nac_cliente" class="nac_cliente">
                         <label id="label_fecha" for="fecha" class="aclaracion">Fecha de nacimiento</label>
                         <input type="date" name="fecha_nacimiento_cliente" id="fecha" class="input_campo"
-                            value="{{resul[3]}}" tabindex="5">
+                            value="{{resul[3]}}" tabindex="5" placeholder="Fecha de nacimiento">
                     </div>
                     <div  id="ciudad" class="campo_edit_clie">
                         <i class="lni lni-home"></i>
                         <input type="text" name="ciudad_cliente" id="ciudad" class="input_campo"
-                            value="{{resul[7]}}" tabindex="7">  
+                            value="{{resul[7]}}" tabindex="7"  placeholder="Ciudad" required>  
                     </div>
                     
                 </div>
 
                 <div id="page_2" class="pag_edit_cliente">
                     <div id="apellido" class="campo_edit_clie">
-                        <input type="text" name="ape_cliente" id="apellido" class="input_campo" value="{{resul[2]}}" tabindex="2">
+                        <input type="text" name="ape_cliente" id="apellido" class="input_campo" value="{{resul[2]}}" tabindex="2" placeholder="Apellidos" required>
                     </div>
                     <div id="correo" class="campo_edit_clie">
                         <i class="lni lni-envelope"></i>
                         <input type="email" name="email_cliente" id="correo" class="input_campo"
-                            value="{{resul[5]}}" tabindex="4">
+                            value="{{resul[5]}}" tabindex="4" placeholder="email" required> 
                     </div>
                     <div id="tipo_persona">
                         <label id="label_otp" for="opt" class="aclaracion">Tipo de persona</label>
@@ -62,7 +62,7 @@
                     <div id="direccion" class="campo_edit_clie">
                         <i class="lni lni-map-marker"></i>
                         <input type="text" name="direccion_cliente" id="direccion" class="input_campo"
-                            value="{{resul[6]}}" tabindex="8">
+                            value="{{resul[6]}}" tabindex="8" placeholder="Direccción" required>
                     </div>
                 </div>
                 <button type="submit" id="btn" class="btn" onclick="animacion_envio()">Actualizar</button>

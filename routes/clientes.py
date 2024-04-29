@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, flash, redirect, url_for, session
+from flask import Flask, jsonify, request, render_template, flash, redirect, url_for, session
 from conexiondb import conexion, mysql, app
 import datetime
 from models.clientes import Dclientes
@@ -145,30 +145,28 @@ def Actualizar_clie():
         flash('Porfavor inicia sesion para poder acceder')
         return redirect(url_for('index'))
 
-@app.route('/buscar_cliente', methods=['POST', 'GET'])
+@app.route('/buscar_cliente', methods=['POST'])
 def buscar_cliente():
     if "nom_empleado" in session:
         rol_usuario = session["rol"]
-        if rol_usuario == "administrador" or rol_usuario == "vendedor":
-
+        if rol_usuario in ["administrador", "vendedor"]:
             if request.method == 'POST':
-                busqueda = request.form['searchClientes']
+                data = request.get_json()  # Obtener el JSON enviado
+                busqueda = data.get('buscarClientes')  # Acceder al valor buscado
                 conn = mysql.connect()
                 cursor = conn.cursor()
-                cursor.execute(f"SELECT * FROM clientes WHERE estado_cliente='ACTIVO' AND (doc_cliente LIKE '%{busqueda}%' OR nom_cliente LIKE '%{busqueda}%' OR ape_cliente LIKE '%{busqueda}%')")
+                cursor.execute("SELECT `doc_cliente`, `nom_cliente`, `ape_cliente`, `fecha_nacimiento_cliente`, `contacto_cliente`, `email_cliente`, `direccion_cliente`, `ciudad_cliente`, `tipo_persona` FROM clientes WHERE estado_cliente = 'ACTIVO' AND (doc_cliente LIKE %s OR nom_cliente LIKE %s OR ape_cliente LIKE %s)", ('%' + busqueda + '%', '%' + busqueda + '%', '%' + busqueda + '%'))
                 resultados = cursor.fetchall()
                 conn.close()
-                return render_template('clientes/clientes.html', resulta=resultados) 
-            
+                return jsonify(result=resultados)
         else:
             return redirect("/inicio")
-
     else:
-        flash('Porfavor inicia sesion para poder acceder')
+        flash('Por favor inicia sesión para poder acceder')
         return redirect(url_for('index'))
     
-@app.route('/borracliente/<documento>')
-def borrarcliente(documento):
+@app.route('/borracliente/<documento>', methods=['POST'])
+def borracliente(documento):
     if "nom_empleado" in session:
 
         rol_usuario = session["rol"]
